@@ -16,7 +16,7 @@ namespace TexcelTest2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmGestion());
+            Application.Run(new frmGestCon());
         }
     }
 }

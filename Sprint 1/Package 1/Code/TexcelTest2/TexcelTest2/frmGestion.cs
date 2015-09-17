@@ -22,38 +22,38 @@ namespace TexcelTest2
             var formOuvert = new Form();
             string nomButton = ((ToolStripMenuItem)sender).Name;
 
-            //switch (nomButton)
-            //{
-            //    case "btnSysExpToolStrip":
-            //        formOuvert = new frmGesSysExp();
-            //        break;
-            //    case "btnPlateToolStrip":
-            //        formOuvert = new frmGesPlateforme();
-            //        break;
-            //    case "btnJeuToolStrip":
-            //        formOuvert = new frmGesJeu();
-            //        break;
-            //    case "btnClassToolStrip":
-            //        formOuvert = new frmGestClassification();
-            //        break;
-            //    case "btnGenreToolStrip":
-            //        formOuvert = new frmGesGenre();
-            //        break;
-            //    case "btnThemeToolStrip":
-            //        formOuvert = new frmGestTheme();
-            //        break;
-            //    case "btnVersionToolStrip":
-            //        formOuvert = new frmGestVersion();
-            //        break;
-            //    case "btnModeToolStrip":
-            //        formOuvert = new frmGesMode();
-            //        break;
-            //    case "btnDecoToolStrip":
-            //        formOuvert = new frmGesCon();
-            //        break;
-            //    default:
-            //        break;
-            //}
+            switch (nomButton)
+            {
+                case "btnSysExpToolStrip":
+                    formOuvert = new frmGesSysExp();
+                    break;
+                case "btnPlateToolStrip":
+                    formOuvert = new frmGestPlateforme();
+                    break;
+                case "btnJeuToolStrip":
+                    formOuvert = new frmGestJeu();
+                    break;
+                case "btnClassToolStrip":
+                    formOuvert = new frmGestClassification();
+                    break;
+                case "btnGenreToolStrip":
+                    formOuvert = new frmGestGenre();
+                    break;
+                case "btnThemeToolStrip":
+                    formOuvert = new frmGestTheme();
+                    break;
+                case "btnVersionToolStrip":
+                    formOuvert = new frmGestVersion();
+                    break;
+                case "btnModeToolStrip":
+                    formOuvert = new frmGestMode();
+                    break;
+                case "btnDecoToolStrip":
+                    formOuvert = new frmGestCon();
+                    break;
+                default:
+                    break;
+            }
             this.Hide();
             formOuvert.Show();
             formOuvert.Closed += (s, args) => this.Close();
