@@ -1,0 +1,24 @@
+Description narrative : vérif finale
+Jeu d'essais : les finir et les fusionner (attention de ne pas mêler les packages)
+
+	
+-tblCategorie
+	
+-Plateforme
+	
+-PlateformeSysExp
+	
+
+
+
+Diagramme de séquence : Questions Guillaume + vérif finale
+
+BD : Terminé package jeux et table de code TypeTest et TypeStatus
+
+Code complet fonctionnel package jeu
+
+tester le code
+
+Doc package jeux
+
+DCO
