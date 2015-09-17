@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a8ca9b9a55ed4a039b07ab6a42348cfc" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.colors" Width="1.5" PointX="6.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.messages" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.pieces" Width="1.5" PointX="3.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.pieces_users" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.sets" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.sets_pieces" Width="1.5" PointX="9" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.sets_users" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_LEGO_ELODIEModel.users" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_setpieces_color" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_message_set_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_message_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_pieces_id_users" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_setpieces_pieceid" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_users_id_users" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_set_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_setpieces_setid" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_LEGO_ELODIEModel.FK_user_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
