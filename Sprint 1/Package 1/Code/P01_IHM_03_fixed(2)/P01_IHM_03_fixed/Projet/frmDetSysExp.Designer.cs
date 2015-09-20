@@ -87,7 +87,7 @@
             // 
             this.txtNom.Location = new System.Drawing.Point(112, 65);
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(168, 22);
+            this.txtNom.Size = new System.Drawing.Size(228, 22);
             this.txtNom.TabIndex = 2;
             this.txtNom.Tag = "2";
             // 
@@ -122,7 +122,7 @@
             // 
             this.txtEdition.Location = new System.Drawing.Point(112, 93);
             this.txtEdition.Name = "txtEdition";
-            this.txtEdition.Size = new System.Drawing.Size(285, 22);
+            this.txtEdition.Size = new System.Drawing.Size(358, 22);
             this.txtEdition.TabIndex = 3;
             this.txtEdition.Tag = "3";
             // 
@@ -140,7 +140,7 @@
             // 
             this.txtVersion.Location = new System.Drawing.Point(112, 121);
             this.txtVersion.Name = "txtVersion";
-            this.txtVersion.Size = new System.Drawing.Size(285, 22);
+            this.txtVersion.Size = new System.Drawing.Size(358, 22);
             this.txtVersion.TabIndex = 4;
             this.txtVersion.Tag = "4";
             // 

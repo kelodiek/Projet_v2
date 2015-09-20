@@ -60,6 +60,20 @@
     <Compile Include="Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Categorie.cs" />
+    <Compile Include="ctrlCategorie.cs" />
+    <Compile Include="frmDetCateg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetCateg.Designer.cs">
+      <DependentUpon>frmDetCateg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGesCategorie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGesCategorie.Designer.cs">
+      <DependentUpon>frmGesCategorie.cs</DependentUpon>
+    </Compile>
     <Compile Include="RequeteSql.cs" />
     <Compile Include="dbProjet.Context.cs">
       <AutoGen>True</AutoGen>
@@ -211,6 +225,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ctrlSysExp.cs" />
+    <Compile Include="SystemeExploitation.cs" />
     <Compile Include="tblCategorie.cs">
       <DependentUpon>dbProjet.tt</DependentUpon>
     </Compile>
@@ -244,6 +259,9 @@
     <EmbeddedResource Include="frmAccueilAdmin.resx">
       <DependentUpon>frmAccueilAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDetCateg.resx">
+      <DependentUpon>frmDetCateg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDetClassification.resx">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetVersion.resx">
       <DependentUpon>frmDetVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGesCategorie.resx">
+      <DependentUpon>frmGesCategorie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGesMode.resx">
       <DependentUpon>frmGesMode.cs</DependentUpon>

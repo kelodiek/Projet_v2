@@ -56,6 +56,9 @@ namespace Projet
                 case "btnDecoToolStrip":
                     formOuvert = new frmGesCon();
                     break;
+                case "btnCategToolStrip":
+                    formOuvert = new frmGesCategorie();
+                    break;
                 default:
                     break;
             }
@@ -70,7 +73,6 @@ namespace Projet
             {
                 btnAjout.Visible = false;
                 btnDetails.Visible = false;
-                btnSupprimer.Visible = false;
                 txtRecherche.Visible = false;
                 btnRecherche.Visible = false;
             }
@@ -78,7 +80,6 @@ namespace Projet
             {
                 btnAjout.Visible = true;
                 btnDetails.Visible = true;
-                btnSupprimer.Visible = true;
                 txtRecherche.Visible = true;
                 btnRecherche.Visible = true;
             }
@@ -86,6 +87,11 @@ namespace Projet
         private void btnQuitterToolStrip_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmGestion_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

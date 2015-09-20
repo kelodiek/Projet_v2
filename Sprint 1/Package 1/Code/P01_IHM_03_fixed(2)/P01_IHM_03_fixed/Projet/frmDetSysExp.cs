@@ -14,6 +14,8 @@ namespace Projet
     {
         public string[] copie { get; set; }
         public string[] infoSysExp { get; set; }
+        private ctrlSysExp gestionSysExp;
+        private SystemeExploitation ancienSysExp;
 
         public frmDetSysExp()
         {
@@ -22,6 +24,8 @@ namespace Projet
             this.btnActiverModif.Click += new EventHandler(activerModif);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnCopier.Enabled = false;
+            gestionSysExp = new ctrlSysExp();
         }
         public frmDetSysExp(string[] info)
         {
@@ -33,6 +37,9 @@ namespace Projet
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             txtNom.Text = info[2];
             infoSysExp = info;
+            gestionSysExp = new ctrlSysExp();
+
+            ancienSysExp = new SystemeExploitation();
         }
         /// <summary>
         /// 
@@ -66,6 +73,16 @@ namespace Projet
             txtEdition.Text = infoSysExp[3];
             txtVersion.Text = infoSysExp[4];
             rtxtInfos.Text = infoSysExp[5];
+
+            ancienSysExp.CodeSysExp = txtCode.Text;
+            if (txtID.Text.Length != 0)
+            {
+                ancienSysExp.idSysExp = Convert.ToInt32(txtID.Text);
+            }
+            ancienSysExp.infoSysExp = rtxtInfos.Text;
+            ancienSysExp.nomSysExp = txtNom.Text;
+            ancienSysExp.versionSysExp = txtVersion.Text;
+            ancienSysExp.editSysExp = txtEdition.Text;
         }
 
         private void activerModif(object sender, EventArgs e)
@@ -78,46 +95,40 @@ namespace Projet
             this.txtID.Enabled = false;
             this.btnSupprimer.Enabled = false;
         }
-        public string[] enregistrer()
-        {
-            string[] nouvInfo;
-
-            nouvInfo = new string[] { txtID.Text,txtCode.Text,txtNom.Text,txtEdition.Text,txtVersion.Text,rtxtInfos.Text};
-
-            return nouvInfo;
-        }
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
-            var resultat = MessageBox.Show("Voulez-vous vraiment Enregistrer ?", "Enregistrement", MessageBoxButtons.YesNo);
+            DialogResult resultat;
+            var nouvSysExp = new SystemeExploitation();
+            var nom = txtNom.Text.Trim();
+            var code = txtCode.Text.Trim();
+            var edit = txtEdition.Text.Trim();
 
+            nouvSysExp.CodeSysExp = txtCode.Text;
+            nouvSysExp.infoSysExp = rtxtInfos.Text;
+            nouvSysExp.nomSysExp = txtNom.Text;
+            nouvSysExp.versionSysExp = txtVersion.Text;
+            nouvSysExp.editSysExp = txtEdition.Text; 
 
-            if (resultat == DialogResult.Yes)
+            if (!gestionSysExp.verifier(nouvSysExp, ancienSysExp))
             {
-                string[] info;
-
-                var nom = txtNom.Text.Trim();
-                var code = txtCode.Text.Trim();
-                var edit = txtEdition.Text.Trim();
-
-                if (nom.Length == 0 || code.Length == 0 || edit.Length == 0)
+                MessageBox.Show("Aucune modification n'a été apportée.", "Erreur", MessageBoxButtons.OK);
+            }
+            else
+            {
+                if (nom.Length > 25 || code.Length > 40 || edit.Length > 40 || nom.Length == 0 || code.Length == 0 || edit.Length == 0)
                 {
                     MessageBox.Show("Veuillez remplir les champs correctement.", "Erreur", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    info = enregistrer();
-                    if (txtID.Text.Length == 0)
+                    resultat = MessageBox.Show("Voulez-vous vraiment Enregistrer ?", "Enregistrement", MessageBoxButtons.YesNo);
+                    if (resultat == DialogResult.Yes)
                     {
-                        RequeteSql.addSysExp(info);
-                    }
-                    else
-                    {
-                        RequeteSql.setSysExp(info);
-                    }
-                    this.Close();
-
+                        gestionSysExp.enregistrer(nouvSysExp);
+                    }        
                 }
             }
+            
             
         }
         private void btnSupprimer_Click(object sender, EventArgs e)

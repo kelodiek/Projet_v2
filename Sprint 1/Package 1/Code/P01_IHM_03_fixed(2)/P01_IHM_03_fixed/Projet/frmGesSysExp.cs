@@ -18,7 +18,6 @@ namespace Projet
             InitializeComponent();
             btnAjout.Click += new EventHandler(ajoutSysExp_Click);
             btnDetails.Click += new EventHandler(btnDetails_Click);
-            btnSupprimer.Click += new EventHandler(btnSupprimmer_Click);
             btnRecherche.Click += new System.EventHandler(btnRecherche_Click);
 
             ButtonsVisible(true);
@@ -63,15 +62,18 @@ namespace Projet
             {
                 int rowIndex = gridSysExp.Rows.Add(item);
                 gridSysExp.Rows[rowIndex].Tag = item.Last();
-
             }
         }
 
         private void gridSysExp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //int index = e.RowIndex;
+            if (e.RowIndex != -1)
+            {
+                int index = e.RowIndex;
 
-            //gridSysExp.Rows[index].Selected = true;
+                gridSysExp.Rows[index].Selected = true;
+            }
+            
         }
         private void afficherDetails(string[] info)
         {
@@ -84,9 +86,12 @@ namespace Projet
 
         private void gridSysExp_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
+            if (e.RowIndex != -1)
+            {
+                int rowIndex = e.RowIndex;
 
-            getInfoLigne(rowIndex);
+                getInfoLigne(rowIndex);
+            }
         }
         private void btnDetails_Click(object sender, EventArgs e)
         {
@@ -117,35 +122,6 @@ namespace Projet
             afficherDetails(infoSysExp);
             update();
         }
-        private void btnSupprimmer_Click(object sender, EventArgs e)
-        {
-            var resultat = MessageBox.Show("Voulez-vous vraiment supprimer ?", "Suppression", MessageBoxButtons.YesNo);
-
-
-            if (resultat == DialogResult.Yes)
-            {
-                List<int> lstIndex = new List<int>();
-                int id;
-
-                foreach (DataGridViewCell item in gridSysExp.SelectedCells)
-                {
-                    if (lstIndex.Count != 0)
-                    {
-                        id = Convert.ToInt32(gridSysExp.Rows[item.RowIndex].Cells[0].Value);
-                        if (id != lstIndex.Last())
-                        {
-                            lstIndex.Add(Convert.ToInt32(gridSysExp.Rows[item.RowIndex].Cells[0].Value));
-                        }
-                    }
-                    else
-                    {
-                        lstIndex.Add(Convert.ToInt32(gridSysExp.Rows[item.RowIndex].Cells[0].Value));
-                    }
-                }
-                gestionSysteme.supprimer(lstIndex);
-                update();
-            }
-        }
         private void update()
         {
             gestionSysteme = new ctrlSysExp();
@@ -157,7 +133,7 @@ namespace Projet
 
         private void btnRecherche_Click(object sender, EventArgs e)
         {
-            //Pas acces à la recherche
+            
         }
     }
 }

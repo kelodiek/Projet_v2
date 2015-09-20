@@ -28,10 +28,10 @@ namespace Projet
 
             return r;
         }
-        static public void setSysExp(string[] settings)
+        static public void setSysExp(SystemeExploitation settings)
         {
             var db = new dbProjetE2ProdEntities();
-            var i = Convert.ToInt32(settings[0]);
+            var i = Convert.ToInt32(settings.idSysExp);
             
 
             var r =
@@ -39,11 +39,11 @@ namespace Projet
                 where sysExp.IdSysExp == i
                 select sysExp).First();
 
-            r.CodeSysExp = settings[1];
-            r.NomSysExp = settings[2];
-            r.EditionSysExp = settings[3];
-            r.VersionSysExp = settings[4];
-            r.InfoSupSysExp = settings[5];
+            r.CodeSysExp = settings.CodeSysExp;
+            r.NomSysExp = settings.nomSysExp;
+            r.EditionSysExp = settings.editSysExp;
+            r.VersionSysExp = settings.versionSysExp;
+            r.InfoSupSysExp = settings.infoSysExp;
             
             try
             {
@@ -54,16 +54,20 @@ namespace Projet
                 Console.WriteLine(e);
             }
         }
-        static public void addSysExp(string[] settings)
+        /// <summary>
+        /// Ajouter un nouveau systeme d'exploitation.
+        /// </summary>
+        /// <param name="settings">code,nom,edition,version,info supplementaire</param>
+        static public void addSysExp(SystemeExploitation settings)
         {
             var db = new dbProjetE2ProdEntities();
             var add = new tblSysExp();
 
-            add.CodeSysExp = settings[1];
-            add.NomSysExp = settings[2];
-            add.EditionSysExp = settings[3];
-            add.VersionSysExp = settings[4];
-            add.InfoSupSysExp = settings[5];
+            add.CodeSysExp = settings.CodeSysExp;
+            add.NomSysExp = settings.nomSysExp;
+            add.EditionSysExp = settings.editSysExp;
+            add.VersionSysExp = settings.versionSysExp;
+            add.InfoSupSysExp = settings.infoSysExp;
 
             db.tblSysExp.Add(add);
 
@@ -100,6 +104,16 @@ namespace Projet
             {
                 Console.WriteLine(e);
             }
+        }
+        static public IQueryable<tblCategorie> getCategorie()
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from c in db.tblCategorie
+                select c;
+
+            return r;
         }
     }
 }
