@@ -7,9 +7,9 @@ using System.Data;
 
 namespace Projet
 {
-    class SystemeExploitation
+    class ctrlSysExp
     {
-        public SystemeExploitation()
+        public ctrlSysExp()
         {
 
         }

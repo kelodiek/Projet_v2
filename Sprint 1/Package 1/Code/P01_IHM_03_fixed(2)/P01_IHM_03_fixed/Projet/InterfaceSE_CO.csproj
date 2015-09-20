@@ -210,7 +210,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemeExploitation.cs" />
+    <Compile Include="ctrlSysExp.cs" />
     <Compile Include="tblCategorie.cs">
       <DependentUpon>dbProjet.tt</DependentUpon>
     </Compile>

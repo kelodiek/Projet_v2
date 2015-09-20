@@ -12,7 +12,7 @@ namespace Projet
 {
     public partial class frmGesSysExp : frmGestion
     {
-        SystemeExploitation gestionSysteme;
+        ctrlSysExp gestionSysteme;
         public frmGesSysExp()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace Projet
             btnRecherche.Click += new System.EventHandler(btnRecherche_Click);
 
             ButtonsVisible(true);
-            gestionSysteme = new SystemeExploitation();
+            gestionSysteme = new ctrlSysExp();
         }
         private void ajoutSysExp_Click(object sender, EventArgs e)
         {
@@ -148,7 +148,7 @@ namespace Projet
         }
         private void update()
         {
-            gestionSysteme = new SystemeExploitation();
+            gestionSysteme = new ctrlSysExp();
             var formOuvert = new frmGesSysExp();
             formOuvert.Show();
             this.Hide();
