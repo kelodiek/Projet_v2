@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classification.cs" />
+    <Compile Include="ControleAdministration.cs" />
+    <Compile Include="ControleClassification.cs" />
     <Compile Include="dbProjetE2ProdModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -212,6 +215,8 @@
     <Compile Include="frmSelection.Designer.cs">
       <DependentUpon>frmSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Genre.cs" />
+    <Compile Include="Mode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequeteSql.cs" />
@@ -243,6 +248,7 @@
     <Compile Include="tblVersion.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Theme.cs" />
     <EmbeddedResource Include="frmDetVersion.resx">
       <DependentUpon>frmDetVersion.cs</DependentUpon>
     </EmbeddedResource>
