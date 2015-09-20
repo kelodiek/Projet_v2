@@ -12,15 +12,19 @@ namespace TexcelTest2
 {
     public partial class frmGestClassification : frmGestion
     {
+        ControleClassification cc;
         public frmGestClassification()
         {
             InitializeComponent();
             this.btnAjout.Click += new EventHandler(btnAjoutClass_Click);
             this.btnDetails.Click += new EventHandler(btnDetailsClass_Click);
             ButtonsVisible(true);
+            cc = new ControleClassification();
+            chargerColones();
+            afficherDonnees();   
         }
 
-        private void GridClasification_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void chargerColones()
         {
             DataGridViewColumn column;
             GridClassification.Columns.Add("CoteESRB", "Cote");
@@ -31,11 +35,20 @@ namespace TexcelTest2
             row.Height = 30;
 
             column = GridClassification.Columns[0];
-            column.Width = 10;
+            column.Width = 100;
             column = GridClassification.Columns[1];
-            column.Width = 30;
+            column.Width = 300;
             column = GridClassification.Columns[2];
-            column.Width = 30;
+            column.Width = 300;
+        }
+
+        private void afficherDonnees()
+        {
+            foreach (Classification c in cc.chargerDonnees())
+            {
+                string[] tabTemp = new string[3]{c.coteESRB, c.nomESRB, c.descESRB};
+                GridClassification.Rows.Add(tabTemp);           
+            }
         }
 
         private void btnAjoutClass_Click(object sender, EventArgs e)
@@ -43,7 +56,7 @@ namespace TexcelTest2
             var frmDetails = new frmDetClassification();
 
             frmDetails.modifierChamp("a");
-
+            frmDetails.btnCopier.Enabled = false;
             frmDetails.ShowDialog();
         }
         private void btnDetailsClass_Click(object sender, EventArgs e)

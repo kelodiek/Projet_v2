@@ -9,9 +9,20 @@ namespace TexcelTest2
     partial class ControleClassification : ControleAdministration
     {
         private Classification classification;
-        protected override void creerClassification(string cote, string nom, string desc)
+        public override void creer(string cote, string nom, string desc)
         {
             classification = new Classification(cote, nom, desc);
+        }
+
+        public List<Classification> chargerDonnees()
+        {
+            List<Classification> lstClassification = new List<Classification>();
+            foreach (var c in RequeteSql.getAllClassification())
+            {
+                Classification classif = new Classification(c.CoteESRB, c.NomESRB, c.DescESRB);
+                lstClassification.Add(classif);
+            }
+            return lstClassification;
         }
 
         protected override bool verifier()
@@ -22,7 +33,8 @@ namespace TexcelTest2
             return true;
         }
 
-        protected override Classification retour()
+        //Je sais pas c'est quoi ste méthode la  mais elle est dans les DS
+        protected override object retour()
         {
             //base.retour();
             return classification;
