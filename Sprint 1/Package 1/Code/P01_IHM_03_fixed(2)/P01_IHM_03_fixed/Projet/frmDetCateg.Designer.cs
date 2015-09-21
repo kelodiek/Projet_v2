@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtDesc = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtxtCommentaire = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtCode
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 68;
+            this.txtCode.Location = new System.Drawing.Point(105, 19);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(100, 22);
+            this.txtCode.TabIndex = 68;
             // 
             // label1
             // 
@@ -61,12 +61,12 @@
             this.label2.TabIndex = 70;
             this.label2.Text = "Description :";
             // 
-            // textBox2
+            // txtDesc
             // 
-            this.textBox2.Location = new System.Drawing.Point(105, 47);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 71;
+            this.txtDesc.Location = new System.Drawing.Point(105, 47);
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(100, 22);
+            this.txtDesc.TabIndex = 71;
             // 
             // label3
             // 
@@ -77,33 +77,33 @@
             this.label3.TabIndex = 73;
             this.label3.Text = "Commentaire :";
             // 
-            // richTextBox1
+            // rtxtCommentaire
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 98);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(460, 89);
-            this.richTextBox1.TabIndex = 74;
-            this.richTextBox1.Text = "";
+            this.rtxtCommentaire.Location = new System.Drawing.Point(12, 98);
+            this.rtxtCommentaire.Name = "rtxtCommentaire";
+            this.rtxtCommentaire.Size = new System.Drawing.Size(460, 89);
+            this.rtxtCommentaire.TabIndex = 74;
+            this.rtxtCommentaire.Text = "";
             // 
             // frmDetCateg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 234);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtxtCommentaire);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCode);
             this.Name = "frmDetCateg";
             this.Text = "Detail - Categorie";
-            this.Controls.SetChildIndex(this.textBox1, 0);
+            this.Controls.SetChildIndex(this.txtCode, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.textBox2, 0);
+            this.Controls.SetChildIndex(this.txtDesc, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.richTextBox1, 0);
+            this.Controls.SetChildIndex(this.rtxtCommentaire, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,11 +111,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtxtCommentaire;
     }
 }

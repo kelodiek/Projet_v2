@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    class ctrlCategorie
+    class ctrlCategorie : IControle
     {
         private List<Categorie> listCateg;
 
@@ -21,26 +21,26 @@ namespace Projet
             lstCateg = new List<Categorie>();
         }
 
-        public void ajouterCateg(Categorie categ)
+        public void ajouter(Categorie categ)
         {
             
         }
-        public void supprimerCateg(Categorie categ)
+        public void supprimer(Categorie categ)
         {
 
         }
 
-        public void modifierCateg(Categorie categ)
+        public void modifier(Categorie categ)
         {
 
         }
 
-        public bool verifierCateg(Categorie nouvCateg, Categorie ancienCateg)
+        public bool verifier(Categorie nouvCateg, Categorie ancienCateg)
         {
             return false;
         }
 
-        public List<string[]> chargerCateg()
+        public List<string[]> charger()
         {
             var lstBrut = RequeteSql.getCategorie();
             var lstRows = new List<string[]>();

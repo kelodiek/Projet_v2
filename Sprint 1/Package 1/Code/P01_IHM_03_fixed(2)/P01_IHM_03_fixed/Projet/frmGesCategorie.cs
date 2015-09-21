@@ -22,7 +22,7 @@ namespace Projet
 
         private void frmGesCategorie_Load(object sender, EventArgs e)
         {
-            var donnees = gestionCateg.chargerCateg();
+            var donnees = gestionCateg.charger();
             DataGridViewColumn column;
             gridCateg.Columns.Add("codeCateg", "Code");
             gridCateg.Columns.Add("descCateg", "Description");
@@ -57,6 +57,17 @@ namespace Projet
             formOuvert.Show();
             this.Hide();
             formOuvert.Closed += (s, args) => this.Close();
+        }
+        private void modifierCateg(object sender, EventArgs e) 
+        {
+            var frmDetails = new frmDetCateg();
+            Categorie categSelect = new Categorie();
+
+
+            frmDetails.modifierChamp("a");
+
+            frmDetails.ShowDialog();
+            update();
         }
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="frmGesCategorie.Designer.cs">
       <DependentUpon>frmGesCategorie.cs</DependentUpon>
     </Compile>
+    <Compile Include="IControle.cs" />
     <Compile Include="RequeteSql.cs" />
     <Compile Include="dbProjet.Context.cs">
       <AutoGen>True</AutoGen>

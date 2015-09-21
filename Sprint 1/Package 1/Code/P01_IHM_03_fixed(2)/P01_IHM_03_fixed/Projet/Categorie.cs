@@ -33,7 +33,9 @@ namespace Projet
 
         public Categorie()
         {
-
+            code = "";
+            description = "";
+            commentaire = "";
         }
         public Categorie(tblCategorie categ)
         {
