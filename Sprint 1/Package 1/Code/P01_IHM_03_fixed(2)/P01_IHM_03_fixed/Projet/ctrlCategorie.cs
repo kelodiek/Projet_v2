@@ -21,23 +21,45 @@ namespace Projet
             lstCateg = new List<Categorie>();
         }
 
-        public void ajouter(Categorie categ)
+        public void ajouter(object o)
         {
-            
+            RequeteSql.addCateg((Categorie)o);
         }
-        public void supprimer(Categorie categ)
+        public void supprimer(object o)
         {
-
-        }
-
-        public void modifier(Categorie categ)
-        {
-
+            RequeteSql.deleteCateg((string)o);
         }
 
-        public bool verifier(Categorie nouvCateg, Categorie ancienCateg)
+        public void modifier(object o)
         {
-            return false;
+            RequeteSql.setCateg((Categorie)o);
+        }
+
+        public bool verifier(object o, object n)
+        {
+            Categorie nouv, ancien;
+
+            nouv = (Categorie)o;
+            ancien = (Categorie)n;
+
+            if (ancien == null && nouv.codeCateg != "")
+            {
+                return true;
+            }
+            if (nouv.codeCateg == ancien.codeCateg && 
+                nouv.comCateg == ancien.comCateg && 
+                nouv.descCateg == ancien.descCateg)
+            {
+                return false;
+            }
+            if (nouv.codeCateg.Length > 7 || nouv.codeCateg.Length == 0 ||
+                nouv.comCateg.Length > 150 || nouv.comCateg.Length == 0 ||
+                nouv.descCateg.Length > 40 || nouv.descCateg.Length == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public List<string[]> charger()
@@ -47,7 +69,7 @@ namespace Projet
 
             string[] row;
 
-            foreach (var item in lstBrut)
+            foreach (tblCategorie item in lstBrut)
             {
                 row = new string[] {item.CodeCategorie,
                     item.DescCategorie,
@@ -58,6 +80,23 @@ namespace Projet
             }
 
             return lstRows;
+        }
+        public bool testExiste(string code)
+        {
+            IQueryable<tblCategorie> lstCateg = RequeteSql.srchCategorie(code);
+
+            int qte = lstCateg.Count<tblCategorie>();
+
+            if (qte != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+            
         }
     }
 }

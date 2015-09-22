@@ -115,5 +115,83 @@ namespace Projet
 
             return r;
         }
+        static public void addCateg(Categorie settings)
+        {
+            var db = new dbProjetE2ProdEntities();
+            var add = new tblCategorie();
+
+            add.CodeCategorie = settings.codeCateg;
+            add.ComCategorie = settings.comCateg;
+            add.DescCategorie = settings.descCateg;
+
+            db.tblCategorie.Add(add);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        static public void setCateg(Categorie settings)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+
+            var r =
+                (from categ in db.tblCategorie
+                 where categ.CodeCategorie == settings.codeCateg
+                 select categ).First();
+
+            r.CodeCategorie = settings.codeCateg;
+            r.ComCategorie = settings.comCateg;
+            r.DescCategorie = settings.descCateg;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        static public void deleteCateg(string code)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from categ in db.tblCategorie
+                where categ.CodeCategorie == code
+                select categ;
+
+            foreach (var item in r)
+            {
+                db.tblCategorie.Remove(item);
+            }
+
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        static public IQueryable<tblCategorie> srchCategorie(string code)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from categ in db.tblCategorie
+                where categ.CodeCategorie == code
+                select categ;
+
+            return r;
+        }
     }
 }
