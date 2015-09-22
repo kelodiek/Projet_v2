@@ -50,7 +50,7 @@
             this.btnQuitterToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDecoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.retourInterfaceTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnX = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -233,23 +233,23 @@
             this.retourInterfaceTestToolStripMenuItem.Name = "retourInterfaceTestToolStripMenuItem";
             this.retourInterfaceTestToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
-            // button1
+            // btnX
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(282, 38);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 27);
-            this.button1.TabIndex = 51;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnX.Location = new System.Drawing.Point(282, 38);
+            this.btnX.Name = "btnX";
+            this.btnX.Size = new System.Drawing.Size(27, 27);
+            this.btnX.TabIndex = 51;
+            this.btnX.Text = "X";
+            this.btnX.UseVisualStyleBackColor = true;
+            this.btnX.Click += new System.EventHandler(this.btnX_Click);
             // 
             // frmGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 505);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnX);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnRecherche);
             this.Controls.Add(this.txtRecherche);
@@ -290,6 +290,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnVersionToolStrip;
         private System.Windows.Forms.ToolStripSeparator btnGenreToolStrip;
         private System.Windows.Forms.ToolStripMenuItem btnCategToolStrip;
-        internal System.Windows.Forms.Button button1;
+        internal System.Windows.Forms.Button btnX;
     }
 }

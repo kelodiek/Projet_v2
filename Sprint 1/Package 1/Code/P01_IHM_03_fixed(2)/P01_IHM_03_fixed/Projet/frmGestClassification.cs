@@ -19,6 +19,7 @@ namespace Projet
             this.btnAjout.Click += new EventHandler(btnAjoutClass_Click);
             this.btnDetails.Click += new EventHandler(btnDetailsClass_Click);
             this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            this.btnX.Click += new EventHandler(btnX_Click);
             ButtonsVisible(true);
             cc = new ControleClassification();
             chargerColones();
@@ -43,6 +44,11 @@ namespace Projet
             }
         }
 
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            chargerDonnees();
+            txtRecherche.Text = "";
+        }
         private void chargerColones()
         {
             DataGridViewColumn column;

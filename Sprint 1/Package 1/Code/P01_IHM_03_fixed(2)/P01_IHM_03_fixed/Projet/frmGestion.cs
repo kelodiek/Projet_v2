@@ -75,6 +75,7 @@ namespace Projet
                 btnDetails.Visible = false;
                 txtRecherche.Visible = false;
                 btnRecherche.Visible = false;
+                btnX.Visible = false;
             }
             else
             {
@@ -82,6 +83,7 @@ namespace Projet
                 btnDetails.Visible = true;
                 txtRecherche.Visible = true;
                 btnRecherche.Visible = true;
+                btnX.Visible = true;
             }
         }
         private void btnQuitterToolStrip_Click(object sender, EventArgs e)
@@ -99,7 +101,7 @@ namespace Projet
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnX_Click(object sender, EventArgs e)
         {
 
         }
