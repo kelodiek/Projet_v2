@@ -196,7 +196,17 @@ namespace Projet
             return r;
         }
 
+        static public IQueryable<tblTheme> RechercheTheme(string code)
+        {
+            var db = new dbProjetE2ProdEntities();
 
+            var r =
+                from theme in db.tblTheme
+                where theme.NomTheme.Contains(code) || theme.ComTheme.Contains(code) || theme.IdTheme.ToString() == code
+                select theme;
+
+            return r;
+        }
 
         //tblClassification
         static public IQueryable<tblClassification> getAllClassification()

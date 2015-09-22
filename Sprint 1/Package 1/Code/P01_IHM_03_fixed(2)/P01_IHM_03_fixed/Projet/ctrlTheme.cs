@@ -34,7 +34,10 @@ namespace Projet
         {
             RequeteSql.setTheme((Theme)o);
         }
-
+        public void recherche(string Key)
+        {
+            RequeteSql.RechercheTheme(Key);
+        }
         public bool verifier(object o, object n)
         {
             Theme nouv, ancien;
@@ -97,5 +100,6 @@ namespace Projet
 
 
         }
+        
     }
 }

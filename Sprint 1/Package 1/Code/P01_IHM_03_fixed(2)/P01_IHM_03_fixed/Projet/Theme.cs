@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    class Theme
+    public class Theme
     {
         private int IdTheme;
         private string NomTheme, ComTheme;

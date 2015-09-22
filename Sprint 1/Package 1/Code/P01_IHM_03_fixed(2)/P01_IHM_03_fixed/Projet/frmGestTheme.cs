@@ -19,21 +19,28 @@ namespace Projet
             gestionTheme = new ctrlTheme();
             btnAjout.Click += new EventHandler(ajoutTheme_Click);
             btnDetails.Click += new EventHandler(detailTheme_Click);
+            btnRecherche.Click += new EventHandler(btnRecherche_Click);
             ButtonsVisible(true);
         }
         private void frmGestTheme_Load(object sender, EventArgs e)
         {
+            var donnees = gestionTheme.charger();
             DataGridViewColumn column;
             GridTheme.Columns.Add("IdTheme", "ID");
-            GridTheme.Columns.Add("CodeTheme", "Code");
             GridTheme.Columns.Add("NomTheme", "Nom");
+            GridTheme.Columns.Add("CommentaireTheme", "Commentaire");
 
             column = GridTheme.Columns[0];
             column.Width = 30;
             column = GridTheme.Columns[1];
-            column.Width = 50;
+            column.Width = 150;
             column = GridTheme.Columns[2];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            foreach (var item in donnees)
+            {
+                int rowIndex = GridTheme.Rows.Add(item);
+                GridTheme.Rows[rowIndex].Tag = item.Last();
+            }
         }
         private void ajoutTheme_Click(object sender, EventArgs e)
         {
@@ -76,9 +83,37 @@ namespace Projet
             frmDetails.modifierChamp("m");
 
             frmDetails.ShowDialog();
+            frmDetails.Closed += (s, args) => this.Close();
             update();
         }
+        private void GridTheme_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                GridTheme.Rows[e.RowIndex].Selected = true;
+                modifierTheme();
+            }
+        }
 
+        private void GridTheme_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                GridTheme.Rows[e.RowIndex].Selected = true;
+            }
+        }
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            if(txtRecherche.Text != "")
+            {
+                gestionTheme.recherche(txtRecherche.Text);
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez entrer une information a rechercher");
+            }
+        }
 
     }
 }
