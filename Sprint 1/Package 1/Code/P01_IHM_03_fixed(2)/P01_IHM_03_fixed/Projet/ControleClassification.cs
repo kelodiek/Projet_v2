@@ -41,5 +41,20 @@ namespace Projet
 
         }
 
+        public override void enregistrer(string cote, string nom, string desc)
+        {
+            
+        }
+
+        public List<Classification> rechercher(string chaine)
+        {
+            List<Classification> lstClassification = new List<Classification>();
+            foreach (var c in RequeteSql.srchClassification(chaine))
+            {
+                Classification classif = new Classification(c.CoteESRB, c.NomESRB, c.DescESRB);
+                lstClassification.Add(classif);
+            }
+            return lstClassification;
+        }
     }
 }

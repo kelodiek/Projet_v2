@@ -18,10 +18,29 @@ namespace Projet
             InitializeComponent();
             this.btnAjout.Click += new EventHandler(btnAjoutClass_Click);
             this.btnDetails.Click += new EventHandler(btnDetailsClass_Click);
+            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
             ButtonsVisible(true);
             cc = new ControleClassification();
             chargerColones();
-            afficherDonnees();   
+            chargerDonnees();   
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            if (txtRecherche.Text != "")
+            {
+                GridClassification.Rows.Clear();
+                foreach (Classification c in cc.rechercher(txtRecherche.Text))
+                {
+                    string[] tabTemp = new string[3] { c.coteESRB, c.nomESRB, c.descESRB };
+                    GridClassification.Rows.Add(tabTemp);
+                }
+            }
+            else
+            {
+                //Message d'erreur de champ vide
+                MessageBox.Show("YAY");
+            }
         }
 
         private void chargerColones()
@@ -43,8 +62,9 @@ namespace Projet
 
         }
 
-        private void afficherDonnees()
+        private void chargerDonnees()
         {
+            GridClassification.Rows.Clear();
             foreach (Classification c in cc.chargerDonnees())
             {
                 string[] tabTemp = new string[3]{c.coteESRB, c.nomESRB, c.descESRB};
@@ -56,17 +76,58 @@ namespace Projet
         {
             var frmDetails = new frmDetClassification();
 
-            frmDetails.modifierChamp("a");
+            frmDetails.modifierChamp();
             frmDetails.btnCopier.Enabled = false;
             frmDetails.ShowDialog();
+            chargerDonnees();
         }
         private void btnDetailsClass_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetClassification();
 
-            frmDetails.modifierChamp("m");
+            if (GridClassification.SelectedRows.Count == 1)
+            {
+                var frmDetails = new frmDetClassification();
 
-            frmDetails.ShowDialog();
+                frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
+
+                frmDetails.ShowDialog();
+                
+            }
+            else
+            {
+                MessageBox.Show("erreur");
+            }
         }
+
+        private void GridClassification_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                GridClassification.Rows[e.RowIndex].Selected = true;
+                if (GridClassification.SelectedRows.Count == 1)
+                {
+                    var frmDetails = new frmDetClassification();
+
+                    frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
+
+                    frmDetails.ShowDialog();
+
+                }
+                else
+                {
+                    MessageBox.Show("erreur");
+                }
+            }
+        }
+
+        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                GridClassification.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+
     }
 }

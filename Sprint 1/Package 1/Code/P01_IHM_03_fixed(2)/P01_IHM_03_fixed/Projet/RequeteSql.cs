@@ -273,6 +273,18 @@ namespace Projet
                 Console.WriteLine(e);
             }
         }
+        static public IQueryable<tblClassification> srchClassification(string chaine)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from classif in db.tblClassification
+                where classif.CoteESRB.Contains(chaine) || classif.NomESRB.Contains(chaine) || classif.DescESRB.Contains(chaine)
+                select classif;
+
+            return r;
+        }
+
 
         //tblGenre
         static public IQueryable<tblGenre> getAllGenre()

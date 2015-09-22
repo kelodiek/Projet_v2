@@ -40,6 +40,7 @@
             this.gridSysExp.AllowUserToResizeRows = false;
             this.gridSysExp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridSysExp.Location = new System.Drawing.Point(12, 71);
+            this.gridSysExp.MultiSelect = false;
             this.gridSysExp.Name = "gridSysExp";
             this.gridSysExp.ReadOnly = true;
             this.gridSysExp.RowTemplate.Height = 24;

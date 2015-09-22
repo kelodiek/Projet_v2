@@ -34,12 +34,17 @@
             // 
             // GridClassification
             // 
+            this.GridClassification.AllowUserToResizeRows = false;
             this.GridClassification.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridClassification.Location = new System.Drawing.Point(12, 71);
+            this.GridClassification.MultiSelect = false;
             this.GridClassification.Name = "GridClassification";
+            this.GridClassification.ReadOnly = true;
             this.GridClassification.RowTemplate.Height = 24;
             this.GridClassification.Size = new System.Drawing.Size(1058, 375);
             this.GridClassification.TabIndex = 60;
+            this.GridClassification.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
+            this.GridClassification.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridClassification_CellDoubleClick);
             // 
             // frmGestClassification
             // 
@@ -48,7 +53,6 @@
             this.ClientSize = new System.Drawing.Size(1080, 500);
             this.Controls.Add(this.GridClassification);
             this.Name = "frmGestClassification";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion des Classifications";
             this.Controls.SetChildIndex(this.GridClassification, 0);
             ((System.ComponentModel.ISupportInitialize)(this.GridClassification)).EndInit();

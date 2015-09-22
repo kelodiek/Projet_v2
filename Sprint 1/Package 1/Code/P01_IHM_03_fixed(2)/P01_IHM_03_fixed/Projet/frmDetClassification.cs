@@ -12,27 +12,27 @@ namespace Projet
 {
     public partial class frmDetClassification : frmDetail
     {
+        ControleClassification cc;
         public frmDetClassification()
         {
             InitializeComponent();
             this.PositionBtn(144);
+            cc = new ControleClassification();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="code"> "a" pour ajouter, "m" pour modification</param>
-        public void modifierChamp(string code)
+
+        public void modifierChamp(string cote, string nom, string desc)
         {
-            if (code == "a")
-            {
-                this.btnActiverModif.Visible = false;
-            }
-            else
-            {
-                this.txtCote.Enabled = false;
-                this.txtDescription.Enabled = false;
-                this.txtNom.Enabled = false;
-            }
+            this.txtCote.ReadOnly = true;
+            this.txtDescription.ReadOnly = true;
+            this.txtNom.ReadOnly = true;
+            txtCote.Text = cote;
+            txtNom.Text = nom;
+            txtDescription.Text = desc;
+        }
+
+        public void modifierChamp()
+        {          
+            this.btnActiverModif.Visible = false;
         }
     }
 }
