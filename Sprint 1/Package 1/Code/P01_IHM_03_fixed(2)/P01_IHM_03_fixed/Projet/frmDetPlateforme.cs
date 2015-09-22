@@ -23,5 +23,15 @@ namespace Projet
             this.Hide();
             this.Close();
         }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAjoutSysExp_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
