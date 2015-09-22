@@ -17,6 +17,7 @@ namespace Projet
         {
             InitializeComponent();
             this.PositionBtn(144);
+            btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
             cc = new ControleClassification();
         }
 
@@ -28,11 +29,28 @@ namespace Projet
             txtCote.Text = cote;
             txtNom.Text = nom;
             txtDescription.Text = desc;
+            this.btnEnregistrer.Enabled = false;
         }
 
         public void modifierChamp()
         {          
-            this.btnActiverModif.Visible = false;
+            this.btnActiverModif.Enabled = false;
+            this.btnSupprimer.Enabled = false;
         }
+
+        //Pas encore lié dans le constructeur
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+
+            this.Close();
+        }
+
+        private void btnActiverModif_Click(object sender, EventArgs e)
+        {
+            txtCote.ReadOnly = false;
+            txtDescription.ReadOnly = false;
+            txtNom.ReadOnly = false;
+        }
+
     }
 }

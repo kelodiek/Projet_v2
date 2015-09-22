@@ -37,5 +37,7 @@ namespace Projet
             this.btnSupprimer.Location = new System.Drawing.Point(240, y);
             this.btnAnnuler.Location = new System.Drawing.Point(359, y);
         }
+
+
     }
 }
