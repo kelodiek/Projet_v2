@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtCommentaire = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
-            this.txtCode = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // txtCommentaire
+            // 
+            this.txtCommentaire.Location = new System.Drawing.Point(130, 69);
+            this.txtCommentaire.MaxLength = 30;
+            this.txtCommentaire.Name = "txtCommentaire";
+            this.txtCommentaire.Size = new System.Drawing.Size(219, 22);
+            this.txtCommentaire.TabIndex = 92;
+            // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(114, 67);
+            this.txtNom.Location = new System.Drawing.Point(114, 39);
             this.txtNom.MaxLength = 30;
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(219, 22);
-            this.txtNom.TabIndex = 92;
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(114, 39);
-            this.txtCode.MaxLength = 30;
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(199, 22);
-            this.txtCode.TabIndex = 91;
+            this.txtNom.Size = new System.Drawing.Size(199, 22);
+            this.txtNom.TabIndex = 91;
             // 
             // txtId
             // 
@@ -66,9 +66,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label3.Location = new System.Drawing.Point(12, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 20);
+            this.label3.Size = new System.Drawing.Size(124, 20);
             this.label3.TabIndex = 89;
-            this.label3.Text = "Nom : ";
+            this.label3.Text = "Commentaire : ";
             // 
             // label2
             // 
@@ -76,9 +76,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label2.Location = new System.Drawing.Point(12, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 20);
+            this.label2.Size = new System.Drawing.Size(59, 20);
             this.label2.TabIndex = 88;
-            this.label2.Text = "Code : ";
+            this.label2.Text = "Nom : ";
             // 
             // label1
             // 
@@ -95,8 +95,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 182);
+            this.Controls.Add(this.txtCommentaire);
             this.Controls.Add(this.txtNom);
-            this.Controls.Add(this.txtCode);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -107,8 +107,8 @@
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtId, 0);
-            this.Controls.SetChildIndex(this.txtCode, 0);
             this.Controls.SetChildIndex(this.txtNom, 0);
+            this.Controls.SetChildIndex(this.txtCommentaire, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,8 +116,8 @@
 
         #endregion
 
+        private System.Windows.Forms.TextBox txtCommentaire;
         private System.Windows.Forms.TextBox txtNom;
-        private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

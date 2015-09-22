@@ -33,6 +33,10 @@ namespace Projet
             this.btnEnregistrer.Click += new EventHandler(enregistrer);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code">a = ajouter, m = modifier</param>
         public void modifierChamp(string code)
         {
             if (code == "a")

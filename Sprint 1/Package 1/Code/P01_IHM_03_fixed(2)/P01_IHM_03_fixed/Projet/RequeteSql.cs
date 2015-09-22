@@ -184,6 +184,17 @@ namespace Projet
 
             return r;
         }
+        static public IQueryable<tblTheme> srchTheme(string code)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from theme in db.tblTheme
+                where theme.NomTheme == code
+                select theme;
+
+            return r;
+        }
 
 
 

@@ -65,6 +65,7 @@
     <Compile Include="ControleAdministration.cs" />
     <Compile Include="ControleClassification.cs" />
     <Compile Include="ctrlCategorie.cs" />
+    <Compile Include="ctrlTheme.cs" />
     <Compile Include="frmDetCateg.cs">
       <SubType>Form</SubType>
     </Compile>

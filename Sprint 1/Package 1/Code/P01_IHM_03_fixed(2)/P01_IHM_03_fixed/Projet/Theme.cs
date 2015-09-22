@@ -14,6 +14,18 @@ namespace Projet
         public Theme(int id, string nom, string com)
         {
             NewTheme(id, nom, com);
+        }   
+        public Theme()
+        {
+            IdTheme = 0;
+            NomTheme = ComTheme = "";
+        }
+        
+        public Theme(tblTheme theme)
+        {
+            IdTheme = theme.IdTheme;
+            NomTheme = theme.NomTheme;
+            ComTheme = theme.ComTheme;
         }
 
         private Theme NewTheme(int id, string nom, string com){
