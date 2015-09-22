@@ -60,7 +60,7 @@ namespace Projet
 
             frmDetails.cboxCateg.Enabled = false;
 
-            frmDetails.btnAjoutOS.Enabled = false;
+            //frmDetails.btnAjoutOS.Enabled = false;
             frmDetails.btnEnregistrer.Enabled = false;
 
             frmDetails.ShowDialog();
