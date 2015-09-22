@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    class Categorie
+    public class Categorie
     {
         private string code;
 
@@ -23,6 +23,7 @@ namespace Projet
             get { return description; }
             set { description = value; }
         }
+
         private string commentaire;
 
         public string comCateg

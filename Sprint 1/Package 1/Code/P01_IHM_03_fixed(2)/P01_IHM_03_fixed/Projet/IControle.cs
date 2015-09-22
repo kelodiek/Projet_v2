@@ -8,9 +8,9 @@ namespace Projet
 {
     interface IControle
     {
-        void ajouter();
-        void modifier();
-        void supprimmer();
-        void verifier();
+        void ajouter(object o);
+        void modifier(object o);
+        void supprimer(object o);
+        bool verifier(object o, object n);
     }
 }

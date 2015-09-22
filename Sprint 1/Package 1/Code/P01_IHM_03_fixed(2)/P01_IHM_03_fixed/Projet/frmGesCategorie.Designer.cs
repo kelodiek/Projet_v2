@@ -43,6 +43,8 @@
             this.gridCateg.RowTemplate.Height = 24;
             this.gridCateg.Size = new System.Drawing.Size(1058, 380);
             this.gridCateg.TabIndex = 51;
+            this.gridCateg.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCateg_CellClick);
+            this.gridCateg.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCateg_CellDoubleClick);
             // 
             // frmGesCategorie
             // 
