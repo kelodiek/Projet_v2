@@ -34,9 +34,15 @@ namespace Projet
         {
             RequeteSql.setTheme((Theme)o);
         }
-        public void recherche(string Key)
+        public List<Theme> recherche(string Key)
         {
-            RequeteSql.RechercheTheme(Key);
+            List<Theme> lstTheme = new List<Theme>();
+            foreach (var c in RequeteSql.RechercheTheme(Key))
+            {
+                Theme theme = new Theme(c.IdTheme, c.NomTheme, c.ComTheme);
+                lstTheme.Add(theme);
+            }
+            return lstTheme;
         }
         public bool verifier(object o, object n)
         {

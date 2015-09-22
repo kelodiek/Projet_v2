@@ -20,9 +20,14 @@ namespace Projet
             btnAjout.Click += new EventHandler(ajoutTheme_Click);
             btnDetails.Click += new EventHandler(detailTheme_Click);
             btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            btnX.Click += new EventHandler(btnX_Click);
             ButtonsVisible(true);
         }
         private void frmGestTheme_Load(object sender, EventArgs e)
+        {
+            chargerDonnees();
+        }
+        private void chargerDonnees()
         {
             var donnees = gestionTheme.charger();
             DataGridViewColumn column;
@@ -106,13 +111,25 @@ namespace Projet
         {
             if(txtRecherche.Text != "")
             {
-                gestionTheme.recherche(txtRecherche.Text);
+                GridTheme.Rows.Clear();
+                foreach (Theme c in gestionTheme.recherche(txtRecherche.Text))
+                {
+                    string[] tabTemp = new string[3] { c.idTheme.ToString(), c.nomTheme, c.comTheme };
+                    GridTheme.Rows.Add(tabTemp);
+                }
+                
 
             }
             else
             {
                 MessageBox.Show("Veuillez entrer une information a rechercher");
             }
+        }
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            GridTheme.Rows.Clear();
+            chargerDonnees();
+            txtRecherche.Text = "";
         }
 
     }
