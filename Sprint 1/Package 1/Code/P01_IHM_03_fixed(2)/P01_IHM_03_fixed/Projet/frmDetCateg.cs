@@ -57,39 +57,49 @@ namespace Projet
         public void enregistrer(object sender,EventArgs e)
         {
             Categorie enregistrement = new Categorie();
-            bool resultat;
+            bool resulVerif;
+            DialogResult resultEnrg;
 
             enregistrement.codeCateg = txtCode.Text.Trim();
             enregistrement.descCateg = txtDesc.Text.Trim();
             enregistrement.comCateg = rtxtCommentaire.Text.Trim();
 
-            resultat = ctrlCateg.verifier(enregistrement, categSelect);
+            resulVerif = ctrlCateg.verifier(enregistrement, categSelect);
             
 
   
             if (categSelect != null && ((string)Tag) != "Copie" )
             {
                 
-                if (resultat)
+                if (resulVerif)
                 {
-                    ctrlCateg.modifier(enregistrement);
-                    this.Close();
+                    resultEnrg = MessageBox.Show("Voulez-vous vraiment enregister?", "Enregistrement", MessageBoxButtons.YesNo);
+                    if (resultEnrg == DialogResult.Yes)
+                    {
+                        ctrlCateg.modifier(enregistrement);
+                        this.Close();
+                    }
+                    
                 }
                 else
                 {
-                    // Message d'erreur
+                    MessageBox.Show("Aucune modification n'a été apportée.", "Erreur", MessageBoxButtons.OK);
                 }
             }
             else
             {
-                if (!ctrlCateg.testExiste(enregistrement.codeCateg))
+                if (!ctrlCateg.testExiste(enregistrement.codeCateg) && txtCode.Text.Trim().Length != 0)
                 {
-                    ctrlCateg.ajouter(enregistrement);
-                    this.Close();
+                    resultEnrg = MessageBox.Show("Voulez-vous vraiment enregister?", "Enregistrement", MessageBoxButtons.YesNo);
+                    if (resultEnrg == DialogResult.Yes)
+                    {
+                        ctrlCateg.ajouter(enregistrement);
+                        this.Close();
+                    }
                 }
                 else
                 {
-                    //erreur
+                    MessageBox.Show("Une categorie avec ce code existe deja ou le code est trop court.", "Erreur", MessageBoxButtons.OK);
                 }
             }
             
@@ -97,7 +107,12 @@ namespace Projet
         }
         public void btnSupprimer_Click(object sender, EventArgs e)
         {
-            ctrlCateg.supprimer(txtCode.Text);
+            DialogResult resultEnrg = MessageBox.Show("Voulez-vous vraiment supprimer?", "Suppression", MessageBoxButtons.YesNo);
+            if (resultEnrg == DialogResult.Yes)
+            {
+                ctrlCateg.supprimer(txtCode.Text);
+                this.Close();
+            }
         }
         private void btnCopier_Click(object sender, EventArgs e)
         {
