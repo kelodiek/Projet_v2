@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_LEGO_ELODIE" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DEPTINFO420;Initial Catalog=BD_LEGO_ELODIE;User ID=kerel1330243" SettingsObjectName="frmParent.Properties.Settings" SettingsPropertyName="BD_LEGO_ELODIEConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.colors" Member="colors">
+    <Type Name="colors">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="colors_sets_pieces" Member="sets_pieces" ThisKey="id" OtherKey="color" Type="sets_pieces" />
+    </Type>
+  </Table>
+  <Table Name="dbo.messages" Member="messages">
+    <Type Name="messages">
+      <Column Name="message_id" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="addresser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="receiver" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sets_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="message" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="sets_messages" Member="sets" ThisKey="sets_id" OtherKey="sets_id" Type="sets" IsForeignKey="true" />
+      <Association Name="users_messages" Member="users" ThisKey="addresser" OtherKey="user_id" Type="users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pieces" Member="pieces">
+    <Type Name="pieces">
+      <Column Name="piece_id" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="category" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="pieces_pieces_users" Member="pieces_users" ThisKey="piece_id" OtherKey="pieces_id" Type="pieces_users" />
+      <Association Name="pieces_sets_pieces" Member="sets_pieces" ThisKey="piece_id" OtherKey="piece_id" Type="sets_pieces" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pieces_users" Member="pieces_users">
+    <Type Name="pieces_users">
+      <Column Name="users_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pieces_id" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="qte" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="color" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="pieces_pieces_users" Member="pieces" ThisKey="pieces_id" OtherKey="piece_id" Type="pieces" IsForeignKey="true" />
+      <Association Name="users_pieces_users" Member="users" ThisKey="users_id" OtherKey="user_id" Type="users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sets" Member="sets">
+    <Type Name="sets">
+      <Column Name="sets_id" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="year" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="pieces" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="t1" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="sets_messages" Member="messages" ThisKey="sets_id" OtherKey="sets_id" Type="messages" />
+      <Association Name="sets_sets_pieces" Member="sets_pieces" ThisKey="sets_id" OtherKey="sets_id" Type="sets_pieces" />
+      <Association Name="sets_sets_users" Member="sets_users" ThisKey="sets_id" OtherKey="sets_id" Type="sets_users" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sets_pieces" Member="sets_pieces">
+    <Type Name="sets_pieces">
+      <Column Name="sets_id" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="piece_id" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="num" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="color" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sets_piece_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="colors_sets_pieces" Member="colors" ThisKey="color" OtherKey="id" Type="colors" IsForeignKey="true" />
+      <Association Name="pieces_sets_pieces" Member="pieces" ThisKey="piece_id" OtherKey="piece_id" Type="pieces" IsForeignKey="true" />
+      <Association Name="sets_sets_pieces" Member="sets" ThisKey="sets_id" OtherKey="sets_id" Type="sets" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sets_users" Member="sets_users">
+    <Type Name="sets_users">
+      <Column Name="sets_id" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="state" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="sets_sets_users" Member="sets" ThisKey="sets_id" OtherKey="sets_id" Type="sets" IsForeignKey="true" />
+      <Association Name="users_sets_users" Member="users" ThisKey="user_id" OtherKey="user_id" Type="users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="users">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="users_messages" Member="messages" ThisKey="user_id" OtherKey="addresser" Type="messages" />
+      <Association Name="users_pieces_users" Member="pieces_users" ThisKey="user_id" OtherKey="users_id" Type="pieces_users" />
+      <Association Name="users_sets_users" Member="sets_users" ThisKey="user_id" OtherKey="user_id" Type="sets_users" />
+    </Type>
+  </Table>
+</Database>
