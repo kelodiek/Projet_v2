@@ -295,6 +295,18 @@ namespace Projet
             return r;
         }
 
+        static public IQueryable<tblClassification> srchCoteClassification(string cote)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from classif in db.tblClassification
+                where classif.CoteESRB == cote
+                select classif;
+
+            return r;
+        }
+
 
         //tblGenre
         static public IQueryable<tblGenre> getAllGenre()

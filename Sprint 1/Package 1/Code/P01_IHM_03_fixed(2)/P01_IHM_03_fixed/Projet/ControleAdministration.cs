@@ -11,9 +11,9 @@ namespace Projet
 
         public abstract void creer(string a, string b, string c);
 
-        public abstract void enregistrer(string a, string b, string c);
+        //public abstract void enregistrer(object a, object b);
 
-        protected abstract bool verifier();
+        //protected abstract bool verifier(object a, object b);
 
         //protected abstract void rechercher(string chaine);
 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Projet
 {
-    public partial class frmDetClassification : frmDetail
+    partial class frmDetClassification : frmDetail
     {
-        Classification classification;
+        Classification classification, ancien;
         ControleClassification cc;
         public frmDetClassification()
         {
@@ -23,56 +23,78 @@ namespace Projet
             this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             cc = new ControleClassification();
+            ancien = null;
+        }
+
+        public frmDetClassification(Classification anc)
+        {
+            ancien = anc;
+            new frmDetClassification();
+
         }
 
         private void enregistrer(object sender, EventArgs e)
         {
-            //Categorie enregistrement = new Categorie();
-            //bool resulVerif;
-            //DialogResult resultEnrg;
+            bool resulVerif;
+            DialogResult resultEnrg;
 
-            //enregistrement.codeCateg = txtCode.Text.Trim();
-            //enregistrement.descCateg = txtDesc.Text.Trim();
-            //enregistrement.comCateg = rtxtCommentaire.Text.Trim();
 
-            //resulVerif = ctrlCateg.verifier(enregistrement, categSelect);
+            Classification enregistrement = new Classification(txtCote.Text.Trim(), txtNom.Text.Trim(), txtDescription.Text.Trim());
+
+            resulVerif = cc.verifier(ancien, enregistrement);
+
+
+
+            if (ancien != null && ((string)Tag) != "Copie")
+            {
+
+                if (resulVerif)
+                {
+                    resultEnrg = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
+                    if (resultEnrg == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            cc.modifier(enregistrement);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        
+                        this.Close();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Aucune modification n'a été apportée.", "Erreur", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                if (!cc.testExiste(enregistrement.coteESRB) && txtCote.Text.Trim().Length != 0)
+                {
+                    resultEnrg = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
+                    if (resultEnrg == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            cc.ajouter(enregistrement);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Une classification avec ce code existe deja ou la cote est trop court.", "Erreur", MessageBoxButtons.OK);
+                }
+            }
             
-
-  
-            //if (categSelect != null && ((string)Tag) != "Copie" )
-            //{
-                
-            //    if (resulVerif)
-            //    {
-            //        resultEnrg = MessageBox.Show("Voulez-vous vraiment enregister?", "Enregistrement", MessageBoxButtons.YesNo);
-            //        if (resultEnrg == DialogResult.Yes)
-            //        {
-            //            ctrlCateg.modifier(enregistrement);
-            //            this.Close();
-            //        }
-                    
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Aucune modification n'a été apportée.", "Erreur", MessageBoxButtons.OK);
-            //    }
-            //}
-            //else
-            //{
-            //    if (!ctrlCateg.testExiste(enregistrement.codeCateg) && txtCode.Text.Trim().Length != 0)
-            //    {
-            //        resultEnrg = MessageBox.Show("Voulez-vous vraiment enregister?", "Enregistrement", MessageBoxButtons.YesNo);
-            //        if (resultEnrg == DialogResult.Yes)
-            //        {
-            //            ctrlCateg.ajouter(enregistrement);
-            //            this.Close();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Une categorie avec ce code existe deja ou le code est trop court.", "Erreur", MessageBoxButtons.OK);
-            //    }
-            //}
             
         }
 
@@ -114,6 +136,9 @@ namespace Projet
         }
 
 
-        public EventHandler btnCopier_Click { get; set; }
+        private void btnCopier_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

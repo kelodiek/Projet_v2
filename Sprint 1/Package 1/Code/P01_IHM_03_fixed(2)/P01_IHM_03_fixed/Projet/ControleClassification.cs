@@ -25,10 +25,49 @@ namespace Projet
             return lstClassification;
         }
 
-        protected override bool verifier()
+        public void modifier(Classification classif)
         {
-            //base.verifier();
+            try
+            {
+                RequeteSql.setClassification(classif);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Save failure");
+            }
+        }
 
+        public void ajouter(Classification classif)
+        {
+            try
+            {
+                RequeteSql.addClassification(classif);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Save failure");
+            }
+        }
+
+        public bool verifier(Classification ancien, Classification nouv)
+        {
+
+            if (ancien == null && nouv.coteESRB != "")
+            {
+                return true;
+            }
+            else if (nouv.coteESRB == ancien.coteESRB && 
+                nouv.nomESRB == ancien.nomESRB && 
+                nouv.descESRB == ancien.descESRB)
+            {
+                return false;
+            }
+            else if (nouv.coteESRB.Length > 7 || nouv.coteESRB.Length == 0 ||
+                nouv.nomESRB.Length > 150 || nouv.nomESRB.Length == 0 ||
+                nouv.descESRB.Length > 40 || nouv.descESRB.Length == 0)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -41,10 +80,6 @@ namespace Projet
 
         }
 
-        public override void enregistrer(string cote, string nom, string desc)
-        {
-            
-        }
 
         public List<Classification> rechercher(string chaine)
         {
@@ -55,6 +90,24 @@ namespace Projet
                 lstClassification.Add(classif);
             }
             return lstClassification;
+        }
+
+        public bool testExiste(string cote)
+        {
+            IQueryable<tblClassification> lstClassif = RequeteSql.srchCoteClassification(cote);
+
+            int qte = lstClassif.Count<tblClassification>();
+
+            if (qte != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
         }
     }
 }
