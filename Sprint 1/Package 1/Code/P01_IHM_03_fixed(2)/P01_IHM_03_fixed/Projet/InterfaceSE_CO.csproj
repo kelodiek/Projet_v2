@@ -65,7 +65,11 @@
     <Compile Include="ControleAdministration.cs" />
     <Compile Include="ControleClassification.cs" />
     <Compile Include="ctrlCategorie.cs" />
+<<<<<<< HEAD
     <Compile Include="ctrlPlateforme.cs" />
+=======
+    <Compile Include="ctrlTheme.cs" />
+>>>>>>> origin/Prog
     <Compile Include="frmDetCateg.cs">
       <SubType>Form</SubType>
     </Compile>

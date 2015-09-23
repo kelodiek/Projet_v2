@@ -14,7 +14,8 @@ namespace Projet
             NewClassification(cote, nom, desc);
         }
 
-        private Classification NewClassification(string cote, string nom, string desc){
+        private Classification NewClassification(string cote, string nom, string desc)
+        {
             this.CoteESRB = cote;
             this.NomESRB = nom;
             this.DescESRB = desc;

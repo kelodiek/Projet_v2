@@ -185,8 +185,29 @@ namespace Projet
 
             return r;
         }
+        static public IQueryable<tblTheme> srchTheme(string code)
+        {
+            var db = new dbProjetE2ProdEntities();
 
+            var r =
+                from theme in db.tblTheme
+                where theme.NomTheme == code
+                select theme;
 
+            return r;
+        }
+
+        static public IQueryable<tblTheme> RechercheTheme(string code)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from theme in db.tblTheme
+                where theme.NomTheme.Contains(code) || theme.ComTheme.Contains(code) || theme.IdTheme.ToString() == code
+                select theme;
+
+            return r;
+        }
 
         //tblClassification
         static public IQueryable<tblClassification> getAllClassification()
@@ -263,6 +284,30 @@ namespace Projet
                 Console.WriteLine(e);
             }
         }
+        static public IQueryable<tblClassification> srchClassification(string chaine)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from classif in db.tblClassification
+                where classif.CoteESRB.Contains(chaine) || classif.NomESRB.Contains(chaine) || classif.DescESRB.Contains(chaine)
+                select classif;
+
+            return r;
+        }
+
+        static public IQueryable<tblClassification> srchCoteClassification(string cote)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from classif in db.tblClassification
+                where classif.CoteESRB == cote
+                select classif;
+
+            return r;
+        }
+
 
         //tblGenre
         static public IQueryable<tblGenre> getAllGenre()

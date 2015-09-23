@@ -46,10 +46,11 @@
             this.btnClassToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMenuSecuriteToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMenuTestToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.retourInterfaceTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMenuQuitterToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnQuitterToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDecoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.retourInterfaceTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnX = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +90,7 @@
             this.btnRecherche.TabIndex = 49;
             this.btnRecherche.Text = "Recherche";
             this.btnRecherche.UseVisualStyleBackColor = true;
+            this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
             // 
             // menuStrip1
             // 
@@ -198,18 +200,8 @@
             // 
             // btnMenuTestToolStrip
             // 
-            this.btnMenuTestToolStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.retourInterfaceTestToolStripMenuItem});
-            this.btnMenuTestToolStrip.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnMenuTestToolStrip.Name = "btnMenuTestToolStrip";
-            this.btnMenuTestToolStrip.Size = new System.Drawing.Size(60, 27);
-            this.btnMenuTestToolStrip.Text = "Tests";
-            // 
-            // retourInterfaceTestToolStripMenuItem
-            // 
-            this.retourInterfaceTestToolStripMenuItem.Name = "retourInterfaceTestToolStripMenuItem";
-            this.retourInterfaceTestToolStripMenuItem.Size = new System.Drawing.Size(238, 28);
-            this.retourInterfaceTestToolStripMenuItem.Text = "Retour interface Test";
+            this.btnMenuTestToolStrip.Size = new System.Drawing.Size(12, 27);
             // 
             // btnMenuQuitterToolStrip
             // 
@@ -236,11 +228,28 @@
             this.btnDecoToolStrip.Text = "Deconnexion";
             this.btnDecoToolStrip.Click += new System.EventHandler(this.donneesToolStrip_Click);
             // 
+            // retourInterfaceTestToolStripMenuItem
+            // 
+            this.retourInterfaceTestToolStripMenuItem.Name = "retourInterfaceTestToolStripMenuItem";
+            this.retourInterfaceTestToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // btnX
+            // 
+            this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnX.Location = new System.Drawing.Point(282, 38);
+            this.btnX.Name = "btnX";
+            this.btnX.Size = new System.Drawing.Size(27, 27);
+            this.btnX.TabIndex = 51;
+            this.btnX.Text = "X";
+            this.btnX.UseVisualStyleBackColor = true;
+            this.btnX.Click += new System.EventHandler(this.btnX_Click);
+            // 
             // frmGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.Controls.Add(this.btnX);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnRecherche);
             this.Controls.Add(this.txtRecherche);
@@ -281,5 +290,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnVersionToolStrip;
         private System.Windows.Forms.ToolStripSeparator btnGenreToolStrip;
         private System.Windows.Forms.ToolStripMenuItem btnCategToolStrip;
+        internal System.Windows.Forms.Button btnX;
     }
 }
