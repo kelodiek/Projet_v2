@@ -61,9 +61,6 @@
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
     <Compile Include="Categorie.cs" />
-    <Compile Include="Classification.cs" />
-    <Compile Include="ControleAdministration.cs" />
-    <Compile Include="ControleClassification.cs" />
     <Compile Include="ctrlCategorie.cs" />
 <<<<<<< HEAD
     <Compile Include="ctrlPlateforme.cs" />
@@ -82,10 +79,12 @@
     <Compile Include="frmGesCategorie.Designer.cs">
       <DependentUpon>frmGesCategorie.cs</DependentUpon>
     </Compile>
-    <Compile Include="Genre.cs" />
     <Compile Include="IControle.cs" />
+<<<<<<< HEAD
     <Compile Include="Mode.cs" />
     <Compile Include="plateforme.cs" />
+=======
+>>>>>>> parent of 26a6505... Ajout de mes trucs
     <Compile Include="RequeteSql.cs" />
     <Compile Include="dbProjet.Context.cs">
       <AutoGen>True</AutoGen>
@@ -265,7 +264,6 @@
     <Compile Include="tblVersion.cs">
       <DependentUpon>dbProjet.tt</DependentUpon>
     </Compile>
-    <Compile Include="Theme.cs" />
     <EmbeddedResource Include="Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>

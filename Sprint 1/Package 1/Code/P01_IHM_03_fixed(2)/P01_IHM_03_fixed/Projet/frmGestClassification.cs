@@ -12,7 +12,6 @@ namespace Projet
 {
     public partial class frmGestClassification : frmGestion
     {
-        ControleClassification cc;
         public frmGestClassification()
         {
             InitializeComponent();
@@ -21,6 +20,7 @@ namespace Projet
             this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
             this.btnX.Click += new EventHandler(btnX_Click);
             ButtonsVisible(true);
+<<<<<<< HEAD
             cc = new ControleClassification();
             chargerColones();
             chargerDonnees();   
@@ -50,6 +50,11 @@ namespace Projet
             txtRecherche.Text = "";
         }
         private void chargerColones()
+=======
+        }
+
+        private void GridClasification_CellContentClick(object sender, DataGridViewCellEventArgs e)
+>>>>>>> parent of 26a6505... Ajout de mes trucs
         {
             DataGridViewColumn column;
             GridClassification.Columns.Add("CoteESRB", "Cote");
@@ -60,10 +65,11 @@ namespace Projet
             row.Height = 30;
 
             column = GridClassification.Columns[0];
-            column.Width = 100;
+            column.Width = 10;
             column = GridClassification.Columns[1];
-            column.Width = 300;
+            column.Width = 30;
             column = GridClassification.Columns[2];
+<<<<<<< HEAD
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
         }
@@ -76,14 +82,22 @@ namespace Projet
                 string[] tabTemp = new string[3]{c.coteESRB, c.nomESRB, c.descESRB};
                 GridClassification.Rows.Add(tabTemp);           
             }
+=======
+            column.Width = 30;
+>>>>>>> parent of 26a6505... Ajout de mes trucs
         }
 
         private void btnAjoutClass_Click(object sender, EventArgs e)
         {
             var frmDetails = new frmDetClassification();
 
+<<<<<<< HEAD
             frmDetails.modifierChamp();
             frmDetails.btnCopier.Enabled = false;
+=======
+            frmDetails.modifierChamp("a");
+
+>>>>>>> parent of 26a6505... Ajout de mes trucs
             frmDetails.ShowDialog();
             chargerDonnees();
         }
@@ -105,6 +119,7 @@ namespace Projet
             }
         }
 
+<<<<<<< HEAD
         private void GridClassification_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
@@ -135,5 +150,7 @@ namespace Projet
         }
 
 
+=======
+>>>>>>> parent of 26a6505... Ajout de mes trucs
     }
 }

@@ -8,7 +8,20 @@ namespace Projet
 {
     static class RequeteSql
     {
+<<<<<<< HEAD
         // Systeme d'exploitation
+=======
+        static public IQueryable<tblClassification> getClassification()
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from c in db.tblClassification
+                select c;
+
+            return r;
+        }
+>>>>>>> parent of 26a6505... Ajout de mes trucs
         static public IQueryable<tblSysExp> getSysExp()
         {
             var db = new dbProjetE2ProdEntities();
@@ -185,6 +198,7 @@ namespace Projet
 
             return r;
         }
+<<<<<<< HEAD
         static public IQueryable<tblTheme> srchTheme(string code)
         {
             var db = new dbProjetE2ProdEntities();
@@ -547,5 +561,7 @@ namespace Projet
 
             //db.tblPlateforme.Add();
         }
+=======
+>>>>>>> parent of 26a6505... Ajout de mes trucs
     }
 }
