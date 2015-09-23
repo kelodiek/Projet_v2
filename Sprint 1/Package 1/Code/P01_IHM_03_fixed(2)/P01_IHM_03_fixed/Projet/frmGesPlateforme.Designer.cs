@@ -28,31 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
+            this.gridPlateforme = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPlateforme)).BeginInit();
             this.SuspendLayout();
             // 
-            // DataGridView1
+            // gridPlateforme
             // 
-            this.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView1.Location = new System.Drawing.Point(9, 71);
-            this.DataGridView1.Name = "DataGridView1";
-            this.DataGridView1.RowTemplate.Height = 24;
-            this.DataGridView1.Size = new System.Drawing.Size(1061, 381);
-            this.DataGridView1.TabIndex = 50;
+            this.gridPlateforme.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridPlateforme.Location = new System.Drawing.Point(9, 71);
+            this.gridPlateforme.Name = "gridPlateforme";
+            this.gridPlateforme.RowTemplate.Height = 24;
+            this.gridPlateforme.Size = new System.Drawing.Size(1061, 381);
+            this.gridPlateforme.TabIndex = 50;
             // 
             // frmGesPlateforme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 505);
-            this.Controls.Add(this.DataGridView1);
+            this.Controls.Add(this.gridPlateforme);
             this.Name = "frmGesPlateforme";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion - Plateformes";
             this.Load += new System.EventHandler(this.Gestion_des_Plateformes_Load);
-            this.Controls.SetChildIndex(this.DataGridView1, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
+            this.Controls.SetChildIndex(this.gridPlateforme, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.gridPlateforme)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -60,7 +59,7 @@
 
         #endregion
 
-        internal System.Windows.Forms.DataGridView DataGridView1;
+        internal System.Windows.Forms.DataGridView gridPlateforme;
 
     }
 }

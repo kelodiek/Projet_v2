@@ -8,7 +8,7 @@ namespace Projet
 {
     static class RequeteSql
     {
-        
+        // Systeme d'exploitation
         static public IQueryable<tblSysExp> getSysExp()
         {
             var db = new dbProjetE2ProdEntities();
@@ -96,6 +96,7 @@ namespace Projet
                 Console.WriteLine(e);
             }
         }
+        // Categorie
         static public IQueryable<tblCategorie> getCategorie()
         {
             var db = new dbProjetE2ProdEntities();
@@ -483,6 +484,23 @@ namespace Projet
             {
                 Console.WriteLine(e);
             }
+        }
+
+        // Plateforme
+        static public IQueryable<tblPlateforme> getPlateforme()
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from c in db.tblPlateforme
+                select c;
+            return r;
+        }
+        static public void addPlateforme(tblPlateforme p)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            //db.tblPlateforme.Add();
         }
     }
 }

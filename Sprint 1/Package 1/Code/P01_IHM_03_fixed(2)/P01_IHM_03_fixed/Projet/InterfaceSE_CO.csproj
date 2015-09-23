@@ -65,6 +65,7 @@
     <Compile Include="ControleAdministration.cs" />
     <Compile Include="ControleClassification.cs" />
     <Compile Include="ctrlCategorie.cs" />
+    <Compile Include="ctrlPlateforme.cs" />
     <Compile Include="frmDetCateg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +81,7 @@
     <Compile Include="Genre.cs" />
     <Compile Include="IControle.cs" />
     <Compile Include="Mode.cs" />
+    <Compile Include="plateforme.cs" />
     <Compile Include="RequeteSql.cs" />
     <Compile Include="dbProjet.Context.cs">
       <AutoGen>True</AutoGen>

@@ -48,13 +48,13 @@
             this.Label10 = new System.Windows.Forms.Label();
             this.rTxtInfoSup = new System.Windows.Forms.RichTextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.lstBoxSysExp = new System.Windows.Forms.ListBox();
-            this.lstBoxSysPlat = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnAjoutSysExp = new System.Windows.Forms.Button();
-            this.btnRetirerSysExp = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lstTreeSelect = new System.Windows.Forms.TreeView();
+            this.lstTreeSysExp = new System.Windows.Forms.TreeView();
             this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnRetirerSysExp = new System.Windows.Forms.Button();
+            this.btnAjoutSysExp = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
@@ -167,6 +167,7 @@
             // 
             // txtID
             // 
+            this.txtID.AccessibleDescription = "";
             this.txtID.Location = new System.Drawing.Point(173, 28);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(50, 22);
@@ -235,32 +236,14 @@
             this.label12.TabIndex = 69;
             this.label12.Text = "Informations Supplémentaires : ";
             // 
-            // lstBoxSysExp
-            // 
-            this.lstBoxSysExp.FormattingEnabled = true;
-            this.lstBoxSysExp.ItemHeight = 16;
-            this.lstBoxSysExp.Location = new System.Drawing.Point(6, 53);
-            this.lstBoxSysExp.Name = "lstBoxSysExp";
-            this.lstBoxSysExp.Size = new System.Drawing.Size(168, 196);
-            this.lstBoxSysExp.TabIndex = 72;
-            // 
-            // lstBoxSysPlat
-            // 
-            this.lstBoxSysPlat.FormattingEnabled = true;
-            this.lstBoxSysPlat.ItemHeight = 16;
-            this.lstBoxSysPlat.Location = new System.Drawing.Point(265, 53);
-            this.lstBoxSysPlat.Name = "lstBoxSysPlat";
-            this.lstBoxSysPlat.Size = new System.Drawing.Size(168, 196);
-            this.lstBoxSysPlat.TabIndex = 73;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lstTreeSelect);
+            this.groupBox1.Controls.Add(this.lstTreeSysExp);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnRetirerSysExp);
             this.groupBox1.Controls.Add(this.btnAjoutSysExp);
-            this.groupBox1.Controls.Add(this.lstBoxSysExp);
-            this.groupBox1.Controls.Add(this.lstBoxSysPlat);
             this.groupBox1.Location = new System.Drawing.Point(453, 53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(439, 262);
@@ -268,24 +251,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Information des  systeme d\'exploitation";
             // 
-            // btnAjoutSysExp
+            // lstTreeSelect
             // 
-            this.btnAjoutSysExp.Location = new System.Drawing.Point(180, 84);
-            this.btnAjoutSysExp.Name = "btnAjoutSysExp";
-            this.btnAjoutSysExp.Size = new System.Drawing.Size(79, 70);
-            this.btnAjoutSysExp.TabIndex = 74;
-            this.btnAjoutSysExp.Text = ">>";
-            this.btnAjoutSysExp.UseVisualStyleBackColor = true;
-            this.btnAjoutSysExp.Click += new System.EventHandler(this.btnAjoutSysExp_Click);
+            this.lstTreeSelect.Location = new System.Drawing.Point(265, 53);
+            this.lstTreeSelect.Name = "lstTreeSelect";
+            this.lstTreeSelect.Size = new System.Drawing.Size(163, 202);
+            this.lstTreeSelect.TabIndex = 79;
             // 
-            // btnRetirerSysExp
+            // lstTreeSysExp
             // 
-            this.btnRetirerSysExp.Location = new System.Drawing.Point(180, 160);
-            this.btnRetirerSysExp.Name = "btnRetirerSysExp";
-            this.btnRetirerSysExp.Size = new System.Drawing.Size(79, 70);
-            this.btnRetirerSysExp.TabIndex = 75;
-            this.btnRetirerSysExp.Text = "<<";
-            this.btnRetirerSysExp.UseVisualStyleBackColor = true;
+            this.lstTreeSysExp.Location = new System.Drawing.Point(11, 54);
+            this.lstTreeSysExp.Name = "lstTreeSysExp";
+            this.lstTreeSysExp.Size = new System.Drawing.Size(163, 202);
+            this.lstTreeSysExp.TabIndex = 78;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(264, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 17);
+            this.label4.TabIndex = 77;
+            this.label4.Text = "Selection";
             // 
             // label1
             // 
@@ -296,14 +283,25 @@
             this.label1.TabIndex = 76;
             this.label1.Text = "Systemes d\'exploitation";
             // 
-            // label4
+            // btnRetirerSysExp
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(264, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 17);
-            this.label4.TabIndex = 77;
-            this.label4.Text = "Selection";
+            this.btnRetirerSysExp.Location = new System.Drawing.Point(180, 160);
+            this.btnRetirerSysExp.Name = "btnRetirerSysExp";
+            this.btnRetirerSysExp.Size = new System.Drawing.Size(79, 70);
+            this.btnRetirerSysExp.TabIndex = 75;
+            this.btnRetirerSysExp.Text = "<<";
+            this.btnRetirerSysExp.UseVisualStyleBackColor = true;
+            this.btnRetirerSysExp.Click += new System.EventHandler(this.btnRetirerSysExp_Click);
+            // 
+            // btnAjoutSysExp
+            // 
+            this.btnAjoutSysExp.Location = new System.Drawing.Point(180, 84);
+            this.btnAjoutSysExp.Name = "btnAjoutSysExp";
+            this.btnAjoutSysExp.Size = new System.Drawing.Size(79, 70);
+            this.btnAjoutSysExp.TabIndex = 74;
+            this.btnAjoutSysExp.Text = ">>";
+            this.btnAjoutSysExp.UseVisualStyleBackColor = true;
+            this.btnAjoutSysExp.Click += new System.EventHandler(this.btnAjoutSysExp_Click);
             // 
             // groupBox2
             // 
@@ -320,7 +318,7 @@
             this.groupBox2.Size = new System.Drawing.Size(422, 149);
             this.groupBox2.TabIndex = 75;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Information facultative";
+            this.groupBox2.Text = "Informations facultatives";
             // 
             // groupBox3
             // 
@@ -337,13 +335,13 @@
             this.groupBox3.Size = new System.Drawing.Size(423, 148);
             this.groupBox3.TabIndex = 76;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Information obligatoire";
+            this.groupBox3.Text = "Informations obligatoires";
             // 
             // frmDetPlateforme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 705);
+            this.ClientSize = new System.Drawing.Size(924, 555);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -354,6 +352,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmDetPlateforme";
             this.Text = "Détails - Plateformes";
+            this.Load += new System.EventHandler(this.frmDetPlateforme_Load);
             this.Controls.SetChildIndex(this.Label10, 0);
             this.Controls.SetChildIndex(this.rTxtDesc, 0);
             this.Controls.SetChildIndex(this.label12, 0);
@@ -394,8 +393,6 @@
         internal System.Windows.Forms.Label Label10;
         internal System.Windows.Forms.RichTextBox rTxtInfoSup;
         internal System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ListBox lstBoxSysExp;
-        private System.Windows.Forms.ListBox lstBoxSysPlat;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRetirerSysExp;
         private System.Windows.Forms.Button btnAjoutSysExp;
@@ -403,6 +400,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TreeView lstTreeSysExp;
+        private System.Windows.Forms.TreeView lstTreeSelect;
     }
 }
 
