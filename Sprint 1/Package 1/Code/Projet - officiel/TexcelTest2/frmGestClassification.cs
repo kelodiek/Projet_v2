@@ -13,6 +13,8 @@ namespace Projet
     public partial class frmGestClassification : frmGestion
     {
         ControleClassification cc;
+        int tri;
+        int presentRow;
         public frmGestClassification()
         {
             InitializeComponent();
@@ -25,6 +27,8 @@ namespace Projet
             cc = new ControleClassification();
             chargerColones();
             chargerDonnees();
+            tri = 1;
+            presentRow = 0;
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -62,8 +66,8 @@ namespace Projet
             GridClassification.Columns.Add("NomESRB", "Nom");
             GridClassification.Columns.Add("DescESRB", "Description");
 
-            DataGridViewRow row = GridClassification.Rows[0];
-            row.Height = 30;
+            //DataGridViewRow row = GridClassification.Rows[0];
+            //row.Height = 30;
             column = GridClassification.Columns[0];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = GridClassification.Columns[1];
@@ -80,7 +84,16 @@ namespace Projet
                 string[] tabTemp = new string[3]{c.coteESRB, c.nomESRB, c.descESRB};
                 GridClassification.Rows.Add(tabTemp);           
             }
-            GridClassification.Sort(GridClassification.Columns[1], ListSortDirection.Ascending);
+            GridClassification.Sort(GridClassification.Columns[tri], ListSortDirection.Ascending);
+            if (GridClassification.Rows.Count != presentRow)
+            {
+                GridClassification.Rows[presentRow].Selected = true;
+            }
+            else
+            {
+                GridClassification.Rows[0].Selected = true;
+            }
+
         }
 
         private void btnAjoutClass_Click(object sender, EventArgs e)
@@ -114,6 +127,7 @@ namespace Projet
         {
             if (e.RowIndex != -1)
             {
+                presentRow = e.RowIndex;
                 GridClassification.Rows[e.RowIndex].Selected = true;
                 if (GridClassification.SelectedRows.Count == 1)
                 {
@@ -135,6 +149,7 @@ namespace Projet
         {
             if (e.RowIndex != -1)
             {
+                presentRow = e.RowIndex;
                 GridClassification.Rows[e.RowIndex].Selected = true;
             }
         }
@@ -145,6 +160,11 @@ namespace Projet
             {
                 rechercher();
             }
+        }
+
+        private void GridClassification_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            tri = e.ColumnIndex;
         }
 
     }

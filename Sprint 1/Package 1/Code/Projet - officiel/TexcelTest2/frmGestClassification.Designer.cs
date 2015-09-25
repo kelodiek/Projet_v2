@@ -34,6 +34,7 @@
             // 
             // GridClassification
             // 
+            this.GridClassification.AllowUserToAddRows = false;
             this.GridClassification.AllowUserToResizeRows = false;
             this.GridClassification.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridClassification.Location = new System.Drawing.Point(12, 71);
@@ -45,6 +46,7 @@
             this.GridClassification.TabIndex = 60;
             this.GridClassification.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
             this.GridClassification.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridClassification_CellDoubleClick);
+            this.GridClassification.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridClassification_ColumnHeaderMouseClick);
             // 
             // frmGestClassification
             // 
