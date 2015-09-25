@@ -571,5 +571,31 @@ namespace Projet
             return r;
         }
 
+        // Plateforme
+        static public IQueryable<tblPlateforme> getPlateforme()
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from c in db.tblPlateforme
+                select c;
+            return r;
+        }
+        static public void addPlateforme(tblPlateforme p)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            db.tblPlateforme.Add(p);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
     }
 }

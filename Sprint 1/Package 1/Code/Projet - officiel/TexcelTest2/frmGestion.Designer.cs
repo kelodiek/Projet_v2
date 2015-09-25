@@ -39,10 +39,10 @@
             this.btnCategToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnClassToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.SeparatorToolStrip = new System.Windows.Forms.ToolStripSeparator();
+            this.btnGenreToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnModeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnThemeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnGenreToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.SeparatorToolStrip = new System.Windows.Forms.ToolStripSeparator();
             this.btnJeuToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMenuSecuriteToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMenuTestToolStrip = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +80,7 @@
             this.txtRecherche.Name = "txtRecherche";
             this.txtRecherche.Size = new System.Drawing.Size(149, 22);
             this.txtRecherche.TabIndex = 48;
+            this.txtRecherche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRecherche_KeyDown);
             // 
             // btnRecherche
             // 
@@ -157,10 +158,12 @@
             this.btnClassToolStrip.Text = "Classification";
             this.btnClassToolStrip.Click += new System.EventHandler(this.donneesToolStrip_Click);
             // 
-            // SeparatorToolStrip
+            // btnGenreToolStrip
             // 
-            this.SeparatorToolStrip.Name = "SeparatorToolStrip";
-            this.SeparatorToolStrip.Size = new System.Drawing.Size(249, 6);
+            this.btnGenreToolStrip.Name = "btnGenreToolStrip";
+            this.btnGenreToolStrip.Size = new System.Drawing.Size(252, 28);
+            this.btnGenreToolStrip.Text = "Genre";
+            this.btnGenreToolStrip.Click += new System.EventHandler(this.donneesToolStrip_Click);
             // 
             // btnModeToolStrip
             // 
@@ -176,12 +179,10 @@
             this.btnThemeToolStrip.Text = "Theme";
             this.btnThemeToolStrip.Click += new System.EventHandler(this.donneesToolStrip_Click);
             // 
-            // btnGenreToolStrip
+            // SeparatorToolStrip
             // 
-            this.btnGenreToolStrip.Name = "btnGenreToolStrip";
-            this.btnGenreToolStrip.Size = new System.Drawing.Size(252, 28);
-            this.btnGenreToolStrip.Text = "Genre";
-            this.btnGenreToolStrip.Click += new System.EventHandler(this.donneesToolStrip_Click);
+            this.SeparatorToolStrip.Name = "SeparatorToolStrip";
+            this.SeparatorToolStrip.Size = new System.Drawing.Size(249, 6);
             // 
             // btnJeuToolStrip
             // 

@@ -20,7 +20,7 @@ namespace Projet
             ButtonsVisible(true);
         }
 
-        private void GridGenre_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void frmGesGenre_Load(object sender, EventArgs e)
         {
             DataGridViewColumn column;
             GridGenre.Columns.Add("IdGenre", "ID");

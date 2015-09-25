@@ -20,14 +20,19 @@ namespace Projet
             this.btnDetails.Click += new EventHandler(btnDetailsClass_Click);
             this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
             this.btnX.Click += new EventHandler(btnX_Click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
             ButtonsVisible(true);
             cc = new ControleClassification();
             chargerColones();
             chargerDonnees();
-
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            rechercher();
+        }
+
+        private void rechercher()
         {
             if (txtRecherche.Text != "")
             {
@@ -41,7 +46,7 @@ namespace Projet
             else
             {
                 //Message d'erreur de champ vide
-                MessageBox.Show("Veuillez remplir le champ de recherche","Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Veuillez remplir le champ de recherche", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -65,7 +70,6 @@ namespace Projet
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; 
             column = GridClassification.Columns[2];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
         }
 
         private void chargerDonnees()
@@ -122,7 +126,7 @@ namespace Projet
                 }
                 else
                 {
-                    MessageBox.Show("erreur");
+                    MessageBox.Show("Plusieurs lignes ont été sélectionnées", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -135,6 +139,13 @@ namespace Projet
             }
         }
 
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                rechercher();
+            }
+        }
 
     }
 }

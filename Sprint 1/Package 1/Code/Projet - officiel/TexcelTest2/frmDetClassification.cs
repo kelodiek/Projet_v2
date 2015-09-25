@@ -14,18 +14,20 @@ namespace Projet
     {
         Classification classification, ancien;
         ControleClassification cc;
+        bool modif;
         public frmDetClassification()
         {
             InitializeComponent();
             this.PositionBtn(144);
             btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
-            this.btnEnregistrer.Click += new EventHandler(enregistrer);
+            this.btnEnregistrer.Click += new EventHandler(enregistrer_click);
             this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             this.btnAnnuler.Click += new EventHandler(btnAnnuler_Click);
             btnCopier.Visible = false;
             cc = new ControleClassification();
             ancien = null;
+            modif = false;
         }
 
         public frmDetClassification(Classification anc)
@@ -35,21 +37,17 @@ namespace Projet
 
         }
 
-        private void enregistrer(object sender, EventArgs e)
+        private void enregistrer()
         {
             bool resulVerif;
             DialogResult resultEnrg;
 
-
             Classification enregistrement = new Classification(txtCote.Text.Trim(), txtNom.Text.Trim(), txtDescription.Text.Trim());
 
-            resulVerif = cc.verifier(ancien, enregistrement);
+            resulVerif = cc.verifier(ancien, enregistrement, modif);
 
-
-
-            if (ancien == null && ((string)Tag) != "Copie")
+            if (modif == true)
             {
-
                 if (resulVerif)
                 {
                     resultEnrg = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
@@ -61,16 +59,15 @@ namespace Projet
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
+                            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        
                         this.Close();
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Aucune modification n'a été apportée.", "Erreur", MessageBoxButtons.OK);
+                    MessageBox.Show("Aucune modification n'a été apportée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -86,18 +83,29 @@ namespace Projet
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
+                            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         this.Close();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Une classification avec ce code existe deja ou la cote est trop court.", "Erreur", MessageBoxButtons.OK);
+                    if (txtCote.Text.Trim().Length != 0)
+                    {
+                        MessageBox.Show("La cote est trop courte", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Une classification avec ce code existe déjà", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
-            
-            
+        }
+
+        private void enregistrer_click(object sender, EventArgs e)
+        {
+            enregistrer();
         }
 
         private void btnSupprimer_Click(object sender, EventArgs e)
@@ -135,6 +143,7 @@ namespace Projet
             txtCote.ReadOnly = true;
             txtDescription.ReadOnly = false;
             txtNom.ReadOnly = false;
+            modif = true;
         }
 
 
@@ -142,5 +151,7 @@ namespace Projet
         {
             //Pas dans classification
         }
+
+
     }
 }

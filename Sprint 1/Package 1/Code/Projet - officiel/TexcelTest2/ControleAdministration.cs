@@ -16,8 +16,6 @@ namespace Projet
         //protected abstract bool verifier(object a, object b);
 
         //protected abstract void rechercher(string chaine);
-
-        protected abstract object retour();
         
     }
 }

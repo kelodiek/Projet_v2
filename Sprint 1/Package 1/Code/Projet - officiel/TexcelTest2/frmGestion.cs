@@ -106,5 +106,10 @@ namespace Projet
 
         }
 
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
     }
 }

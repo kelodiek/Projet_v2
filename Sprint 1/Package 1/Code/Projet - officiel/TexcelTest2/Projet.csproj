@@ -59,6 +59,7 @@
     <Compile Include="ControleClassification.cs" />
     <Compile Include="ctrlCategorie.cs" />
     <Compile Include="ctrlMode.cs" />
+    <Compile Include="ctrlPlateforme.cs" />
     <Compile Include="ctrlSysExp.cs" />
     <Compile Include="ctrlTheme.cs" />
     <Compile Include="dbProjetE2ProdModel.Context.cs">
@@ -190,12 +191,6 @@
     <Compile Include="frmGestClassification.Designer.cs">
       <DependentUpon>frmGestClassification.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGestCon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGestCon.Designer.cs">
-      <DependentUpon>frmGestCon.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmGestGenre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +248,7 @@
     <Compile Include="Genre.cs" />
     <Compile Include="IControle.cs" />
     <Compile Include="Mode.cs" />
+    <Compile Include="plateforme.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequeteSql.cs" />

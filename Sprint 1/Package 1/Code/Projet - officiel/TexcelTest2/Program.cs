@@ -16,7 +16,7 @@ namespace Projet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmGestCon());
+            Application.Run(new frmGesCon());
         }
     }
 }

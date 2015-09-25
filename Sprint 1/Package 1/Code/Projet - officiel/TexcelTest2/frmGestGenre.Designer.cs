@@ -40,7 +40,6 @@
             this.GridGenre.RowTemplate.Height = 24;
             this.GridGenre.Size = new System.Drawing.Size(1058, 369);
             this.GridGenre.TabIndex = 45;
-            this.GridGenre.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridGenre_CellContentClick);
             // 
             // frmGesGenre
             // 
@@ -52,9 +51,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion des Genres";
             this.Controls.SetChildIndex(this.GridGenre, 0);
+            this.Load += new System.EventHandler(this.frmGesGenre_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridGenre)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+
 
         }
 

@@ -15,6 +15,7 @@ namespace Projet
         public frmGesCon()
         {
             InitializeComponent();
+            pictureBox1.Image = global::Projet.Properties.Resources.Texcel_logo_v2;
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -33,7 +33,7 @@ namespace Projet
             }
             catch (Exception)
             {
-                throw new Exception("problem on delete");
+                throw new Exception("Erreur lors de la suppression");
             }
         }
 
@@ -45,7 +45,7 @@ namespace Projet
             }
             catch (Exception)
             {
-                throw new Exception("Save failure");
+                throw new Exception("Erreur lors de l'enregistrement");
             }
         }
 
@@ -57,40 +57,55 @@ namespace Projet
             }
             catch (Exception)
             {
-                throw new Exception("Save failure");
+                throw new Exception("Erreur lors de l'enregistrement");
             }
         }
 
-        public bool verifier(Classification ancien, Classification nouv)
+        public bool verifier(Classification ancien, Classification nouv, bool modif)
         {
-
-            if (ancien == null && nouv.coteESRB == "")
+            //true = demande d'enregistrer
+            //false = aucun changement
+            if (modif == false)
             {
-                return true;
+                try
+                {
+                    foreach (var c in RequeteSql.srchCoteClassification(nouv.coteESRB))
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            else if (nouv.coteESRB == ancien.coteESRB && 
-                nouv.nomESRB == ancien.nomESRB && 
-                nouv.descESRB == ancien.descESRB)
+            else
             {
-                return false;
+                try
+                {
+                    foreach (var c in RequeteSql.srchCoteClassification(nouv.coteESRB))
+                    {
+                        if (c.NomESRB == nouv.nomESRB && c.DescESRB == nouv.descESRB)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            else if (nouv.coteESRB.Length > 7 || nouv.coteESRB.Length == 0 ||
-                nouv.nomESRB.Length > 150 || nouv.nomESRB.Length == 0 ||
-                nouv.descESRB.Length > 40 || nouv.descESRB.Length == 0)
-            {
-                return false;
-            }
-
-            return true;
+            
         }
 
-        //Je sais pas c'est quoi ste méthode la  mais elle est dans les DS
-        protected override object retour()
-        {
-            //base.retour();
-            return classification;
 
-        }
 
 
         public List<Classification> rechercher(string chaine)
