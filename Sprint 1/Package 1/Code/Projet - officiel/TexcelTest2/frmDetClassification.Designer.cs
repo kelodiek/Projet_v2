@@ -69,9 +69,9 @@
             // txtCote
             // 
             this.txtCote.Location = new System.Drawing.Point(155, 28);
-            this.txtCote.MaxLength = 10;
+            this.txtCote.MaxLength = 3;
             this.txtCote.Name = "txtCote";
-            this.txtCote.Size = new System.Drawing.Size(100, 22);
+            this.txtCote.Size = new System.Drawing.Size(36, 22);
             this.txtCote.TabIndex = 70;
             // 
             // txtNom
@@ -79,15 +79,15 @@
             this.txtNom.Location = new System.Drawing.Point(155, 56);
             this.txtNom.MaxLength = 30;
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(199, 22);
+            this.txtNom.Size = new System.Drawing.Size(228, 22);
             this.txtNom.TabIndex = 71;
             // 
             // txtDescription
             // 
             this.txtDescription.Location = new System.Drawing.Point(155, 84);
-            this.txtDescription.MaxLength = 30;
+            this.txtDescription.MaxLength = 40;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(219, 22);
+            this.txtDescription.Size = new System.Drawing.Size(300, 22);
             this.txtDescription.TabIndex = 72;
             // 
             // frmDetClassification
@@ -102,7 +102,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmDetClassification";
-            this.Text = "Détails - Classification";
+            this.Text = "Texcel - Détails - Classification";
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);

@@ -53,7 +53,7 @@
             this.ClientSize = new System.Drawing.Size(1080, 500);
             this.Controls.Add(this.GridClassification);
             this.Name = "frmGestClassification";
-            this.Text = "Gestion des Classifications";
+            this.Text = "Texcel - Gestion des Classifications";
             this.Controls.SetChildIndex(this.GridClassification, 0);
             ((System.ComponentModel.ISupportInitialize)(this.GridClassification)).EndInit();
             this.ResumeLayout(false);

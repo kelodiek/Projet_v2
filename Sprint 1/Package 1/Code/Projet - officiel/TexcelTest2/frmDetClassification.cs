@@ -23,6 +23,7 @@ namespace Projet
             this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             this.btnAnnuler.Click += new EventHandler(btnAnnuler_Click);
+            btnCopier.Visible = false;
             cc = new ControleClassification();
             ancien = null;
         }
@@ -139,9 +140,7 @@ namespace Projet
 
         private void btnCopier_Click(object sender, EventArgs e)
         {
-            ancien = new Classification(txtCote.Text, txtNom.Text, txtDescription.Text);
-
-
+            //Pas dans classification
         }
     }
 }

@@ -76,12 +76,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbProjetE2ProdModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAccueil.cs">
       <SubType>Form</SubType>
     </Compile>

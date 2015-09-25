@@ -41,7 +41,7 @@ namespace Projet
             else
             {
                 //Message d'erreur de champ vide
-                MessageBox.Show("YAY");
+                MessageBox.Show("Veuillez remplir le champ de recherche","Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -59,11 +59,10 @@ namespace Projet
 
             DataGridViewRow row = GridClassification.Rows[0];
             row.Height = 30;
-
             column = GridClassification.Columns[0];
-            column.Width = 100;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = GridClassification.Columns[1];
-            column.Width = 300;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; 
             column = GridClassification.Columns[2];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
@@ -103,7 +102,7 @@ namespace Projet
             }
             else
             {
-                MessageBox.Show("erreur");
+                MessageBox.Show("Aucune ligne n'a été sélectionné", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
