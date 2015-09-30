@@ -15,6 +15,11 @@ namespace Projet
         public frmDetJeu()
         {
             InitializeComponent();
+            this.btnAnnuler.Location = new Point(829, 580);
+            this.btnActiverModif.Location = new Point(this.btnActiverModif.Location.X, 580);
+            this.btnEnregistrer.Location = new Point(this.btnEnregistrer.Location.X, 580);
+            this.btnSupprimer.Location = new Point(this.btnSupprimer.Location.X, 580);
+            this.btnCopier.Location = new Point(850, 10);
         }
 
         private void btnAjoutGenre_Click(object sender, EventArgs e)
@@ -37,7 +42,6 @@ namespace Projet
                 this.rtxtDesc.Enabled = false;
                 this.txtID.Enabled = false;
                 this.txtNom.Enabled = false;
-                this.dateSortie.Enabled = false;
                 this.rtxtInfoSup.Enabled = false;
                 this.cboxGenre.Enabled = false;
                 this.cboxMode.Enabled = false;

@@ -290,6 +290,9 @@
     <EmbeddedResource Include="frmDetGenre.resx">
       <DependentUpon>frmDetGenre.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDetJeu.resx">
+      <DependentUpon>frmDetJeu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDetMode.resx">
       <DependentUpon>frmDetMode.cs</DependentUpon>
     </EmbeddedResource>
