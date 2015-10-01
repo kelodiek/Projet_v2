@@ -17,9 +17,6 @@ namespace Projet
             InitializeComponent();
             btnCopier.Visible = false;
             this.btnAnnuler.Location = new Point(840, 658);
-            this.btnSupprimer.Location = new Point(721, 658);
-            this.btnActiverModif.Location = new Point(610, 658);
-            this.btnEnregistrer.Location = new Point(500, 658);
 
         }
     }

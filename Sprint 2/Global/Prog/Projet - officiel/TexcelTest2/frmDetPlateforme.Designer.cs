@@ -249,7 +249,7 @@
             this.groupBox1.Size = new System.Drawing.Size(439, 262);
             this.groupBox1.TabIndex = 74;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Information des  systeme d\'exploitation";
+            this.groupBox1.Text = "Information des systèmes d\'exploitation";
             // 
             // lstTreeSelect
             // 
@@ -272,7 +272,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 17);
             this.label4.TabIndex = 77;
-            this.label4.Text = "Selection";
+            this.label4.Text = "Sélection";
             // 
             // label1
             // 
@@ -281,7 +281,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(155, 17);
             this.label1.TabIndex = 76;
-            this.label1.Text = "Systemes d\'exploitation";
+            this.label1.Text = "Systèmes d\'exploitation";
             // 
             // btnRetirerSysExp
             // 
