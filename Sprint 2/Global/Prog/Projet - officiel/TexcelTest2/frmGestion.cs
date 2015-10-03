@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//Trouver comment arranger ça:
+using Projet.P02___Personnel.Employe;
+using Projet.P02___Personnel.Equipe;
 // Note a Oli #1:
 // Oublie pas de faire les rapport pour chaque truc de gestion de donnees.
 
@@ -114,6 +117,30 @@ namespace Projet
         private void toolStripDetEmp_Click(object sender, EventArgs e)
         {
             var formOuvert = new frmDetEmp();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void toolStripGesEmp_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmGesEmp();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void toolStripDetEquipe_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmDetEquipe();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void toolStripGesEquipe_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmGesEquipe();
             this.Hide();
             formOuvert.Show();
             formOuvert.Closed += (s, args) => this.Close();

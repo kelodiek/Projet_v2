@@ -480,7 +480,7 @@ namespace Projet
 
             var r =
                 from Mod in db.tblMode
-                where Mod.IdMode.ToString().Contains(code) || Mod.NomMode.Contains(code) || Mod.DescMode.Contains(code)
+                where Mod.NomMode.Contains(code) || Mod.DescMode.Contains(code)
                 select Mod;
 
             return r;
