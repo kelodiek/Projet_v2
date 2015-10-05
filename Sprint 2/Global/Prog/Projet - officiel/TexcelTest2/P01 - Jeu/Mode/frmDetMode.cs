@@ -14,6 +14,7 @@ namespace Projet
     {
         public Mode modeSelect { get; set; }
         private ctrlMode ctrlMo;
+        public string statut;
         public bool annuler { get; set; }
 
         public frmDetMode()
@@ -21,9 +22,12 @@ namespace Projet
             InitializeComponent();
             ctrlMo = new ctrlMode();
             this.PositionBtn(260);
+            this.txtNom.ReadOnly = false;
+            this.rtxtDesc.ReadOnly = false;
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
             annuler = true;
         }
 
@@ -45,20 +49,22 @@ namespace Projet
 
             cop.nomMode = txtNom.Text;
             cop.descMode = rtxtDesc.Text;
-
+            
             frmCop = new frmDetMode(cop);
-            frmCop.Tag = "Copie";
             frmCop.remplirChamp();
             frmCop.btnCopier.Enabled = false;
             frmCop.btnSupprimer.Enabled = false;
             frmCop.btnActiverModif.Enabled = false;
+            frmCop.txtNom.ReadOnly = false;
+            frmCop.rtxtDesc.ReadOnly = false;
+            frmCop.statut = "Copie";
             frmCop.ShowDialog();
             if (frmCop.annuler == false)
             {
+                this.Tag = frmCop.Tag;
                 this.Close();
             }
             frmCop.Closed += (s, args) => this.Close();
-            
         }
 
         public void btnSupprimer_Click(object sender, EventArgs e)
@@ -67,6 +73,7 @@ namespace Projet
             if (resultEnrg == DialogResult.Yes)
             {
                 ctrlMo.supprimer(txtID.Text);
+                this.Tag = "0";
                 this.Close();
             }
         }
@@ -82,46 +89,48 @@ namespace Projet
 
             resultVerif = ctrlMo.verifier(enregistrement, modeSelect);
 
-            if (modeSelect != null && ((string)Tag) != "Copie")
+            if (resultVerif)
             {
-                if (resultVerif)
+                if (modeSelect != null && (statut) != "Copie")
                 {
                     resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
                     if (resultEnr == DialogResult.Yes)
                     {
+                        enregistrement.idMode = Int32.Parse(txtID.Text.Trim());
                         ctrlMo.modifier(enregistrement);
+                        this.Tag = enregistrement.nomMode;
                         this.Close();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Aucune modification n'a été apportée.", "Erreur", MessageBoxButtons.OK);
-                }
-            }
-            else
-            {
-                resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
-                if (resultEnr == DialogResult.Yes)
-                {
-                    ctrlMo.ajouter(enregistrement);
-                    annuler = false;
-                    this.Close();
+                    if (ctrlMo.verifSemblable(enregistrement, modeSelect) == true)
+                    {
+                        resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
+                        if (resultEnr == DialogResult.Yes)
+                        {
+                            ctrlMo.ajouter(enregistrement);
+                            annuler = false;
+                            this.Tag = enregistrement.nomMode;
+                            this.Close();
+                        } 
+                    }
                 }
             }
         }
+
         public void modifierChamp(string code)
         {
             if (code == "a")
             {
                 this.btnActiverModif.Visible = false;
-                this.txtID.Enabled = false;
                 modeSelect = null;
             }
             else
             {
-                this.txtID.Enabled = false;           
-                this.rtxtDesc.Enabled = false;
-                this.txtNom.Enabled = false;
+                this.txtID.ReadOnly = true;
+                this.rtxtDesc.ReadOnly = true;
+                this.txtNom.ReadOnly = true;
                 remplirChamp();
             }
         }
@@ -131,6 +140,13 @@ namespace Projet
             txtID.Text = modeSelect.idMode.ToString();
             txtNom.Text = modeSelect.nomMode;
             rtxtDesc.Text = modeSelect.descMode;
+        }
+
+        private void btnActiverModif_Click(object sender, EventArgs e)
+        {
+            this.txtNom.ReadOnly = false;
+            this.rtxtDesc.ReadOnly = false;
+            ((Button)sender).Enabled = false;
         }
     }
 }

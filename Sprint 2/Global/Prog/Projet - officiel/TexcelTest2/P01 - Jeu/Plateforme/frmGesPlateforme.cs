@@ -13,6 +13,8 @@ namespace Projet
     public partial class frmGesPlateforme : frmGestion
     {
         ctrlPlateforme ctrlPlate;
+        string rowId;
+        int sortColumn;
         public frmGesPlateforme()
         {
             InitializeComponent();
@@ -46,6 +48,7 @@ namespace Projet
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             updateDonnees();
+            gridPlateforme.Rows[1].Selected = true;
         }
         private void btnDetails_Click(object sender, EventArgs e)
         {
@@ -76,6 +79,8 @@ namespace Projet
 
                 i++;
             }
+            rowId = (string)gridPlateforme.Rows[gridPlateforme.Rows.Count - 1].Cells[0].Value;
+            gridPlateforme.Sort(gridPlateforme.Columns[sortColumn], ListSortDirection.Ascending);
         }
         private void retirerDonnees()
         {
@@ -93,7 +98,7 @@ namespace Projet
         }
         private void afficherDetails()
         {
-            //int index = gridPlateforme.SelectedRows.;
+            string rowSelect = gridPlateforme.SelectedRows[0].Cells[0].Value.ToString();
             plateforme selectP = (plateforme)gridPlateforme.SelectedRows[0].Tag;
             var frmDetails = new frmDetPlateforme(selectP);
 
@@ -101,6 +106,7 @@ namespace Projet
 
             frmDetails.ShowDialog();
             updateDonnees();
+            selectLigne(rowSelect);
         }
 
         private void gridPlateforme_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -109,6 +115,22 @@ namespace Projet
             {
                 gridPlateforme.Rows[e.RowIndex].Selected = true;
             }
+        }
+        private void selectLigne(string id)
+        {
+            foreach (DataGridViewRow row in gridPlateforme.Rows)
+            {
+                if ((string)row.Cells[0].Value == id)
+                {
+                    gridPlateforme.Rows[row.Index].Selected = true;
+                    gridPlateforme.CurrentCell = gridPlateforme.Rows[row.Index].Cells[0];
+                }
+            }
+        }
+
+        private void gridPlateforme_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            sortColumn = e.ColumnIndex;
         }
     }
 }

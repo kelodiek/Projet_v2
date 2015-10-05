@@ -15,74 +15,54 @@ namespace Projet
         }
         public void ajouter(object o)
         {
-            var ajout = new tblPlateforme();
-            tblSysExp systemp;
-            //List<tblPlateforme> lstPlat = new List<tblPlateforme>();
-            //lstPlat.Add(ajout);
-            //systemp.tblPlateforme = lstPlat;
-           // ICollection<tblSysExp> lstSysExp = new List<tblSysExp>();
-
-            ajout.CodePlateforme = ((plateforme)o).codePlate;
-            ajout.NomPlateforme = ((plateforme)o).nomPlate;
-            ajout.CodeCategorie = ((plateforme)o).codeCateg;
-            ajout.CPU = ((plateforme)o).cpuPlate;
-            ajout.CarteMere = ((plateforme)o).carteMerePlate;
-            ajout.RAM = ((plateforme)o).ramPlate;
-            ajout.Stockage=((plateforme)o).stockage;
-            ajout.DescPlateforme = ((plateforme)o).descPlate;
-            ajout.InfoSupPlateforme = ((plateforme)o).infoSupPlate;
-            
-            var db = new dbProjetE2ProdEntities();
-            
-            foreach (SystemeExploitation item in ((plateforme)o).lstSysExpPlate)
-            {
-                systemp = new tblSysExp();
-                systemp.CodeSysExp = item.CodeSysExp;
-                systemp.EditionSysExp = item.editSysExp;
-                systemp.IdSysExp = item.idSysExp;
-                systemp.InfoSupSysExp = item.infoSysExp;
-                systemp.NomSysExp = item.nomSysExp;
-                systemp.Tag = item.tagSysExp;
-                systemp.VersionSysExp = item.versionSysExp;
-                systemp.IdSysExp = item.idSysExp;
-               ajout.tblSysExp.Add(systemp);
-               // lstSysExp.Add(systemp);
-            }
-            //ajout.tblSysExp = lstSysExp;
-            db.tblPlateforme.Add(ajout);
-
-            //ajout.tblSysExp = lstSysExp;
-            //RequeteSql.addPlateforme(ajout);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            var ajout = plateTotblPlate((plateforme)o);
+            RequeteSql.addPlateforme(ajout);
         }
 
         public void modifier(object o)
         {
-            throw new NotImplementedException();
+            var nouv = plateTotblPlate((plateforme)o);
+            nouv.IdPlateforme = ((plateforme)o).idPlate;
+
+            RequeteSql.setPlateforme(nouv);
         }
 
-        public void supprimer(object o)
+        public bool supprimer(object o)
         {
-            throw new NotImplementedException();
+            if (RequeteSql.checkPlateJeu((int)o))
+            {
+                return false;
+            }
+            else
+            {
+                RequeteSql.deletePlateformeSysExp((int)o);
+                RequeteSql.deletePlateforme((int)o);
+                return true;
+            }
         }
 
         public bool verifier(object o, object n)
         {
-            throw new NotImplementedException();
+            plateforme ancien, nouv;
+
+            ancien = (plateforme)o;
+            nouv = (plateforme)o;
+
+            if (ancien.codePlate == nouv.codePlate && ancien.nomPlate == nouv.nomPlate)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public List<string[]> chargerDonnees()
         {
             string[] row;
             List<string[]> lstRows = new List<string[]>();
             var lstBrut = RequeteSql.getPlateforme();
+            lstPlateforme = new List<plateforme>();
 
             foreach (var item in lstBrut)
             {
@@ -97,6 +77,42 @@ namespace Projet
             }
             
             return lstRows;
+        }
+        private tblPlateforme plateTotblPlate(plateforme p)
+        {
+            tblSysExp systemp = new tblSysExp();
+            tblPlateforme tblP = new tblPlateforme();
+
+            tblP.IdPlateforme = p.idPlate;
+            tblP.CodePlateforme = p.codePlate;
+            tblP.NomPlateforme = p.nomPlate;
+            tblP.CodeCategorie = p.codeCateg;
+            tblP.CPU = p.cpuPlate;
+            tblP.CarteMere = p.carteMerePlate;
+            tblP.RAM = p.ramPlate;
+            tblP.Stockage = p.stockage;
+            tblP.DescPlateforme = p.descPlate;
+            tblP.InfoSupPlateforme = p.infoSupPlate;
+
+            foreach (SystemeExploitation item in p.lstSysExpPlate)
+            {
+                systemp = new tblSysExp();
+                systemp.CodeSysExp = item.CodeSysExp;
+                systemp.EditionSysExp = item.editSysExp;
+                systemp.IdSysExp = item.idSysExp;
+                systemp.InfoSupSysExp = item.infoSysExp;
+                systemp.NomSysExp = item.nomSysExp;
+                systemp.Tag = item.tagSysExp;
+                systemp.VersionSysExp = item.versionSysExp;
+                tblP.tblSysExp.Add(systemp);
+            }
+            return tblP;
+        }
+
+
+        void IControle.supprimer(object o)
+        {
+            throw new NotImplementedException();
         }
     }
 }

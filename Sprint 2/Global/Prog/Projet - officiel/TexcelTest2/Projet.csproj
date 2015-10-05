@@ -59,6 +59,7 @@
     <Compile Include="P01 - Jeu\Classification\ctrlClassification.cs" />
     <Compile Include="P01 - Jeu\Categorie\ctrlCategorie.cs" />
     <Compile Include="P01 - Jeu\Classification\rClassificationSQL.cs" />
+    <Compile Include="P01 - Jeu\Genre\ctrlGenre.cs" />
     <Compile Include="P01 - Jeu\Jeu\ctrlJeu.cs" />
     <Compile Include="P01 - Jeu\Jeu\rJeuSQL.cs" />
     <Compile Include="P01 - Jeu\Mode\ctrlMode.cs" />

@@ -249,7 +249,7 @@
             this.groupBox1.Size = new System.Drawing.Size(439, 262);
             this.groupBox1.TabIndex = 74;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Information des systèmes d\'exploitation";
+            this.groupBox1.Text = "Information des  systeme d\'exploitation";
             // 
             // lstTreeSelect
             // 
@@ -272,7 +272,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 17);
             this.label4.TabIndex = 77;
-            this.label4.Text = "Sélection";
+            this.label4.Text = "Selection";
             // 
             // label1
             // 
@@ -281,7 +281,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(155, 17);
             this.label1.TabIndex = 76;
-            this.label1.Text = "Systèmes d\'exploitation";
+            this.label1.Text = "Systemes d\'exploitation";
             // 
             // btnRetirerSysExp
             // 
@@ -351,7 +351,7 @@
             this.Controls.Add(this.Label10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmDetPlateforme";
-            this.Text = "Texcel - Détails - Plateformes";
+            this.Text = "Détails - Plateformes";
             this.Load += new System.EventHandler(this.frmDetPlateforme_Load);
             this.Controls.SetChildIndex(this.Label10, 0);
             this.Controls.SetChildIndex(this.rTxtDesc, 0);
