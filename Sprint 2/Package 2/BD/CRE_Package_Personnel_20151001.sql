@@ -2,9 +2,9 @@ use dbProjetE2Prod;
 GO
 IF EXISTS (SELECT * FROM sys.schemas WHERE name = 'Personnel')
 BEGIN
-	EXEC( 'DROP TABLE Jeux.tblGroupeUtil' );	
+	EXEC( 'DROP TABLE Personnel.tblGroupeUtil' );	
 	
-	EXEC( 'DROP TABLE Jeux.tblGroupeDroit' );	
+	EXEC( 'DROP TABLE Personnel.tblGroupeDroit' );	
 	EXEC( 'DROP TABLE Personnel.tblUtilisateur' );
 		
 	EXEC( 'DROP TABLE Personnel.tblDroit' );
@@ -29,7 +29,7 @@ NoTelSecondaire			VARCHAR(20)	NULL,
 AdressePostale			VARCHAR(90)	NOT NULL,
 DateEmbaucheEmp			DATE		NOT NULL,
 CompetenceParticuliere  VARCHAR(400)NULL,
-Actif					BINARY(1)	NOT NULL,
+Actif					BINARY(1)	NULL,
 CommentaireEmp			VARCHAR(250)NULL
 )
 GO

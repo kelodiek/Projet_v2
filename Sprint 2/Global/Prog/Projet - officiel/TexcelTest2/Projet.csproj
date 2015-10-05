@@ -53,16 +53,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Categorie.cs" />
-    <Compile Include="Classification.cs" />
+    <Compile Include="P01 - Jeu\Categorie\Categorie.cs" />
+    <Compile Include="P01 - Jeu\Classification\Classification.cs" />
     <Compile Include="ControleAdministration.cs" />
-    <Compile Include="ControleClassification.cs" />
-    <Compile Include="ctrlCategorie.cs" />
-    <Compile Include="ctrlMode.cs" />
-    <Compile Include="ctrlPlateforme.cs" />
-    <Compile Include="ctrlSysExp.cs" />
-    <Compile Include="ctrlTheme.cs" />
-    <Compile Include="ctrlVersion.cs" />
+    <Compile Include="P01 - Jeu\Classification\ctrlClassification.cs" />
+    <Compile Include="P01 - Jeu\Categorie\ctrlCategorie.cs" />
+    <Compile Include="P01 - Jeu\Classification\rClassificationSQL.cs" />
+    <Compile Include="P01 - Jeu\Genre\ctrlGenre.cs" />
+    <Compile Include="P01 - Jeu\Jeu\ctrlJeu.cs" />
+    <Compile Include="P01 - Jeu\Jeu\rJeuSQL.cs" />
+    <Compile Include="P01 - Jeu\Mode\ctrlMode.cs" />
+    <Compile Include="P01 - Jeu\Plateforme\ctrlPlateforme.cs" />
+    <Compile Include="P01 - Jeu\SysExp\ctrlSysExp.cs" />
+    <Compile Include="P01 - Jeu\Theme\ctrlTheme.cs" />
+    <Compile Include="P01 - Jeu\Version\ctrlVersion.cs" />
     <Compile Include="dbProjetE2ProdModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,76 +100,70 @@
     <Compile Include="frmDetail.Designer.cs">
       <DependentUpon>frmDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetCateg.cs">
+    <Compile Include="P01 - Jeu\Categorie\frmDetCateg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetCateg.Designer.cs">
+    <Compile Include="P01 - Jeu\Categorie\frmDetCateg.Designer.cs">
       <DependentUpon>frmDetCateg.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetClassification.cs">
+    <Compile Include="P01 - Jeu\Classification\frmDetClassification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetClassification.Designer.cs">
+    <Compile Include="P01 - Jeu\Classification\frmDetClassification.Designer.cs">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetEmp.cs">
+    <Compile Include="P02 - Personnel\Employe\frmDetEmp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetEmp.Designer.cs">
+    <Compile Include="P02 - Personnel\Employe\frmDetEmp.Designer.cs">
       <DependentUpon>frmDetEmp.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetGenre.cs">
+    <Compile Include="P01 - Jeu\Genre\frmDetGenre.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetGenre.Designer.cs">
+    <Compile Include="P01 - Jeu\Genre\frmDetGenre.Designer.cs">
       <DependentUpon>frmDetGenre.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetJeu.cs">
+    <Compile Include="P01 - Jeu\Jeu\frmDetJeu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetJeu.Designer.cs">
+    <Compile Include="P01 - Jeu\Jeu\frmDetJeu.Designer.cs">
       <DependentUpon>frmDetJeu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetMode.cs">
+    <Compile Include="P01 - Jeu\Mode\frmDetMode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetMode.Designer.cs">
+    <Compile Include="P01 - Jeu\Mode\frmDetMode.Designer.cs">
       <DependentUpon>frmDetMode.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetOS.cs">
+    <Compile Include="P01 - Jeu\Plateforme\frmDetPlateforme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetOS.Designer.cs">
-      <DependentUpon>frmDetOS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmDetPlateforme.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDetPlateforme.Designer.cs">
+    <Compile Include="P01 - Jeu\Plateforme\frmDetPlateforme.Designer.cs">
       <DependentUpon>frmDetPlateforme.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetSysExp.cs">
+    <Compile Include="P01 - Jeu\SysExp\frmDetSysExp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetSysExp.Designer.cs">
+    <Compile Include="P01 - Jeu\SysExp\frmDetSysExp.Designer.cs">
       <DependentUpon>frmDetSysExp.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetTheme.cs">
+    <Compile Include="P01 - Jeu\Theme\frmDetTheme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetTheme.Designer.cs">
+    <Compile Include="P01 - Jeu\Theme\frmDetTheme.Designer.cs">
       <DependentUpon>frmDetTheme.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDetVersion.cs">
+    <Compile Include="P01 - Jeu\Version\frmDetVersion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetVersion.Designer.cs">
+    <Compile Include="P01 - Jeu\Version\frmDetVersion.Designer.cs">
       <DependentUpon>frmDetVersion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGesCategorie.cs">
+    <Compile Include="P01 - Jeu\Categorie\frmGesCategorie.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGesCategorie.Designer.cs">
+    <Compile Include="P01 - Jeu\Categorie\frmGesCategorie.Designer.cs">
       <DependentUpon>frmGesCategorie.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGesCon.cs">
@@ -174,34 +172,34 @@
     <Compile Include="frmGesCon.Designer.cs">
       <DependentUpon>frmGesCon.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGesMode.cs">
+    <Compile Include="P01 - Jeu\Mode\frmGesMode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGesMode.Designer.cs">
+    <Compile Include="P01 - Jeu\Mode\frmGesMode.Designer.cs">
       <DependentUpon>frmGesMode.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGesPlateforme.cs">
+    <Compile Include="P01 - Jeu\Plateforme\frmGesPlateforme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGesPlateforme.Designer.cs">
+    <Compile Include="P01 - Jeu\Plateforme\frmGesPlateforme.Designer.cs">
       <DependentUpon>frmGesPlateforme.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGesSysExp.cs">
+    <Compile Include="P01 - Jeu\SysExp\frmGesSysExp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGesSysExp.Designer.cs">
+    <Compile Include="P01 - Jeu\SysExp\frmGesSysExp.Designer.cs">
       <DependentUpon>frmGesSysExp.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGesClassification.cs">
+    <Compile Include="P01 - Jeu\Classification\frmGesClassification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGesClassification.Designer.cs">
+    <Compile Include="P01 - Jeu\Classification\frmGesClassification.Designer.cs">
       <DependentUpon>frmGesClassification.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGesGenre.cs">
+    <Compile Include="P01 - Jeu\Genre\frmGesGenre.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGesGenre.Designer.cs">
+    <Compile Include="P01 - Jeu\Genre\frmGesGenre.Designer.cs">
       <DependentUpon>frmGesGenre.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGestion.cs">
@@ -210,22 +208,22 @@
     <Compile Include="frmGestion.Designer.cs">
       <DependentUpon>frmGestion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGestJeu.cs">
+    <Compile Include="P01 - Jeu\Jeu\frmGestJeu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGestJeu.Designer.cs">
+    <Compile Include="P01 - Jeu\Jeu\frmGestJeu.Designer.cs">
       <DependentUpon>frmGestJeu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGesTheme.cs">
+    <Compile Include="P01 - Jeu\Theme\frmGesTheme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGesTheme.Designer.cs">
+    <Compile Include="P01 - Jeu\Theme\frmGesTheme.Designer.cs">
       <DependentUpon>frmGesTheme.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGesVersion.cs">
+    <Compile Include="P01 - Jeu\Version\frmGesVersion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGesVersion.Designer.cs">
+    <Compile Include="P01 - Jeu\Version\frmGesVersion.Designer.cs">
       <DependentUpon>frmGesVersion.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPopupAccueil.cs">
@@ -240,15 +238,33 @@
     <Compile Include="frmSelection.Designer.cs">
       <DependentUpon>frmSelection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Genre.cs" />
+    <Compile Include="P01 - Jeu\Genre\Genre.cs" />
     <Compile Include="IControle.cs" />
-    <Compile Include="Jeu.cs" />
-    <Compile Include="Mode.cs" />
-    <Compile Include="plateforme.cs" />
+    <Compile Include="P01 - Jeu\Jeu\Jeu.cs" />
+    <Compile Include="P01 - Jeu\Mode\Mode.cs" />
+    <Compile Include="P01 - Jeu\Plateforme\plateforme.cs" />
+    <Compile Include="P02 - Personnel\Employe\frmGesEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Personnel\Employe\frmGesEmp.Designer.cs">
+      <DependentUpon>frmGesEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Personnel\Equipe\frmDetEquipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Personnel\Equipe\frmDetEquipe.Designer.cs">
+      <DependentUpon>frmDetEquipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Personnel\Equipe\frmGesEquipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Personnel\Equipe\frmGesEquipe.Designer.cs">
+      <DependentUpon>frmGesEquipe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequeteSql.cs" />
-    <Compile Include="SystemeExploitation.cs" />
+    <Compile Include="P01 - Jeu\SysExp\SystemeExploitation.cs" />
     <Compile Include="tblCategorie.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
@@ -276,67 +292,70 @@
     <Compile Include="tblVersion.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Theme.cs" />
-    <Compile Include="version.cs" />
-    <EmbeddedResource Include="frmDetCateg.resx">
+    <Compile Include="P01 - Jeu\Theme\Theme.cs" />
+    <Compile Include="P01 - Jeu\Version\version.cs" />
+    <EmbeddedResource Include="P01 - Jeu\Categorie\frmDetCateg.resx">
       <DependentUpon>frmDetCateg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetClassification.resx">
+    <EmbeddedResource Include="P01 - Jeu\Classification\frmDetClassification.resx">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetEmp.resx">
+    <EmbeddedResource Include="P02 - Personnel\Employe\frmDetEmp.resx">
       <DependentUpon>frmDetEmp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetGenre.resx">
+    <EmbeddedResource Include="P01 - Jeu\Genre\frmDetGenre.resx">
       <DependentUpon>frmDetGenre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetJeu.resx">
+    <EmbeddedResource Include="P01 - Jeu\Jeu\frmDetJeu.resx">
       <DependentUpon>frmDetJeu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetMode.resx">
+    <EmbeddedResource Include="P01 - Jeu\Mode\frmDetMode.resx">
       <DependentUpon>frmDetMode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetOS.resx">
-      <DependentUpon>frmDetOS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDetPlateforme.resx">
+    <EmbeddedResource Include="P01 - Jeu\Plateforme\frmDetPlateforme.resx">
       <DependentUpon>frmDetPlateforme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetSysExp.resx">
+    <EmbeddedResource Include="P01 - Jeu\SysExp\frmDetSysExp.resx">
       <DependentUpon>frmDetSysExp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetTheme.resx">
+    <EmbeddedResource Include="P01 - Jeu\Theme\frmDetTheme.resx">
       <DependentUpon>frmDetTheme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDetVersion.resx">
+    <EmbeddedResource Include="P01 - Jeu\Version\frmDetVersion.resx">
       <DependentUpon>frmDetVersion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGesCategorie.resx">
+    <EmbeddedResource Include="P01 - Jeu\Categorie\frmGesCategorie.resx">
       <DependentUpon>frmGesCategorie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGesCon.resx">
       <DependentUpon>frmGesCon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGesMode.resx">
+    <EmbeddedResource Include="P01 - Jeu\Mode\frmGesMode.resx">
       <DependentUpon>frmGesMode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGesPlateforme.resx">
+    <EmbeddedResource Include="P01 - Jeu\Plateforme\frmGesPlateforme.resx">
       <DependentUpon>frmGesPlateforme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGesSysExp.resx">
+    <EmbeddedResource Include="P01 - Jeu\SysExp\frmGesSysExp.resx">
       <DependentUpon>frmGesSysExp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGesClassification.resx">
+    <EmbeddedResource Include="P01 - Jeu\Classification\frmGesClassification.resx">
       <DependentUpon>frmGesClassification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGesGenre.resx">
+    <EmbeddedResource Include="P01 - Jeu\Genre\frmGesGenre.resx">
       <DependentUpon>frmGesGenre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGestion.resx">
       <DependentUpon>frmGestion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGesTheme.resx">
+    <EmbeddedResource Include="P01 - Jeu\Theme\frmGesTheme.resx">
       <DependentUpon>frmGesTheme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Personnel\Equipe\frmDetEquipe.resx">
+      <DependentUpon>frmDetEquipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Personnel\Equipe\frmGesEquipe.resx">
+      <DependentUpon>frmGesEquipe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -385,6 +404,7 @@
   <ItemGroup>
     <None Include="bin\Debug\Texcel logo v2.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
