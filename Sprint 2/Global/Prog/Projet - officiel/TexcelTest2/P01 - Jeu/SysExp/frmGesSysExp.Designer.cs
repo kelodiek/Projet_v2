@@ -48,6 +48,7 @@
             this.gridSysExp.TabIndex = 50;
             this.gridSysExp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSysExp_CellClick);
             this.gridSysExp.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSysExp_CellDoubleClick);
+            this.gridSysExp.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridSysExp_ColumnHeaderMouseClick);
             // 
             // frmGesSysExp
             // 

@@ -13,6 +13,8 @@ namespace Projet
     public partial class frmGesSysExp : frmGestion
     {
         ctrlSysExp gestionSysteme;
+        int sortColumn;
+        string nouvRowId;
         public frmGesSysExp()
         {
             InitializeComponent();
@@ -20,14 +22,20 @@ namespace Projet
             btnDetails.Click += new EventHandler(btnDetails_Click);
             btnRecherche.Click += new System.EventHandler(btnRecherche_Click);
             btnX.Click += new EventHandler(btnX_Click);
+            txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
 
+            sortColumn = 1;
             ButtonsVisible(true);
             gestionSysteme = new ctrlSysExp();
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
         {
-            if (txtRecherche.Text != "")
+            recherche();
+        }
+        private void recherche()
+        {
+            if (txtRecherche.Text.Trim() != "")
             {
                 gridSysExp.Rows.Clear();
                 foreach (SystemeExploitation c in gestionSysteme.rechercher(txtRecherche.Text))
@@ -39,10 +47,16 @@ namespace Projet
             }
             else
             {
-                MessageBox.Show("Veuillez inscrire une chaine de recherche");
+                MessageBox.Show("Veuillez remplir le champ.");
             }
         }
-
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                recherche();
+            }
+        }
         private void btnX_Click(object sender, EventArgs e)
         {
             afficherDonnees();
@@ -55,7 +69,8 @@ namespace Projet
             frmDetails.modifierChamp("a");
 
             frmDetails.ShowDialog();
-            update();
+            afficherDonnees();
+            selectLigne(nouvRowId);
         }
 
         private void afficherDonnees()
@@ -67,12 +82,12 @@ namespace Projet
                 int rowIndex = gridSysExp.Rows.Add(item);
                 gridSysExp.Rows[rowIndex].Tag = item.Last();
             }
-            gridSysExp.Sort(gridSysExp.Columns[1], ListSortDirection.Ascending);
+            nouvRowId = (string)gridSysExp.Rows[gridSysExp.Rows.Count - 1].Cells[0].Value;
+            gridSysExp.Sort(gridSysExp.Columns[sortColumn], ListSortDirection.Ascending);
         }
 
         private void frmGesSysExp_Load(object sender, EventArgs e)
         {
-            var donnees = gestionSysteme.chargerDonnees();
             var column = new DataGridViewColumn();
 
             gridSysExp.Columns.Add("id", "ID");
@@ -95,13 +110,7 @@ namespace Projet
             column = gridSysExp.Columns[5];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-
-            foreach (var item in donnees)
-            {
-                int rowIndex = gridSysExp.Rows.Add(item);
-                gridSysExp.Rows[rowIndex].Tag = item.Last();
-            }
-            gridSysExp.Sort(gridSysExp.Columns[1], ListSortDirection.Ascending);
+            afficherDonnees();
         }
 
         private void gridSysExp_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -116,11 +125,14 @@ namespace Projet
         }
         private void afficherDetails(string[] info)
         {
+            string rowSelect = gridSysExp.SelectedRows[0].Cells[0].Value.ToString();
             var frmDetails = new frmDetSysExp(info);
 
             frmDetails.modifierChamp("m");
 
             frmDetails.ShowDialog();
+            afficherDonnees();
+            selectLigne(rowSelect);
         }
 
         private void gridSysExp_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -128,6 +140,8 @@ namespace Projet
             if (e.RowIndex != -1)
             {
                 int rowIndex = e.RowIndex;
+
+                gridSysExp.Rows[rowIndex].Selected = true;
 
                 getInfoLigne(rowIndex);
             }
@@ -159,17 +173,23 @@ namespace Projet
                 (string)row.Cells[5].Value };
 
             afficherDetails(infoSysExp);
-            update();
-        }
-        private void update()
-        {
-            gestionSysteme = new ctrlSysExp();
-            var formOuvert = new frmGesSysExp();
-            formOuvert.Show();
-            this.Hide();
-            formOuvert.Closed += (s, args) => this.Close();
         }
 
+        private void gridSysExp_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            sortColumn = e.ColumnIndex;
+        }
+        private void selectLigne(string id)
+        {
+            foreach (DataGridViewRow row in gridSysExp.Rows)
+            {
+                if ((string)row.Cells[0].Value == id)
+                {
+                    gridSysExp.Rows[row.Index].Selected = true;
+                    gridSysExp.CurrentCell = gridSysExp.Rows[row.Index].Cells[0];
+                }
+            }
+        }
 
     }
 }

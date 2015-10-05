@@ -42,6 +42,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dateSortie = new System.Windows.Forms.DateTimePicker();
             this.rtxtDesc = new System.Windows.Forms.RichTextBox();
+            this.checkValide = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtNom
@@ -49,7 +50,7 @@
             this.txtNom.Location = new System.Drawing.Point(129, 65);
             this.txtNom.MaxLength = 30;
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(219, 22);
+            this.txtNom.Size = new System.Drawing.Size(263, 22);
             this.txtNom.TabIndex = 102;
             // 
             // txtCode
@@ -57,7 +58,7 @@
             this.txtCode.Location = new System.Drawing.Point(129, 37);
             this.txtCode.MaxLength = 30;
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(199, 22);
+            this.txtCode.Size = new System.Drawing.Size(219, 22);
             this.txtCode.TabIndex = 101;
             // 
             // txtId
@@ -130,7 +131,7 @@
             // 
             this.dateVersion.Location = new System.Drawing.Point(140, 282);
             this.dateVersion.Name = "dateVersion";
-            this.dateVersion.Size = new System.Drawing.Size(200, 22);
+            this.dateVersion.Size = new System.Drawing.Size(162, 22);
             this.dateVersion.TabIndex = 107;
             // 
             // label6
@@ -157,7 +158,7 @@
             // 
             this.dateSortie.Location = new System.Drawing.Point(140, 313);
             this.dateSortie.Name = "dateSortie";
-            this.dateSortie.Size = new System.Drawing.Size(200, 22);
+            this.dateSortie.Size = new System.Drawing.Size(162, 22);
             this.dateSortie.TabIndex = 109;
             // 
             // rtxtDesc
@@ -168,11 +169,22 @@
             this.rtxtDesc.TabIndex = 112;
             this.rtxtDesc.Text = "";
             // 
+            // checkValide
+            // 
+            this.checkValide.AutoSize = true;
+            this.checkValide.Location = new System.Drawing.Point(308, 313);
+            this.checkValide.Name = "checkValide";
+            this.checkValide.Size = new System.Drawing.Size(155, 21);
+            this.checkValide.TabIndex = 113;
+            this.checkValide.Text = "Enregistrer cet date";
+            this.checkValide.UseVisualStyleBackColor = true;
+            // 
             // frmDetVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 388);
+            this.Controls.Add(this.checkValide);
             this.Controls.Add(this.rtxtDesc);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dateSortie);
@@ -203,6 +215,7 @@
             this.Controls.SetChildIndex(this.dateSortie, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.rtxtDesc, 0);
+            this.Controls.SetChildIndex(this.checkValide, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,5 +237,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dateSortie;
         private System.Windows.Forms.RichTextBox rtxtDesc;
+        private System.Windows.Forms.CheckBox checkValide;
     }
 }

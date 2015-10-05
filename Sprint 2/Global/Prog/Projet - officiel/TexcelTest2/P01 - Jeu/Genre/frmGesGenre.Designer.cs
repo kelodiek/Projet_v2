@@ -34,29 +34,33 @@
             // 
             // GridGenre
             // 
+            this.GridGenre.AllowUserToAddRows = false;
+            this.GridGenre.AllowUserToResizeRows = false;
             this.GridGenre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridGenre.Location = new System.Drawing.Point(12, 71);
+            this.GridGenre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GridGenre.MultiSelect = false;
             this.GridGenre.Name = "GridGenre";
+            this.GridGenre.ReadOnly = true;
             this.GridGenre.RowTemplate.Height = 24;
-            this.GridGenre.Size = new System.Drawing.Size(1058, 369);
+            this.GridGenre.Size = new System.Drawing.Size(1059, 369);
             this.GridGenre.TabIndex = 45;
+            this.GridGenre.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridGenre_CellClick);
+            this.GridGenre.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridGenre_CellDoubleClick);
             // 
             // frmGesGenre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 500);
+            this.ClientSize = new System.Drawing.Size(1083, 500);
             this.Controls.Add(this.GridGenre);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmGesGenre";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion des Genres";
             this.Controls.SetChildIndex(this.GridGenre, 0);
-            this.Load += new System.EventHandler(this.frmGesGenre_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridGenre)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
-
 
         }
 

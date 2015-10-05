@@ -46,6 +46,7 @@
             this.gridPlateforme.Size = new System.Drawing.Size(1061, 381);
             this.gridPlateforme.TabIndex = 50;
             this.gridPlateforme.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPlateforme_CellContentClick);
+            this.gridPlateforme.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridPlateforme_ColumnHeaderMouseClick);
             // 
             // frmGesPlateforme
             // 

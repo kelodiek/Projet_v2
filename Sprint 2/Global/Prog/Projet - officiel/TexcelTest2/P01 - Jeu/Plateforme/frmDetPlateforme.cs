@@ -16,16 +16,21 @@ namespace Projet
         //private List<SystemeExploitation> lstSysExp;
         private plateforme selectPlate;
         private ctrlPlateforme ctrlPlate;
+        private string type;
 
         public frmDetPlateforme()
         {
             InitializeComponent();
 
+            type = "ajout";
             loadList();
 
             ctrlPlate = new ctrlPlateforme();
 
-            btnEnregistrer.Click += new EventHandler(btnAjout_Click);
+            btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            btnCopier.Click += new EventHandler(btnCopier_Click);
+            btnSupprimer.Enabled = false;
 
             ajusterForm();
         }
@@ -33,13 +38,17 @@ namespace Projet
         {
             InitializeComponent();
 
+            type = "modif";
             selectPlate = p;
 
             loadList();
 
             ctrlPlate = new ctrlPlateforme();
 
-            btnEnregistrer.Click += new EventHandler(btnAjout_Click);
+            btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            btnCopier.Click += new EventHandler(btnCopier_Click);
+            btnAnnuler.Enabled = true;
 
             loadDetail();
             ajusterForm();
@@ -153,14 +162,17 @@ namespace Projet
         {
             
         }
-        private void btnAjout_Click(object sender, EventArgs e) 
+        private void ajout() 
         {
+            DialogResult r;
             var nouvPlat = new plateforme();
             var lstSysExp = new List<SystemeExploitation>();
 
             if (txtCode.Text.Trim().Length == 0 || txtNom.Text.Trim().Length == 0 || cboxCateg.SelectedItem == null)
             {
-                //erreur
+                MessageBox.Show("Les champs obligatoires ne sont pas bien rempli.",
+                    "Erreur",
+                    MessageBoxButtons.OK);
             }
             else
             {
@@ -181,8 +193,12 @@ namespace Projet
 
                 nouvPlat.lstSysExpPlate = lstSysExp;
 
-                ctrlPlate.ajouter(nouvPlat);
-                this.Close();
+                r = MessageBox.Show("Voulez-vous enregistrer?", "Enregistrement", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (r == DialogResult.Yes)
+                {
+                    ctrlPlate.ajouter(nouvPlat);
+                    this.Close();
+                }
             }
         }
 
@@ -196,6 +212,28 @@ namespace Projet
                 lstTreeSelect.SelectedNode.Remove();
             }
         }
+        private void btnSupprimer_Click(object sender, EventArgs e)
+        {
+            supprimer(Convert.ToInt32(txtID.Text));
+        }
+        private void supprimer(int id)
+        {
+            bool result = ctrlPlate.supprimer(id);
+            if (result == true)
+            {
+                MessageBox.Show("Suppression reussi.", 
+                    "Suppression",
+                    MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Suppression échouée, la plateforme est liée a un ou plusieurs jeu. Veuillez-supprimer ces jeux avant de supprimer cett plateforme.", 
+                    "Suppression", 
+                    MessageBoxButtons.OK);
+            }
+            Update();
+        }
+
         public void afficherDetail(plateforme p)
         {
             var categplat = new Categorie(RequeteSql.srchCategorie(p.codeCateg).First());
@@ -223,8 +261,131 @@ namespace Projet
             {
                 ajoutSysExpDetails(item);
             }
-            
+        }
+        private void btnEnregistrer_Click(object sender, EventArgs e)
+        {
+            switch (type)
+            {
+                case "modif":
+                    modifierPlate();
+                    break;
+                case "ajout":
+                    ajout();
+                    break;
+                case "copie":
+                    enrgCopie();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void modifierPlate()
+        {
+            DialogResult r;
+            var nouvPlat = new plateforme();
+            var lstSysExp = new List<SystemeExploitation>();
 
+            if (txtCode.Text.Trim().Length == 0 || txtNom.Text.Trim().Length == 0 || cboxCateg.SelectedItem == null)
+            {
+                MessageBox.Show("Les champs obligatoires ne sont pas bien rempli.", 
+                    "Erreur",
+                    MessageBoxButtons.OK);
+            }
+            else
+            {
+                nouvPlat.idPlate = Convert.ToInt32(txtID.Text);
+                nouvPlat.codePlate = txtCode.Text.Trim();
+                nouvPlat.nomPlate = txtNom.Text.Trim();
+                nouvPlat.codeCateg = ((Categorie)cboxCateg.SelectedItem).codeCateg;
+                nouvPlat.cpuPlate = txtCPU.Text.Trim();
+                nouvPlat.carteMerePlate = txtCartemere.Text.Trim();
+                nouvPlat.ramPlate = txtRam.Text.Trim();
+                nouvPlat.stockage = txtStockage.Text.Trim();
+                nouvPlat.infoSupPlate = rTxtInfoSup.Text.Trim();
+                nouvPlat.descPlate = rTxtDesc.Text.Trim();
+
+                foreach (var item in lstTreeSelect.Nodes)
+                {
+                    lstSysExp.Add(((SystemeExploitation)((TreeNode)item).Tag));
+                }
+
+                nouvPlat.lstSysExpPlate = lstSysExp;
+
+                r = MessageBox.Show("Voulez-vous enregistrer?", 
+                    "Enregistrement", 
+                    MessageBoxButtons.YesNo, 
+                    MessageBoxIcon.Exclamation);
+                if (r == DialogResult.Yes)
+                {
+                    ctrlPlate.modifier(nouvPlat);
+                    this.Close();
+                }
+                
+            }
+        }
+        private void btnCopier_Click(object sender, EventArgs e)
+        {
+            var copiePlate = new plateforme();
+            var lstSysExp = new List<SystemeExploitation>();
+            frmDetPlateforme frmDetails;
+
+            copiePlate.codePlate = txtCode.Text.Trim();
+            copiePlate.nomPlate = txtNom.Text.Trim();
+            copiePlate.codeCateg = ((Categorie)cboxCateg.SelectedItem).codeCateg;
+            copiePlate.cpuPlate = txtCPU.Text.Trim();
+            copiePlate.carteMerePlate = txtCartemere.Text.Trim();
+            copiePlate.ramPlate = txtRam.Text.Trim();
+            copiePlate.stockage = txtStockage.Text.Trim();
+            copiePlate.infoSupPlate = rTxtInfoSup.Text.Trim();
+            copiePlate.descPlate = rTxtDesc.Text.Trim();
+
+            foreach (var item in lstTreeSelect.Nodes)
+            {
+                lstSysExp.Add(((SystemeExploitation)((TreeNode)item).Tag));
+            }
+
+            copiePlate.lstSysExpPlate = lstSysExp;
+            frmDetails = new frmDetPlateforme(copiePlate);
+
+            frmDetails.modifierChamp("a");
+            frmDetails.type = "copie";
+
+            frmDetails.ShowDialog();
+        }
+        private void enrgCopie()
+        {
+            DialogResult r;
+            var copiePlate = new plateforme();
+            copiePlate.codePlate = txtCode.Text.Trim();
+            copiePlate.nomPlate = txtNom.Text.Trim();
+            copiePlate.codeCateg = ((Categorie)cboxCateg.SelectedItem).codeCateg;
+            copiePlate.cpuPlate = txtCPU.Text.Trim();
+            copiePlate.carteMerePlate = txtCartemere.Text.Trim();
+            copiePlate.ramPlate = txtRam.Text.Trim();
+            copiePlate.stockage = txtStockage.Text.Trim();
+            copiePlate.infoSupPlate = rTxtInfoSup.Text.Trim();
+            copiePlate.descPlate = rTxtDesc.Text.Trim();
+
+            if (ctrlPlate.verifier(selectPlate, copiePlate))
+            {
+                r = MessageBox.Show("Voulez-vous enregistrer?", 
+                    "Enregistrement",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Exclamation);
+
+                if (r == DialogResult.Yes)
+                {
+                    ajout();
+                }
+            }
+            else
+            {
+                MessageBox.Show("La copie est pareil a l'ancien.",
+                    "Erreure", 
+                    MessageBoxButtons.OK);
+            }
+
+            
         }
 
     }

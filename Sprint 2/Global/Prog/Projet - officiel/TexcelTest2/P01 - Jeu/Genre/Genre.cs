@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    class Genre
+    public class Genre
     {
         private int IdGenre;
         private string NomGenre, ComGenre;
@@ -14,6 +14,16 @@ namespace Projet
         public Genre(int id, string nom, string com)
         {
             NewGenre(id, nom, com);
+        }
+
+        public Genre(tblGenre Ge)
+        {
+            NewGenre(Ge.IdGenre, Ge.NomGenre, Ge.ComGenre);
+        }
+
+        public Genre()
+        {
+            NewGenre(0,"","");
         }
 
         private Genre NewGenre(int id, string nom, string com){

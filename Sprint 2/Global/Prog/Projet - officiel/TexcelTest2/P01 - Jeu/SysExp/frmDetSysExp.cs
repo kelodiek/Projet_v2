@@ -26,8 +26,9 @@ namespace Projet
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             this.btnCopier.Enabled = false;
+            this.btnAnnuler.Click += new EventHandler(btnAnnuler_click);
             gestionSysExp = new ctrlSysExp();
-            annuler = true;
+            annuler = false;
         }
         public frmDetSysExp(string[] info)
         {
@@ -37,10 +38,11 @@ namespace Projet
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnAnnuler.Click += new EventHandler(btnAnnuler_click);
             txtNom.Text = info[2];
             infoSysExp = info;
             gestionSysExp = new ctrlSysExp();
-            annuler = true;
+            annuler = false;
             ancienSysExp = new SystemeExploitation();
         }
         /// <summary>
@@ -130,9 +132,7 @@ namespace Projet
                         this.Close();
                     }        
                 }
-            }
-            
-            
+            }           
         }
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
@@ -159,9 +159,15 @@ namespace Projet
             formOuvert.btnSupprimer.Enabled = false;
             formOuvert.btnActiverModif.Enabled = false;
             formOuvert.ShowDialog();
-            this.Hide();
-            formOuvert.Closed += (s, args) => this.Close();
-
+            if (formOuvert.annuler != true)
+            {
+                this.Close();
+            }
+        }
+        private void btnAnnuler_click(object sender, EventArgs e)
+        {
+            annuler = true;
+            this.Close();
         }
         
     }

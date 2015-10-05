@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    public class plateforme
+    public partial class plateforme
     {
         public int idPlate { get; set; }
         public string codePlate { get; set; }
