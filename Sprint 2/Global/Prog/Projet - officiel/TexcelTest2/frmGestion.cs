@@ -119,5 +119,29 @@ namespace Projet
             formOuvert.Closed += (s, args) => this.Close();
         }
 
+        private void toolStripGesEmp_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmGesEmp();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void toolStripDetEquipe_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmDetEquipe();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void toolStripGesEquipe_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmGesEquipe();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
     }
 }
