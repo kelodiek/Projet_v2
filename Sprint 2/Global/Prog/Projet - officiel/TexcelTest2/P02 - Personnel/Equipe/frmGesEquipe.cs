@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Projet.P02___Personnel.Equipe
+namespace Projet
 {
     public partial class frmGesEquipe : frmGestion
     {

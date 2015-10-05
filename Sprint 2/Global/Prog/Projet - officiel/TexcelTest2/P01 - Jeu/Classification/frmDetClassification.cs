@@ -13,7 +13,7 @@ namespace Projet
     partial class frmDetClassification : frmDetail
     {
         Classification classification, ancien;
-        ControleClassification cc;
+        ctrlClassification cc;
         bool modif;
         public frmDetClassification()
         {
@@ -25,7 +25,7 @@ namespace Projet
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             this.btnAnnuler.Click += new EventHandler(btnAnnuler_Click);
             btnCopier.Visible = false;
-            cc = new ControleClassification();
+            cc = new ctrlClassification();
             ancien = null;
             modif = false;
         }

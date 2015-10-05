@@ -62,7 +62,6 @@
             this.Name = "frmGesJeu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion - Jeu";
-            this.Load += new System.EventHandler(this.frmGesJeu_Load);
             this.Controls.SetChildIndex(this.dataGridJeu, 0);
             this.Controls.SetChildIndex(this.btnVersion, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridJeu)).EndInit();

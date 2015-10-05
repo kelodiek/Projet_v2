@@ -8,9 +8,52 @@ namespace Projet
 {
     partial class Jeu
     {
-        //Constructeur à faire
 
-        private int IdJeu;
+        private int IdJeu, IdGenre, IdMode;
+        private string NomJeu, DescJeu, InfoSupJeu, Tag, CoteESRB;
+        private bool Actif;
+        public List<Theme> lstTheme { get; set; }
+
+        public Jeu(int idJeu, string nomJeu, string descJeu, bool actif, string infoSupJeu, string tag, string coteESRB, int idGenre, int idMode, List<Theme> lstThemeTemp)
+        {
+            IdJeu = idJeu;
+            NomJeu = nomJeu;
+            DescJeu = descJeu;
+            Actif = actif;
+            InfoSupJeu = infoSupJeu;
+            Tag = tag;
+            CoteESRB = coteESRB;
+            IdGenre = idGenre;
+            IdMode = idMode;
+            if (lstThemeTemp != null)
+            {
+                lstTheme = lstThemeTemp;
+            }
+            else
+            {
+                lstTheme = new List<Theme>();
+            }
+        }
+        public Jeu(tblJeu j)
+        {
+            IdJeu = j.IdJeu;
+            NomJeu = j.NomJeu;
+            DescJeu = j.DescJeu;
+            Actif = j.Actif;
+            InfoSupJeu = j.InfoSupJeu;
+            Tag = j.Tag;
+            CoteESRB = j.CoteESRB;
+            IdGenre = (int)j.IdGenre;
+            IdMode = (int)j.IdMode;
+            lstTheme = new List<Theme>();
+            foreach (var item in j.tblTheme)
+            {
+                lstTheme.Add(new Theme(item));
+            }
+            
+        }
+
+       
 
         public int idJeu
         {
@@ -18,14 +61,13 @@ namespace Projet
             set { IdJeu = value; }
         }
 
-        private string NomJeu;
+
 
         public string nomJeu
         {
             get { return NomJeu; }
             set { NomJeu = value; }
         }
-        private string DescJeu;
 
         public string descJeu
         {
@@ -33,15 +75,11 @@ namespace Projet
             set { DescJeu = value; }
         }
 
-        private int Actif;
-
-        public int actif
+        public bool actif
         {
             get { return Actif; }
             set { Actif = value; }
         }
-
-        private string InfoSupJeu;
 
         public string infoSupJeu
         {
@@ -49,16 +87,11 @@ namespace Projet
             set { InfoSupJeu = value; }
         }
 
-        private string Tag;
-
         public string tag
         {
             get { return Tag; }
             set { Tag = value; }
         }
-
-
-        private string CoteESRB;
 
         public string coteESRB
         {
@@ -66,15 +99,11 @@ namespace Projet
             set { CoteESRB = value; }
         }
 
-        private int IdGenre;
-
         public int idGenre
         {
             get { return IdGenre; }
             set { IdGenre = value; }
         }
-
-        private int IdMode;
 
         public int idMode
         {

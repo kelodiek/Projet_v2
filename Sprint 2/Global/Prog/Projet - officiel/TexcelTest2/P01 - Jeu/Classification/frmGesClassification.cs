@@ -12,7 +12,7 @@ namespace Projet
 {
     public partial class frmGesClassification : frmGestion
     {
-        ControleClassification cc;
+        ctrlClassification cc;
         int tri;
         int presentRow;
         public frmGesClassification()
@@ -24,7 +24,7 @@ namespace Projet
             this.btnX.Click += new EventHandler(btnX_Click);
             this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
             ButtonsVisible(true);
-            cc = new ControleClassification();
+            cc = new ctrlClassification();
             chargerColones();
             chargerDonnees();
             tri = 1;

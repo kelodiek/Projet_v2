@@ -7,9 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//Trouver comment arranger ça:
-using Projet.P02___Personnel.Employe;
-using Projet.P02___Personnel.Equipe;
 // Note a Oli #1:
 // Oublie pas de faire les rapport pour chaque truc de gestion de donnees.
 

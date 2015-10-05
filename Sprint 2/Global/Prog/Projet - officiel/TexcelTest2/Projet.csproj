@@ -56,8 +56,11 @@
     <Compile Include="P01 - Jeu\Categorie\Categorie.cs" />
     <Compile Include="P01 - Jeu\Classification\Classification.cs" />
     <Compile Include="ControleAdministration.cs" />
-    <Compile Include="P01 - Jeu\Classification\ControleClassification.cs" />
+    <Compile Include="P01 - Jeu\Classification\ctrlClassification.cs" />
     <Compile Include="P01 - Jeu\Categorie\ctrlCategorie.cs" />
+    <Compile Include="P01 - Jeu\Classification\rClassificationSQL.cs" />
+    <Compile Include="P01 - Jeu\Jeu\ctrlJeu.cs" />
+    <Compile Include="P01 - Jeu\Jeu\rJeuSQL.cs" />
     <Compile Include="P01 - Jeu\Mode\ctrlMode.cs" />
     <Compile Include="P01 - Jeu\Plateforme\ctrlPlateforme.cs" />
     <Compile Include="P01 - Jeu\SysExp\ctrlSysExp.cs" />
