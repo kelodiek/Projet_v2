@@ -29,7 +29,7 @@ NoTelSecondaire			VARCHAR(20)	NULL,
 AdressePostale			VARCHAR(90)	NOT NULL,
 DateEmbaucheEmp			DATE		NOT NULL,
 CompetenceParticuliere  VARCHAR(400)NULL,
-Actif					BINARY(1)	NULL,
+Actif					BIT			NULL,
 CommentaireEmp			VARCHAR(250)NULL
 )
 GO
@@ -72,8 +72,8 @@ CREATE TABLE Personnel.tblUtilisateur
 (
 NomUtil			VARCHAR(30)		NOT NULL,
 MotPasUtil		VARCHAR(50)		NOT NULL,
-PremiereConex	BINARY(1)		NOT NULL,
-MotPasExpire	BINARY(1)		NOT NULL,
+PremiereConex	BIT				NOT NULL,
+MotPasExpire	BIT				NOT NULL,
 DateModifMotPas	DATE			NULL,
 IdRole			INT				NOT NULL,
 IdEmp			INT				NOT NULL
