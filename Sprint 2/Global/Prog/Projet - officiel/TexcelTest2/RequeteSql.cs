@@ -588,8 +588,6 @@ namespace Projet
         }
         static public void addPlateforme(tblPlateforme p)
         {
-            
-
             db.tblPlateforme.Add(p);
 
             try
