@@ -111,6 +111,7 @@
     <Compile Include="P01 - Jeu\Classification\frmDetClassification.Designer.cs">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
     </Compile>
+    <Compile Include="P02 - Personnel\Employe\ctrlEmploye.cs" />
     <Compile Include="P02 - Personnel\Employe\frmDetEmp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +249,7 @@
     <Compile Include="P02 - Personnel\Employe\frmGesEmp.Designer.cs">
       <DependentUpon>frmGesEmp.cs</DependentUpon>
     </Compile>
+    <Compile Include="P02 - Personnel\Employe\rEmployeSQL.cs" />
     <Compile Include="P02 - Personnel\Equipe\frmDetEquipe.cs">
       <SubType>Form</SubType>
     </Compile>
