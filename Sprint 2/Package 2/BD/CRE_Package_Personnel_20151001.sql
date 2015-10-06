@@ -38,7 +38,7 @@ PRINT 'Création de Personnel.tblEmploye complétée'
 GO
 CREATE TABLE Personnel.tblRole
 (
-IdRole		INT				NOT NULL,
+IdRole		INT				NOT NULL	IDENTITY(1,1),
 NomRole		VARCHAR(30)		NOT NULL,
 DescRole	VARCHAR(100)	NULL
 )

@@ -1,2 +1,2 @@
 USE dbProjetE2Prod;
-INSERT INTO Employe.tblRole(NomRole,DescRole) values('Test','Oui');
+INSERT INTO Personnel.tblRole(NomRole,DescRole) values('Test','Oui');
