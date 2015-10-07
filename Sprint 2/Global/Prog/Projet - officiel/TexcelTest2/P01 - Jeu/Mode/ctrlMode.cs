@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Projet
 {
@@ -41,23 +42,39 @@ namespace Projet
             Mode ancien, nouv;
             nouv = (Mode)m;
             ancien = (Mode)o;
-
-            if (ancien == null)
+            
+            if (nouv.nomMode.Length > 10 || nouv.nomMode.Length == 0)
             {
-                return true;
-            }
-
-            if (nouv.nomMode == ancien.nomMode && nouv.descMode == ancien.descMode)
-            {
+                MessageBox.Show("Votre nom de mode n'est pas valide", "Erreur", MessageBoxButtons.OK);
                 return false;
             }
 
-            if( nouv.nomMode.Length > 10 || nouv.nomMode.Length == 0 ||
-                nouv.descMode.Length > 250 || nouv.descMode.Length == 0)
+            if (nouv.descMode.Length > 250 || nouv.descMode.Length == 0)
             {
+                MessageBox.Show("Votre Description de mode n'est pas valide", "Erreur", MessageBoxButtons.OK);
                 return false;
             }
+            return true;
+        }
 
+        public bool verifSemblable(object m, object o)
+        {
+            Mode ancien, nouv;
+            nouv = (Mode)m;
+            ancien = (Mode)o;
+            charger();
+
+            foreach (Mode mm in listMode)
+            {
+                if (mm.nomMode == nouv.nomMode && mm.nomMode == ancien.nomMode)
+                {
+                    if (mm.descMode == nouv.descMode)
+                        MessageBox.Show("Il existe déjà un mode semblable à celui-ci", "Erreur", MessageBoxButtons.OK);
+                    else
+                        MessageBox.Show("Il existe déjà un mode avec ce nom", "Erreur", MessageBoxButtons.OK);
+                    return false;
+                }
+            }
             return true;
         }
 

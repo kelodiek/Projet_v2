@@ -58,7 +58,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmGesMode";
             this.Text = "Gestion - Mode";
-            this.Load += new System.EventHandler(this.frmGesMode_Load);
             this.Controls.SetChildIndex(this.dataGridMode, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMode)).EndInit();
             this.ResumeLayout(false);
