@@ -20,7 +20,7 @@ CREATE SCHEMA Personnel
 GO
 CREATE TABLE Personnel.tblEmploye
 (
-IdEmp					INT			NOT NULL	IDENTITY(1,1),
+IdEmp					INT			NOT NULL,
 PrenomEmp				VARCHAR(25)	NOT NULL,
 NomEmp					VARCHAR(25)	NOT NULL,
 CourrielEmp				VARCHAR(45)	NOT NULL,
@@ -29,7 +29,7 @@ NoTelSecondaire			VARCHAR(20)	NULL,
 AdressePostale			VARCHAR(90)	NOT NULL,
 DateEmbaucheEmp			DATE		NOT NULL,
 CompetenceParticuliere  VARCHAR(400)NULL,
-Actif					BIT			NULL,
+Statut					CHAR		NULL,
 CommentaireEmp			VARCHAR(250)NULL
 )
 GO
@@ -40,7 +40,7 @@ CREATE TABLE Personnel.tblRole
 (
 IdRole		INT				NOT NULL	IDENTITY(1,1),
 NomRole		VARCHAR(30)		NOT NULL,
-DescRole	VARCHAR(100)	NULL
+DescRole	VARCHAR(250)	NULL
 )
 GO
 PRINT 'Création de Personnel.tblRole complétée'
@@ -72,8 +72,8 @@ CREATE TABLE Personnel.tblUtilisateur
 (
 NomUtil			VARCHAR(30)		NOT NULL,
 MotPasUtil		VARCHAR(50)		NOT NULL,
-PremiereConex	BIT				NOT NULL,
-MotPasExpire	BIT				NOT NULL,
+PremiereConex	CHAR			NOT NULL,
+MotPasExpire	CHAR			NOT NULL,
 DateModifMotPas	DATE			NULL,
 IdRole			INT				NOT NULL,
 IdEmp			INT				NOT NULL
