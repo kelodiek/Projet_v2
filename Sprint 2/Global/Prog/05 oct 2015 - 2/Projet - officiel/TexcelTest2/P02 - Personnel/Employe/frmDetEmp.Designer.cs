@@ -1,4 +1,4 @@
-﻿namespace Projet
+﻿namespace Projet.P02___Personnel.Employe
 {
     partial class frmDetEmp
     {
