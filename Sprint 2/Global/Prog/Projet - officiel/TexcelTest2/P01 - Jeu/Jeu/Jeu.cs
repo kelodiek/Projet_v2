@@ -13,8 +13,15 @@ namespace Projet
         private string NomJeu, DescJeu, InfoSupJeu, Tag, CoteESRB;
         private bool Actif;
         public List<Theme> lstTheme { get; set; }
+        public List<plateforme> lstPlateforme { get; set; }
 
-        public Jeu(int idJeu, string nomJeu, string descJeu, bool actif, string infoSupJeu, string tag, string coteESRB, int idGenre, int idMode, List<Theme> lstThemeTemp)
+        public Jeu() 
+        {
+            lstPlateforme = new List<plateforme>();
+            lstTheme = new List<Theme>();
+        }
+
+        public Jeu(int idJeu, string nomJeu, string descJeu, bool actif, string infoSupJeu, string tag, string coteESRB, int idGenre, int idMode, List<Theme> lstThemeTemp, List<plateforme> lstPlateformeTemp)
         {
             IdJeu = idJeu;
             NomJeu = nomJeu;
@@ -33,6 +40,14 @@ namespace Projet
             {
                 lstTheme = new List<Theme>();
             }
+            if (lstPlateformeTemp != null)
+            {
+                lstPlateforme = lstPlateformeTemp;
+            }
+            else
+            {
+                lstPlateforme = new List<plateforme>();
+            }
         }
         public Jeu(tblJeu j)
         {
@@ -43,25 +58,25 @@ namespace Projet
             InfoSupJeu = j.InfoSupJeu;
             Tag = j.Tag;
             CoteESRB = j.CoteESRB;
-            IdGenre = (int)j.IdGenre;
-            IdMode = (int)j.IdMode;
+            Int32.TryParse(Convert.ToString(j.IdGenre), out IdGenre);
+            Int32.TryParse(Convert.ToString(j.IdMode), out IdMode);
             lstTheme = new List<Theme>();
             foreach (var item in j.tblTheme)
             {
                 lstTheme.Add(new Theme(item));
             }
-            
+            lstPlateforme = new List<plateforme>();
+            foreach (var item in j.tblPlateforme)
+            {
+                lstPlateforme.Add(new plateforme(item));
+            }
         }
-
-       
 
         public int idJeu
         {
             get { return IdJeu; }
             set { IdJeu = value; }
         }
-
-
 
         public string nomJeu
         {

@@ -8,11 +8,11 @@ namespace Projet
 {
     static class rJeuSQL
     {
+        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+
         //tblJeu
         static public IQueryable<tblJeu> getAllJeu()
         {
-            var db = new dbProjetE2ProdEntities();
-
             var r =
                 from c in db.tblJeu
                 select c;
@@ -21,9 +21,6 @@ namespace Projet
 
         //static public void setJeu(Jeu jeu)
         //{
-        //    var db = new dbProjetE2ProdEntities();
-
-
         //    var r =
         //        (from j in db.tblJeu
         //         where j.IdJeu == jeu.idJeu
@@ -51,9 +48,6 @@ namespace Projet
 
         static public void addJeu(tblJeu p)
         {
-            var db = new dbProjetE2ProdEntities();
-
-
             foreach (tblTheme tblThemeTemp in p.tblTheme)
             {
                 db.tblJeu.Add(p);

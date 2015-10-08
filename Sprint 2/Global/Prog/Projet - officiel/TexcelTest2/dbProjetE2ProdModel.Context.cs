@@ -34,5 +34,10 @@ namespace Projet
         public virtual DbSet<tblSysExp> tblSysExp { get; set; }
         public virtual DbSet<tblTheme> tblTheme { get; set; }
         public virtual DbSet<tblVersion> tblVersion { get; set; }
+        public virtual DbSet<tblDroit> tblDroit { get; set; }
+        public virtual DbSet<tblEmploye> tblEmploye { get; set; }
+        public virtual DbSet<tblGroupe> tblGroupe { get; set; }
+        public virtual DbSet<tblRole> tblRole { get; set; }
+        public virtual DbSet<tblUtilisateur> tblUtilisateur { get; set; }
     }
 }

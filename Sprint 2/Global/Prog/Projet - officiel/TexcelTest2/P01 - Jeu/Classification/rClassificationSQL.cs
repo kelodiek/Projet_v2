@@ -8,11 +8,10 @@ namespace Projet
 {
     static class rClassificationSQL
     {
+        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
         //tblClassification
         static public IQueryable<tblClassification> getAllClassification()
         {
-            var db = new dbProjetE2ProdEntities();
-
             var r =
                 from c in db.tblClassification
                 select c;
@@ -20,9 +19,6 @@ namespace Projet
         }
         static public void setClassification(Classification classification)
         {
-            var db = new dbProjetE2ProdEntities();
-
-
             var r =
                 (from classif in db.tblClassification
                  where classif.CoteESRB == classification.coteESRB
@@ -42,7 +38,6 @@ namespace Projet
         }
         static public void addClassification(Classification classification)
         {
-            var db = new dbProjetE2ProdEntities();
             var add = new tblClassification();
 
             add.CoteESRB = classification.coteESRB;
@@ -62,8 +57,6 @@ namespace Projet
         }
         static public void deleteClassification(string coteESRB)
         {
-            var db = new dbProjetE2ProdEntities();
-
             var r =
                 from classif in db.tblClassification
                 where classif.CoteESRB == coteESRB
@@ -85,8 +78,6 @@ namespace Projet
         }
         static public IQueryable<tblClassification> srchClassification(string chaine)
         {
-            var db = new dbProjetE2ProdEntities();
-
             var r =
                 from classif in db.tblClassification
                 where classif.CoteESRB.Contains(chaine) || classif.NomESRB.Contains(chaine) || classif.DescESRB.Contains(chaine)
@@ -97,8 +88,6 @@ namespace Projet
 
         static public IQueryable<tblClassification> srchCoteClassification(string cote)
         {
-            var db = new dbProjetE2ProdEntities();
-
             var r =
                 from classif in db.tblClassification
                 where classif.CoteESRB == cote

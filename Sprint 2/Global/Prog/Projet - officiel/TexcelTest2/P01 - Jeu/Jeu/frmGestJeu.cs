@@ -24,6 +24,7 @@ namespace Projet
             presentRow = 0;
             cj = new ctrlJeu();
             chargerColonnes();
+            chargerDonnees();
         }
 
         private void chargerColonnes()
@@ -72,17 +73,14 @@ namespace Projet
 
         public void detailsJeu_Click(object sender, EventArgs e)
         {
+            //Caller new form avec parametre de celui cliquer
             var frmDetails = new frmDetJeu();
-
-            frmDetails.modifierChamp("m");
 
             frmDetails.ShowDialog();
         }
         public void ajoutJeu_Click(object sender, EventArgs e)
         {
             var frmDetails = new frmDetJeu();
-
-            frmDetails.modifierChamp("a");
 
             frmDetails.ShowDialog();
         }

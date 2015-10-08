@@ -132,6 +132,120 @@
           <Property Name="Tag" Type="text" />
           <Property Name="IdJeu" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblDroit">
+          <Key>
+            <PropertyRef Name="CodeDroit" />
+          </Key>
+          <Property Name="CodeDroit" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DescDroit" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEmploye">
+          <Key>
+            <PropertyRef Name="IdEmp" />
+          </Key>
+          <Property Name="IdEmp" Type="int" Nullable="false" />
+          <Property Name="PrenomEmp" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="NomEmp" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CourrielEmp" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="NoTelPrincipal" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NoTelSecondaire" Type="varchar" MaxLength="20" />
+          <Property Name="AdressePostale" Type="varchar" MaxLength="90" Nullable="false" />
+          <Property Name="DateEmbaucheEmp" Type="date" Nullable="false" />
+          <Property Name="CompetenceParticuliere" Type="varchar" MaxLength="400" />
+          <Property Name="Statut" Type="char" MaxLength="1" />
+          <Property Name="CommentaireEmp" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tblGroupe">
+          <Key>
+            <PropertyRef Name="IdGroupe" />
+          </Key>
+          <Property Name="IdGroupe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomGroupe" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGroupeDroit">
+          <Key>
+            <PropertyRef Name="CodeDroit" />
+            <PropertyRef Name="IdGroupe" />
+          </Key>
+          <Property Name="CodeDroit" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IdGroupe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGroupeUtil">
+          <Key>
+            <PropertyRef Name="NomUtil" />
+            <PropertyRef Name="IdGroupe" />
+          </Key>
+          <Property Name="NomUtil" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IdGroupe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomRole" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DescRole" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tblUtilisateur">
+          <Key>
+            <PropertyRef Name="NomUtil" />
+          </Key>
+          <Property Name="NomUtil" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MotPasUtil" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PremiereConex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="MotPasExpire" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DateModifMotPas" Type="date" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+          <Property Name="IdEmp" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblGroupeDroit_tblDroit_CodeDroit">
+          <End Role="tblDroit" Type="Self.tblDroit" Multiplicity="1" />
+          <End Role="tblGroupeDroit" Type="Self.tblGroupeDroit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDroit">
+              <PropertyRef Name="CodeDroit" />
+            </Principal>
+            <Dependent Role="tblGroupeDroit">
+              <PropertyRef Name="CodeDroit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupeDroit_tblGroupe_IdGroupe">
+          <End Role="tblGroupe" Type="Self.tblGroupe" Multiplicity="1" />
+          <End Role="tblGroupeDroit" Type="Self.tblGroupeDroit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroupe">
+              <PropertyRef Name="IdGroupe" />
+            </Principal>
+            <Dependent Role="tblGroupeDroit">
+              <PropertyRef Name="IdGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupeUtil_tblGroupe_IdGroupe">
+          <End Role="tblGroupe" Type="Self.tblGroupe" Multiplicity="1" />
+          <End Role="tblGroupeUtil" Type="Self.tblGroupeUtil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroupe">
+              <PropertyRef Name="IdGroupe" />
+            </Principal>
+            <Dependent Role="tblGroupeUtil">
+              <PropertyRef Name="IdGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupeUtil_tblUtilisateur_NomUtil">
+          <End Role="tblUtilisateur" Type="Self.tblUtilisateur" Multiplicity="1" />
+          <End Role="tblGroupeUtil" Type="Self.tblGroupeUtil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUtilisateur">
+              <PropertyRef Name="NomUtil" />
+            </Principal>
+            <Dependent Role="tblGroupeUtil">
+              <PropertyRef Name="NomUtil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblJeu_tblClassification_CoteESRB">
           <End Role="tblClassification" Type="Self.tblClassification" Multiplicity="0..1" />
           <End Role="tblJeu" Type="Self.tblJeu" Multiplicity="*" />
@@ -276,6 +390,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblUtilisateur__tblEmploye_IdEmp">
+          <End Role="tblEmploye" Type="Self.tblEmploye" Multiplicity="1" />
+          <End Role="tblUtilisateur" Type="Self.tblUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmploye">
+              <PropertyRef Name="IdEmp" />
+            </Principal>
+            <Dependent Role="tblUtilisateur">
+              <PropertyRef Name="IdEmp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUtilisateur_tblRole_IdRole">
+          <End Role="tblRole" Type="Self.tblRole" Multiplicity="1" />
+          <End Role="tblUtilisateur" Type="Self.tblUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRole">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="tblUtilisateur">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblVersion_tblJeu_IdJeu">
           <End Role="tblJeu" Type="Self.tblJeu" Multiplicity="1" />
           <End Role="tblVersion" Type="Self.tblVersion" Multiplicity="*" />
@@ -302,6 +440,29 @@
           <EntitySet Name="tblTheme" EntityType="Self.tblTheme" Schema="Jeux" store:Type="Tables" />
           <EntitySet Name="tblThemeJeu" EntityType="Self.tblThemeJeu" Schema="Jeux" store:Type="Tables" />
           <EntitySet Name="tblVersion" EntityType="Self.tblVersion" Schema="Jeux" store:Type="Tables" />
+          <EntitySet Name="tblDroit" EntityType="Self.tblDroit" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblEmploye" EntityType="Self.tblEmploye" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblGroupe" EntityType="Self.tblGroupe" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblGroupeDroit" EntityType="Self.tblGroupeDroit" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblGroupeUtil" EntityType="Self.tblGroupeUtil" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblUtilisateur" EntityType="Self.tblUtilisateur" Schema="Personnel" store:Type="Tables" />
+          <AssociationSet Name="FK_tblGroupeDroit_tblDroit_CodeDroit" Association="Self.FK_tblGroupeDroit_tblDroit_CodeDroit">
+            <End Role="tblDroit" EntitySet="tblDroit" />
+            <End Role="tblGroupeDroit" EntitySet="tblGroupeDroit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupeDroit_tblGroupe_IdGroupe" Association="Self.FK_tblGroupeDroit_tblGroupe_IdGroupe">
+            <End Role="tblGroupe" EntitySet="tblGroupe" />
+            <End Role="tblGroupeDroit" EntitySet="tblGroupeDroit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupeUtil_tblGroupe_IdGroupe" Association="Self.FK_tblGroupeUtil_tblGroupe_IdGroupe">
+            <End Role="tblGroupe" EntitySet="tblGroupe" />
+            <End Role="tblGroupeUtil" EntitySet="tblGroupeUtil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupeUtil_tblUtilisateur_NomUtil" Association="Self.FK_tblGroupeUtil_tblUtilisateur_NomUtil">
+            <End Role="tblUtilisateur" EntitySet="tblUtilisateur" />
+            <End Role="tblGroupeUtil" EntitySet="tblGroupeUtil" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblJeu_tblClassification_CoteESRB" Association="Self.FK_tblJeu_tblClassification_CoteESRB">
             <End Role="tblClassification" EntitySet="tblClassification" />
             <End Role="tblJeu" EntitySet="tblJeu" />
@@ -349,6 +510,14 @@
           <AssociationSet Name="FK_tblThemeJeu_tblTheme_IdTheme" Association="Self.FK_tblThemeJeu_tblTheme_IdTheme">
             <End Role="tblTheme" EntitySet="tblTheme" />
             <End Role="tblThemeJeu" EntitySet="tblThemeJeu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUtilisateur__tblEmploye_IdEmp" Association="Self.FK_tblUtilisateur__tblEmploye_IdEmp">
+            <End Role="tblEmploye" EntitySet="tblEmploye" />
+            <End Role="tblUtilisateur" EntitySet="tblUtilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUtilisateur_tblRole_IdRole" Association="Self.FK_tblUtilisateur_tblRole_IdRole">
+            <End Role="tblRole" EntitySet="tblRole" />
+            <End Role="tblUtilisateur" EntitySet="tblUtilisateur" />
           </AssociationSet>
           <AssociationSet Name="FK_tblVersion_tblJeu_IdJeu" Association="Self.FK_tblVersion_tblJeu_IdJeu">
             <End Role="tblJeu" EntitySet="tblJeu" />
@@ -594,7 +763,118 @@
             <End Role="tblJeu" EntitySet="tblJeu" />
             <End Role="tblTheme" EntitySet="tblTheme" />
           </AssociationSet>
+          <EntitySet Name="tblDroit" EntityType="dbProjetE2ProdModel.tblDroit" />
+          <EntitySet Name="tblEmploye" EntityType="dbProjetE2ProdModel.tblEmploye" />
+          <EntitySet Name="tblGroupe" EntityType="dbProjetE2ProdModel.tblGroupe" />
+          <EntitySet Name="tblRole" EntityType="dbProjetE2ProdModel.tblRole" />
+          <EntitySet Name="tblUtilisateur" EntityType="dbProjetE2ProdModel.tblUtilisateur" />
+          <AssociationSet Name="FK_tblUtilisateur__tblEmploye_IdEmp" Association="dbProjetE2ProdModel.FK_tblUtilisateur__tblEmploye_IdEmp">
+            <End Role="tblEmploye" EntitySet="tblEmploye" />
+            <End Role="tblUtilisateur" EntitySet="tblUtilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUtilisateur_tblRole_IdRole" Association="dbProjetE2ProdModel.FK_tblUtilisateur_tblRole_IdRole">
+            <End Role="tblRole" EntitySet="tblRole" />
+            <End Role="tblUtilisateur" EntitySet="tblUtilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="tblGroupeDroit" Association="dbProjetE2ProdModel.tblGroupeDroit">
+            <End Role="tblDroit" EntitySet="tblDroit" />
+            <End Role="tblGroupe" EntitySet="tblGroupe" />
+          </AssociationSet>
+          <AssociationSet Name="tblGroupeUtil" Association="dbProjetE2ProdModel.tblGroupeUtil">
+            <End Role="tblGroupe" EntitySet="tblGroupe" />
+            <End Role="tblUtilisateur" EntitySet="tblUtilisateur" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblDroit">
+          <Key>
+            <PropertyRef Name="CodeDroit" />
+          </Key>
+          <Property Name="CodeDroit" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DescDroit" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblGroupe" Relationship="dbProjetE2ProdModel.tblGroupeDroit" FromRole="tblDroit" ToRole="tblGroupe" />
+        </EntityType>
+        <EntityType Name="tblEmploye">
+          <Key>
+            <PropertyRef Name="IdEmp" />
+          </Key>
+          <Property Name="IdEmp" Type="Int32" Nullable="false" />
+          <Property Name="PrenomEmp" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="NomEmp" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CourrielEmp" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="NoTelPrincipal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NoTelSecondaire" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AdressePostale" Type="String" Nullable="false" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="DateEmbaucheEmp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CompetenceParticuliere" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Statut" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CommentaireEmp" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblUtilisateur" Relationship="dbProjetE2ProdModel.FK_tblUtilisateur__tblEmploye_IdEmp" FromRole="tblEmploye" ToRole="tblUtilisateur" />
+        </EntityType>
+        <EntityType Name="tblGroupe">
+          <Key>
+            <PropertyRef Name="IdGroupe" />
+          </Key>
+          <Property Name="IdGroupe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomGroupe" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblDroit" Relationship="dbProjetE2ProdModel.tblGroupeDroit" FromRole="tblGroupe" ToRole="tblDroit" />
+          <NavigationProperty Name="tblUtilisateur" Relationship="dbProjetE2ProdModel.tblGroupeUtil" FromRole="tblGroupe" ToRole="tblUtilisateur" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomRole" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DescRole" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblUtilisateur" Relationship="dbProjetE2ProdModel.FK_tblUtilisateur_tblRole_IdRole" FromRole="tblRole" ToRole="tblUtilisateur" />
+        </EntityType>
+        <EntityType Name="tblUtilisateur">
+          <Key>
+            <PropertyRef Name="NomUtil" />
+          </Key>
+          <Property Name="NomUtil" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MotPasUtil" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PremiereConex" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MotPasExpire" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DateModifMotPas" Type="DateTime" Precision="0" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="IdEmp" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblEmploye" Relationship="dbProjetE2ProdModel.FK_tblUtilisateur__tblEmploye_IdEmp" FromRole="tblUtilisateur" ToRole="tblEmploye" />
+          <NavigationProperty Name="tblRole" Relationship="dbProjetE2ProdModel.FK_tblUtilisateur_tblRole_IdRole" FromRole="tblUtilisateur" ToRole="tblRole" />
+          <NavigationProperty Name="tblGroupe" Relationship="dbProjetE2ProdModel.tblGroupeUtil" FromRole="tblUtilisateur" ToRole="tblGroupe" />
+        </EntityType>
+        <Association Name="FK_tblUtilisateur__tblEmploye_IdEmp">
+          <End Type="dbProjetE2ProdModel.tblEmploye" Role="tblEmploye" Multiplicity="1" />
+          <End Type="dbProjetE2ProdModel.tblUtilisateur" Role="tblUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmploye">
+              <PropertyRef Name="IdEmp" />
+            </Principal>
+            <Dependent Role="tblUtilisateur">
+              <PropertyRef Name="IdEmp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUtilisateur_tblRole_IdRole">
+          <End Type="dbProjetE2ProdModel.tblRole" Role="tblRole" Multiplicity="1" />
+          <End Type="dbProjetE2ProdModel.tblUtilisateur" Role="tblUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRole">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="tblUtilisateur">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblGroupeDroit">
+          <End Type="dbProjetE2ProdModel.tblDroit" Role="tblDroit" Multiplicity="*" />
+          <End Type="dbProjetE2ProdModel.tblGroupe" Role="tblGroupe" Multiplicity="*" />
+        </Association>
+        <Association Name="tblGroupeUtil">
+          <End Type="dbProjetE2ProdModel.tblGroupe" Role="tblGroupe" Multiplicity="*" />
+          <End Type="dbProjetE2ProdModel.tblUtilisateur" Role="tblUtilisateur" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -735,6 +1015,77 @@
             </EndProperty>
             <EndProperty Name="tblTheme">
               <ScalarProperty Name="IdTheme" ColumnName="IdTheme" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="tblDroit">
+            <EntityTypeMapping TypeName="dbProjetE2ProdModel.tblDroit">
+              <MappingFragment StoreEntitySet="tblDroit">
+                <ScalarProperty Name="DescDroit" ColumnName="DescDroit" />
+                <ScalarProperty Name="CodeDroit" ColumnName="CodeDroit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmploye">
+            <EntityTypeMapping TypeName="dbProjetE2ProdModel.tblEmploye">
+              <MappingFragment StoreEntitySet="tblEmploye">
+                <ScalarProperty Name="CommentaireEmp" ColumnName="CommentaireEmp" />
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="CompetenceParticuliere" ColumnName="CompetenceParticuliere" />
+                <ScalarProperty Name="DateEmbaucheEmp" ColumnName="DateEmbaucheEmp" />
+                <ScalarProperty Name="AdressePostale" ColumnName="AdressePostale" />
+                <ScalarProperty Name="NoTelSecondaire" ColumnName="NoTelSecondaire" />
+                <ScalarProperty Name="NoTelPrincipal" ColumnName="NoTelPrincipal" />
+                <ScalarProperty Name="CourrielEmp" ColumnName="CourrielEmp" />
+                <ScalarProperty Name="NomEmp" ColumnName="NomEmp" />
+                <ScalarProperty Name="PrenomEmp" ColumnName="PrenomEmp" />
+                <ScalarProperty Name="IdEmp" ColumnName="IdEmp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroupe">
+            <EntityTypeMapping TypeName="dbProjetE2ProdModel.tblGroupe">
+              <MappingFragment StoreEntitySet="tblGroupe">
+                <ScalarProperty Name="NomGroupe" ColumnName="NomGroupe" />
+                <ScalarProperty Name="IdGroupe" ColumnName="IdGroupe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRole">
+            <EntityTypeMapping TypeName="dbProjetE2ProdModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRole">
+                <ScalarProperty Name="DescRole" ColumnName="DescRole" />
+                <ScalarProperty Name="NomRole" ColumnName="NomRole" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUtilisateur">
+            <EntityTypeMapping TypeName="dbProjetE2ProdModel.tblUtilisateur">
+              <MappingFragment StoreEntitySet="tblUtilisateur">
+                <ScalarProperty Name="IdEmp" ColumnName="IdEmp" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="DateModifMotPas" ColumnName="DateModifMotPas" />
+                <ScalarProperty Name="MotPasExpire" ColumnName="MotPasExpire" />
+                <ScalarProperty Name="PremiereConex" ColumnName="PremiereConex" />
+                <ScalarProperty Name="MotPasUtil" ColumnName="MotPasUtil" />
+                <ScalarProperty Name="NomUtil" ColumnName="NomUtil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblGroupeDroit" TypeName="dbProjetE2ProdModel.tblGroupeDroit" StoreEntitySet="tblGroupeDroit">
+            <EndProperty Name="tblGroupe">
+              <ScalarProperty Name="IdGroupe" ColumnName="IdGroupe" />
+            </EndProperty>
+            <EndProperty Name="tblDroit">
+              <ScalarProperty Name="CodeDroit" ColumnName="CodeDroit" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblGroupeUtil" TypeName="dbProjetE2ProdModel.tblGroupeUtil" StoreEntitySet="tblGroupeUtil">
+            <EndProperty Name="tblUtilisateur">
+              <ScalarProperty Name="NomUtil" ColumnName="NomUtil" />
+            </EndProperty>
+            <EndProperty Name="tblGroupe">
+              <ScalarProperty Name="IdGroupe" ColumnName="IdGroupe" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -31,7 +31,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.rtxtInfoSup = new System.Windows.Forms.RichTextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.rtxtDesc = new System.Windows.Forms.RichTextBox();
+            this.txtDesc = new System.Windows.Forms.RichTextBox();
             this.Label10 = new System.Windows.Forms.Label();
             this.cboxMode = new System.Windows.Forms.ComboBox();
             this.Label4 = new System.Windows.Forms.Label();
@@ -90,13 +90,13 @@
             this.label12.TabIndex = 92;
             this.label12.Text = "Informations Supplémentaires : ";
             // 
-            // rtxtDesc
+            // txtDesc
             // 
-            this.rtxtDesc.Location = new System.Drawing.Point(21, 150);
-            this.rtxtDesc.Name = "rtxtDesc";
-            this.rtxtDesc.Size = new System.Drawing.Size(435, 89);
-            this.rtxtDesc.TabIndex = 91;
-            this.rtxtDesc.Text = "";
+            this.txtDesc.Location = new System.Drawing.Point(21, 150);
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(435, 89);
+            this.txtDesc.TabIndex = 91;
+            this.txtDesc.Text = "";
             // 
             // Label10
             // 
@@ -194,7 +194,7 @@
             this.groupBox1.Controls.Add(this.Label3);
             this.groupBox1.Controls.Add(this.txtNom);
             this.groupBox1.Controls.Add(this.Label10);
-            this.groupBox1.Controls.Add(this.rtxtDesc);
+            this.groupBox1.Controls.Add(this.txtDesc);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(479, 270);
@@ -212,29 +212,29 @@
             this.groupBox2.Controls.Add(this.btnAjoutTheme);
             this.groupBox2.Location = new System.Drawing.Point(497, 44);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(439, 262);
+            this.groupBox2.Size = new System.Drawing.Size(564, 262);
             this.groupBox2.TabIndex = 115;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Information des thèmes";
             // 
             // tvSelectTheme
             // 
-            this.tvSelectTheme.Location = new System.Drawing.Point(265, 53);
+            this.tvSelectTheme.Location = new System.Drawing.Point(334, 50);
             this.tvSelectTheme.Name = "tvSelectTheme";
-            this.tvSelectTheme.Size = new System.Drawing.Size(163, 202);
+            this.tvSelectTheme.Size = new System.Drawing.Size(223, 202);
             this.tvSelectTheme.TabIndex = 79;
             // 
             // tvAllTheme
             // 
             this.tvAllTheme.Location = new System.Drawing.Point(11, 54);
             this.tvAllTheme.Name = "tvAllTheme";
-            this.tvAllTheme.Size = new System.Drawing.Size(163, 202);
+            this.tvAllTheme.Size = new System.Drawing.Size(232, 202);
             this.tvAllTheme.TabIndex = 78;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(262, 33);
+            this.label7.Location = new System.Drawing.Point(331, 30);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(66, 17);
             this.label7.TabIndex = 77;
@@ -251,21 +251,23 @@
             // 
             // btnRetirerTheme
             // 
-            this.btnRetirerTheme.Location = new System.Drawing.Point(180, 160);
+            this.btnRetirerTheme.Location = new System.Drawing.Point(249, 152);
             this.btnRetirerTheme.Name = "btnRetirerTheme";
             this.btnRetirerTheme.Size = new System.Drawing.Size(79, 70);
             this.btnRetirerTheme.TabIndex = 75;
             this.btnRetirerTheme.Text = "<<";
             this.btnRetirerTheme.UseVisualStyleBackColor = true;
+            this.btnRetirerTheme.Click += new System.EventHandler(this.btnRetirerTheme_Click);
             // 
             // btnAjoutTheme
             // 
-            this.btnAjoutTheme.Location = new System.Drawing.Point(180, 84);
+            this.btnAjoutTheme.Location = new System.Drawing.Point(249, 76);
             this.btnAjoutTheme.Name = "btnAjoutTheme";
             this.btnAjoutTheme.Size = new System.Drawing.Size(79, 70);
             this.btnAjoutTheme.TabIndex = 74;
             this.btnAjoutTheme.Text = ">>";
             this.btnAjoutTheme.UseVisualStyleBackColor = true;
+            this.btnAjoutTheme.Click += new System.EventHandler(this.btnAjoutTheme_Click);
             // 
             // groupBox3
             // 
@@ -277,29 +279,29 @@
             this.groupBox3.Controls.Add(this.btnAjoutPlateforme);
             this.groupBox3.Location = new System.Drawing.Point(497, 312);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(439, 262);
+            this.groupBox3.Size = new System.Drawing.Size(564, 262);
             this.groupBox3.TabIndex = 116;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Information des plateformes";
             // 
             // tvSelectPlateforme
             // 
-            this.tvSelectPlateforme.Location = new System.Drawing.Point(265, 53);
+            this.tvSelectPlateforme.Location = new System.Drawing.Point(334, 54);
             this.tvSelectPlateforme.Name = "tvSelectPlateforme";
-            this.tvSelectPlateforme.Size = new System.Drawing.Size(163, 202);
+            this.tvSelectPlateforme.Size = new System.Drawing.Size(223, 202);
             this.tvSelectPlateforme.TabIndex = 79;
             // 
             // tvAllPlateforme
             // 
             this.tvAllPlateforme.Location = new System.Drawing.Point(11, 54);
             this.tvAllPlateforme.Name = "tvAllPlateforme";
-            this.tvAllPlateforme.Size = new System.Drawing.Size(163, 202);
+            this.tvAllPlateforme.Size = new System.Drawing.Size(232, 202);
             this.tvAllPlateforme.TabIndex = 78;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(262, 33);
+            this.label5.Location = new System.Drawing.Point(331, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 17);
             this.label5.TabIndex = 77;
@@ -316,27 +318,29 @@
             // 
             // btnRetirerPlateforme
             // 
-            this.btnRetirerPlateforme.Location = new System.Drawing.Point(180, 160);
+            this.btnRetirerPlateforme.Location = new System.Drawing.Point(249, 161);
             this.btnRetirerPlateforme.Name = "btnRetirerPlateforme";
             this.btnRetirerPlateforme.Size = new System.Drawing.Size(79, 70);
             this.btnRetirerPlateforme.TabIndex = 75;
             this.btnRetirerPlateforme.Text = "<<";
             this.btnRetirerPlateforme.UseVisualStyleBackColor = true;
+            this.btnRetirerPlateforme.Click += new System.EventHandler(this.btnRetirerPlateforme_Click);
             // 
             // btnAjoutPlateforme
             // 
-            this.btnAjoutPlateforme.Location = new System.Drawing.Point(180, 84);
+            this.btnAjoutPlateforme.Location = new System.Drawing.Point(249, 85);
             this.btnAjoutPlateforme.Name = "btnAjoutPlateforme";
             this.btnAjoutPlateforme.Size = new System.Drawing.Size(79, 70);
             this.btnAjoutPlateforme.TabIndex = 74;
             this.btnAjoutPlateforme.Text = ">>";
             this.btnAjoutPlateforme.UseVisualStyleBackColor = true;
+            this.btnAjoutPlateforme.Click += new System.EventHandler(this.btnAjoutPlateforme_Click);
             // 
             // frmDetJeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 622);
+            this.ClientSize = new System.Drawing.Size(1073, 622);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -350,6 +354,7 @@
             this.Controls.Add(this.Label4);
             this.Name = "frmDetJeu";
             this.Text = "Texcel - Détails - Jeu";
+            this.Load += new System.EventHandler(this.frmDetJeu_Load);
             this.Controls.SetChildIndex(this.Label4, 0);
             this.Controls.SetChildIndex(this.cboxMode, 0);
             this.Controls.SetChildIndex(this.label12, 0);
@@ -377,7 +382,7 @@
         private System.Windows.Forms.Label label2;
         internal System.Windows.Forms.RichTextBox rtxtInfoSup;
         internal System.Windows.Forms.Label label12;
-        internal System.Windows.Forms.RichTextBox rtxtDesc;
+        internal System.Windows.Forms.RichTextBox txtDesc;
         internal System.Windows.Forms.Label Label10;
         internal System.Windows.Forms.ComboBox cboxMode;
         internal System.Windows.Forms.Label Label4;
