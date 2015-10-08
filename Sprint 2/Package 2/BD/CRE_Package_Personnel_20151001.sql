@@ -109,8 +109,8 @@ GO
 CREATE TABLE Personnel.tblEquipe
 (
 IdEquipe			INT			NOT NULL	IDENTITY(1,1),
-NomEuipe			VARCHAR(20)	NOT NULL,
-CommentaireEquipe	VARCHAR(20) NULL,
+NomEquipe			VARCHAR(20)	NOT NULL,
+CommentaireEquipe	VARCHAR(250)NULL,
 Statut				CHAR		NOT NULL,
 IdChefEquipe		INT			NOT NULL
 )
