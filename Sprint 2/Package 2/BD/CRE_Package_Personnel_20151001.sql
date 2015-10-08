@@ -2,6 +2,8 @@ use dbProjetE2Prod;
 GO
 IF EXISTS (SELECT * FROM sys.schemas WHERE name = 'Personnel')
 BEGIN
+	EXEC( 'DROP TABLE Personnel.tblEquipeTesteur' );
+	EXEC( 'DROP TABLE Personnel.tblEquipe' );
 	EXEC( 'DROP TABLE Personnel.tblGroupeUtil' );	
 	
 	EXEC( 'DROP TABLE Personnel.tblGroupeDroit' );	
@@ -103,7 +105,26 @@ IdGroupe		INT			NOT NULL
 GO
 PRINT 'Création de Personnel.tblGroupeUtil complétée'
 
-/*-----------PAS TERMINÉ--------------------*/
+GO
+CREATE TABLE Personnel.tblEquipe
+(
+IdEquipe			INT			NOT NULL	IDENTITY(1,1),
+NomEuipe			VARCHAR(20)	NOT NULL,
+CommentaireEquipe	VARCHAR(20) NULL,
+Statut				CHAR		NOT NULL,
+IdChefEquipe		INT			NOT NULL
+)
+GO
+PRINT 'Création de Personnel.tblEquipe complétée'
+
+GO
+CREATE TABLE Personnel.tblEquipeTesteur
+(
+IdEmploye			INT			NOT NULL,
+IdEquipe			INT			NOT NULL
+)
+GO
+PRINT 'Création de Personnel.tblEquipeTesteur complétée'
 
 GO
 use master;

@@ -23,6 +23,15 @@
         <AssociationConnector Association="dbProjetE2ProdModel.tblPlateformeJeu" ManuallyRouted="false" />
         <AssociationConnector Association="dbProjetE2ProdModel.tblPlateformeSysExp" ManuallyRouted="false" />
         <AssociationConnector Association="dbProjetE2ProdModel.tblThemeJeu" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblDroit" Width="1.5" PointX="7.375" PointY="8.625" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblEmploye" Width="1.5" PointX="9.625" PointY="14" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblGroupe" Width="1.5" PointX="9.625" PointY="8.5" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblRole" Width="1.5" PointX="9.625" PointY="11.5" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblUtilisateur" Width="1.5" PointX="11.875" PointY="8" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblUtilisateur__tblEmploye_IdEmp" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblUtilisateur_tblRole_IdRole" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblGroupeDroit" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblGroupeUtil" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
