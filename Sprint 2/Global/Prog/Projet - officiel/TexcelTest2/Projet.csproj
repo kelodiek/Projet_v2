@@ -271,7 +271,16 @@
     <Compile Include="tblClassification.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblDroit.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmploye.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblGenre.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGroupe.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblJeu.cs">
@@ -283,10 +292,16 @@
     <Compile Include="tblPlateforme.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblRole.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblSysExp.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTheme.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUtilisateur.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblVersion.cs">
