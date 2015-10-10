@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Projet
 {
@@ -703,6 +704,19 @@ namespace Projet
                 return false;
             }
         }
+
+        static public IQueryable<tblPlateforme> srchPlateforme(string chaine)
+        {
+            var db = new dbProjetE2ProdEntities();
+
+            var r =
+                from plate in db.tblPlateforme
+                where plate.Tag.Contains(chaine)
+                select plate;
+
+            return r;
+        }
+
 
     }
 }
