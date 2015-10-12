@@ -19,11 +19,17 @@ namespace Projet
             InitializeComponent();
             this.btnAjout.Click += new EventHandler(ajoutJeu_Click);
             this.btnDetails.Click += new EventHandler(detailsJeu_Click);
+            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            this.btnX.Click += new EventHandler(btnX_Click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            //MANQUE DES ASSOCIATIONS D'ÉVÉNEMENTS
+
             ButtonsVisible(true);
             tri = 0;
             presentRow = 0;
             cj = new ctrlJeu();
             chargerColonnes();
+            chargerDonnees();
         }
 
         private void chargerColonnes()
@@ -72,9 +78,8 @@ namespace Projet
 
         public void detailsJeu_Click(object sender, EventArgs e)
         {
+            //Caller new form avec parametre de celui cliquer
             var frmDetails = new frmDetJeu();
-
-            frmDetails.modifierChamp("m");
 
             frmDetails.ShowDialog();
         }
@@ -82,9 +87,100 @@ namespace Projet
         {
             var frmDetails = new frmDetJeu();
 
-            frmDetails.modifierChamp("a");
-
             frmDetails.ShowDialog();
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            rechercher();
+        }
+
+        private void rechercher()
+        {
+            //if (txtRecherche.Text != "")
+            //{
+            //    GridClassification.Rows.Clear();
+            //    foreach (Classification c in cc.rechercher(txtRecherche.Text))
+            //    {
+            //        string[] tabTemp = new string[3] { c.coteESRB, c.nomESRB, c.descESRB };
+            //        GridClassification.Rows.Add(tabTemp);
+            //    }
+            //}
+            //else
+            //{
+            //    //Message d'erreur de champ vide
+            //    MessageBox.Show("Veuillez remplir le champ de recherche", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            chargerDonnees();
+            txtRecherche.Text = "";
+        }
+
+        //TODO
+        private void btnDetailsJeu_Click(object sender, EventArgs e)
+        {
+
+            //if (GridClassification.SelectedRows.Count == 1)
+            //{
+            //    var frmDetails = new frmDetClassification();
+
+            //    frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
+
+            //    frmDetails.ShowDialog();
+            //    chargerDonnees();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Aucune ligne n'a été sélectionné", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+        }
+
+        //TODO
+        private void GridClassification_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                presentRow = e.RowIndex;
+                dataGridJeu.Rows[e.RowIndex].Selected = true;
+                if (dataGridJeu.SelectedRows.Count == 1)
+                {
+                    //var frmDetails = new frmDetClassification();
+
+                    //frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
+
+                    //frmDetails.ShowDialog();
+                    //chargerDonnees();
+                }
+                else
+                {
+                    MessageBox.Show("Plusieurs lignes ont été sélectionnées", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                presentRow = e.RowIndex;
+                dataGridJeu.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                rechercher();
+            }
+        }
+
+        private void GridClassification_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            tri = e.ColumnIndex;
         }
     }
 }

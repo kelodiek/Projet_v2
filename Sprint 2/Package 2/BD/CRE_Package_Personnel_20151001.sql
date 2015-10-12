@@ -2,6 +2,8 @@ use dbProjetE2Prod;
 GO
 IF EXISTS (SELECT * FROM sys.schemas WHERE name = 'Personnel')
 BEGIN
+	EXEC( 'DROP TABLE Personnel.tblEquipeTesteur' );
+	EXEC( 'DROP TABLE Personnel.tblEquipe' );
 	EXEC( 'DROP TABLE Personnel.tblGroupeUtil' );	
 	
 	EXEC( 'DROP TABLE Personnel.tblGroupeDroit' );	
@@ -20,7 +22,7 @@ CREATE SCHEMA Personnel
 GO
 CREATE TABLE Personnel.tblEmploye
 (
-IdEmp					INT			NOT NULL	IDENTITY(1,1),
+IdEmp					INT			NOT NULL,
 PrenomEmp				VARCHAR(25)	NOT NULL,
 NomEmp					VARCHAR(25)	NOT NULL,
 CourrielEmp				VARCHAR(45)	NOT NULL,
@@ -29,7 +31,7 @@ NoTelSecondaire			VARCHAR(20)	NULL,
 AdressePostale			VARCHAR(90)	NOT NULL,
 DateEmbaucheEmp			DATE		NOT NULL,
 CompetenceParticuliere  VARCHAR(400)NULL,
-Actif					BINARY(1)	NULL,
+Statut					CHAR		NULL,
 CommentaireEmp			VARCHAR(250)NULL
 )
 GO
@@ -38,9 +40,9 @@ PRINT 'Création de Personnel.tblEmploye complétée'
 GO
 CREATE TABLE Personnel.tblRole
 (
-IdRole		INT				NOT NULL,
+IdRole		INT				NOT NULL	IDENTITY(1,1),
 NomRole		VARCHAR(30)		NOT NULL,
-DescRole	VARCHAR(100)	NULL
+DescRole	VARCHAR(250)	NULL
 )
 GO
 PRINT 'Création de Personnel.tblRole complétée'
@@ -72,8 +74,8 @@ CREATE TABLE Personnel.tblUtilisateur
 (
 NomUtil			VARCHAR(30)		NOT NULL,
 MotPasUtil		VARCHAR(50)		NOT NULL,
-PremiereConex	BINARY(1)		NOT NULL,
-MotPasExpire	BINARY(1)		NOT NULL,
+PremiereConex	CHAR			NOT NULL,
+MotPasExpire	CHAR			NOT NULL,
 DateModifMotPas	DATE			NULL,
 IdRole			INT				NOT NULL,
 IdEmp			INT				NOT NULL
@@ -103,7 +105,26 @@ IdGroupe		INT			NOT NULL
 GO
 PRINT 'Création de Personnel.tblGroupeUtil complétée'
 
-/*-----------PAS TERMINÉ--------------------*/
+GO
+CREATE TABLE Personnel.tblEquipe
+(
+IdEquipe			INT			NOT NULL	IDENTITY(1,1),
+NomEquipe			VARCHAR(20)	NOT NULL,
+CommentaireEquipe	VARCHAR(250)NULL,
+Statut				CHAR		NOT NULL,
+IdChefEquipe		INT			NOT NULL
+)
+GO
+PRINT 'Création de Personnel.tblEquipe complétée'
+
+GO
+CREATE TABLE Personnel.tblEquipeTesteur
+(
+IdEmploye			INT			NOT NULL,
+IdEquipe			INT			NOT NULL
+)
+GO
+PRINT 'Création de Personnel.tblEquipeTesteur complétée'
 
 GO
 use master;

@@ -76,12 +76,12 @@ PRINT '8- Création de la contrainte FK_tblEquipe_tblEmploye_IdChefEquipe reussie
 GO
 
 ALTER TABLE Personnel.tblEquipeTesteur
-ADD CONSTRAINT PK_tblEquipeTesteur_IdEmp_IdEquipe	PRIMARY KEY(IdEmp,IdEquipe)
-PRINT '9- Création de la contrainte PK_tblEquipeTesteur_IdEmp_IdEquipe reussie'
+ADD CONSTRAINT PK_tblEquipeTesteur_IdEmploye_IdEquipe	PRIMARY KEY(IdEmploye,IdEquipe)
+PRINT '9- Création de la contrainte PK_tblEquipeTesteur_IdEmploye_IdEquipe reussie'
 GO
 
 ALTER TABLE Personnel.tblEquipeTesteur
-ADD CONSTRAINT FK_tblEquipeTesteur_tblEmploye_IdEmp	FOREIGN KEY(IdEmp) REFERENCES Personnel.tblEmploye(IdEmp)
+ADD CONSTRAINT FK_tblEquipeTesteur_tblEmploye_IdEmp	FOREIGN KEY(IdEmploye) REFERENCES Personnel.tblEmploye(IdEmp)
 PRINT '9- Création de la contrainte FK_tblEquipeTesteur_tblEmploye_IdEmp reussie'
 GO
 
