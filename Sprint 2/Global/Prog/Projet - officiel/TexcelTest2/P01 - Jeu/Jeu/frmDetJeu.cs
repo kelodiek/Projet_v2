@@ -19,8 +19,8 @@ namespace Projet
         {
             InitializeComponent();
             this.btnActiverModif.Visible = false;
+            this.btnSupprimer.Visible = false;
             type = "ajout";
-
         }
 
         public frmDetJeu(Jeu jeu)
@@ -29,23 +29,35 @@ namespace Projet
             type = "modif";
 
             //Mettre en ReadOnly
-            this.txtDesc.Enabled = false;
-            this.txtID.Enabled = false;
-            this.txtNom.Enabled = false;
-            this.rtxtInfoSup.Enabled = false;
+            this.txtID.ReadOnly = true;
+            txtID.Text = jeu.idJeu.ToString();
+            this.txtNom.ReadOnly = true;
+            txtNom.Text = jeu.nomJeu;
+            this.txtDesc.ReadOnly = true;
+            txtDesc.Text = jeu.descJeu;
+
+            this.btnAjoutPlateforme.Enabled = false;
+            this.btnRetirerPlateforme.Enabled = false;
+            this.btnAjoutTheme.Enabled = false;
+            this.btnRetirerTheme.Enabled = false;
+
+            this.cboxCote.Enabled = false;
+            this.cboxCote.Text = jeu.coteESRB;
             this.cboxGenre.Enabled = false;
+            //A changer pour le nom du genre
+            cboxGenre.Text = jeu.idGenre.ToString();
             this.cboxMode.Enabled = false;
+            //A changer pour le nom du mode
+            cboxMode.Text = jeu.idMode.ToString();
+
+            this.rtxtInfoSup.ReadOnly = true;
+            rtxtInfoSup.Text = jeu.infoSupJeu;
 
             this.btnEnregistrer.Enabled = false;
             this.btnAjoutPlateforme.Enabled = false;
             this.btnAjoutTheme.Enabled = false;
 
-        }
-
-        private void btnAjoutGenre_Click(object sender, EventArgs e)
-        {
-            frmSelection f = new frmSelection();
-            f.Show();
+            this.btnActiverModif.Enabled = true;
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)
@@ -63,6 +75,7 @@ namespace Projet
             this.btnSupprimer.Location = new Point(this.btnSupprimer.Location.X, 580);
             this.btnCopier.Location = new Point(975, 10);
             this.btnAnnuler.Click += new EventHandler(btnAnnuler_Click);
+            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
 
             foreach (var t in RequeteSql.getAllTheme())
             {
@@ -89,6 +102,7 @@ namespace Projet
             }
         }
 
+#region btnTreeView
         private void btnAjoutTheme_Click(object sender, EventArgs e)
         {
             if (tvAllTheme.SelectedNode != null)
@@ -132,6 +146,7 @@ namespace Projet
                 tvSelectPlateforme.SelectedNode.Remove();
             }
         }
+#endregion
 
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
@@ -185,14 +200,30 @@ namespace Projet
                     }
                 }
 
-                foreach (var item in tvAllTheme.Nodes)
+                foreach (var item in tvSelectTheme.Nodes)
                 {
-                    lstTheme.Add(((Theme)((TreeNode)item).Tag));
+                    Theme temp = new Theme();
+                    temp.idTheme = Convert.ToInt32(((TreeNode)item).Tag);
+                    temp.nomTheme = ((TreeNode)item).Text;
+                    foreach (var t in RequeteSql.srchTheme(temp.nomTheme))
+                    {
+                        temp.comTheme = t.ComTheme;
+                    }
+                    lstTheme.Add(temp);
                 }
 
-                foreach (var item in tvAllPlateforme.Nodes)
+                foreach (var item in tvSelectPlateforme.Nodes)
                 {
-                    lstPlateforme.Add(((plateforme)((TreeNode)item).Tag));
+                    plateforme temp = new plateforme();
+                    //string chaine =  + "%%" + (((TreeNode)item).Text);
+                    foreach (var p in RequeteSql.srchPlateforme(((((TreeNode)item).Tag).ToString())))
+                    {
+                        if (p.NomPlateforme == ((TreeNode)item).Text)
+                        {
+                            temp = new plateforme(p);
+                        }              
+                    }
+                    lstPlateforme.Add(temp);
                 }
 
                 j = new Jeu(nouvJeu);
