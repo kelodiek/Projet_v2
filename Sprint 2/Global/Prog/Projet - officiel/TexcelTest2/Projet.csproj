@@ -315,6 +315,9 @@
     <EmbeddedResource Include="P01 - Jeu\Classification\frmDetClassification.resx">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="P01 - Jeu\Jeu\frmGestJeu.resx">
+      <DependentUpon>frmGestJeu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="P02 - Personnel\Employe\frmDetEmp.resx">
       <DependentUpon>frmDetEmp.cs</DependentUpon>
     </EmbeddedResource>

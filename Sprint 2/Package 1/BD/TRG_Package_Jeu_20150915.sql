@@ -53,12 +53,17 @@ DECLARE
  @IdGenre AS INT,
  @IdMode AS INT, 
  @NomGenre AS VARCHAR(35), 
- @NomMode AS VARCHAR(20)
+ @NomMode AS VARCHAR(20),
+ @InfoSupJeu AS NVARCHAR(4000)
  
 SELECT @IdJeu = IdJeu, @NomJeu = NomJeu, @DescJeu = DescJeu, @CoteESRB = CoteESRB, @IdGenre = IdGenre, @IdMode = IdMode
 FROM inserted
 
 SET @IdJeuText = CONVERT(VARCHAR(250), @IdJeu)
+
+SELECT @InfoSupJeu = CAST(InfoSupJeu AS NVARCHAR(4000))
+FROM Jeux.tblJeu
+WHERE IdJeu = @IdJeu
 
 SELECT @NomGenre = NomGenre
 FROM Jeux.tblGenre
@@ -69,7 +74,7 @@ FROM Jeux.tblMode
 WHERE IdMode = @IdMode
 
 UPDATE Jeux.tblJeu
-SET Tag = @IdJeuText + ' ' +@NomJeu + ' ' + @DescJeu + ' ' + COALESCE(@CoteESRB,'') + ' ' + COALESCE(@NomGenre,'') + ' ' + COALESCE(@NomMode,'')
+SET Tag = @IdJeuText + ' ' +@NomJeu + ' ' + @DescJeu + ' ' + COALESCE(@CoteESRB,'') + ' ' + COALESCE(@NomGenre,'') + ' ' + COALESCE(@NomMode,'') + ' ' + COALESCE(@InfoSupJeu,'')
 WHERE IdJeu = @IdJeu
 
 END;
@@ -93,7 +98,8 @@ DECLARE
  @Stockage AS VARCHAR(60),
  @DescPlateforme AS VARCHAR(250),
  @CodeCategorie AS VARCHAR(7),
- @DescCategorie AS VARCHAR(40)
+ @DescCategorie AS VARCHAR(40),
+ @InfoSup AS NVARCHAR(4000)
 
  
 SELECT @IdPlateforme = IdPlateforme, @CodePlateforme = CodePlateforme, @NomPlateforme = NomPlateforme,@CPU = CPU, 
@@ -102,6 +108,10 @@ FROM inserted
 
 SET @IdPlateformeText = CONVERT(VARCHAR(250), @IdPlateforme)
 
+SELECT @InfoSup = CAST(InfoSupPlateforme AS NVARCHAR(4000))
+FROM Jeux.tblPlateforme
+WHERE IdPlateforme = @IdPlateforme
+
 SELECT @DescCategorie = DescCategorie
 FROM Jeux.tblCategorie
 WHERE CodeCategorie = @CodeCategorie
@@ -109,7 +119,8 @@ WHERE CodeCategorie = @CodeCategorie
 
 UPDATE Jeux.tblPlateforme
 SET Tag = @IdPlateformeText + ' ' +@CodePlateforme + ' ' + @NomPlateforme + ' ' + COALESCE(@CPU,'') + ' ' +
- COALESCE(@CarteMere,'') + ' ' + COALESCE(@RAM,'')+ ' ' + COALESCE(@Stockage,'') + ' ' + @DescPlateforme + ' ' + COALESCE(@CodeCategorie,'') + ' ' + COALESCE(@DescCategorie,'')
+ COALESCE(@CarteMere,'') + ' ' + COALESCE(@RAM,'')+ ' ' + COALESCE(@Stockage,'') + ' ' + @DescPlateforme + ' ' + COALESCE(@CodeCategorie,'') + ' ' + COALESCE(@DescCategorie,'') + ' ' +
+ COALESCE(@InfoSup,'')
 WHERE IdPlateforme = @IdPlateforme
 
 END;
