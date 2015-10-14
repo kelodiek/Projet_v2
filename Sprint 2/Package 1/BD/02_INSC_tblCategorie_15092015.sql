@@ -1,6 +1,6 @@
 use dbProjetE2Prod;
 
-GO
+c
 INSERT INTO Jeux.tblCategorie(CodeCategorie, DescCategorie, ComCategorie) values ('Mobile','Téléphone intelligent','Samsung Galaxy S6, Galaxy Note 5,Iphone 5, Iphone 6');
 INSERT INTO Jeux.tblCategorie(CodeCategorie, DescCategorie, ComCategorie) values ('PCPort','Ordinateur Portable','');
 INSERT INTO Jeux.tblCategorie(CodeCategorie, DescCategorie, ComCategorie) values ('PCBur','Ordinateur de Bureau','');

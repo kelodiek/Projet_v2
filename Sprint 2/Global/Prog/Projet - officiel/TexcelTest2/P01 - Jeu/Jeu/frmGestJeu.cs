@@ -22,8 +22,7 @@ namespace Projet
             this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
             this.btnX.Click += new EventHandler(btnX_Click);
             this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            //MANQUE DES ASSOCIATIONS D'ÉVÉNEMENTS
-
+            
             ButtonsVisible(true);
             tri = 0;
             presentRow = 0;
@@ -62,8 +61,11 @@ namespace Projet
             dataGridJeu.Rows.Clear();
             foreach (Jeu j in cj.chargerDonnees())
             {
+                //Afficher le nom du genre et du mode au lieu de l'id
+                //Afficher les themes et plateformes sélectionnés
                 string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, Convert.ToString(j.idGenre), Convert.ToString(j.idMode) };
-                dataGridJeu.Rows.Add(tabTemp);
+                int tempRow = dataGridJeu.Rows.Add(tabTemp);
+                dataGridJeu.Rows[tempRow].Tag = j.idJeu;
             }
             dataGridJeu.Sort(dataGridJeu.Columns[tri], ListSortDirection.Ascending);
             if (dataGridJeu.Rows.Count != presentRow)
@@ -123,23 +125,27 @@ namespace Projet
         private void btnDetailsJeu_Click(object sender, EventArgs e)
         {
 
-            //if (GridClassification.SelectedRows.Count == 1)
-            //{
-            //    var frmDetails = new frmDetClassification();
+            if (dataGridJeu.SelectedRows.Count == 1)
+            {
+                Jeu temp = new Jeu();
+                foreach (var j in rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[presentRow].Tag)))
+                {
+                    temp = new Jeu(j);
+                }
 
-            //    frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
+                var frmDetails = new frmDetJeu(temp);
 
-            //    frmDetails.ShowDialog();
-            //    chargerDonnees();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Aucune ligne n'a été sélectionné", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                frmDetails.ShowDialog();
+                chargerDonnees();
+            }
+            else
+            {
+                MessageBox.Show("Aucune ligne n'a été sélectionné", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        //TODO
-        private void GridClassification_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        //TOTEST
+        private void dataGridJeu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             {
@@ -147,12 +153,16 @@ namespace Projet
                 dataGridJeu.Rows[e.RowIndex].Selected = true;
                 if (dataGridJeu.SelectedRows.Count == 1)
                 {
-                    //var frmDetails = new frmDetClassification();
+                    Jeu temp = new Jeu();
+                    foreach (var j in rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[e.RowIndex].Tag)))
+                    {
+                        temp = new Jeu(j);
+                    }
 
-                    //frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
+                    var frmDetails = new frmDetJeu(temp);
 
-                    //frmDetails.ShowDialog();
-                    //chargerDonnees();
+                    frmDetails.ShowDialog();
+                    chargerDonnees();
                 }
                 else
                 {
@@ -178,7 +188,7 @@ namespace Projet
             }
         }
 
-        private void GridClassification_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dataGridJeu_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             tri = e.ColumnIndex;
         }
