@@ -39,5 +39,9 @@ INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (16,110);
 INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (19,110);
 INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (3,111);
 INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (5,111);
+INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (8,112);
+INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (13,112);
+INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (18,112);
+INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (20,112);
 GO
 use master;
