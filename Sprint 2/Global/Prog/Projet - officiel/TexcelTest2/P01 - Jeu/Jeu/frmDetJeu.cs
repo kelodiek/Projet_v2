@@ -185,6 +185,7 @@ namespace Projet
                 nouvJeu.DescJeu = txtDesc.Text.Trim();
                 nouvJeu.CoteESRB = cboxCote.Text.Trim();
                 nouvJeu.InfoSupJeu = rtxtInfoSup.Text.Trim();
+                nouvJeu.Actif = true;
                 if (cboxGenre.Text != "")
                 {
                     foreach (var g in RequeteSql.rechercheGenre(cboxGenre.Text))
@@ -221,6 +222,11 @@ namespace Projet
                         if (p.NomPlateforme == ((TreeNode)item).Text)
                         {
                             temp = new plateforme(p);
+                            foreach (tblSysExp s in p.tblSysExp)
+                            {
+                                SystemeExploitation SEtemp = new SystemeExploitation(s);
+                                temp.lstSysExpPlate.Add(SEtemp);
+                            }
                         }              
                     }
                     lstPlateforme.Add(temp);

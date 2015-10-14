@@ -38,9 +38,13 @@
             this.dataGridJeu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridJeu.Location = new System.Drawing.Point(12, 71);
             this.dataGridJeu.Name = "dataGridJeu";
+            this.dataGridJeu.ReadOnly = true;
             this.dataGridJeu.RowTemplate.Height = 24;
             this.dataGridJeu.Size = new System.Drawing.Size(1058, 381);
             this.dataGridJeu.TabIndex = 51;
+            this.dataGridJeu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
+            this.dataGridJeu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridJeu_CellDoubleClick);
+            this.dataGridJeu.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridJeu_ColumnHeaderMouseClick);
             // 
             // btnVersion
             // 
@@ -52,15 +56,14 @@
             this.btnVersion.Text = "Afficher Version";
             this.btnVersion.UseVisualStyleBackColor = true;
             // 
-            // frmGesJeu
+            // frmGestJeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 505);
             this.Controls.Add(this.btnVersion);
             this.Controls.Add(this.dataGridJeu);
-            this.Name = "frmGesJeu";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Name = "frmGestJeu";
             this.Text = "Gestion - Jeu";
             this.Controls.SetChildIndex(this.dataGridJeu, 0);
             this.Controls.SetChildIndex(this.btnVersion, 0);

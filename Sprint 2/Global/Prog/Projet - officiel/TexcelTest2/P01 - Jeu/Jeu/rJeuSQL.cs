@@ -48,8 +48,8 @@ namespace Projet
 
         static public void addJeu(tblJeu p)
         {
-            foreach (tblTheme tblThemeTemp in p.tblTheme)
-            {
+            //foreach (tblTheme tblThemeTemp in p.tblTheme)
+            //{
                 db.tblJeu.Add(p);
                 try
                 {
@@ -59,9 +59,19 @@ namespace Projet
                 {
                     Console.WriteLine(e);
                 }
-            }
+            //}
+        }
 
+        static public IQueryable<tblJeu> srchIdJeu(int id)
+        {
+            var r =
+                from jeu in db.tblJeu
+                where jeu.IdJeu == id
+                select jeu;
+
+            return r;
         }
        
     }
+
 }
