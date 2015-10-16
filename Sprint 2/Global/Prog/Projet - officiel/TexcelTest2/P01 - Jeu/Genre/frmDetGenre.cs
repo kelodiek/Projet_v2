@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Projet
 {
-    partial class frmDetGenre : frmDetail
+    public partial class frmDetGenre : frmDetail
     {
         public Genre genreSelect { get; set; }
         public string statut;

@@ -35,6 +35,9 @@
             // 
             // dataGridJeu
             // 
+            this.dataGridJeu.AllowUserToAddRows = false;
+            this.dataGridJeu.AllowUserToDeleteRows = false;
+            this.dataGridJeu.AllowUserToResizeRows = false;
             this.dataGridJeu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridJeu.Location = new System.Drawing.Point(12, 71);
             this.dataGridJeu.Name = "dataGridJeu";

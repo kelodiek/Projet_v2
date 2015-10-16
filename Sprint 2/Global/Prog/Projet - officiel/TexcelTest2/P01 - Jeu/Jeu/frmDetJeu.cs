@@ -205,13 +205,13 @@ namespace Projet
             switch (type)
             {
                 case "modif":
-                    //modifierJeu();
+                    modifierJeu();
                     break;
                 case "ajout":
                     ajout();
                     break;
                 case "copie":
-                    //enrgCopie();
+                    enrgCopie();
                     break;
                 default:
                     break;
@@ -279,6 +279,113 @@ namespace Projet
             }
 
 
+        }
+
+        private void modifierJeu()
+        {
+            //DialogResult r;
+            //var nouvPlat = new plateforme();
+            //var lstSysExp = new List<SystemeExploitation>();
+
+            //if (txtCode.Text.Trim().Length == 0 || txtNom.Text.Trim().Length == 0 || cboxCateg.SelectedItem == null)
+            //{
+            //    MessageBox.Show("Les champs obligatoires ne sont pas bien remplis.",
+            //        "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    nouvPlat.idPlate = Convert.ToInt32(txtID.Text);
+            //    nouvPlat.codePlate = txtCode.Text.Trim();
+            //    nouvPlat.nomPlate = txtNom.Text.Trim();
+            //    nouvPlat.codeCateg = ((Categorie)cboxCateg.SelectedItem).codeCateg;
+            //    nouvPlat.cpuPlate = txtCPU.Text.Trim();
+            //    nouvPlat.carteMerePlate = txtCartemere.Text.Trim();
+            //    nouvPlat.ramPlate = txtRam.Text.Trim();
+            //    nouvPlat.stockage = txtStockage.Text.Trim();
+            //    nouvPlat.infoSupPlate = rTxtInfoSup.Text.Trim();
+            //    nouvPlat.descPlate = rTxtDesc.Text.Trim();
+
+            //    foreach (var item in lstTreeSelect.Nodes)
+            //    {
+            //        lstSysExp.Add(((SystemeExploitation)((TreeNode)item).Tag));
+            //    }
+
+            //    nouvPlat.lstSysExpPlate = lstSysExp;
+
+            //    r = MessageBox.Show("Voulez-vous enregistrer?",
+            //        "Enregistrement",
+            //        MessageBoxButtons.YesNo,
+            //        MessageBoxIcon.Exclamation);
+            //    if (r == DialogResult.Yes)
+            //    {
+            //        ctrlPlate.modifier(nouvPlat);
+            //        this.Close();
+            //    }
+            //}
+        }
+
+        private void btnCopier_Click(object sender, EventArgs e)
+        {
+            //var copiePlate = new plateforme();
+            //var lstSysExp = new List<SystemeExploitation>();
+            //frmDetPlateforme frmDetails;
+
+            //copiePlate.codePlate = txtCode.Text.Trim();
+            //copiePlate.nomPlate = txtNom.Text.Trim();
+            //copiePlate.codeCateg = ((Categorie)cboxCateg.SelectedItem).codeCateg;
+            //copiePlate.cpuPlate = txtCPU.Text.Trim();
+            //copiePlate.carteMerePlate = txtCartemere.Text.Trim();
+            //copiePlate.ramPlate = txtRam.Text.Trim();
+            //copiePlate.stockage = txtStockage.Text.Trim();
+            //copiePlate.infoSupPlate = rTxtInfoSup.Text.Trim();
+            //copiePlate.descPlate = rTxtDesc.Text.Trim();
+
+            //foreach (var item in lstTreeSelect.Nodes)
+            //{
+            //    lstSysExp.Add(((SystemeExploitation)((TreeNode)item).Tag));
+            //}
+
+            //copiePlate.lstSysExpPlate = lstSysExp;
+            //frmDetails = new frmDetPlateforme(copiePlate);
+
+            //frmDetails.modifierChamp("a");
+            //frmDetails.type = "copie";
+
+            //frmDetails.ShowDialog();
+        }
+
+        private void enrgCopie()
+        {
+            //DialogResult r;
+            //var copiePlate = new plateforme();
+            //copiePlate.codePlate = txtCode.Text.Trim();
+            //copiePlate.nomPlate = txtNom.Text.Trim();
+            //copiePlate.codeCateg = ((Categorie)cboxCateg.SelectedItem).codeCateg;
+            //copiePlate.cpuPlate = txtCPU.Text.Trim();
+            //copiePlate.carteMerePlate = txtCartemere.Text.Trim();
+            //copiePlate.ramPlate = txtRam.Text.Trim();
+            //copiePlate.stockage = txtStockage.Text.Trim();
+            //copiePlate.infoSupPlate = rTxtInfoSup.Text.Trim();
+            //copiePlate.descPlate = rTxtDesc.Text.Trim();
+
+            //if (ctrlPlate.verifier(selectPlate, copiePlate))
+            //{
+            //    r = MessageBox.Show("Voulez-vous enregistrer?",
+            //        "Enregistrement",
+            //        MessageBoxButtons.YesNo,
+            //        MessageBoxIcon.Exclamation);
+
+            //    if (r == DialogResult.Yes)
+            //    {
+            //        ajout();
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("La copie est identique à l'ancien jeu.",
+            //        "Erreure",
+            //        MessageBoxButtons.OK);
+            //}
         }
     }
 }
