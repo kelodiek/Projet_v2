@@ -50,7 +50,6 @@
             this.Name = "frmGestVersion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion - Version";
-            this.Load += new System.EventHandler(this.frmGestVersion_Load);
             this.Controls.SetChildIndex(this.GridVersion, 0);
             ((System.ComponentModel.ISupportInitialize)(this.GridVersion)).EndInit();
             this.ResumeLayout(false);

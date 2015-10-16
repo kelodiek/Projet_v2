@@ -12,20 +12,42 @@ namespace Projet
 {
     public partial class frmGesVersion : frmGestion
     {
-        public frmGesVersion()
+        ctrlVersion cv;
+        int idJeu;
+        public frmGesVersion(int id)
         {
+            cv = new ctrlVersion();
             InitializeComponent();
-
+            idJeu = id;
+            
             btnDetails.Click += new EventHandler(detailVersion_Click);
             btnAjout.Click += new EventHandler(ajoutVersion_Click);
-
+            
             ButtonsVisible(true);
+
+            chargerColonnes();
+            afficherDonnees();
+
         }
 
-        private void frmGestVersion_Load(object sender, EventArgs e)
+        private void afficherDonnees()
+        {
+            List<string[]> lstRows = cv.chargeDonnees(idJeu);
+            int index, i = 0;
+
+            foreach (var item in lstRows)
+            {
+                index = GridVersion.Rows.Add(item);
+
+                //GridVersion.Rows[index].Tag = cv.lstPlateforme[i];
+
+                i++;
+            }
+        }
+
+        private void chargerColonnes()
         {
             DataGridViewColumn column;
-            GridVersion.Columns.Add("IdJeu", "ID");
             GridVersion.Columns.Add("CodeVersion", "Code");
             GridVersion.Columns.Add("NomVersion", "Nom");
             GridVersion.Columns.Add("DescVersion", "Description de la Version");
@@ -34,19 +56,17 @@ namespace Projet
             GridVersion.Columns.Add("DateSortiePrevue", "Date de Sortie Prévue");
 
             column = GridVersion.Columns[0];
-            column.Width = 30;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = GridVersion.Columns[1];
-            column.Width = 50;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = GridVersion.Columns[2];
-            column.Width = 100;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = GridVersion.Columns[3];
-            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = GridVersion.Columns[4];
-            column.Width = 100;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = GridVersion.Columns[5];
-            column.Width = 100;
-            column = GridVersion.Columns[6];
-            column.Width = 100;
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
         private void ajoutVersion_Click(object sender, EventArgs e)
         {

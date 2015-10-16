@@ -38,10 +38,7 @@ namespace Projet
             foreach (Theme item in p.lstTheme)
             {
                 theme = new tblTheme();
-                //Peut être que c'est ici que sa chie
-                theme.IdTheme = item.idTheme;
-                theme.NomTheme = item.nomTheme;
-                theme.ComTheme = item.comTheme;
+                theme = RequeteSql.RechercheTheme(item.idTheme.ToString()).First();
                 jeu.tblTheme.Add(theme);
             }
             foreach (plateforme item in p.lstPlateforme)
@@ -81,10 +78,33 @@ namespace Projet
             {
                 rJeuSQL.addJeu(ajout);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception("dshfdhfisknfkjseh");
+                throw new Exception(e.Message);
             }
+        }
+
+        public void supprimer(int id)
+        {
+            try
+            {
+                rJeuSQL.deleteJeu(id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Jeu> rechercher(string chaine)
+        {
+            List<Jeu> lstJeu = new List<Jeu>();
+            foreach (var j in rJeuSQL.srchJeu(chaine))
+            {
+                Jeu jeu = new Jeu(j);
+                lstJeu.Add(jeu);
+            }
+            return lstJeu;
         }
     }
 }

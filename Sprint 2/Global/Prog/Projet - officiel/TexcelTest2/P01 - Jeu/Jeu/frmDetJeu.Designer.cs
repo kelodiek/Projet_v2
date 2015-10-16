@@ -77,7 +77,7 @@
             this.rtxtInfoSup.Location = new System.Drawing.Point(8, 422);
             this.rtxtInfoSup.Name = "rtxtInfoSup";
             this.rtxtInfoSup.Size = new System.Drawing.Size(460, 152);
-            this.rtxtInfoSup.TabIndex = 93;
+            this.rtxtInfoSup.TabIndex = 6;
             this.rtxtInfoSup.Text = "";
             // 
             // label12
@@ -95,7 +95,7 @@
             this.txtDesc.Location = new System.Drawing.Point(21, 150);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(435, 89);
-            this.txtDesc.TabIndex = 91;
+            this.txtDesc.TabIndex = 2;
             this.txtDesc.Text = "";
             // 
             // Label10
@@ -114,7 +114,7 @@
             this.cboxMode.Location = new System.Drawing.Point(166, 356);
             this.cboxMode.Name = "cboxMode";
             this.cboxMode.Size = new System.Drawing.Size(200, 24);
-            this.cboxMode.TabIndex = 85;
+            this.cboxMode.TabIndex = 5;
             // 
             // Label4
             // 
@@ -131,7 +131,7 @@
             this.txtNom.Location = new System.Drawing.Point(154, 78);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(159, 22);
-            this.txtNom.TabIndex = 82;
+            this.txtNom.TabIndex = 1;
             // 
             // Label3
             // 
@@ -167,7 +167,7 @@
             this.cboxGenre.Location = new System.Drawing.Point(166, 326);
             this.cboxGenre.Name = "cboxGenre";
             this.cboxGenre.Size = new System.Drawing.Size(200, 24);
-            this.cboxGenre.TabIndex = 107;
+            this.cboxGenre.TabIndex = 4;
             // 
             // cboxCote
             // 
@@ -175,7 +175,7 @@
             this.cboxCote.Location = new System.Drawing.Point(166, 296);
             this.cboxCote.Name = "cboxCote";
             this.cboxCote.Size = new System.Drawing.Size(200, 24);
-            this.cboxCote.TabIndex = 113;
+            this.cboxCote.TabIndex = 3;
             // 
             // label1
             // 
@@ -254,7 +254,7 @@
             this.btnRetirerTheme.Location = new System.Drawing.Point(249, 152);
             this.btnRetirerTheme.Name = "btnRetirerTheme";
             this.btnRetirerTheme.Size = new System.Drawing.Size(79, 70);
-            this.btnRetirerTheme.TabIndex = 75;
+            this.btnRetirerTheme.TabIndex = 8;
             this.btnRetirerTheme.Text = "<<";
             this.btnRetirerTheme.UseVisualStyleBackColor = true;
             this.btnRetirerTheme.Click += new System.EventHandler(this.btnRetirerTheme_Click);
@@ -264,7 +264,7 @@
             this.btnAjoutTheme.Location = new System.Drawing.Point(249, 76);
             this.btnAjoutTheme.Name = "btnAjoutTheme";
             this.btnAjoutTheme.Size = new System.Drawing.Size(79, 70);
-            this.btnAjoutTheme.TabIndex = 74;
+            this.btnAjoutTheme.TabIndex = 7;
             this.btnAjoutTheme.Text = ">>";
             this.btnAjoutTheme.UseVisualStyleBackColor = true;
             this.btnAjoutTheme.Click += new System.EventHandler(this.btnAjoutTheme_Click);
@@ -321,7 +321,7 @@
             this.btnRetirerPlateforme.Location = new System.Drawing.Point(249, 161);
             this.btnRetirerPlateforme.Name = "btnRetirerPlateforme";
             this.btnRetirerPlateforme.Size = new System.Drawing.Size(79, 70);
-            this.btnRetirerPlateforme.TabIndex = 75;
+            this.btnRetirerPlateforme.TabIndex = 10;
             this.btnRetirerPlateforme.Text = "<<";
             this.btnRetirerPlateforme.UseVisualStyleBackColor = true;
             this.btnRetirerPlateforme.Click += new System.EventHandler(this.btnRetirerPlateforme_Click);
@@ -331,7 +331,7 @@
             this.btnAjoutPlateforme.Location = new System.Drawing.Point(249, 85);
             this.btnAjoutPlateforme.Name = "btnAjoutPlateforme";
             this.btnAjoutPlateforme.Size = new System.Drawing.Size(79, 70);
-            this.btnAjoutPlateforme.TabIndex = 74;
+            this.btnAjoutPlateforme.TabIndex = 9;
             this.btnAjoutPlateforme.Text = ">>";
             this.btnAjoutPlateforme.UseVisualStyleBackColor = true;
             this.btnAjoutPlateforme.Click += new System.EventHandler(this.btnAjoutPlateforme_Click);
@@ -340,7 +340,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1073, 622);
+            this.ClientSize = new System.Drawing.Size(1073, 621);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

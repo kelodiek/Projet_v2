@@ -48,8 +48,24 @@ namespace Projet
 
         static public void addJeu(tblJeu p)
         {
-            //foreach (tblTheme tblThemeTemp in p.tblTheme)
-            //{
+            //Pas sur de la requête sauf que le else fonctionne
+            if (p.tblTheme.Count > 0)
+            {
+                foreach (tblTheme tblThemeTemp in p.tblTheme)
+                {
+                    db.tblJeu.Add(p);
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                } 
+            }
+            else
+            {
                 db.tblJeu.Add(p);
                 try
                 {
@@ -59,7 +75,7 @@ namespace Projet
                 {
                     Console.WriteLine(e);
                 }
-            //}
+            }
         }
 
         static public IQueryable<tblJeu> srchIdJeu(int id)
@@ -71,7 +87,38 @@ namespace Projet
 
             return r;
         }
-       
+
+        static public IQueryable<tblJeu> srchJeu(string chaine)
+        {
+            var r =
+                from jeu in db.tblJeu
+                where jeu.Tag.Contains(chaine)
+                select jeu;
+
+            return r;
+        }
+
+        static public void deleteJeu(int id)
+        {
+            var rJeu =
+                (from jeu in db.tblJeu
+                 where jeu.IdJeu == id
+                 select jeu).FirstOrDefault<tblJeu>();
+
+            rJeu.tblTheme.Clear();
+            rJeu.tblPlateforme.Clear();
+            db.tblJeu.Remove(rJeu);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 
 }
