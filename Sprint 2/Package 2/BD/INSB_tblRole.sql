@@ -9,3 +9,5 @@ INSERT INTO Personnel.tblRole(NomRole,DescRole) VALUES('Modérateur du focus grou
 INSERT INTO Personnel.tblRole(NomRole,DescRole) VALUES('Testeur','Teste les jeux vidéo pour trouver des bugs et rempli des billets de travail contenant les résultats de ses tests.');
 INSERT INTO Personnel.tblRole(NomRole,DescRole) VALUES('Client','Il consulte les résultats des tests. C’est aussi lui qui contacte la compagnie de test pour tester un jeu.');
 INSERT INTO Personnel.tblRole(NomRole,DescRole) VALUES('Administrateur','Il gère les informations contenu dans  la base de données.');
+GO
+USE master;

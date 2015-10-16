@@ -55,6 +55,7 @@
             this.btnVersion.TabIndex = 52;
             this.btnVersion.Text = "Afficher Version";
             this.btnVersion.UseVisualStyleBackColor = true;
+            this.btnVersion.Click += new System.EventHandler(this.btnVersion_Click);
             // 
             // frmGestJeu
             // 
