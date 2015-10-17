@@ -38,7 +38,7 @@ namespace Projet
             dataGridJeu.Columns.Add("Nom", "Nom");
             dataGridJeu.Columns.Add("Desc", "Description");
             dataGridJeu.Columns.Add("Info", "Informations supplémentaires");
-            dataGridJeu.Columns.Add("Cote", "Thème");
+            dataGridJeu.Columns.Add("Cote", "Cote");
             dataGridJeu.Columns.Add("Genre", "Genre");
             dataGridJeu.Columns.Add("Mode", "Mode");
 
@@ -53,7 +53,7 @@ namespace Projet
             Column = dataGridJeu.Columns[4];
             Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             Column = dataGridJeu.Columns[5];
-            Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
         private void chargerDonnees()
@@ -61,9 +61,18 @@ namespace Projet
             dataGridJeu.Rows.Clear();
             foreach (Jeu j in cj.chargerDonnees())
             {
-                //Afficher le nom du genre et du mode au lieu de l'id
-                //Afficher les themes et plateformes sélectionnés
-                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, Convert.ToString(j.idGenre), Convert.ToString(j.idMode) };
+                string nomGenre = "";
+                if (j.idGenre != 0)
+                {
+                    nomGenre = RequeteSql.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                }
+                string nomMode = "";
+                if (j.idMode != 0)
+                {
+                    nomMode = RequeteSql.rechercheMode(j.idMode.ToString()).First().NomMode;
+                }   
+                    
+                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, nomGenre, nomMode };
                 int tempRow = dataGridJeu.Rows.Add(tabTemp);
                 dataGridJeu.Rows[tempRow].Tag = j.idJeu;
             }
@@ -80,51 +89,6 @@ namespace Projet
 
         public void detailsJeu_Click(object sender, EventArgs e)
         {
-            //Caller new form avec parametre de celui cliquer
-            var frmDetails = new frmDetJeu();
-
-            frmDetails.ShowDialog();
-        }
-        public void ajoutJeu_Click(object sender, EventArgs e)
-        {
-            var frmDetails = new frmDetJeu();
-
-            frmDetails.ShowDialog();
-        }
-
-        private void btnRecherche_Click(object sender, EventArgs e)
-        {
-            rechercher();
-        }
-
-        private void rechercher()
-        {
-            //if (txtRecherche.Text != "")
-            //{
-            //    GridClassification.Rows.Clear();
-            //    foreach (Classification c in cc.rechercher(txtRecherche.Text))
-            //    {
-            //        string[] tabTemp = new string[3] { c.coteESRB, c.nomESRB, c.descESRB };
-            //        GridClassification.Rows.Add(tabTemp);
-            //    }
-            //}
-            //else
-            //{
-            //    //Message d'erreur de champ vide
-            //    MessageBox.Show("Veuillez remplir le champ de recherche", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
-
-        private void btnX_Click(object sender, EventArgs e)
-        {
-            chargerDonnees();
-            txtRecherche.Text = "";
-        }
-
-        //TODO
-        private void btnDetailsJeu_Click(object sender, EventArgs e)
-        {
-
             if (dataGridJeu.SelectedRows.Count == 1)
             {
                 Jeu temp = new Jeu();
@@ -140,11 +104,57 @@ namespace Projet
             }
             else
             {
-                MessageBox.Show("Aucune ligne n'a été sélectionné", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Plusieurs lignes ont été sélectionnées", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void ajoutJeu_Click(object sender, EventArgs e)
+        {
+            var frmDetails = new frmDetJeu();
+
+            frmDetails.ShowDialog();
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            rechercher();
+        }
+
+        private void rechercher()
+        {
+            if (txtRecherche.Text != "")
+            {
+                dataGridJeu.Rows.Clear();
+                foreach (Jeu j in cj.rechercher(txtRecherche.Text))
+                {
+                    string nomGenre = "";
+                    if (j.idGenre != 0)
+                    {
+                        nomGenre = RequeteSql.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                    }
+                    string nomMode = "";
+                    if (j.idMode != 0)
+                    {
+                        nomMode = RequeteSql.rechercheMode(j.idMode.ToString()).First().NomMode;
+                    }
+
+                    string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, nomGenre, nomMode };
+                    dataGridJeu.Rows.Add(tabTemp);
+                }
+            }
+            else
+            {
+                //Message d'erreur de champ vide
+                MessageBox.Show("Veuillez remplir le champ de recherche", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        //TOTEST
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            chargerDonnees();
+            txtRecherche.Text = "";
+        }
+
+
         private void dataGridJeu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
@@ -191,6 +201,12 @@ namespace Projet
         private void dataGridJeu_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             tri = e.ColumnIndex;
+        }
+
+        private void btnVersion_Click(object sender, EventArgs e)
+        {
+            frmGesVersion frm = new frmGesVersion(Convert.ToInt32(dataGridJeu.Rows[presentRow].Tag));
+            frm.ShowDialog();
         }
     }
 }

@@ -303,7 +303,7 @@ namespace Projet
 
             var r =
                 from Gen in db.tblGenre
-                where Gen.NomGenre.Contains(code) || Gen.ComGenre.Contains(code)
+                where Gen.NomGenre.Contains(code) || Gen.ComGenre.Contains(code) || Gen.IdGenre.ToString() == code
                 select Gen;
 
             return r;
@@ -389,7 +389,7 @@ namespace Projet
 
             var r =
                 from Mod in db.tblMode
-                where Mod.NomMode.Contains(code) || Mod.DescMode.Contains(code)
+                where Mod.NomMode.Contains(code) || Mod.DescMode.Contains(code) || Mod.IdMode.ToString() == code
                 select Mod;
 
             return r;

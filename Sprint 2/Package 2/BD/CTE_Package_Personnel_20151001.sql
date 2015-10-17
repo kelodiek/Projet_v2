@@ -76,12 +76,12 @@ PRINT '8- Création de la contrainte FK_tblEquipe_tblEmploye_IdChefEquipe reussie
 GO
 
 ALTER TABLE Personnel.tblEquipeTesteur
-ADD CONSTRAINT PK_tblEquipeTesteur_IdEmploye_IdEquipe	PRIMARY KEY(IdEmploye,IdEquipe)
-PRINT '9- Création de la contrainte PK_tblEquipeTesteur_IdEmploye_IdEquipe reussie'
+ADD CONSTRAINT PK_tblEquipeTesteur_IdEmp_IdEquipe	PRIMARY KEY(IdEmp,IdEquipe)
+PRINT '9- Création de la contrainte PK_tblEquipeTesteur_IdEmp_IdEquipe reussie'
 GO
 
 ALTER TABLE Personnel.tblEquipeTesteur
-ADD CONSTRAINT FK_tblEquipeTesteur_tblEmploye_IdEmp	FOREIGN KEY(IdEmploye) REFERENCES Personnel.tblEmploye(IdEmp)
+ADD CONSTRAINT FK_tblEquipeTesteur_tblEmploye_IdEmp	FOREIGN KEY(IdEmp) REFERENCES Personnel.tblEmploye(IdEmp)
 PRINT '9- Création de la contrainte FK_tblEquipeTesteur_tblEmploye_IdEmp reussie'
 GO
 
@@ -90,4 +90,33 @@ ADD CONSTRAINT FK_tblEquipeTesteur_tblEquipe_IdEquipe	FOREIGN KEY(IdEquipe) REFE
 PRINT '9- Création de la contrainte FK_tblEquipeTesteur_tblEquipe_IdEquipe reussie'
 GO
 
+ALTER TABLE Personnel.tblEmployeTypeTest
+ADD CONSTRAINT PK_tblEmployeTypeTest_IdEmp_CodeTypeTest	PRIMARY KEY(IdEmp,CodeTypeTest)
+PRINT '10- Création de la contrainte PK_tblEmployeTypeTest_IdEmp_CodeTypeTest reussie'
+GO
+
+ALTER TABLE Personnel.tblEmployeTypeTest
+ADD CONSTRAINT FK_tblEmployeTypeTest_tblEmploye_IdEmp	FOREIGN KEY(IdEmp) REFERENCES Personnel.tblEmploye(IdEmp)
+PRINT '10- Création de la contrainte FK_tblEmployeTypeTest_tblEmploye_IdEmp reussie'
+GO
+
+ALTER TABLE Personnel.tblEmployeTypeTest
+ADD CONSTRAINT FK_tblEmployeTypeTest_tblTypeTest_CodeTypeTest	FOREIGN KEY(CodeTypeTest) REFERENCES Test.tblTypeTest(CodeTypeTest)
+PRINT '10- Création de la contrainte FK_tblEmployeTypeTest_tblTypeTest_CodeTypeTest reussie'
+GO
+
+ALTER TABLE Personnel.tblEquipeTypeTest
+ADD CONSTRAINT PK_tblEquipeTypeTest_IdEquipe_CodeTypeTest	PRIMARY KEY(IdEquipe,CodeTypeTest)
+PRINT '11- Création de la contrainte PK_tblEquipeTypeTest_IdEquipe_CodeTypeTest reussie'
+GO
+
+ALTER TABLE Personnel.tblEquipeTypeTest
+ADD CONSTRAINT FK_tblEquipeTypeTest_tblEquipe_IdEquipe	FOREIGN KEY(IdEquipe) REFERENCES Personnel.tblEquipe(IdEquipe)
+PRINT '11- Création de la contrainte FK_tblEquipeTypeTest_tblEquipe_IdEquipe reussie'
+GO
+
+ALTER TABLE Personnel.tblEquipeTypeTest
+ADD CONSTRAINT FK_tblEquipeTypeTest_tblTypeTest_CodeTypeTest	FOREIGN KEY(CodeTypeTest) REFERENCES Test.tblTypeTest(CodeTypeTest)
+PRINT '11- Création de la contrainte FK_tblEquipeTypeTest_tblTypeTest_CodeTypeTest reussie'
+GO
 use master;

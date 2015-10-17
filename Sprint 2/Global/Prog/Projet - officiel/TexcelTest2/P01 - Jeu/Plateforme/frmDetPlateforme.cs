@@ -380,8 +380,8 @@ namespace Projet
             }
             else
             {
-                MessageBox.Show("La copie est identique à l'ancienne",
-                    "Erreur", 
+                MessageBox.Show("La copie est pareil a l'ancien.",
+                    "Erreure", 
                     MessageBoxButtons.OK);
             }
 

@@ -35,6 +35,9 @@
             // 
             // dataGridJeu
             // 
+            this.dataGridJeu.AllowUserToAddRows = false;
+            this.dataGridJeu.AllowUserToDeleteRows = false;
+            this.dataGridJeu.AllowUserToResizeRows = false;
             this.dataGridJeu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridJeu.Location = new System.Drawing.Point(12, 71);
             this.dataGridJeu.Name = "dataGridJeu";
@@ -55,6 +58,7 @@
             this.btnVersion.TabIndex = 52;
             this.btnVersion.Text = "Afficher Version";
             this.btnVersion.UseVisualStyleBackColor = true;
+            this.btnVersion.Click += new System.EventHandler(this.btnVersion_Click);
             // 
             // frmGestJeu
             // 
