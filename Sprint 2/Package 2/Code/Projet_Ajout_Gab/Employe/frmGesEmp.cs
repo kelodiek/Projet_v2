@@ -1,4 +1,11 @@
-﻿using System;
+﻿//      Gabriel Simard
+//      ajouter cette ligne de code au moment du lancement de ce programme
+//      Ces pour créer le dossier qui va recevoir le fichier text nouveau.txt  qui contient les nouveaux employes
+//string pathfile = (Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel"));
+//            if (File.Exists(pathfile) == false)
+//                Directory.CreateDirectory(pathfile);
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +29,7 @@ namespace Projet
             btnDetails.Visible = true;
             btnRecherche.Visible = true;
             txtRecherche.Visible = true;
+            btnX.Visible = true;
             btnDetails.Click += new EventHandler(btnDetails_Click);
             btnRecherche.Click += new EventHandler(btnRecherche_Click);
             btnX.Click += new EventHandler(btnX_Click);
@@ -39,6 +47,7 @@ namespace Projet
             btnDetails.Visible = true;
             btnRecherche.Visible = true;
             txtRecherche.Visible = true;
+            btnX.Visible = true;
             btnDetails.Click += new EventHandler(btnDetails_Click);
             btnRecherche.Click += new EventHandler(btnRecherche_Click);
             btnX.Click += new EventHandler(btnX_Click);
@@ -101,6 +110,7 @@ namespace Projet
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = gridEmploye.Columns[7];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
             chargeDonnee();
         }
 
@@ -167,7 +177,7 @@ namespace Projet
                 if (detailEmploye.Tag.ToString() == "1")        //      il est ajouter
                 {
                     gestionEmp.supprimer(this.Tag);
-                    gridEmploye.Rows.RemoveAt(gridEmploye.SelectedRows[1].Index);
+                    gridEmploye.Rows.RemoveAt(gridEmploye.SelectedRows[0].Index);
                     if (gridEmploye.Rows.Count == 0)
                         this.Close();
                     else
@@ -240,7 +250,7 @@ namespace Projet
             gridEmploye.Rows.Clear();
             chargeDonnee();
             txtRecherche.Text = "";
-            gridEmploye.Sort(gridEmploye.Columns[1], ListSortDirection.Ascending);
+            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
         }
 
         //      Désactiver ou effacer les employe désiré

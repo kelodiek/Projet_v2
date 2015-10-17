@@ -16,6 +16,7 @@ namespace Projet
         private Employe empSelect { get; set; }
         private ctrlEmploye ctrlEm;
 
+        //     useless
         public frmDetEmp()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace Projet
             this.btnActiverModif.Location = new Point(125, 477);
             this.btnSupprimer.Location = new Point(240, 477);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            //ChargeTypeTest();
+            ChargeTypeTest();
         }
 
         //      Employe existant
@@ -36,14 +37,15 @@ namespace Projet
             InitializeComponent();
             ctrlEm = new ctrlEmploye(true);
             btnCopier.Visible = false;
+            btnSupprimer.Visible = false;
             this.btnAnnuler.Location = new Point(784, 477);
             this.btnEnregistrer.Location = new Point(10, 477);
             this.btnActiverModif.Location = new Point(125, 477);
             this.btnSupprimer.Location = new Point(240, 477);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
-            //ChargeTypeTest();
             chargeEmp(E);
+            ChargeTypeTest();
         }
 
         //      Nouveau employe
@@ -59,7 +61,7 @@ namespace Projet
             this.btnActiverModif.Location = new Point(125, 477);
             this.btnSupprimer.Location = new Point(240, 477);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            //ChargeTypeTest();
+            ChargeTypeTest();
             ActiverModif();
             txtId.ReadOnly = false;
             txtId.Text = _nEmp[0];
@@ -95,11 +97,20 @@ namespace Projet
 
         private void ChargeTypeTest()
         {
-            List<string> lstType = ctrlEm.chargeTypeT();
-
-            foreach (string t in lstType)
+            List<TypeTest> lstType = ctrlEm.chargeTypeT();
+            chkLstTypeTest.Tag = lstType;
+            foreach (TypeTest t in lstType)
             {
-                chkLstTypeTest.Items.Add(t);
+                chkLstTypeTest.Items.Add(t.nomTypeTest);
+            }
+            //      coche le test que l'utilisateur peu faire
+            if (ctrlEm.etat == true)
+            {
+                List<int> lstTestEmp = ctrlEm.chargeTypeTestEmploye(Convert.ToInt32(txtId.Text));
+                foreach (int item in lstTestEmp)
+                {
+                    chkLstTypeTest.SetItemChecked(item, true);
+                }
             }
         }
 
@@ -125,12 +136,18 @@ namespace Projet
             enregistrement.adressePostale = txtAdresPost.Text.Trim();
             enregistrement.dateEmbaucheEmp = dateEmbauche.Value;
             enregistrement.competenceParticuliere = txtCompetencePart.Text.Trim();
+            enregistrement.statut = "o";
             enregistrement.commentaireEmp = txtCommentaire.Text.Trim();
+
+            foreach (var item in chkLstTypeTest.CheckedItems)
+            {
+                enregistrement.lstEmTypeTest.Add((TypeTest)((List<TypeTest>)chkLstTypeTest.Tag).ElementAt(chkLstTypeTest.Items.IndexOf(item)));
+            }
 
             if (ctrlEm.etat == true)
             {
                 // modifier
-                if (ctrlEm.verifier(empSelect, this.Tag) == true)
+                if (ctrlEm.verifier(enregistrement, this.Tag) == true)
                 {
                     resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
                     if (resultEnr == DialogResult.Yes)
@@ -144,7 +161,7 @@ namespace Projet
             else
             {
                 // ajouter
-                if (ctrlEm.verifier(empSelect, null) == true && ctrlEm.verifSemblable(enregistrement) == true)
+                if (ctrlEm.verifier(enregistrement, null) == true && ctrlEm.verifSemblable(enregistrement) == true)
                 {
                     resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
                     if (resultEnr == DialogResult.Yes)

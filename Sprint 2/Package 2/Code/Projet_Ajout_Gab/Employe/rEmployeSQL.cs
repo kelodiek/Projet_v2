@@ -20,22 +20,31 @@ namespace Projet
             return r;
         }
 
-        //          envoye une liste des types de test pour les relier au employe
-        //static public IQueryable<tblTypeTest> getTypeTest()
-        //{
-        //    var bd = new dbProjetE2ProdEntities();
-
-        //    var t =
-        //        from e in bd.tblTypeTest
-        //        select e;
-
-        //    return t;
-        //}
-
         static public void addEmploye(Employe settings)
         {
             var bd = new dbProjetE2ProdEntities();
             var add = new tblEmploye();
+            var lstTypeTest = new List<tblTypeTest>();
+
+            var tt =
+                from e in bd.tblTypeTest
+                select e;
+
+            int i = 0;
+            foreach (tblTypeTest item in tt)
+            {
+                foreach (TypeTest ty in settings.lstEmTypeTest)
+	            {
+		            if (item.CodeTypeTest == ty.codeTypeTest)
+                    {
+                        lstTypeTest.Add(item);
+                        i++;
+                        break;
+                    } 
+	            }
+                if (settings.lstEmTypeTest.Count == i)
+                    break;
+            }
 
             add.IdEmp = settings.idEmp;
             add.PrenomEmp = settings.prenomEmp;
@@ -48,6 +57,7 @@ namespace Projet
             add.CompetenceParticuliere = settings.competenceParticuliere;
             add.Statut = settings.statut;
             add.CommentaireEmp = settings.commentaireEmp;
+            add.tblTypeTest = lstTypeTest;
 
             bd.tblEmploye.Add(add);
 
@@ -64,6 +74,28 @@ namespace Projet
         static public void setEmploye(Employe settings)
         {
             var bd = new dbProjetE2ProdEntities();
+            var lstTypeTest = new List<tblTypeTest>();
+
+            var tt =
+                from e in bd.tblTypeTest
+                select e;
+
+            int i = 0;
+            foreach (tblTypeTest item in tt)
+            {
+                foreach (TypeTest ty in settings.lstEmTypeTest)
+	            {
+		            if (item.CodeTypeTest == ty.codeTypeTest)
+                    {
+                        lstTypeTest.Add(item);
+                        i++;
+                        break;
+                    } 
+	            }
+                if (settings.lstEmTypeTest.Count == i)
+                    break;
+            }
+
 
             var r =
                 (from e in bd.tblEmploye
@@ -80,7 +112,8 @@ namespace Projet
             r.CompetenceParticuliere = settings.competenceParticuliere;
             r.CommentaireEmp = settings.commentaireEmp;
 
-            //                  Manque les type de test *********
+            //                ca va tu marché ?????????????????????????
+            r.tblTypeTest = lstTypeTest;
 
             try
             {
@@ -124,6 +157,18 @@ namespace Projet
             {
                 Console.WriteLine(e);
             }
+        }
+
+        static public IQueryable<tblTypeTest> getTypeTestEmploye(int cle)
+        {
+            var bd = new dbProjetE2ProdEntities();
+
+            var i =
+                from e in bd.tblEmploye//tblEmployeTypeTest
+                where e.IdEmp == cle//((tblEmploye)e.tblEmploye).IdEmp == cle
+                select ((tblTypeTest)e.tblTypeTest);
+
+            return i;
         }
     }
 }

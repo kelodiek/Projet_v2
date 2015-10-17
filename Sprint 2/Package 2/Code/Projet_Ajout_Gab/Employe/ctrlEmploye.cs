@@ -12,6 +12,7 @@ namespace Projet
     {
         private List<Employe> listEmploye;
         private List<string[]> listEmployeNV;
+        private List<TypeTest> lstTypeT;
         public bool etat { get; set; }  //      true = normal employe existant     false = nouveau employe
 
         public List<Employe> lstEmploye
@@ -30,6 +31,7 @@ namespace Projet
         {
             listEmploye = new List<Employe>();
             listEmployeNV = new List<string[]>();
+            lstTypeT = new List<TypeTest>();
             etat = _e;
         }
 
@@ -52,9 +54,13 @@ namespace Projet
                 string[] tmp = (string[])o;
                 string ligne;
                 lstEmployeNV.Remove(tmp);
-                ligne = tmp[0] + " | " + tmp[1] + " | " + tmp[2] + " | " + tmp[3] + " | " + tmp[4] + " | " + tmp[5] + " | " + tmp[6] + " | " + tmp[7];
-
-                supprimerLigne((Path.Combine(Environment.CurrentDirectory, @"Test.txt")), ligne);
+                if (lstEmployeNV.Count == 0)
+                    File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel", @"nouveau.txt"));
+                else
+                {
+                    ligne = tmp[0] + " | " + tmp[1] + " | " + tmp[2] + " | " + tmp[3] + " | " + tmp[4] + " | " + tmp[5] + " | " + tmp[6] + " | " + tmp[7];
+                    supprimerLigne((Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel", @"nouveau.txt")), ligne);
+                }
             }       
         }
 
@@ -148,19 +154,19 @@ namespace Projet
                 var lstBrut = rEmployeSQL.getEmploye();
                 foreach (tblEmploye item in lstBrut)
                 {
-                    ligne = new string[] { item.IdEmp.ToString(), item.PrenomEmp.ToString(), item.NomEmp.ToString(), item.CourrielEmp.ToString(), item.NoTelPrincipal.ToString(), item.NoTelSecondaire.ToString(), item.AdressePostale.ToString(), item.DateEmbaucheEmp.ToString(), item.Statut.ToString(), item.CompetenceParticuliere.ToString(), item.CommentaireEmp.ToString() };
+                    ligne = new string[] { item.IdEmp.ToString(), item.PrenomEmp.ToString(), item.NomEmp.ToString(), item.CourrielEmp.ToString(), item.NoTelPrincipal.ToString(), item.NoTelSecondaire.ToString(), item.AdressePostale.ToString(), item.DateEmbaucheEmp.ToShortDateString(), item.Statut.ToString(), item.CompetenceParticuliere.ToString(), item.CommentaireEmp.ToString() };
                     lstLigne.Add(ligne);
                     lstEmploye.Add(new Employe(item));
                 } 
             }
-            else
-            {           //      supposé être ... bin\debug\Test.txt
+            else if(File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel", @"nouveau.txt")))
+            {           //      supposé être ... bin\debug\nouveau.txt
                 string lineLu;
                 string[] tmp = new string[] { "|" };
                 List<string> lstBrut = new List<string>();
                 lstEmployeNV.Clear();
 
-                System.IO.StreamReader myFile = new System.IO.StreamReader(Path.Combine(Environment.CurrentDirectory, @"Test.txt"));
+                System.IO.StreamReader myFile = new System.IO.StreamReader(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel", @"nouveau.txt"));/*CurrentDirectory*/
                 while ((lineLu = myFile.ReadLine()) != null)
                 {
                     lstBrut.Add(lineLu);
@@ -175,19 +181,22 @@ namespace Projet
                 }
                 myFile.Close();
             }
+            else
+            {
+                MessageBox.Show("Il n'y a aucun nouvel employe, Ressayer plus tard", "Aucun fichier trouver", MessageBoxButtons.OK);
+            }
 
             return lstLigne;
         }
 
         //          charge la liste de typeTest pour les employes
-        public List<string> chargeTypeT()
+        public List<TypeTest> chargeTypeT()
         {
-            List<string> lstTypeT = new List<string>();
-            var lstBrut = rEmployeSQL.getEmploye();//getTypeTest();
-
-            foreach (/*tblTypeTest*/tblEmploye item in lstBrut)
+            var lstBrut = rTypeTestSQL.getTypeTest();
+            
+            foreach (tblTypeTest item in lstBrut)
             {
-                lstTypeT.Add(item.NomEmp/*item.NomTypeTest*/);
+                lstTypeT.Add(new TypeTest(item));
             }
 
             return lstTypeT;
@@ -199,7 +208,7 @@ namespace Projet
 
             foreach (var item in rEmployeSQL.rechercheEmploye(cle))
             {
-                Employe em = new Employe(item.IdEmp, item.PrenomEmp, item.NomEmp, item.CourrielEmp, item.NoTelPrincipal, item.NoTelSecondaire, item.AdressePostale, item.DateEmbaucheEmp, item.CompetenceParticuliere, item.Statut, item.CommentaireEmp);
+                Employe em = new Employe(item.IdEmp, item.PrenomEmp, item.NomEmp, item.CourrielEmp, item.NoTelPrincipal, item.NoTelSecondaire, item.AdressePostale, item.DateEmbaucheEmp, item.CompetenceParticuliere, item.Statut, item.CommentaireEmp, item);
                 lstEm.Add(em);
             }
             return lstEm;
@@ -211,10 +220,14 @@ namespace Projet
 
             foreach (string[] item in lstEmployeNV)
             {
-                if (item.Contains(cle) == true)
-                {
-                    lstEm.Add(item);
-                }
+                for (int i = 0; i < 8; i++)
+			    {
+			        if (item[i].Contains(cle))
+                    {
+                        lstEm.Add(item);
+                        break;
+                    } 
+			    }
             }
             return lstEm;
         }
@@ -225,7 +238,7 @@ namespace Projet
             {
                 foreach (DataGridViewRow item in _grid.Rows)
                 {
-                    if ((int)item.Cells[0].Value == _i)
+                    if (Convert.ToInt32(item.Cells[0].Value) == _i)
                         return item.Index;
                 }
             }
@@ -233,7 +246,7 @@ namespace Projet
         }
 
         //      effacer une ligne dans le fichier text des nouveau employe, soit qu'il est ajouter ou retirer
-        private void supprimerLigne(string path, string ligne)
+        public void supprimerLigne(string path, string ligne)
         {
             // Path correspond au répertoire de ton fichier!
             string texte = null;
@@ -245,8 +258,7 @@ namespace Projet
                 ligneActuelle = sr.ReadLine();
                 if (!(ligneActuelle == ligne))
                 {
-                    texte = (texte
-                                + (ligneActuelle + "\r\n"));
+                    texte = (texte + (ligneActuelle + "\r\n"));
                 }
             }
             sr.Close();
@@ -254,6 +266,30 @@ namespace Projet
             StreamWriter sr2 = new StreamWriter(path);
             sr2.Write(texte);
             sr2.Close();
+        }
+
+        public List<int> chargeTypeTestEmploye(int _Id)
+        {
+            List<int> lstTmp = new List<int>();
+            var lstBrut = rEmployeSQL.getTypeTestEmploye(_Id);
+            int i = 0;
+            foreach (TypeTest tt in lstTypeT)
+            {
+                foreach (tblTypeTest item in lstBrut)
+                {
+                    if(tt.codeTypeTest == item.CodeTypeTest)
+                    {
+                        lstTmp.Add(i);
+                        ((List<tblTypeTest>)lstBrut).Remove(item);
+                        break;
+                    }
+                }
+                if (lstBrut.Count() == 0)
+                    break;
+                i++;
+            }
+
+            return lstTmp;
         }
     }
 }
