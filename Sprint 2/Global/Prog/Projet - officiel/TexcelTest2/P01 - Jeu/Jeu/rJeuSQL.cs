@@ -19,32 +19,42 @@ namespace Projet
             return r;
         }
 
-        //static public void setJeu(Jeu jeu)
-        //{
-        //    var r =
-        //        (from j in db.tblJeu
-        //         where j.IdJeu == jeu.idJeu
-        //         select j).First();
+        static public void setJeu(tblJeu jeu)
+        {
+            var r =
+                (from j in db.tblJeu
+                 where j.IdJeu == jeu.IdJeu
+                 select j).First();
 
-        //    r.NomJeu = jeu.nomJeu;
-        //    r.DescJeu = jeu.descJeu;
-        //    r.Actif = jeu.actif;
-        //    r.InfoSupJeu = jeu.infoSupJeu;
-        //    r.CoteESRB = jeu.coteESRB;
-        //    r.IdGenre = jeu.idGenre;
-        //    r.IdMode = jeu.idMode;
+            r.NomJeu = jeu.NomJeu;
+            r.DescJeu = jeu.DescJeu;
+            r.Actif = jeu.Actif;
+            r.InfoSupJeu = jeu.InfoSupJeu;
+            r.CoteESRB = jeu.CoteESRB;
+            r.IdGenre = jeu.IdGenre;
+            r.IdMode = jeu.IdMode;
 
-        //    //Manque le lien aux thèmes
+            r.tblTheme.Clear();
+            foreach (var item in jeu.tblTheme)
+            {
+                r.tblTheme.Add(item);
+            }
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //    }
-        //}
+            r.tblPlateforme.Clear();
+            foreach (var item in jeu.tblPlateforme)
+            {
+                r.tblPlateforme.Add(item);
+            }
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
         static public void addJeu(tblJeu p)
         {

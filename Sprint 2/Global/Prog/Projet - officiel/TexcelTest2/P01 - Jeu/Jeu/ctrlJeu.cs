@@ -71,6 +71,14 @@ namespace Projet
             return jeu;
         }
 
+        public void modifier(Jeu j)
+        {
+            tblJeu nouv = jeuToTblJeu(j);
+            nouv.IdJeu = j.idJeu;
+
+            rJeuSQL.setJeu(nouv);
+        }
+
         public void ajouter(Jeu j)
         {
             var ajout = jeuToTblJeu(j);
