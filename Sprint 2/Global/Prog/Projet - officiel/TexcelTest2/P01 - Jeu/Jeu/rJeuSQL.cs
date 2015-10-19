@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    static class rJeuSQL
+    class rJeuSQL : Requete
     {
-        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+        //public static dbProjetE2ProdEntities db2 = new dbProjetE2ProdEntities();
 
         //tblJeu
         static public IQueryable<tblJeu> getAllJeu()
@@ -61,7 +61,7 @@ namespace Projet
             //Pas sur de la requête sauf que le else fonctionne
             if (p.tblTheme.Count > 0)
             {
-                foreach (tblTheme tblThemeTemp in p.tblTheme)
+              //  foreach (tblTheme tblThemeTemp in p.tblTheme)
                 {
                     db.tblJeu.Add(p);
                     try

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    static class rEmployeSQL
+    class rEmployeSQL : Requete
     {
         static public IQueryable<tblEmploye> getEmploye()
         {
-            var bd = new dbProjetE2ProdEntities();
+            
 
             var r =
-                from e in bd.tblEmploye
+                from e in db.tblEmploye
                 where e.Statut == "o"
                 select e;
 
@@ -22,12 +22,11 @@ namespace Projet
 
         static public void addEmploye(Employe settings)
         {
-            var bd = new dbProjetE2ProdEntities();
             var add = new tblEmploye();
             var lstTypeTest = new List<tblTypeTest>();
 
             var tt =
-                from e in bd.tblTypeTest
+                from e in db.tblTypeTest
                 select e;
 
             int i = 0;
@@ -59,11 +58,11 @@ namespace Projet
             add.CommentaireEmp = settings.commentaireEmp;
             add.tblTypeTest = lstTypeTest;
 
-            bd.tblEmploye.Add(add);
+            db.tblEmploye.Add(add);
 
             try
             {
-                bd.SaveChanges();
+                db.SaveChanges();
             }
             catch (Exception e)
             {
@@ -73,11 +72,10 @@ namespace Projet
 
         static public void setEmploye(Employe settings)
         {
-            var bd = new dbProjetE2ProdEntities();
             var lstTypeTest = new List<tblTypeTest>();
 
             var tt =
-                from e in bd.tblTypeTest
+                from e in db.tblTypeTest
                 select e;
 
             int i = 0;
@@ -98,7 +96,7 @@ namespace Projet
 
 
             var r =
-                (from e in bd.tblEmploye
+                (from e in db.tblEmploye
                  where e.IdEmp == settings.idEmp
                  select e).First();
 
@@ -117,7 +115,7 @@ namespace Projet
 
             try
             {
-                bd.SaveChanges();
+                db.SaveChanges();
             }
             catch (Exception e)
             {
@@ -127,10 +125,9 @@ namespace Projet
 
         static public IQueryable<tblEmploye> rechercheEmploye(string cle)
         {
-            var bd = new dbProjetE2ProdEntities();
 
             var d =
-                from e in bd.tblEmploye
+                from e in db.tblEmploye
                 where e.IdEmp.ToString().Contains(cle) || e.NomEmp.Contains(cle) || e.PrenomEmp.Contains(cle) || (e.DateEmbaucheEmp.ToString()).Contains(cle) || e.CompetenceParticuliere.Contains(cle)
                 select e;
 
@@ -139,11 +136,10 @@ namespace Projet
 
         static public void deleteEmploye(int cle)
         {
-            var bd = new dbProjetE2ProdEntities();
             var i = cle;
 
             var r =
-                (from e in bd.tblEmploye
+                (from e in db.tblEmploye
                  where e.IdEmp == i
                  select e).First();
 
@@ -151,7 +147,7 @@ namespace Projet
 
             try
             {
-                bd.SaveChanges();
+                db.SaveChanges();
             }
             catch (Exception e)
             {
@@ -161,10 +157,9 @@ namespace Projet
 
         static public IQueryable<tblTypeTest> getTypeTestEmploye(int cle)
         {
-            var bd = new dbProjetE2ProdEntities();
 
             var i =
-                from e in bd.tblEmploye//tblEmployeTypeTest
+                from e in db.tblEmploye//tblEmployeTypeTest
                 where e.IdEmp == cle//((tblEmploye)e.tblEmploye).IdEmp == cle
                 select ((tblTypeTest)e.tblTypeTest);
 
