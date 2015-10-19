@@ -39,5 +39,7 @@ namespace Projet
         public virtual DbSet<tblGroupe> tblGroupe { get; set; }
         public virtual DbSet<tblRole> tblRole { get; set; }
         public virtual DbSet<tblUtilisateur> tblUtilisateur { get; set; }
+        public virtual DbSet<tblEquipe> tblEquipe { get; set; }
+        public virtual DbSet<tblTypeTest> tblTypeTest { get; set; }
     }
 }

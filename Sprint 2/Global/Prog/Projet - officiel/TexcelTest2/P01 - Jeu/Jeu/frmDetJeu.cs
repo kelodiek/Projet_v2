@@ -396,7 +396,6 @@ namespace Projet
 
         private void enrgCopie()
         {
-            DialogResult r;
             var copieJeu = new tblJeu();
 
             copieJeu.NomJeu = txtNom.Text.Trim();

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.dateEmbauche = new System.Windows.Forms.DateTimePicker();
             this.txtAdresPost = new System.Windows.Forms.TextBox();
             this.txtTelSec = new System.Windows.Forms.TextBox();
@@ -54,6 +56,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtId);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.dateEmbauche);
             this.groupBox1.Controls.Add(this.txtAdresPost);
             this.groupBox1.Controls.Add(this.txtTelSec);
@@ -75,8 +79,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations personnelles";
             // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(119, 24);
+            this.txtId.MaxLength = 25;
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(141, 22);
+            this.txtId.TabIndex = 17;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 27);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(107, 17);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "Code Employe: ";
+            // 
             // dateEmbauche
             // 
+            this.dateEmbauche.Enabled = false;
             this.dateEmbauche.Location = new System.Drawing.Point(528, 139);
             this.dateEmbauche.Name = "dateEmbauche";
             this.dateEmbauche.Size = new System.Drawing.Size(200, 22);
@@ -88,6 +111,7 @@
             this.txtAdresPost.MaxLength = 95;
             this.txtAdresPost.Multiline = true;
             this.txtAdresPost.Name = "txtAdresPost";
+            this.txtAdresPost.ReadOnly = true;
             this.txtAdresPost.Size = new System.Drawing.Size(330, 45);
             this.txtAdresPost.TabIndex = 12;
             // 
@@ -96,45 +120,50 @@
             this.txtTelSec.Location = new System.Drawing.Point(571, 55);
             this.txtTelSec.MaxLength = 20;
             this.txtTelSec.Name = "txtTelSec";
+            this.txtTelSec.ReadOnly = true;
             this.txtTelSec.Size = new System.Drawing.Size(157, 22);
             this.txtTelSec.TabIndex = 11;
             // 
             // txtTelPrinc
             // 
-            this.txtTelPrinc.Location = new System.Drawing.Point(546, 27);
+            this.txtTelPrinc.Location = new System.Drawing.Point(571, 24);
             this.txtTelPrinc.MaxLength = 20;
             this.txtTelPrinc.Name = "txtTelPrinc";
+            this.txtTelPrinc.ReadOnly = true;
             this.txtTelPrinc.Size = new System.Drawing.Size(146, 22);
             this.txtTelPrinc.TabIndex = 10;
             // 
             // txtCourriel
             // 
-            this.txtCourriel.Location = new System.Drawing.Point(77, 88);
+            this.txtCourriel.Location = new System.Drawing.Point(77, 119);
             this.txtCourriel.MaxLength = 45;
             this.txtCourriel.Name = "txtCourriel";
+            this.txtCourriel.ReadOnly = true;
             this.txtCourriel.Size = new System.Drawing.Size(328, 22);
             this.txtCourriel.TabIndex = 9;
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(77, 55);
+            this.txtNom.Location = new System.Drawing.Point(77, 86);
             this.txtNom.MaxLength = 25;
             this.txtNom.Name = "txtNom";
+            this.txtNom.ReadOnly = true;
             this.txtNom.Size = new System.Drawing.Size(183, 22);
             this.txtNom.TabIndex = 8;
             // 
             // txtPrenom
             // 
-            this.txtPrenom.Location = new System.Drawing.Point(77, 27);
+            this.txtPrenom.Location = new System.Drawing.Point(77, 58);
             this.txtPrenom.MaxLength = 25;
             this.txtPrenom.Name = "txtPrenom";
+            this.txtPrenom.ReadOnly = true;
             this.txtPrenom.Size = new System.Drawing.Size(183, 22);
             this.txtPrenom.TabIndex = 7;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 58);
+            this.label7.Location = new System.Drawing.Point(6, 89);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 17);
             this.label7.TabIndex = 6;
@@ -143,7 +172,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 91);
+            this.label6.Location = new System.Drawing.Point(6, 122);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 17);
             this.label6.TabIndex = 5;
@@ -188,7 +217,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Location = new System.Drawing.Point(6, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 17);
             this.label1.TabIndex = 0;
@@ -199,6 +228,7 @@
             this.txtCompetencePart.Location = new System.Drawing.Point(435, 211);
             this.txtCompetencePart.Multiline = true;
             this.txtCompetencePart.Name = "txtCompetencePart";
+            this.txtCompetencePart.ReadOnly = true;
             this.txtCompetencePart.Size = new System.Drawing.Size(460, 138);
             this.txtCompetencePart.TabIndex = 69;
             // 
@@ -207,6 +237,7 @@
             this.txtCommentaire.Location = new System.Drawing.Point(432, 372);
             this.txtCommentaire.Multiline = true;
             this.txtCommentaire.Name = "txtCommentaire";
+            this.txtCommentaire.ReadOnly = true;
             this.txtCommentaire.Size = new System.Drawing.Size(460, 98);
             this.txtCommentaire.TabIndex = 70;
             // 
@@ -230,6 +261,7 @@
             // 
             // chkLstTypeTest
             // 
+            this.chkLstTypeTest.Enabled = false;
             this.chkLstTypeTest.FormattingEnabled = true;
             this.chkLstTypeTest.Location = new System.Drawing.Point(12, 211);
             this.chkLstTypeTest.Name = "chkLstTypeTest";
@@ -296,5 +328,7 @@
         private System.Windows.Forms.CheckedListBox chkLstTypeTest;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateEmbauche;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label label11;
     }
 }

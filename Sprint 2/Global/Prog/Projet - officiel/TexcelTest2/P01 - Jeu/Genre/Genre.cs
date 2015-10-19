@@ -23,10 +23,11 @@ namespace Projet
 
         public Genre()
         {
-            NewGenre(0,"","");
+            NewGenre(0, "", "");
         }
 
-        private Genre NewGenre(int id, string nom, string com){
+        private Genre NewGenre(int id, string nom, string com)
+        {
             this.IdGenre = id;
             this.NomGenre = nom;
             this.ComGenre = com;

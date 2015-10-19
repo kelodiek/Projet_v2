@@ -17,6 +17,9 @@ namespace Projet
         public tblEmploye()
         {
             this.tblUtilisateur = new HashSet<tblUtilisateur>();
+            this.tblEquipe = new HashSet<tblEquipe>();
+            this.tblTypeTest = new HashSet<tblTypeTest>();
+            this.tblEquipe1 = new HashSet<tblEquipe>();
         }
     
         public int IdEmp { get; set; }
@@ -32,5 +35,8 @@ namespace Projet
         public string CommentaireEmp { get; set; }
     
         public virtual ICollection<tblUtilisateur> tblUtilisateur { get; set; }
+        public virtual ICollection<tblEquipe> tblEquipe { get; set; }
+        public virtual ICollection<tblTypeTest> tblTypeTest { get; set; }
+        public virtual ICollection<tblEquipe> tblEquipe1 { get; set; }
     }
 }

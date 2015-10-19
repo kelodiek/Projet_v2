@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gridEmploye = new System.Windows.Forms.DataGridView();
+            this.btnRejet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmploye)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,16 +46,30 @@
             this.gridEmploye.RowTemplate.Height = 24;
             this.gridEmploye.Size = new System.Drawing.Size(1058, 381);
             this.gridEmploye.TabIndex = 52;
+            this.gridEmploye.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEmploye_CellClick);
+            this.gridEmploye.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEmploye_CellDoubleClick);
+            // 
+            // btnRejet
+            // 
+            this.btnRejet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.btnRejet.Location = new System.Drawing.Point(683, 458);
+            this.btnRejet.Name = "btnRejet";
+            this.btnRejet.Size = new System.Drawing.Size(125, 35);
+            this.btnRejet.TabIndex = 54;
+            this.btnRejet.Text = "Désactiver";
+            this.btnRejet.UseVisualStyleBackColor = true;
             // 
             // frmGesEmp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.Controls.Add(this.btnRejet);
             this.Controls.Add(this.gridEmploye);
             this.Name = "frmGesEmp";
             this.Text = "frmGesEmp";
             this.Controls.SetChildIndex(this.gridEmploye, 0);
+            this.Controls.SetChildIndex(this.btnRejet, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridEmploye)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -64,5 +79,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gridEmploye;
+        private System.Windows.Forms.Button btnRejet;
     }
 }
