@@ -268,6 +268,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requete.cs" />
     <Compile Include="RequeteSql.cs" />
     <Compile Include="P01 - Jeu\SysExp\SystemeExploitation.cs" />
     <Compile Include="tblCategorie.cs">
