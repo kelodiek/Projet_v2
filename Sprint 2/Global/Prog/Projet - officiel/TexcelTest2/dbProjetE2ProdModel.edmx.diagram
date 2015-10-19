@@ -32,6 +32,12 @@
         <AssociationConnector Association="dbProjetE2ProdModel.FK_tblUtilisateur_tblRole_IdRole" />
         <AssociationConnector Association="dbProjetE2ProdModel.tblGroupeDroit" />
         <AssociationConnector Association="dbProjetE2ProdModel.tblGroupeUtil" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblEquipe" Width="1.5" PointX="11.875" PointY="14.625" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblTypeTest" Width="1.5" PointX="14.125" PointY="14.75" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblEquipe_tblEmploye_IdChefEquipe" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblEmployeTypeTest" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblEquipeTesteur" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblEquipeTypeTest" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

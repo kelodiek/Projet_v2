@@ -49,10 +49,7 @@
             this.btnQuitterToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDecoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDetEmp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripGesEmp = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDetEquipe = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripGesEquipe = new System.Windows.Forms.ToolStripMenuItem();
             this.retourInterfaceTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnX = new System.Windows.Forms.Button();
@@ -231,47 +228,25 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDetEmp,
-            this.toolStripGesEmp,
-            this.toolStripSeparator2,
-            this.toolStripDetEquipe,
-            this.toolStripGesEquipe});
+            this.toolStripGesEquipe,
+            this.toolStripGesEmp});
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(97, 27);
             this.toolStripMenuItem1.Text = "Personnel";
             // 
-            // toolStripDetEmp
-            // 
-            this.toolStripDetEmp.Name = "toolStripDetEmp";
-            this.toolStripDetEmp.Size = new System.Drawing.Size(175, 28);
-            this.toolStripDetEmp.Text = "Det Emp";
-            this.toolStripDetEmp.Click += new System.EventHandler(this.toolStripDetEmp_Click);
-            // 
             // toolStripGesEmp
             // 
             this.toolStripGesEmp.Name = "toolStripGesEmp";
             this.toolStripGesEmp.Size = new System.Drawing.Size(175, 28);
-            this.toolStripGesEmp.Text = "GesEmp";
+            this.toolStripGesEmp.Text = "Employe";
             this.toolStripGesEmp.Click += new System.EventHandler(this.toolStripGesEmp_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
-            // 
-            // toolStripDetEquipe
-            // 
-            this.toolStripDetEquipe.Name = "toolStripDetEquipe";
-            this.toolStripDetEquipe.Size = new System.Drawing.Size(175, 28);
-            this.toolStripDetEquipe.Text = "DetEquipe";
-            this.toolStripDetEquipe.Click += new System.EventHandler(this.toolStripDetEquipe_Click);
             // 
             // toolStripGesEquipe
             // 
             this.toolStripGesEquipe.Name = "toolStripGesEquipe";
             this.toolStripGesEquipe.Size = new System.Drawing.Size(175, 28);
-            this.toolStripGesEquipe.Text = "GesEquipe";
+            this.toolStripGesEquipe.Text = "Equipe";
             this.toolStripGesEquipe.Click += new System.EventHandler(this.toolStripGesEquipe_Click);
             // 
             // retourInterfaceTestToolStripMenuItem
@@ -337,10 +312,7 @@
         internal System.Windows.Forms.Button btnX;
         private System.Windows.Forms.ToolStripMenuItem btnGenreToolStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripDetEmp;
         private System.Windows.Forms.ToolStripMenuItem toolStripGesEmp;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripDetEquipe;
         private System.Windows.Forms.ToolStripMenuItem toolStripGesEquipe;
     }
 }

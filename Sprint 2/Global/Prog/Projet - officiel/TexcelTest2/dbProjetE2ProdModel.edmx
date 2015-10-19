@@ -155,6 +155,40 @@
           <Property Name="Statut" Type="char" MaxLength="1" />
           <Property Name="CommentaireEmp" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="tblEmployeTypeTest">
+          <Key>
+            <PropertyRef Name="IdEmp" />
+            <PropertyRef Name="CodeTypeTest" />
+          </Key>
+          <Property Name="IdEmp" Type="int" Nullable="false" />
+          <Property Name="CodeTypeTest" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEquipe">
+          <Key>
+            <PropertyRef Name="IdEquipe" />
+          </Key>
+          <Property Name="IdEquipe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomEquipe" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CommentaireEquipe" Type="varchar" MaxLength="250" />
+          <Property Name="Statut" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IdChefEquipe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEquipeTesteur">
+          <Key>
+            <PropertyRef Name="IdEmp" />
+            <PropertyRef Name="IdEquipe" />
+          </Key>
+          <Property Name="IdEmp" Type="int" Nullable="false" />
+          <Property Name="IdEquipe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEquipeTypeTest">
+          <Key>
+            <PropertyRef Name="IdEquipe" />
+            <PropertyRef Name="CodeTypeTest" />
+          </Key>
+          <Property Name="IdEquipe" Type="int" Nullable="false" />
+          <Property Name="CodeTypeTest" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblGroupe">
           <Key>
             <PropertyRef Name="IdGroupe" />
@@ -198,6 +232,100 @@
           <Property Name="IdRole" Type="int" Nullable="false" />
           <Property Name="IdEmp" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblTypeTest">
+          <Key>
+            <PropertyRef Name="CodeTypeTest" />
+          </Key>
+          <Property Name="CodeTypeTest" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="NomTypeTest" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ObjectifTypeTest" Type="varchar" MaxLength="150" />
+          <Property Name="DescTypeTest" Type="varchar" MaxLength="250" />
+          <Property Name="CommentaireTest" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_tblEmployeTypeTest_tblEmploye_IdEmp">
+          <End Role="tblEmploye" Type="Self.tblEmploye" Multiplicity="1" />
+          <End Role="tblEmployeTypeTest" Type="Self.tblEmployeTypeTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmploye">
+              <PropertyRef Name="IdEmp" />
+            </Principal>
+            <Dependent Role="tblEmployeTypeTest">
+              <PropertyRef Name="IdEmp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployeTypeTest_tblTypeTest_CodeTypeTest">
+          <End Role="tblTypeTest" Type="Self.tblTypeTest" Multiplicity="1" />
+          <End Role="tblEmployeTypeTest" Type="Self.tblEmployeTypeTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTypeTest">
+              <PropertyRef Name="CodeTypeTest" />
+            </Principal>
+            <Dependent Role="tblEmployeTypeTest">
+              <PropertyRef Name="CodeTypeTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEquipe_tblEmploye_IdChefEquipe">
+          <End Role="tblEmploye" Type="Self.tblEmploye" Multiplicity="1" />
+          <End Role="tblEquipe" Type="Self.tblEquipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmploye">
+              <PropertyRef Name="IdEmp" />
+            </Principal>
+            <Dependent Role="tblEquipe">
+              <PropertyRef Name="IdChefEquipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEquipeTesteur_tblEmploye_IdEmp">
+          <End Role="tblEmploye" Type="Self.tblEmploye" Multiplicity="1" />
+          <End Role="tblEquipeTesteur" Type="Self.tblEquipeTesteur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmploye">
+              <PropertyRef Name="IdEmp" />
+            </Principal>
+            <Dependent Role="tblEquipeTesteur">
+              <PropertyRef Name="IdEmp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEquipeTesteur_tblEquipe_IdEquipe">
+          <End Role="tblEquipe" Type="Self.tblEquipe" Multiplicity="1" />
+          <End Role="tblEquipeTesteur" Type="Self.tblEquipeTesteur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipe">
+              <PropertyRef Name="IdEquipe" />
+            </Principal>
+            <Dependent Role="tblEquipeTesteur">
+              <PropertyRef Name="IdEquipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEquipeTypeTest_tblEquipe_IdEquipe">
+          <End Role="tblEquipe" Type="Self.tblEquipe" Multiplicity="1" />
+          <End Role="tblEquipeTypeTest" Type="Self.tblEquipeTypeTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipe">
+              <PropertyRef Name="IdEquipe" />
+            </Principal>
+            <Dependent Role="tblEquipeTypeTest">
+              <PropertyRef Name="IdEquipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEquipeTypeTest_tblTypeTest_CodeTypeTest">
+          <End Role="tblTypeTest" Type="Self.tblTypeTest" Multiplicity="1" />
+          <End Role="tblEquipeTypeTest" Type="Self.tblEquipeTypeTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTypeTest">
+              <PropertyRef Name="CodeTypeTest" />
+            </Principal>
+            <Dependent Role="tblEquipeTypeTest">
+              <PropertyRef Name="CodeTypeTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblGroupeDroit_tblDroit_CodeDroit">
           <End Role="tblDroit" Type="Self.tblDroit" Multiplicity="1" />
           <End Role="tblGroupeDroit" Type="Self.tblGroupeDroit" Multiplicity="*" />
@@ -442,11 +570,44 @@
           <EntitySet Name="tblVersion" EntityType="Self.tblVersion" Schema="Jeux" store:Type="Tables" />
           <EntitySet Name="tblDroit" EntityType="Self.tblDroit" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblEmploye" EntityType="Self.tblEmploye" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblEmployeTypeTest" EntityType="Self.tblEmployeTypeTest" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblEquipe" EntityType="Self.tblEquipe" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblEquipeTesteur" EntityType="Self.tblEquipeTesteur" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblEquipeTypeTest" EntityType="Self.tblEquipeTypeTest" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblGroupe" EntityType="Self.tblGroupe" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblGroupeDroit" EntityType="Self.tblGroupeDroit" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblGroupeUtil" EntityType="Self.tblGroupeUtil" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblUtilisateur" EntityType="Self.tblUtilisateur" Schema="Personnel" store:Type="Tables" />
+          <EntitySet Name="tblTypeTest" EntityType="Self.tblTypeTest" Schema="Test" store:Type="Tables" />
+          <AssociationSet Name="FK_tblEmployeTypeTest_tblEmploye_IdEmp" Association="Self.FK_tblEmployeTypeTest_tblEmploye_IdEmp">
+            <End Role="tblEmploye" EntitySet="tblEmploye" />
+            <End Role="tblEmployeTypeTest" EntitySet="tblEmployeTypeTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployeTypeTest_tblTypeTest_CodeTypeTest" Association="Self.FK_tblEmployeTypeTest_tblTypeTest_CodeTypeTest">
+            <End Role="tblTypeTest" EntitySet="tblTypeTest" />
+            <End Role="tblEmployeTypeTest" EntitySet="tblEmployeTypeTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEquipe_tblEmploye_IdChefEquipe" Association="Self.FK_tblEquipe_tblEmploye_IdChefEquipe">
+            <End Role="tblEmploye" EntitySet="tblEmploye" />
+            <End Role="tblEquipe" EntitySet="tblEquipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEquipeTesteur_tblEmploye_IdEmp" Association="Self.FK_tblEquipeTesteur_tblEmploye_IdEmp">
+            <End Role="tblEmploye" EntitySet="tblEmploye" />
+            <End Role="tblEquipeTesteur" EntitySet="tblEquipeTesteur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEquipeTesteur_tblEquipe_IdEquipe" Association="Self.FK_tblEquipeTesteur_tblEquipe_IdEquipe">
+            <End Role="tblEquipe" EntitySet="tblEquipe" />
+            <End Role="tblEquipeTesteur" EntitySet="tblEquipeTesteur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEquipeTypeTest_tblEquipe_IdEquipe" Association="Self.FK_tblEquipeTypeTest_tblEquipe_IdEquipe">
+            <End Role="tblEquipe" EntitySet="tblEquipe" />
+            <End Role="tblEquipeTypeTest" EntitySet="tblEquipeTypeTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEquipeTypeTest_tblTypeTest_CodeTypeTest" Association="Self.FK_tblEquipeTypeTest_tblTypeTest_CodeTypeTest">
+            <End Role="tblTypeTest" EntitySet="tblTypeTest" />
+            <End Role="tblEquipeTypeTest" EntitySet="tblEquipeTypeTest" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblGroupeDroit_tblDroit_CodeDroit" Association="Self.FK_tblGroupeDroit_tblDroit_CodeDroit">
             <End Role="tblDroit" EntitySet="tblDroit" />
             <End Role="tblGroupeDroit" EntitySet="tblGroupeDroit" />
@@ -784,6 +945,24 @@
             <End Role="tblGroupe" EntitySet="tblGroupe" />
             <End Role="tblUtilisateur" EntitySet="tblUtilisateur" />
           </AssociationSet>
+          <EntitySet Name="tblEquipe" EntityType="dbProjetE2ProdModel.tblEquipe" />
+          <EntitySet Name="tblTypeTest" EntityType="dbProjetE2ProdModel.tblTypeTest" />
+          <AssociationSet Name="FK_tblEquipe_tblEmploye_IdChefEquipe" Association="dbProjetE2ProdModel.FK_tblEquipe_tblEmploye_IdChefEquipe">
+            <End Role="tblEmploye" EntitySet="tblEmploye" />
+            <End Role="tblEquipe" EntitySet="tblEquipe" />
+          </AssociationSet>
+          <AssociationSet Name="tblEmployeTypeTest" Association="dbProjetE2ProdModel.tblEmployeTypeTest">
+            <End Role="tblEmploye" EntitySet="tblEmploye" />
+            <End Role="tblTypeTest" EntitySet="tblTypeTest" />
+          </AssociationSet>
+          <AssociationSet Name="tblEquipeTesteur" Association="dbProjetE2ProdModel.tblEquipeTesteur">
+            <End Role="tblEmploye" EntitySet="tblEmploye" />
+            <End Role="tblEquipe" EntitySet="tblEquipe" />
+          </AssociationSet>
+          <AssociationSet Name="tblEquipeTypeTest" Association="dbProjetE2ProdModel.tblEquipeTypeTest">
+            <End Role="tblEquipe" EntitySet="tblEquipe" />
+            <End Role="tblTypeTest" EntitySet="tblTypeTest" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblDroit">
           <Key>
@@ -809,6 +988,9 @@
           <Property Name="Statut" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="CommentaireEmp" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblUtilisateur" Relationship="dbProjetE2ProdModel.FK_tblUtilisateur__tblEmploye_IdEmp" FromRole="tblEmploye" ToRole="tblUtilisateur" />
+          <NavigationProperty Name="tblEquipe" Relationship="dbProjetE2ProdModel.FK_tblEquipe_tblEmploye_IdChefEquipe" FromRole="tblEmploye" ToRole="tblEquipe" />
+          <NavigationProperty Name="tblTypeTest" Relationship="dbProjetE2ProdModel.tblEmployeTypeTest" FromRole="tblEmploye" ToRole="tblTypeTest" />
+          <NavigationProperty Name="tblEquipe1" Relationship="dbProjetE2ProdModel.tblEquipeTesteur" FromRole="tblEmploye" ToRole="tblEquipe" />
         </EntityType>
         <EntityType Name="tblGroupe">
           <Key>
@@ -874,6 +1056,55 @@
         <Association Name="tblGroupeUtil">
           <End Type="dbProjetE2ProdModel.tblGroupe" Role="tblGroupe" Multiplicity="*" />
           <End Type="dbProjetE2ProdModel.tblUtilisateur" Role="tblUtilisateur" Multiplicity="*" />
+        </Association>
+        <EntityType Name="tblEquipe">
+          <Key>
+            <PropertyRef Name="IdEquipe" />
+          </Key>
+          <Property Name="IdEquipe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomEquipe" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CommentaireEquipe" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Statut" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IdChefEquipe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblEmploye" Relationship="dbProjetE2ProdModel.FK_tblEquipe_tblEmploye_IdChefEquipe" FromRole="tblEquipe" ToRole="tblEmploye" />
+          <NavigationProperty Name="tblEmploye1" Relationship="dbProjetE2ProdModel.tblEquipeTesteur" FromRole="tblEquipe" ToRole="tblEmploye" />
+          <NavigationProperty Name="tblTypeTest" Relationship="dbProjetE2ProdModel.tblEquipeTypeTest" FromRole="tblEquipe" ToRole="tblTypeTest" />
+        </EntityType>
+        <EntityType Name="tblTypeTest">
+          <Key>
+            <PropertyRef Name="CodeTypeTest" />
+          </Key>
+          <Property Name="CodeTypeTest" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="NomTypeTest" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectifTypeTest" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DescTypeTest" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CommentaireTest" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEmploye" Relationship="dbProjetE2ProdModel.tblEmployeTypeTest" FromRole="tblTypeTest" ToRole="tblEmploye" />
+          <NavigationProperty Name="tblEquipe" Relationship="dbProjetE2ProdModel.tblEquipeTypeTest" FromRole="tblTypeTest" ToRole="tblEquipe" />
+        </EntityType>
+        <Association Name="FK_tblEquipe_tblEmploye_IdChefEquipe">
+          <End Type="dbProjetE2ProdModel.tblEmploye" Role="tblEmploye" Multiplicity="1" />
+          <End Type="dbProjetE2ProdModel.tblEquipe" Role="tblEquipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmploye">
+              <PropertyRef Name="IdEmp" />
+            </Principal>
+            <Dependent Role="tblEquipe">
+              <PropertyRef Name="IdChefEquipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblEmployeTypeTest">
+          <End Type="dbProjetE2ProdModel.tblEmploye" Role="tblEmploye" Multiplicity="*" />
+          <End Type="dbProjetE2ProdModel.tblTypeTest" Role="tblTypeTest" Multiplicity="*" />
+        </Association>
+        <Association Name="tblEquipeTesteur">
+          <End Type="dbProjetE2ProdModel.tblEmploye" Role="tblEmploye" Multiplicity="*" />
+          <End Type="dbProjetE2ProdModel.tblEquipe" Role="tblEquipe" Multiplicity="*" />
+        </Association>
+        <Association Name="tblEquipeTypeTest">
+          <End Type="dbProjetE2ProdModel.tblEquipe" Role="tblEquipe" Multiplicity="*" />
+          <End Type="dbProjetE2ProdModel.tblTypeTest" Role="tblTypeTest" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1086,6 +1317,52 @@
             </EndProperty>
             <EndProperty Name="tblGroupe">
               <ScalarProperty Name="IdGroupe" ColumnName="IdGroupe" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="tblEquipe">
+            <EntityTypeMapping TypeName="dbProjetE2ProdModel.tblEquipe">
+              <MappingFragment StoreEntitySet="tblEquipe">
+                <ScalarProperty Name="IdChefEquipe" ColumnName="IdChefEquipe" />
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="CommentaireEquipe" ColumnName="CommentaireEquipe" />
+                <ScalarProperty Name="NomEquipe" ColumnName="NomEquipe" />
+                <ScalarProperty Name="IdEquipe" ColumnName="IdEquipe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTypeTest">
+            <EntityTypeMapping TypeName="dbProjetE2ProdModel.tblTypeTest">
+              <MappingFragment StoreEntitySet="tblTypeTest">
+                <ScalarProperty Name="CommentaireTest" ColumnName="CommentaireTest" />
+                <ScalarProperty Name="DescTypeTest" ColumnName="DescTypeTest" />
+                <ScalarProperty Name="ObjectifTypeTest" ColumnName="ObjectifTypeTest" />
+                <ScalarProperty Name="NomTypeTest" ColumnName="NomTypeTest" />
+                <ScalarProperty Name="CodeTypeTest" ColumnName="CodeTypeTest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblEmployeTypeTest" TypeName="dbProjetE2ProdModel.tblEmployeTypeTest" StoreEntitySet="tblEmployeTypeTest">
+            <EndProperty Name="tblTypeTest">
+              <ScalarProperty Name="CodeTypeTest" ColumnName="CodeTypeTest" />
+            </EndProperty>
+            <EndProperty Name="tblEmploye">
+              <ScalarProperty Name="IdEmp" ColumnName="IdEmp" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblEquipeTesteur" TypeName="dbProjetE2ProdModel.tblEquipeTesteur" StoreEntitySet="tblEquipeTesteur">
+            <EndProperty Name="tblEquipe">
+              <ScalarProperty Name="IdEquipe" ColumnName="IdEquipe" />
+            </EndProperty>
+            <EndProperty Name="tblEmploye">
+              <ScalarProperty Name="IdEmp" ColumnName="IdEmp" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblEquipeTypeTest" TypeName="dbProjetE2ProdModel.tblEquipeTypeTest" StoreEntitySet="tblEquipeTypeTest">
+            <EndProperty Name="tblTypeTest">
+              <ScalarProperty Name="CodeTypeTest" ColumnName="CodeTypeTest" />
+            </EndProperty>
+            <EndProperty Name="tblEquipe">
+              <ScalarProperty Name="IdEquipe" ColumnName="IdEquipe" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
