@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    static class rClassificationSQL
+  class rClassificationSQL : Requete
     {
-        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+       // public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
         //tblClassification
         static public IQueryable<tblClassification> getAllClassification()
         {

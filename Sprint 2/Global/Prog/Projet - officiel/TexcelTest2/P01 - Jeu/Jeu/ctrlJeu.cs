@@ -71,20 +71,16 @@ namespace Projet
             return jeu;
         }
 
-        public void modifier(Jeu j)
+        public void modifier(tblJeu j)
         {
-            tblJeu nouv = jeuToTblJeu(j);
-            nouv.IdJeu = j.idJeu;
-
-            rJeuSQL.setJeu(nouv);
+            rJeuSQL.setJeu(j);
         }
 
-        public void ajouter(Jeu j)
+        public void ajouter(tblJeu j)
         {
-            var ajout = jeuToTblJeu(j);
             try
             {
-                rJeuSQL.addJeu(ajout);
+                rJeuSQL.addJeu(j);
             }
             catch (Exception e)
             {

@@ -12,10 +12,12 @@ namespace Projet
 {
     public partial class frmGesCon : Form
     {
+        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
         public frmGesCon()
         {
             InitializeComponent();
             pictureBox1.Image = global::Projet.Properties.Resources.Texcel_logo_v2;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

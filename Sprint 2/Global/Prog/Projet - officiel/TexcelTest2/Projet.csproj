@@ -112,6 +112,8 @@
     <Compile Include="P01 - Jeu\Classification\frmDetClassification.Designer.cs">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
     </Compile>
+    <Compile Include="P02 - Personnel\Employe\ctrlEmploye.cs" />
+    <Compile Include="P02 - Personnel\Employe\Employe.cs" />
     <Compile Include="P02 - Personnel\Employe\frmDetEmp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +251,9 @@
     <Compile Include="P02 - Personnel\Employe\frmGesEmp.Designer.cs">
       <DependentUpon>frmGesEmp.cs</DependentUpon>
     </Compile>
+    <Compile Include="P02 - Personnel\Employe\rEmployeSQL.cs" />
+    <Compile Include="P02 - Personnel\Employe\rTypeTestSQL.cs" />
+    <Compile Include="P02 - Personnel\Employe\TypeTest.cs" />
     <Compile Include="P02 - Personnel\Equipe\frmDetEquipe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +268,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requete.cs" />
     <Compile Include="RequeteSql.cs" />
     <Compile Include="P01 - Jeu\SysExp\SystemeExploitation.cs" />
     <Compile Include="tblCategorie.cs">
@@ -275,6 +281,9 @@
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblEmploye.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEquipe.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGenre.cs">
@@ -299,6 +308,9 @@
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTheme.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTypeTest.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUtilisateur.cs">
@@ -369,6 +381,7 @@
     <EmbeddedResource Include="P01 - Jeu\Theme\frmGesTheme.resx">
       <DependentUpon>frmGesTheme.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Personnel\Employe\frmGesEmp.resx" />
     <EmbeddedResource Include="P02 - Personnel\Equipe\frmDetEquipe.resx">
       <DependentUpon>frmDetEquipe.cs</DependentUpon>
     </EmbeddedResource>

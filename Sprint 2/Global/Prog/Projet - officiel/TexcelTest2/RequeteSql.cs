@@ -7,9 +7,9 @@ using System.Data.SqlClient;
 
 namespace Projet
 {
-    static class RequeteSql
+    class RequeteSql : Requete
     {
-        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+        //public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
         static public IQueryable<tblSysExp> getSysExp()
         {
             var r =
@@ -20,7 +20,7 @@ namespace Projet
         }
         static public void setSysExp(SystemeExploitation settings)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
             var i = Convert.ToInt32(settings.idSysExp);
             
 
@@ -50,7 +50,7 @@ namespace Projet
         /// <param name="settings">code,nom,edition,version,info supplementaire</param>
         static public void addSysExp(SystemeExploitation settings)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
             var add = new tblSysExp();
 
             add.CodeSysExp = settings.CodeSysExp;
@@ -72,7 +72,7 @@ namespace Projet
         }
         static public void deleteSysExp(int ID)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
             var i = Convert.ToInt32(ID);
 
             var r =
@@ -99,7 +99,7 @@ namespace Projet
 
         static public IQueryable<tblSysExp> srchSysExp(string chaine)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
 
             var r =
                 from sysexp in db.tblSysExp
@@ -112,7 +112,7 @@ namespace Projet
 
         static public IQueryable<tblCategorie> getCategorie()
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from c in db.tblCategorie
@@ -122,7 +122,7 @@ namespace Projet
         }
         static public void addCateg(Categorie settings)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
             var add = new tblCategorie();
 
             add.CodeCategorie = settings.codeCateg;
@@ -142,7 +142,7 @@ namespace Projet
         }
         static public void setCateg(Categorie settings)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
 
 
             var r =
@@ -165,7 +165,7 @@ namespace Projet
         }
         static public void deleteCateg(string code)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
 
             var r =
                 from categ in db.tblCategorie
@@ -190,7 +190,7 @@ namespace Projet
 
         static public IQueryable<tblCategorie> srchCategorieAll(string chaine)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
 
             var r =
                 from cat in db.tblCategorie
@@ -202,7 +202,7 @@ namespace Projet
 
         static public IQueryable<tblCategorie> srchCategorie(string code)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
 
             var r =
                 from categ in db.tblCategorie
@@ -214,7 +214,7 @@ namespace Projet
 
         static public IQueryable<tblTheme> RechercheTheme(string code)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from theme in db.tblTheme
@@ -227,7 +227,7 @@ namespace Projet
         //tblGenre
         static public IQueryable<tblGenre> getAllGenre()
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from c in db.tblGenre
@@ -236,7 +236,7 @@ namespace Projet
         }
         static public void setGenre(Genre genre)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 (from gen in db.tblGenre
@@ -257,7 +257,7 @@ namespace Projet
         }
         static public void addGenre(Genre genre)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
             var add = new tblGenre();
 
             add.NomGenre = genre.nomGenre;
@@ -276,7 +276,7 @@ namespace Projet
         }
         static public void deleteGenre(int idGenre)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from gen in db.tblGenre
@@ -299,7 +299,7 @@ namespace Projet
         }
         static public IQueryable<tblGenre> rechercheGenre(string code)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from Gen in db.tblGenre
@@ -312,7 +312,7 @@ namespace Projet
         //tblMode
         static public IQueryable<tblMode> getAllMode()
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from c in db.tblMode
@@ -321,7 +321,7 @@ namespace Projet
         }
         static public void setMode(Mode mode)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 (from mod in db.tblMode
@@ -342,7 +342,7 @@ namespace Projet
         }
         static public void addMode(Mode mode)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
             var add = new tblMode();
 
             add.NomMode = mode.nomMode;
@@ -361,7 +361,7 @@ namespace Projet
         }
         static public void deleteMode(int idMode)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from mod in db.tblMode
@@ -385,7 +385,7 @@ namespace Projet
 
         static public IQueryable<tblMode> rechercheMode(string code)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from Mod in db.tblMode
@@ -398,7 +398,7 @@ namespace Projet
         //tblTheme
         static public IQueryable<tblTheme> getAllTheme()
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from c in db.tblTheme
@@ -407,7 +407,7 @@ namespace Projet
         }
         static public void setTheme(Theme theme)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 (from the in db.tblTheme
@@ -428,7 +428,7 @@ namespace Projet
         }
         static public void addTheme(Theme theme)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
             var add = new tblTheme();
 
             add.NomTheme = theme.nomTheme;
@@ -447,7 +447,7 @@ namespace Projet
         }
         static public void deleteTheme(int idTheme)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
 
             var r =
                 from the in db.tblTheme
@@ -470,7 +470,7 @@ namespace Projet
         }
         static public IQueryable<tblTheme> srchTheme(string code)
         {
-            var db = new dbProjetE2ProdEntities();
+            ////var db = new dbProjetE2ProdEntities();
 
             var r =
                 from theme in db.tblTheme
@@ -483,7 +483,7 @@ namespace Projet
         // Version
         static public IQueryable<tblVersion> getAllVersion(int idJeu)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from c in db.tblVersion
@@ -493,7 +493,7 @@ namespace Projet
         }
         static public void setVersion(version vers)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
 
             var r =
@@ -519,7 +519,7 @@ namespace Projet
         }
         static public IQueryable<tblVersion> srchCodeVersion(string code)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from v in db.tblVersion
@@ -530,7 +530,7 @@ namespace Projet
         }
         static public void addVersion(tblVersion v)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             db.tblVersion.Add(v);
 
@@ -545,7 +545,7 @@ namespace Projet
         }
         static public void deleteVersion(string code)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from v in db.tblVersion
@@ -569,7 +569,7 @@ namespace Projet
         static public IQueryable<tblVersion> srchVersion(string c, int id)
         {
 
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from v in db.tblVersion
@@ -707,7 +707,7 @@ namespace Projet
 
         static public IQueryable<tblPlateforme> srchPlateforme(string chaine)
         {
-            var db = new dbProjetE2ProdEntities();
+            //var db = new dbProjetE2ProdEntities();
 
             var r =
                 from plate in db.tblPlateforme
