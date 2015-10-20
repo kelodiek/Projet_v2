@@ -254,7 +254,14 @@ namespace Projet
                 nouvJeu.NomJeu = txtNom.Text.Trim();
                 nomJeu = nouvJeu.NomJeu;
                 nouvJeu.DescJeu = txtDesc.Text.Trim();
-                nouvJeu.CoteESRB = cboxCote.Text.Trim();
+                if (cboxCote.Text.Trim() != "")
+                {
+                    nouvJeu.CoteESRB = cboxCote.Text.Trim();
+                }
+                else
+                {
+                    nouvJeu.CoteESRB = null;
+                }
                 nouvJeu.InfoSupJeu = rtxtInfoSup.Text.Trim();
                 nouvJeu.Actif = true;
                 if (cboxGenre.Text != "")
