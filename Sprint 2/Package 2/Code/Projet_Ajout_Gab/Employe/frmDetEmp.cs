@@ -38,6 +38,7 @@ namespace Projet
             ctrlEm = new ctrlEmploye(true);
             btnCopier.Visible = false;
             btnSupprimer.Visible = false;
+            btnEnregistrer.Enabled = false;
             this.btnAnnuler.Location = new Point(784, 477);
             this.btnEnregistrer.Location = new Point(10, 477);
             this.btnActiverModif.Location = new Point(125, 477);
@@ -93,6 +94,7 @@ namespace Projet
             txtCommentaire.ReadOnly = false;
             chkLstTypeTest.Enabled = true;
             btnActiverModif.Enabled = false;
+            btnEnregistrer.Enabled = true;
         }
 
         private void ChargeTypeTest()
@@ -106,10 +108,13 @@ namespace Projet
             //      coche le test que l'utilisateur peu faire
             if (ctrlEm.etat == true)
             {
-                List<int> lstTestEmp = ctrlEm.chargeTypeTestEmploye(Convert.ToInt32(txtId.Text));
-                foreach (int item in lstTestEmp)
+                foreach (TypeTest item in lstType)
                 {
-                    chkLstTypeTest.SetItemChecked(item, true);
+                    foreach (TypeTest i in empSelect.lstEmTypeTest)
+                    {
+                        if (item.codeTypeTest == i.codeTypeTest)
+                            chkLstTypeTest.SetItemChecked(lstType.IndexOf(item), true);
+                    }
                 }
             }
         }
@@ -127,6 +132,8 @@ namespace Projet
                 return;
             }
 
+            
+
             enregistrement.idEmp = Int32.Parse(txtId.Text.Trim());
             enregistrement.prenomEmp = txtPrenom.Text.Trim();
             enregistrement.nomEmp = txtNom.Text.Trim();
@@ -136,7 +143,7 @@ namespace Projet
             enregistrement.adressePostale = txtAdresPost.Text.Trim();
             enregistrement.dateEmbaucheEmp = dateEmbauche.Value;
             enregistrement.competenceParticuliere = txtCompetencePart.Text.Trim();
-            enregistrement.statut = "o";
+            enregistrement.statut = "A";
             enregistrement.commentaireEmp = txtCommentaire.Text.Trim();
 
             foreach (var item in chkLstTypeTest.CheckedItems)

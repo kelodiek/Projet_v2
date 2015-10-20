@@ -55,11 +55,11 @@ namespace Projet
                 string ligne;
                 lstEmployeNV.Remove(tmp);
                 if (lstEmployeNV.Count == 0)
-                    File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel", @"nouveau.txt"));
+                    File.Delete(Path.Combine(Environment.CurrentDirectory, @"nouveau.txt"));
                 else
                 {
                     ligne = tmp[0] + " | " + tmp[1] + " | " + tmp[2] + " | " + tmp[3] + " | " + tmp[4] + " | " + tmp[5] + " | " + tmp[6] + " | " + tmp[7];
-                    supprimerLigne((Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel", @"nouveau.txt")), ligne);
+                    supprimerLigne((Path.Combine(Environment.CurrentDirectory, @"nouveau.txt")), ligne);
                 }
             }       
         }
@@ -72,6 +72,30 @@ namespace Projet
             if (n != null)
             {
                 ancien = (Employe)n;
+                bool checkLst = true;
+                int i = 0;
+                if (nouv.lstEmTypeTest.Count == ancien.lstEmTypeTest.Count)
+                {
+                    foreach (TypeTest nv in nouv.lstEmTypeTest)
+                    {
+                        if (nv.codeTypeTest == ancien.lstEmTypeTest[i].codeTypeTest &&
+                            nv.nomTypeTest == ancien.lstEmTypeTest[i].nomTypeTest &&
+                            nv.descTypeTest == ancien.lstEmTypeTest[i].descTypeTest &&
+                            nv.objectifTypeTest == ancien.lstEmTypeTest[i].objectifTypeTest &&
+                            nv.commentaireTypeTest == ancien.lstEmTypeTest[i].commentaireTypeTest)
+                            i++;
+                        else
+                        {
+                            checkLst = false;
+                            break;
+                        }
+                    } 
+                }
+                else
+                {
+                    checkLst = false;
+                }
+
                 if (nouv.prenomEmp == ancien.prenomEmp &&
                     nouv.nomEmp == ancien.nomEmp &&
                     nouv.courrielEmp == ancien.courrielEmp &&
@@ -79,7 +103,8 @@ namespace Projet
                     nouv.adressePostale == ancien.adressePostale &&
                     nouv.dateEmbaucheEmp == ancien.dateEmbaucheEmp &&
                     nouv.competenceParticuliere == ancien.competenceParticuliere &&
-                    nouv.commentaireEmp == ancien.commentaireEmp)
+                    nouv.commentaireEmp == ancien.commentaireEmp &&
+                    checkLst == true)
                 {
                     resultat = false;
                     MessageBox.Show("Vous ne pouvez pas enregistrer sans avoir effectuer de changement", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -111,14 +136,10 @@ namespace Projet
 
             if (lstEmploye.Count == 0)
             {
-                var lstLigne = new List<string[]>();
                 var lstBrut = rEmployeSQL.getEmploye();
-                string[] ligne;
 
                 foreach (tblEmploye item in lstBrut)
                 {
-                    ligne = new string[] { item.IdEmp.ToString(), item.PrenomEmp.ToString(), item.NomEmp.ToString(), item.CourrielEmp.ToString(), item.NoTelPrincipal.ToString(), item.NoTelSecondaire.ToString(), item.AdressePostale.ToString(), item.DateEmbaucheEmp.ToString(), item.Statut.ToString(), item.CompetenceParticuliere.ToString(), item.CommentaireEmp.ToString() };
-                    lstLigne.Add(ligne);
                     lstEmploye.Add(new Employe(item));
                 } 
             }
@@ -154,19 +175,19 @@ namespace Projet
                 var lstBrut = rEmployeSQL.getEmploye();
                 foreach (tblEmploye item in lstBrut)
                 {
-                    ligne = new string[] { item.IdEmp.ToString(), item.PrenomEmp.ToString(), item.NomEmp.ToString(), item.CourrielEmp.ToString(), item.NoTelPrincipal.ToString(), item.NoTelSecondaire.ToString(), item.AdressePostale.ToString(), item.DateEmbaucheEmp.ToShortDateString(), item.Statut.ToString(), item.CompetenceParticuliere.ToString(), item.CommentaireEmp.ToString() };
+                    ligne = new string[] { item.IdEmp.ToString(), item.PrenomEmp.ToString(), item.NomEmp.ToString(), item.CourrielEmp.ToString(), item.NoTelPrincipal.ToString(), item.NoTelSecondaire.ToString(), item.AdressePostale.ToString(), item.DateEmbaucheEmp.ToShortDateString()/*, item.Statut.ToString(), item.CompetenceParticuliere.ToString(), item.CommentaireEmp.ToString() */};
                     lstLigne.Add(ligne);
                     lstEmploye.Add(new Employe(item));
                 } 
             }
-            else if(File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel", @"nouveau.txt")))
+            else if(File.Exists(Path.Combine(Environment.CurrentDirectory, @"nouveau.txt")))
             {           //      supposé être ... bin\debug\nouveau.txt
                 string lineLu;
                 string[] tmp = new string[] { "|" };
                 List<string> lstBrut = new List<string>();
                 lstEmployeNV.Clear();
 
-                System.IO.StreamReader myFile = new System.IO.StreamReader(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel", @"nouveau.txt"));/*CurrentDirectory*/
+                System.IO.StreamReader myFile = new System.IO.StreamReader(Path.Combine(Environment.CurrentDirectory, @"nouveau.txt"));/*CurrentDirectory*/
                 while ((lineLu = myFile.ReadLine()) != null)
                 {
                     lstBrut.Add(lineLu);
@@ -266,30 +287,6 @@ namespace Projet
             StreamWriter sr2 = new StreamWriter(path);
             sr2.Write(texte);
             sr2.Close();
-        }
-
-        public List<int> chargeTypeTestEmploye(int _Id)
-        {
-            List<int> lstTmp = new List<int>();
-            var lstBrut = rEmployeSQL.getTypeTestEmploye(_Id);
-            int i = 0;
-            foreach (TypeTest tt in lstTypeT)
-            {
-                foreach (tblTypeTest item in lstBrut)
-                {
-                    if(tt.codeTypeTest == item.CodeTypeTest)
-                    {
-                        lstTmp.Add(i);
-                        ((List<tblTypeTest>)lstBrut).Remove(item);
-                        break;
-                    }
-                }
-                if (lstBrut.Count() == 0)
-                    break;
-                i++;
-            }
-
-            return lstTmp;
         }
     }
 }

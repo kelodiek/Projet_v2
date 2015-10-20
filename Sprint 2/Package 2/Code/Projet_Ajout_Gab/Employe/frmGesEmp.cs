@@ -26,6 +26,7 @@ namespace Projet
             InitializeComponent();
             gestionEmp = new ctrlEmploye(true);
             chargerColonnes();
+            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
             btnDetails.Visible = true;
             btnRecherche.Visible = true;
             txtRecherche.Visible = true;
@@ -44,6 +45,7 @@ namespace Projet
             InitializeComponent();
             gestionEmp = new ctrlEmploye(true);
             chargerColonnes();
+            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
             btnDetails.Visible = true;
             btnRecherche.Visible = true;
             txtRecherche.Visible = true;
@@ -55,10 +57,6 @@ namespace Projet
             btnRejet.Text = "Désactiver";
             this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
             this.Text = "Texel : Gestion - Employés";
-            gridEmploye.Sort(gridEmploye.Columns[F], S);
-            int R = gestionEmp.RowsById(I, gridEmploye);
-            gridEmploye.Rows[R].Selected = true;
-            gridEmploye.Rows[R].Cells[1].Selected = true;
         }
 
         public frmGesEmp(string nouv)
@@ -66,6 +64,7 @@ namespace Projet
             InitializeComponent();
             gestionEmp = new ctrlEmploye(false);
             chargerColonnes();
+            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
             btnDetails.Visible = false;
             btnAjout.Visible = true;
             btnAjout.Left = btnDetails.Left;
@@ -110,7 +109,7 @@ namespace Projet
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             column = gridEmploye.Columns[7];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
+            
             chargeDonnee();
         }
 
@@ -193,13 +192,20 @@ namespace Projet
         public void update()
         {
             gestionEmp = new ctrlEmploye(true);
+
+            int Colum = gridEmploye.SortedColumn.Index;
+            int Idselect = ((Employe)this.Tag).idEmp;
             ListSortDirection DD = ListSortDirection.Descending;
             if (gridEmploye.SortOrder == SortOrder.Ascending)
                 DD = ListSortDirection.Ascending;
-            var formOuvert = new frmGesEmp(gridEmploye.SortedColumn.Index, ((Employe)this.Tag).idEmp, DD);
-            formOuvert.Show();
-            this.Hide();
-            formOuvert.Closed += (s, args) => this.Close();
+
+            gridEmploye.Rows.Clear();
+            chargeDonnee();
+            gridEmploye.Sort(gridEmploye.Columns[Colum], DD);
+
+            int R = gestionEmp.RowsById(Idselect, gridEmploye);
+            gridEmploye.Rows[R].Cells[1].Selected = true;
+            gridEmploye.Rows[R].Selected = true;
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
