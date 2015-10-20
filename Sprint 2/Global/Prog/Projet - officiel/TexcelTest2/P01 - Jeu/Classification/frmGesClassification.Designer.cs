@@ -42,19 +42,19 @@
             this.GridClassification.Name = "GridClassification";
             this.GridClassification.ReadOnly = true;
             this.GridClassification.RowTemplate.Height = 24;
-            this.GridClassification.Size = new System.Drawing.Size(1058, 375);
+            this.GridClassification.Size = new System.Drawing.Size(1686, 795);
             this.GridClassification.TabIndex = 60;
             this.GridClassification.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
             this.GridClassification.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridClassification_CellDoubleClick);
             this.GridClassification.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridClassification_ColumnHeaderMouseClick);
             // 
-            // frmGestClassification
+            // frmGesClassification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1080, 500);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.GridClassification);
-            this.Name = "frmGestClassification";
+            this.Name = "frmGesClassification";
             this.Text = "Texcel - Gestion des Classifications";
             this.Controls.SetChildIndex(this.GridClassification, 0);
             ((System.ComponentModel.ISupportInitialize)(this.GridClassification)).EndInit();
