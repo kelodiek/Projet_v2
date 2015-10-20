@@ -41,18 +41,18 @@
             this.GridTheme.Name = "GridTheme";
             this.GridTheme.ReadOnly = true;
             this.GridTheme.RowTemplate.Height = 24;
-            this.GridTheme.Size = new System.Drawing.Size(1058, 381);
+            this.GridTheme.Size = new System.Drawing.Size(1686, 795);
             this.GridTheme.TabIndex = 50;
             this.GridTheme.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridTheme_CellClick);
             this.GridTheme.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridTheme_CellDoubleClick);
             // 
-            // frmGestTheme
+            // frmGesTheme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1083, 500);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.GridTheme);
-            this.Name = "frmGestTheme";
+            this.Name = "frmGesTheme";
             this.Text = "Gestion des Thèmes";
             this.Load += new System.EventHandler(this.frmGestTheme_Load);
             this.Controls.SetChildIndex(this.GridTheme, 0);
