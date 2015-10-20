@@ -8,7 +8,6 @@ namespace Projet
 {
     partial class Jeu
     {
-
         private int IdJeu, IdGenre, IdMode;
         private string NomJeu, DescJeu, InfoSupJeu, Tag, CoteESRB;
         private bool Actif;
