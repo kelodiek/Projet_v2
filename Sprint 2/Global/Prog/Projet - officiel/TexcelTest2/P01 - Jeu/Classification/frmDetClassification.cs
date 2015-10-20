@@ -15,6 +15,7 @@ namespace Projet
         Classification classification, ancien;
         ctrlClassification cc;
         bool modif;
+        public string cote;
         public frmDetClassification()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace Projet
             btnCopier.Visible = false;
             cc = new ctrlClassification();
             ancien = null;
+            cote = null;
             modif = false;
         }
 
@@ -50,18 +52,25 @@ namespace Projet
             {
                 if (resulVerif)
                 {
-                    resultEnrg = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
-                    if (resultEnrg == DialogResult.Yes)
+                    if (txtCote.Text.Trim().Length != 0 && txtDescription.Text.Trim().Length != 0 && txtNom.Text.Trim().Length != 0)
                     {
-                        try
+                        resultEnrg = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
+                        if (resultEnrg == DialogResult.Yes)
                         {
-                            cc.modifier(enregistrement);
+                            try
+                            {
+                                cc.modifier(enregistrement);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            this.Close();
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Les champs sont mal remplis", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
@@ -72,7 +81,7 @@ namespace Projet
             }
             else
             {
-                if (!cc.testExiste(enregistrement.coteESRB) && txtCote.Text.Trim().Length != 0)
+                if (!cc.testExiste(enregistrement.coteESRB) && txtCote.Text.Trim().Length != 0 && txtDescription.Text.Trim().Length != 0 && txtNom.Text.Trim().Length != 0)
                 {
                     resultEnrg = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
                     if (resultEnrg == DialogResult.Yes)
@@ -80,6 +89,7 @@ namespace Projet
                         try
                         {
                             cc.ajouter(enregistrement);
+                            cote = enregistrement.coteESRB;
                         }
                         catch (Exception ex)
                         {
@@ -90,9 +100,9 @@ namespace Projet
                 }
                 else
                 {
-                    if (txtCote.Text.Trim().Length != 0)
+                    if (txtCote.Text.Trim().Length != 0 && txtDescription.Text.Trim().Length != 0 && txtNom.Text.Trim().Length != 0)
                     {
-                        MessageBox.Show("La cote est trop courte", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Les champs sont mal remplis", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
                     else
