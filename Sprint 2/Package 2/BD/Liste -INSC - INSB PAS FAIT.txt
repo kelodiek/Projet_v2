@@ -2,7 +2,4 @@ TABLE						RAISON
 
 INSB_tblEmployeCasTest				tblCasTest Pas encore analyser
 INSB_tblEmployeResultatTest			tblResultatTest Pas encore analyser
-INSB_tblGroupeDroit				J'ai aucune information sur les droits
-INSB_tblGroupeUtil				
-INSB_tblGroupe					
-INSB_tblDroit					J'ai aucune idée c'est quoi les droits dispoibles pour les groupes
+INSB_tblGroupeDroit				Donner les droits selon les utilisateurs. Associer les multiples droits aux utilisateurs
