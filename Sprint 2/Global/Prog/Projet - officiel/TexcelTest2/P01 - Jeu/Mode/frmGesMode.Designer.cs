@@ -44,7 +44,7 @@
             this.dataGridMode.Name = "dataGridMode";
             this.dataGridMode.ReadOnly = true;
             this.dataGridMode.RowTemplate.Height = 24;
-            this.dataGridMode.Size = new System.Drawing.Size(1059, 382);
+            this.dataGridMode.Size = new System.Drawing.Size(1686, 795);
             this.dataGridMode.TabIndex = 51;
             this.dataGridMode.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridMode_CellClick);
             this.dataGridMode.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridMode_CellDoubleClick);
@@ -53,7 +53,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1083, 505);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.dataGridMode);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmGesMode";

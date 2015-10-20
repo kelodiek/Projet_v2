@@ -37,7 +37,6 @@ namespace Projet
 
             dataGridJeu.Columns.Add("Nom", "Nom");
             dataGridJeu.Columns.Add("Desc", "Description");
-            dataGridJeu.Columns.Add("Info", "Informations supplémentaires");
             dataGridJeu.Columns.Add("Cote", "Cote");
             dataGridJeu.Columns.Add("Genre", "Genre");
             dataGridJeu.Columns.Add("Mode", "Mode");
@@ -47,13 +46,11 @@ namespace Projet
             Column = dataGridJeu.Columns[1];
             Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             Column = dataGridJeu.Columns[2];
-            Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column = dataGridJeu.Columns[3];
             Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; 
+            Column = dataGridJeu.Columns[3];
+            Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             Column = dataGridJeu.Columns[4];
-            Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column = dataGridJeu.Columns[5];
-            Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void chargerDonnees()
@@ -72,7 +69,7 @@ namespace Projet
                     nomMode = RequeteSql.rechercheMode(j.idMode.ToString()).First().NomMode;
                 }   
                     
-                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, nomGenre, nomMode };
+                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.coteESRB, nomGenre, nomMode };
                 int tempRow = dataGridJeu.Rows.Add(tabTemp);
                 dataGridJeu.Rows[tempRow].Tag = j.idJeu;
             }
@@ -105,7 +102,7 @@ namespace Projet
                     nomMode = RequeteSql.rechercheMode(j.idMode.ToString()).First().NomMode;
                 }
 
-                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, nomGenre, nomMode };
+                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.coteESRB, nomGenre, nomMode };
                 int tempRow = dataGridJeu.Rows.Add(tabTemp);
                 if (j.nomJeu == NOMJEU)
                 {
