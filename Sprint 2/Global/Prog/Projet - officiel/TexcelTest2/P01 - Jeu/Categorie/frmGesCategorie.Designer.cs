@@ -42,7 +42,7 @@
             this.gridCateg.Name = "gridCateg";
             this.gridCateg.ReadOnly = true;
             this.gridCateg.RowTemplate.Height = 24;
-            this.gridCateg.Size = new System.Drawing.Size(1058, 380);
+            this.gridCateg.Size = new System.Drawing.Size(1686, 795);
             this.gridCateg.TabIndex = 51;
             this.gridCateg.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCateg_CellClick);
             this.gridCateg.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCateg_CellDoubleClick);
@@ -51,7 +51,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.gridCateg);
             this.Name = "frmGesCategorie";
             this.Text = "frmGesCategorie";

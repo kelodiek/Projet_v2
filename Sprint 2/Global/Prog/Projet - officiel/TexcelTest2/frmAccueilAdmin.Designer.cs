@@ -38,13 +38,12 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // ConsoleAdminAccueil
+            // frmAccueilAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 505);
-            this.Name = "ConsoleAdminAccueil";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ClientSize = new System.Drawing.Size(1710, 919);
+            this.Name = "frmAccueilAdmin";
             this.Text = "Console d\'Administration";
             this.ResumeLayout(false);
             this.PerformLayout();

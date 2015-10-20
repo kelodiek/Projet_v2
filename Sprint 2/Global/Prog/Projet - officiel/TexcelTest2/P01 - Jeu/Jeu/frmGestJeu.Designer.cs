@@ -43,7 +43,7 @@
             this.dataGridJeu.Name = "dataGridJeu";
             this.dataGridJeu.ReadOnly = true;
             this.dataGridJeu.RowTemplate.Height = 24;
-            this.dataGridJeu.Size = new System.Drawing.Size(1058, 381);
+            this.dataGridJeu.Size = new System.Drawing.Size(1686, 795);
             this.dataGridJeu.TabIndex = 51;
             this.dataGridJeu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
             this.dataGridJeu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridJeu_CellDoubleClick);
@@ -52,7 +52,7 @@
             // btnVersion
             // 
             this.btnVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.btnVersion.Location = new System.Drawing.Point(541, 458);
+            this.btnVersion.Location = new System.Drawing.Point(1296, 872);
             this.btnVersion.Name = "btnVersion";
             this.btnVersion.Size = new System.Drawing.Size(140, 35);
             this.btnVersion.TabIndex = 52;
@@ -64,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.btnVersion);
             this.Controls.Add(this.dataGridJeu);
             this.Name = "frmGestJeu";

@@ -49,17 +49,23 @@
             this.btnQuitterToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDecoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripGesEmp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripGesEquipe = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripGesEmp = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.retourInterfaceTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnX = new System.Windows.Forms.Button();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDetails
             // 
             this.btnDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetails.Location = new System.Drawing.Point(945, 458);
+            this.btnDetails.Location = new System.Drawing.Point(1573, 872);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(125, 35);
             this.btnDetails.TabIndex = 46;
@@ -69,7 +75,7 @@
             // btnAjout
             // 
             this.btnAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjout.Location = new System.Drawing.Point(814, 458);
+            this.btnAjout.Location = new System.Drawing.Point(1442, 872);
             this.btnAjout.Name = "btnAjout";
             this.btnAjout.Size = new System.Drawing.Size(125, 35);
             this.btnAjout.TabIndex = 45;
@@ -102,10 +108,12 @@
             this.btnMenuDonneToolStrip,
             this.btnMenuSecuriteToolStrip,
             this.btnMenuQuitterToolStrip,
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem5});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1082, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(1710, 31);
             this.menuStrip1.TabIndex = 50;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -235,19 +243,43 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(97, 27);
             this.toolStripMenuItem1.Text = "Personnel";
             // 
-            // toolStripGesEmp
-            // 
-            this.toolStripGesEmp.Name = "toolStripGesEmp";
-            this.toolStripGesEmp.Size = new System.Drawing.Size(175, 28);
-            this.toolStripGesEmp.Text = "Employe";
-            this.toolStripGesEmp.Click += new System.EventHandler(this.toolStripGesEmp_Click);
-            // 
             // toolStripGesEquipe
             // 
             this.toolStripGesEquipe.Name = "toolStripGesEquipe";
-            this.toolStripGesEquipe.Size = new System.Drawing.Size(175, 28);
+            this.toolStripGesEquipe.Size = new System.Drawing.Size(145, 28);
             this.toolStripGesEquipe.Text = "Equipe";
             this.toolStripGesEquipe.Click += new System.EventHandler(this.toolStripGesEquipe_Click);
+            // 
+            // toolStripGesEmp
+            // 
+            this.toolStripGesEmp.Name = "toolStripGesEmp";
+            this.toolStripGesEmp.Size = new System.Drawing.Size(145, 28);
+            this.toolStripGesEmp.Text = "Employe";
+            this.toolStripGesEmp.Click += new System.EventHandler(this.toolStripGesEmp_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem3});
+            this.toolStripMenuItem2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(67, 27);
+            this.toolStripMenuItem2.Text = "Projet";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(175, 28);
+            this.toolStripMenuItem4.Text = "GesProjet";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(175, 28);
+            this.toolStripMenuItem3.Text = "DetProjet";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // retourInterfaceTestToolStripMenuItem
             // 
@@ -265,11 +297,34 @@
             this.btnX.UseVisualStyleBackColor = true;
             this.btnX.Click += new System.EventHandler(this.btnX_Click);
             // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem6,
+            this.toolStripMenuItem7});
+            this.toolStripMenuItem5.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(109, 27);
+            this.toolStripMenuItem5.Text = "Cas de Test";
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(175, 28);
+            this.toolStripMenuItem6.Text = "GesProjet";
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(175, 28);
+            this.toolStripMenuItem7.Text = "DetCas";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
+            // 
             // frmGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.btnX);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnRecherche);
@@ -314,5 +369,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripGesEmp;
         private System.Windows.Forms.ToolStripMenuItem toolStripGesEquipe;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
     }
 }
