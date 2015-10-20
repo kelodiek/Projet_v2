@@ -38,17 +38,16 @@
             this.GridVersion.Location = new System.Drawing.Point(13, 68);
             this.GridVersion.Name = "GridVersion";
             this.GridVersion.RowTemplate.Height = 24;
-            this.GridVersion.Size = new System.Drawing.Size(1057, 384);
+            this.GridVersion.Size = new System.Drawing.Size(1686, 795);
             this.GridVersion.TabIndex = 55;
             // 
-            // frmGestVersion
+            // frmGesVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 500);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.GridVersion);
-            this.Name = "frmGestVersion";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Name = "frmGesVersion";
             this.Text = "Gestion - Version";
             this.Controls.SetChildIndex(this.GridVersion, 0);
             ((System.ComponentModel.ISupportInitialize)(this.GridVersion)).EndInit();

@@ -140,5 +140,29 @@ namespace Projet
             formOuvert.Closed += (s, args) => this.Close();
         }
 
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmGesProjet();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmDetProjet();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmDetCasTest();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
     }
 }

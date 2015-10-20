@@ -44,7 +44,7 @@
             this.gridSysExp.Name = "gridSysExp";
             this.gridSysExp.ReadOnly = true;
             this.gridSysExp.RowTemplate.Height = 24;
-            this.gridSysExp.Size = new System.Drawing.Size(1058, 381);
+            this.gridSysExp.Size = new System.Drawing.Size(1686, 795);
             this.gridSysExp.TabIndex = 50;
             this.gridSysExp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSysExp_CellClick);
             this.gridSysExp.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSysExp_CellDoubleClick);
@@ -54,7 +54,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.gridSysExp);
             this.Name = "frmGesSysExp";
             this.Text = "Gestion - Systeme Exploitation";

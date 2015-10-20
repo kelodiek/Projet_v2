@@ -43,7 +43,7 @@
             this.GridGenre.Name = "GridGenre";
             this.GridGenre.ReadOnly = true;
             this.GridGenre.RowTemplate.Height = 24;
-            this.GridGenre.Size = new System.Drawing.Size(1059, 369);
+            this.GridGenre.Size = new System.Drawing.Size(1686, 795);
             this.GridGenre.TabIndex = 45;
             this.GridGenre.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridGenre_CellClick);
             this.GridGenre.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridGenre_CellDoubleClick);
@@ -52,7 +52,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1083, 500);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.GridGenre);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmGesGenre";
