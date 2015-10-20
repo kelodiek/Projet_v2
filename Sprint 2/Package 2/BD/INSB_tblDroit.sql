@@ -1,30 +1,10 @@
 USE dbProjetE2Prod;
 GO
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RConsole','Droit lecture Console Admin');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WConsole','Droit écriture Console Admin');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('REmploye','Droit lecture Employe');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WEmploye','Droit écriture Employe');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('REquipe','Droit lecture Equipe');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WEquipe','Droit écriture Equipe');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RProjet','Droit lecture Projet');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WProjet','Droit écriture Projet');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RJeu','Droit lecture Jeu');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WJeu','Droit écriture Jeu');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RMode','Droit lecture Mode');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WMode','Droit écriture Mode');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RVer','Droit lecture Version');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WVer','Droit écriture Version');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RClass','Droit lecture Classification');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WClass','Droit écriture Classification');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RPlat','Droit lecture Plateforme');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WPlat','Droit écriture Plateforme');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RSysExp','Droit lecture Système d"exploitation');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WSysExp','Droit écriture Système d"exploitation');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RCategorie','Droit lecture Categorie');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WCategorie','Droit écriture Categorie');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RTheme','Droit lecture Theme');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WTheme','Droit écriture Theme');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RTypeTest','Droit lecture Type Test');
-INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WTypeTest','Droit écriture Type Test');
+INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RP01','Droit lecture sur tout le contenu de jeu');
+INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WP01','Droit écriture sur tout le contenu de jeu');
+INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RP02','Droit lecture sur tout le contenu employé');
+INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WP02','Droit écriture sur tout le contenu employé');
+INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RP03','Droit lecture sur tout le contenu test');
+INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WP03','Droit écriture sur tout le contenu de test');
 GO
 USE master;
