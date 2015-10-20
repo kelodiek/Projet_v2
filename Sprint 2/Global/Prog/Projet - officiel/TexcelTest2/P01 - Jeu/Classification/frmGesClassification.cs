@@ -88,12 +88,41 @@ namespace Projet
             if (GridClassification.Rows.Count != presentRow)
             {
                 GridClassification.Rows[presentRow].Selected = true;
+                GridClassification.CurrentCell = GridClassification.Rows[presentRow].Cells[0];
             }
             else
             {
                 GridClassification.Rows[0].Selected = true;
             }
+        }
 
+        private void chargerDonnees(string cote)
+        {
+            DataGridViewRow dgvr = null;
+            GridClassification.Rows.Clear();
+            foreach (Classification c in cc.chargerDonnees())
+            {
+                string[] tabTemp = new string[3] { c.coteESRB, c.nomESRB, c.descESRB };
+                int temp = GridClassification.Rows.Add(tabTemp);
+                if (c.coteESRB == cote)
+                {
+                    dgvr = GridClassification.Rows[temp];
+                }
+            }
+            GridClassification.Sort(GridClassification.Columns[tri], ListSortDirection.Ascending);
+            if (dgvr != null)
+            {
+                presentRow = GridClassification.Rows.IndexOf(dgvr);
+            }
+            if (GridClassification.Rows.Count != presentRow)
+            {
+                GridClassification.Rows[presentRow].Selected = true;
+                GridClassification.CurrentCell = GridClassification.Rows[presentRow].Cells[0];
+            }
+            else
+            {
+                GridClassification.Rows[0].Selected = true;
+            }
         }
 
         private void btnAjoutClass_Click(object sender, EventArgs e)
@@ -103,7 +132,7 @@ namespace Projet
             frmDetails.modifierChamp();
             frmDetails.btnCopier.Enabled = false;
             frmDetails.ShowDialog();
-            chargerDonnees();
+            chargerDonnees(frmDetails.cote);
         }
         private void btnDetailsClass_Click(object sender, EventArgs e)
         {
@@ -151,6 +180,7 @@ namespace Projet
             {
                 presentRow = e.RowIndex;
                 GridClassification.Rows[e.RowIndex].Selected = true;
+                GridClassification.CurrentCell = GridClassification.Rows[e.RowIndex].Cells[0];
             }
         }
 

@@ -80,6 +80,7 @@ namespace Projet
             if (dataGridJeu.Rows.Count != presentRow)
             {
                 dataGridJeu.Rows[presentRow].Selected = true;
+                dataGridJeu.CurrentCell = dataGridJeu.Rows[presentRow].Cells[0];
             }
             else
             {
@@ -87,17 +88,45 @@ namespace Projet
             }
         }
 
+        private void chargerDonnees(string NOMJEU)
+        {
+            DataGridViewRow dtvr = null;
+            dataGridJeu.Rows.Clear();
+            foreach (Jeu j in cj.chargerDonnees())
+            {
+                string nomGenre = "";
+                if (j.idGenre != 0)
+                {
+                    nomGenre = RequeteSql.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                }
+                string nomMode = "";
+                if (j.idMode != 0)
+                {
+                    nomMode = RequeteSql.rechercheMode(j.idMode.ToString()).First().NomMode;
+                }
+
+                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, nomGenre, nomMode };
+                int tempRow = dataGridJeu.Rows.Add(tabTemp);
+                if (j.nomJeu == NOMJEU)
+                {
+                   dtvr = dataGridJeu.Rows[tempRow];
+                }
+                dataGridJeu.Rows[tempRow].Tag = j.idJeu;
+            }
+            dataGridJeu.Sort(dataGridJeu.Columns[tri], ListSortDirection.Ascending);
+            if (dtvr != null)
+            {
+                presentRow = dataGridJeu.Rows.IndexOf(dtvr);
+            }
+            dataGridJeu.Rows[presentRow].Selected = true;
+            dataGridJeu.CurrentCell = dataGridJeu.Rows[presentRow].Cells[0];
+        }
+
         public void detailsJeu_Click(object sender, EventArgs e)
         {
             if (dataGridJeu.SelectedRows.Count == 1)
             {
-                Jeu temp = new Jeu();
-                foreach (var j in rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[presentRow].Tag)))
-                {
-                    temp = new Jeu(j);
-                }
-
-                var frmDetails = new frmDetJeu(temp);
+                var frmDetails = new frmDetJeu(rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[presentRow].Tag)).First());
 
                 frmDetails.ShowDialog();
                 chargerDonnees();
@@ -110,8 +139,9 @@ namespace Projet
         public void ajoutJeu_Click(object sender, EventArgs e)
         {
             var frmDetails = new frmDetJeu();
-
+            
             frmDetails.ShowDialog();
+            chargerDonnees(frmDetails.nomJeu);
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -163,13 +193,7 @@ namespace Projet
                 dataGridJeu.Rows[e.RowIndex].Selected = true;
                 if (dataGridJeu.SelectedRows.Count == 1)
                 {
-                    Jeu temp = new Jeu();
-                    foreach (var j in rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[e.RowIndex].Tag)))
-                    {
-                        temp = new Jeu(j);
-                    }
-
-                    var frmDetails = new frmDetJeu(temp);
+                    var frmDetails = new frmDetJeu(rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[e.RowIndex].Tag)).First());
 
                     frmDetails.ShowDialog();
                     chargerDonnees();
