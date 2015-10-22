@@ -26,6 +26,5 @@ INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ViRen1',7);
 INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('BeLeb1',7);
 INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ChefEBeLeb1',4);
 INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ChefEJuPed1',4);
-INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('',);
 GO
 USE master;
