@@ -1,9 +1,4 @@
 ﻿//      Gabriel Simard
-//      ajouter cette ligne de code au moment du lancement de ce programme
-//      Ces pour créer le dossier qui va recevoir le fichier text nouveau.txt  qui contient les nouveaux employes
-//string pathfile = (Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel"));
-//            if (File.Exists(pathfile) == false)
-//                Directory.CreateDirectory(pathfile);
 
 using System;
 using System.Collections.Generic;
@@ -27,25 +22,8 @@ namespace Projet
             gestionEmp = new ctrlEmploye(true);
             chargerColonnes();
             gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
-            btnDetails.Visible = true;
-            btnRecherche.Visible = true;
-            txtRecherche.Visible = true;
-            btnX.Visible = true;
-            btnDetails.Click += new EventHandler(btnDetails_Click);
-            btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            btnX.Click += new EventHandler(btnX_Click);
-            btnRejet.Click += new EventHandler(btnDesactiver_Click);
-            btnRejet.Text = "Désactiver";
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            this.Text = "Texel : Gestion - Employés";
-        }
-
-        public frmGesEmp(int F, int I, ListSortDirection S)
-        {
-            InitializeComponent();
-            gestionEmp = new ctrlEmploye(true);
-            chargerColonnes();
-            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
+            gridEmploye.Rows[0].Selected = true;
+            this.Tag = gridEmploye.Rows[0].Tag;
             btnDetails.Visible = true;
             btnRecherche.Visible = true;
             txtRecherche.Visible = true;
@@ -64,18 +42,12 @@ namespace Projet
             InitializeComponent();
             gestionEmp = new ctrlEmploye(false);
             chargerColonnes();
-            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
             btnDetails.Visible = false;
             btnAjout.Visible = true;
             btnAjout.Left = btnDetails.Left;
             btnRecherche.Visible = true;
             btnX.Visible = true;
             txtRecherche.Visible = true;
-            btnAjout.Click += new EventHandler(btnDetails_Click);
-            btnRejet.Click += new EventHandler(btnDesactiver_Click);
-            btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            btnX.Click += new EventHandler(btnX_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
             btnRejet.Text = "Retirer";
             this.Text = "Texel : Gestion - Nouveaux Employés";
         }
@@ -126,6 +98,18 @@ namespace Projet
                     gridEmploye.Rows[rowIndex].Tag = gestionEmp.lstEmployeNV[i];
                 i++;
             }
+
+            if (gestionEmp.etat == false && gestionEmp.lstEmployeNV.Count != 0)
+            {
+                gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
+                gridEmploye.Rows[0].Selected = true;
+                this.Tag = gridEmploye.Rows[0].Tag;
+                btnAjout.Click += new EventHandler(btnDetails_Click);
+                btnRejet.Click += new EventHandler(btnDesactiver_Click);
+                btnRecherche.Click += new EventHandler(btnRecherche_Click);
+                btnX.Click += new EventHandler(btnX_Click);
+                this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            }
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
@@ -161,7 +145,7 @@ namespace Projet
             {
                 detailEmploye = new frmDetEmp((Employe)this.Tag);
                 detailEmploye.ShowDialog();
-                if(this.Tag != detailEmploye.Tag)
+                if (this.Tag != detailEmploye.Tag)
                     update();
             }
             else
@@ -173,19 +157,21 @@ namespace Projet
                 }
                 detailEmploye = new frmDetEmp(nEmp);
                 detailEmploye.ShowDialog();
-                if (detailEmploye.Tag.ToString() == "1")        //      il est ajouter
+
+                if (detailEmploye.Tag.ToString() == "1" && gestionEmp.verifAjout(detailEmploye.empSelect) == true)        //      il est ajouter
                 {
                     gestionEmp.supprimer(this.Tag);
                     gridEmploye.Rows.RemoveAt(gridEmploye.SelectedRows[0].Index);
-                    if (gridEmploye.Rows.Count == 0)
-                        this.Close();
-                    else
-                    {
-                        gridEmploye.Rows[0].Selected = true;
-                        gridEmploye.Rows[0].Cells[0].Selected = true;
-                        this.Tag = gridEmploye.Rows[0].Tag;
-                    }
-                }  
+                }
+
+                if (gridEmploye.Rows.Count == 0)
+                    this.Close();
+                else
+                {
+                    gridEmploye.Rows[0].Selected = true;
+                    gridEmploye.Rows[0].Cells[0].Selected = true;
+                    this.Tag = gridEmploye.Rows[0].Tag;
+                }
             }
         }
 
@@ -257,6 +243,7 @@ namespace Projet
             chargeDonnee();
             txtRecherche.Text = "";
             gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
+            gridEmploye.Rows[0].Selected = true;
         }
 
         //      Désactiver ou effacer les employe désiré
@@ -264,11 +251,11 @@ namespace Projet
         {
             if (gridEmploye.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Veiller sélectionner un employe pour désactiver", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Veiller sélectionner un employe à " + btnRejet.Text, "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            DialogResult resultEnrg = MessageBox.Show("Voulez-vous vraiment supprimer?", "Suppression", MessageBoxButtons.YesNo);
+            DialogResult resultEnrg = MessageBox.Show("Voulez-vous vraiment " + btnRejet.Text + " ?", "Suppression", MessageBoxButtons.YesNo);
             if (resultEnrg == DialogResult.Yes)
             {
                 if (gestionEmp.etat == true)
@@ -286,7 +273,6 @@ namespace Projet
                     {
                         btnX.PerformClick();
                         gridEmploye.Rows[0].Selected = true;
-                        gridEmploye.Rows[0].Cells[0].Selected = true;
                         this.Tag = gridEmploye.Rows[0].Tag;
                     }
                 }

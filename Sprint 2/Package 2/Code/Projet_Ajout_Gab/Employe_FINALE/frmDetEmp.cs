@@ -13,23 +13,8 @@ namespace Projet
 {
     public partial class frmDetEmp : frmDetail
     {
-        private Employe empSelect { get; set; }
+        public Employe empSelect { get; set; }
         private ctrlEmploye ctrlEm;
-
-        //     useless
-        public frmDetEmp()
-        {
-            InitializeComponent();
-            ctrlEm = new ctrlEmploye(true);
-            btnCopier.Visible = false;
-            btnSupprimer.Visible = false;
-            this.btnAnnuler.Location = new Point(784, 477);
-            this.btnEnregistrer.Location = new Point(10, 477);
-            this.btnActiverModif.Location = new Point(125, 477);
-            this.btnSupprimer.Location = new Point(240, 477);
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            ChargeTypeTest();
-        }
 
         //      Employe existant
         public frmDetEmp(Employe E)
@@ -132,8 +117,6 @@ namespace Projet
                 return;
             }
 
-            
-
             enregistrement.idEmp = Int32.Parse(txtId.Text.Trim());
             enregistrement.prenomEmp = txtPrenom.Text.Trim();
             enregistrement.nomEmp = txtNom.Text.Trim();
@@ -174,6 +157,7 @@ namespace Projet
                     if (resultEnr == DialogResult.Yes)
                     {
                         ctrlEm.ajouter(enregistrement);
+                        empSelect = enregistrement;
                         this.Tag = "1";
                         this.Close();
                     } 

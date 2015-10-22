@@ -164,6 +164,30 @@ namespace Projet
             return true;
         }
 
+        public bool verifAjout(Employe nouv)
+        {
+            lstEmploye.Clear();
+            var lstBrut = rEmployeSQL.getEmploye();
+
+            foreach (tblEmploye item in lstBrut)
+            {
+                lstEmploye.Add(new Employe(item));
+            } 
+
+            foreach (Employe e in lstEmploye)
+            {
+                if (nouv.idEmp == e.idEmp &&
+                    nouv.prenomEmp == e.prenomEmp &&
+                    nouv.nomEmp == e.nomEmp &&
+                    nouv.courrielEmp == e.courrielEmp &&
+                    nouv.noTelPrincipal == e.noTelPrincipal &&
+                    nouv.adressePostale == e.adressePostale &&
+                    nouv.dateEmbaucheEmp == e.dateEmbaucheEmp)
+                        return true;
+            }
+            return false;
+        }
+
         public List<string[]> charger()
         {
             var lstLigne = new List<string[]>();
@@ -204,7 +228,7 @@ namespace Projet
             }
             else
             {
-                MessageBox.Show("Il n'y a aucun nouvel employe, Ressayer plus tard", "Aucun fichier trouver", MessageBoxButtons.OK);
+                MessageBox.Show("Il n'y a aucun nouvel employe, Ressayer plus tard", "Aucun fichier trouver", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return lstLigne;

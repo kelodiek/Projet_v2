@@ -18,8 +18,6 @@ namespace Projet
                 where e.Statut == "A"
                 select e;
 
-            //MessageBox.Show("autre statut 1 = " + ((tblEmploye)r.First()).Statut);
-
             return r;
         }
 
@@ -61,8 +59,6 @@ namespace Projet
             ajout.Statut = settings.statut;
             ajout.CommentaireEmp = settings.commentaireEmp;
             
-            //ajout.tblTypeTest = lstTypeTest;
-
             bd.tblEmploye.Add(ajout);
 
             try
@@ -116,9 +112,6 @@ namespace Projet
             r.DateEmbaucheEmp = settings.dateEmbaucheEmp;
             r.CompetenceParticuliere = settings.competenceParticuliere;
             r.CommentaireEmp = settings.commentaireEmp;
-
-            //                ca va tu marché ?????????????????????????
-            //r.tblTypeTest = lstTypeTest;
 
             try
             {
