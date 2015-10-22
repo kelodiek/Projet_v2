@@ -22,7 +22,7 @@ INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpi
 INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('JoLan1','defaut','o','n','20151005',7,15,"o");
 INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('JuFle1','fleur','o','n','20151005',7,16,"o");
 INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('ModJuFle1','fleur','o','n','20151005',6,16,"o");
-INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('ViRen1','rive','n','n','20151005',7,17,"o");
+INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('ViRen1','rive','n','n','20151005',7,17,"n");
 INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('BeLeb1','belle','o','n','20151005',7,18,"o");
 INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('ChefEBeLeb1','Rouge','o','n','20151005',4,18,"o");
 INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('ChefEJuPed1','Blanc','o','n','20151005',4,20,"o");
