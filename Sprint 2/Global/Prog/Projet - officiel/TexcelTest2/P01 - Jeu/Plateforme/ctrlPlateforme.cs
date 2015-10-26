@@ -16,7 +16,7 @@ namespace Projet
         public void ajouter(object o)
         {
             var ajout = plateTotblPlate((plateforme)o);
-            RequeteSql.addPlateforme(ajout);
+            rPlateSQL.addPlateforme(ajout);
         }
 
         public void modifier(object o)
@@ -24,19 +24,19 @@ namespace Projet
             var nouv = plateTotblPlate((plateforme)o);
             nouv.IdPlateforme = ((plateforme)o).idPlate;
 
-            RequeteSql.setPlateforme(nouv);
+            rPlateSQL.setPlateforme(nouv);
         }
 
         public bool supprimer(object o)
         {
-            if (RequeteSql.checkPlateJeu((int)o))
+            if (rPlateSQL.checkPlateJeu((int)o))
             {
                 return false;
             }
             else
             {
-                RequeteSql.deletePlateformeSysExp((int)o);
-                RequeteSql.deletePlateforme((int)o);
+                rPlateSQL.deletePlateformeSysExp((int)o);
+                rPlateSQL.deletePlateforme((int)o);
                 return true;
             }
         }
@@ -61,14 +61,14 @@ namespace Projet
         {
             string[] row;
             List<string[]> lstRows = new List<string[]>();
-            var lstBrut = RequeteSql.getPlateforme();
+            var lstBrut = rPlateSQL.getPlateforme();
             lstPlateforme = new List<plateforme>();
 
             foreach (var item in lstBrut)
             {
                 lstPlateforme.Add(new plateforme(item));
 
-                row = new string[] {item.IdPlateforme.ToString(),
+                row = new string[] {
                     item.CodePlateforme,
                     item.NomPlateforme,
                     item.CodeCategorie,

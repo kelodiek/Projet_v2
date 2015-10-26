@@ -22,13 +22,13 @@ namespace Projet
         }
         public void ajouterSysExp(SystemeExploitation sysExp)
         {
-            RequeteSql.addSysExp(sysExp);
+            rSysExpSQL.addSysExp(sysExp);
         }
 
         public List<string[]> chargerDonnees()
         {
             var lstRows = new List<string[]>();
-            var lstBrut = RequeteSql.getSysExp();
+            var lstBrut = rSysExpSQL.getSysExp();
             string[] row;
 
             foreach (var item in lstBrut)
@@ -51,7 +51,7 @@ namespace Projet
         public List<SystemeExploitation> rechercher(string chaine)
         {
             List<SystemeExploitation> lstSysExp = new List<SystemeExploitation>();
-            foreach (var c in RequeteSql.srchSysExp(chaine))
+            foreach (var c in rSysExpSQL.srchSysExp(chaine))
             {
                 SystemeExploitation sysexp = new SystemeExploitation(c);                
                 lstSysExp.Add(sysexp);
@@ -62,18 +62,18 @@ namespace Projet
         {
             foreach (var item in lstID)
             {
-                RequeteSql.deleteSysExp(item);
+                rSysExpSQL.deleteSysExp(item);
             }
         }
         public void enregistrer(SystemeExploitation sysExp)
         {
             if (sysExp.idSysExp == 0)
             {
-                RequeteSql.addSysExp(sysExp);
+                rSysExpSQL.addSysExp(sysExp);
             }
             else
             {
-                RequeteSql.setSysExp(sysExp);
+                rSysExpSQL.setSysExp(sysExp);
             }
             
         }

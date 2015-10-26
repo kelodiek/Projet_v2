@@ -63,7 +63,7 @@ GO
 CREATE TABLE Personnel.tblDroit
 (
 CodeDroit		VARCHAR(15)	NOT NULL,
-DescDroit		VARCHAR(40)	NOT NULL
+DescDroit		VARCHAR(60)	NOT NULL
 )
 GO
 PRINT 'Création de Personnel.tblDroit complétée'
@@ -81,7 +81,8 @@ PremiereConex	CHAR			NOT NULL,
 MotPasExpire	CHAR			NOT NULL,
 DateModifMotPas	DATE			NULL,
 IdRole			INT				NOT NULL,
-IdEmp			INT				NOT NULL
+IdEmp			INT				NOT NULL,
+Actif			CHAR			NOT NULL
 )
 GO
 PRINT 'Création de Personnel.tblUtilisateur complétée'

@@ -11,7 +11,6 @@ namespace Projet
         private int IdEmp;
         private string PrenomEmp, NomEmp, CourrielEmp, NoTelPrincipal, NoTelSecondaire, AdressePostale, CompetenceParticuliere, Statut, CommentaireEmp;
         private DateTime DateEmbaucheEmp;
-        private tblEmploye TblE;
         private List<TypeTest> LstEmTypeTest;
 
         public Employe()
@@ -27,7 +26,6 @@ namespace Projet
             CompetenceParticuliere = "";
             Statut = "n";
             CommentaireEmp = "";
-            TblE = null;
             LstEmTypeTest = new List<TypeTest>();
         }
 
@@ -44,7 +42,6 @@ namespace Projet
             CompetenceParticuliere = _comp;
             Statut = _sta;
             CommentaireEmp = _comm;
-            TblE = _emp;
             LstEmTypeTest = new List<TypeTest>();
         }
 
@@ -61,8 +58,12 @@ namespace Projet
             CompetenceParticuliere = _emp.CompetenceParticuliere;
             Statut = _emp.Statut;
             CommentaireEmp = _emp.CommentaireEmp;
-            TblE = _emp;
             LstEmTypeTest = new List<TypeTest>();
+            foreach (tblTypeTest item in _emp.tblTypeTest)
+            {
+                TypeTest tt = new TypeTest(item);
+                LstEmTypeTest.Add(tt);
+            }
         }
 
         public int idEmp 
@@ -131,16 +132,10 @@ namespace Projet
             set { CommentaireEmp = value; }
         }
 
-        //public tblEmploye tblE
-        //{
-        //    get { return TblE; }
-        //    set { TblE = value; }
-        //}
-
         public List<TypeTest> lstEmTypeTest
         {
-            get { return lstEmTypeTest; }
-            set { lstEmTypeTest = value; }
+            get { return LstEmTypeTest; }
+            set { LstEmTypeTest = value; }
         }
     }
 }
