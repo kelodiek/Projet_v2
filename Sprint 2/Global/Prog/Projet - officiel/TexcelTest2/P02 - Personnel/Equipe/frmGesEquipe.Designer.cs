@@ -43,15 +43,18 @@
             this.gridEquipe.Name = "gridEquipe";
             this.gridEquipe.ReadOnly = true;
             this.gridEquipe.RowTemplate.Height = 24;
-            this.gridEquipe.Size = new System.Drawing.Size(1061, 381);
+            this.gridEquipe.Size = new System.Drawing.Size(1686, 795);
             this.gridEquipe.TabIndex = 50;
+            this.gridEquipe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentClick);
             this.gridEquipe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentClick);
+            this.gridEquipe.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentClick);
+            this.gridEquipe.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentClick);
             // 
             // frmGesEquipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.gridEquipe);
             this.Name = "frmGesEquipe";
             this.Text = "Texcel - Gestion - Equipes";

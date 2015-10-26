@@ -143,7 +143,7 @@ namespace Projet
             {
                 int id = Convert.ToInt32(txtID.Text);
 
-                RequeteSql.deleteSysExp(id);
+                rSysExpSQL.deleteSysExp(id);
 
                 this.Close();
             }

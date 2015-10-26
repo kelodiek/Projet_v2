@@ -38,7 +38,7 @@ namespace Projet
             foreach (Theme item in p.lstTheme)
             {
                 theme = new tblTheme();
-                theme = RequeteSql.RechercheTheme(item.idTheme.ToString()).First();
+                theme = rThemeSQL.RechercheTheme(item.idTheme.ToString()).First();
                 jeu.tblTheme.Add(theme);
             }
             foreach (plateforme item in p.lstPlateforme)
