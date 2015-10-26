@@ -38,6 +38,7 @@
         <AssociationConnector Association="dbProjetE2ProdModel.tblEmployeTypeTest" />
         <AssociationConnector Association="dbProjetE2ProdModel.tblEquipeTesteur" />
         <AssociationConnector Association="dbProjetE2ProdModel.tblEquipeTypeTest" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.AllChefEquipe" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

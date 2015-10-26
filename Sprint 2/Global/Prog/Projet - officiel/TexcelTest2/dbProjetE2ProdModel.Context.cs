@@ -41,5 +41,6 @@ namespace Projet
         public virtual DbSet<tblUtilisateur> tblUtilisateur { get; set; }
         public virtual DbSet<tblEquipe> tblEquipe { get; set; }
         public virtual DbSet<tblTypeTest> tblTypeTest { get; set; }
+        public virtual DbSet<AllChefEquipe> AllChefEquipe { get; set; }
     }
 }

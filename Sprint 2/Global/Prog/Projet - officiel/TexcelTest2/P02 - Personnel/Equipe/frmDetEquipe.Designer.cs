@@ -118,6 +118,7 @@
             this.cboxFiltre.Name = "cboxFiltre";
             this.cboxFiltre.Size = new System.Drawing.Size(136, 24);
             this.cboxFiltre.TabIndex = 76;
+            this.cboxFiltre.Text = "Aucun";
             // 
             // cboxChefEquipe
             // 
@@ -213,6 +214,7 @@
             // 
             // lstTreeSelectTest
             // 
+            this.lstTreeSelectTest.HideSelection = false;
             this.lstTreeSelectTest.Location = new System.Drawing.Point(254, 46);
             this.lstTreeSelectTest.Name = "lstTreeSelectTest";
             this.lstTreeSelectTest.Size = new System.Drawing.Size(186, 138);
@@ -220,6 +222,7 @@
             // 
             // lstTreeTypeTest
             // 
+            this.lstTreeTypeTest.HideSelection = false;
             this.lstTreeTypeTest.Location = new System.Drawing.Point(8, 46);
             this.lstTreeTypeTest.Name = "lstTreeTypeTest";
             this.lstTreeTypeTest.Size = new System.Drawing.Size(179, 138);
@@ -262,6 +265,7 @@
             // 
             // lstTreeSelectEmploye
             // 
+            this.lstTreeSelectEmploye.HideSelection = false;
             this.lstTreeSelectEmploye.Location = new System.Drawing.Point(269, 78);
             this.lstTreeSelectEmploye.Name = "lstTreeSelectEmploye";
             this.lstTreeSelectEmploye.Size = new System.Drawing.Size(186, 138);
@@ -269,6 +273,7 @@
             // 
             // lstTreeEmploye
             // 
+            this.lstTreeEmploye.HideSelection = false;
             this.lstTreeEmploye.Location = new System.Drawing.Point(8, 78);
             this.lstTreeEmploye.Name = "lstTreeEmploye";
             this.lstTreeEmploye.Size = new System.Drawing.Size(194, 138);

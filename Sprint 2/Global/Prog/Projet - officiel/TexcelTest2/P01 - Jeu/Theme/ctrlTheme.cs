@@ -23,22 +23,22 @@ namespace Projet
 
         public void ajouter(object o)
         {
-            RequeteSql.addTheme((Theme)o);
+            rThemeSQL.addTheme((Theme)o);
         }
         public void supprimer(object o)
         {
             Theme t = (Theme)o;
-            RequeteSql.deleteTheme(Convert.ToInt32(t.idTheme));
+            rThemeSQL.deleteTheme(Convert.ToInt32(t.idTheme));
         }
 
         public void modifier(object o)
         {
-            RequeteSql.setTheme((Theme)o);
+            rThemeSQL.setTheme((Theme)o);
         }
         public List<Theme> recherche(string Key)
         {
             List<Theme> lstTheme = new List<Theme>();
-            foreach (var c in RequeteSql.RechercheTheme(Key))
+            foreach (var c in rThemeSQL.RechercheTheme(Key))
             {
                 Theme theme = new Theme(c.IdTheme, c.NomTheme, c.ComTheme);
                 lstTheme.Add(theme);
@@ -63,7 +63,7 @@ namespace Projet
 
         public List<string[]> charger()
         {
-            var lstBrut = RequeteSql.getAllTheme();
+            var lstBrut = rThemeSQL.getAllTheme();
             var lstRows = new List<string[]>();
 
             string[] row;

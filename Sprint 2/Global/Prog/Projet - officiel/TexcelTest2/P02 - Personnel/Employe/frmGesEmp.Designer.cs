@@ -44,7 +44,7 @@
             this.gridEmploye.Name = "gridEmploye";
             this.gridEmploye.ReadOnly = true;
             this.gridEmploye.RowTemplate.Height = 24;
-            this.gridEmploye.Size = new System.Drawing.Size(1058, 381);
+            this.gridEmploye.Size = new System.Drawing.Size(1686, 795);
             this.gridEmploye.TabIndex = 52;
             this.gridEmploye.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEmploye_CellClick);
             this.gridEmploye.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEmploye_CellDoubleClick);
@@ -52,7 +52,7 @@
             // btnRejet
             // 
             this.btnRejet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.btnRejet.Location = new System.Drawing.Point(683, 458);
+            this.btnRejet.Location = new System.Drawing.Point(1311, 872);
             this.btnRejet.Name = "btnRejet";
             this.btnRejet.Size = new System.Drawing.Size(125, 35);
             this.btnRejet.TabIndex = 54;
@@ -63,7 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.btnRejet);
             this.Controls.Add(this.gridEmploye);
             this.Name = "frmGesEmp";

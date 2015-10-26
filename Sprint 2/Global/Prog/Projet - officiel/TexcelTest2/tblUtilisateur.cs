@@ -26,6 +26,7 @@ namespace Projet
         public Nullable<System.DateTime> DateModifMotPas { get; set; }
         public int IdRole { get; set; }
         public int IdEmp { get; set; }
+        public string Actif { get; set; }
     
         public virtual tblEmploye tblEmploye { get; set; }
         public virtual tblRole tblRole { get; set; }

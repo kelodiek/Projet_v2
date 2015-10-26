@@ -23,16 +23,16 @@ namespace Projet
 
         public void ajouter(object o)
         {
-            RequeteSql.addCateg((Categorie)o);
+            rCategSQL.addCateg((Categorie)o);
         }
         public void supprimer(object o)
         {
-            RequeteSql.deleteCateg((string)o);
+            rCategSQL.deleteCateg((string)o);
         }
 
         public void modifier(object o)
         {
-            RequeteSql.setCateg((Categorie)o);
+            rCategSQL.setCateg((Categorie)o);
         }
 
         public bool verifier(object o, object n)
@@ -69,7 +69,7 @@ namespace Projet
         public List<Categorie> rechercher(string chaine)
         {
             List<Categorie> lstCat = new List<Categorie>();
-            foreach (var c in RequeteSql.srchCategorieAll(chaine))
+            foreach (var c in rCategSQL.srchCategorieAll(chaine))
             {
                 Categorie cat = new Categorie(c);
                 lstCat.Add(cat);
@@ -79,7 +79,7 @@ namespace Projet
 
         public List<string[]> charger()
         {
-            var lstBrut = RequeteSql.getCategorie();
+            var lstBrut = rCategSQL.getCategorie();
             var lstRows = new List<string[]>();
 
             string[] row;
@@ -98,7 +98,7 @@ namespace Projet
         }
         public bool testExiste(string code)
         {
-            IQueryable<tblCategorie> lstCateg = RequeteSql.srchCategorie(code);
+            IQueryable<tblCategorie> lstCateg = rCategSQL.srchCategorie(code);
 
             int qte = lstCateg.Count<tblCategorie>();
 

@@ -10,31 +10,27 @@ namespace Projet
     class ctrlMode : IControle
     {
         private List<Mode> listMode;
-
-        public List<Mode> lstMode
-        {
-            get { return listMode; }
-            set { listMode = value; }
-        }
+        public bool Statut;
 
         public ctrlMode()
         {
             listMode = new List<Mode>();
+            Statut = true;
         }
 
         public void ajouter(object m)
         {
-            RequeteSql.addMode((Mode)m);
+            rModeSQL.addMode((Mode)m);
         }
 
         public void modifier(object m)
         {
-            RequeteSql.setMode((Mode)m);
+            rModeSQL.setMode((Mode)m);
         }
 
         public void supprimer(object m)
         {
-            RequeteSql.deleteMode(Int32.Parse(m.ToString()));
+            rModeSQL.deleteMode(Int32.Parse(m.ToString()));
         }
 
         public bool verifier(object m, object o)
@@ -54,6 +50,47 @@ namespace Projet
                 MessageBox.Show("Votre Description de mode n'est pas valide", "Erreur", MessageBoxButtons.OK);
                 return false;
             }
+
+            if (Statut == false)
+            {
+                if (ancien != null)
+                {
+                    if (nouv.nomMode == ancien.nomMode)
+                    {
+                        if(nouv.descMode == ancien.descMode)
+                            MessageBox.Show("Vous n'avez changer aucun champs, modifier les avant d'enregistrer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show("Vous n'avez changer pas changer le titre du mode, changer le et réessayer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return false;
+                    }
+                }
+
+                foreach (Mode mm in listMode)
+                {
+                    if (mm.nomMode == nouv.nomMode && mm.nomMode == ancien.nomMode)
+                    {
+                        if (mm.descMode == nouv.descMode)
+                            MessageBox.Show("Il existe déjà un mode semblable à celui-ci", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show("Il existe déjà un mode avec ce nom", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                if (ancien.descMode == null)
+                    ancien.descMode = "";
+
+                if(nouv.nomMode == ancien.nomMode &&
+                    nouv.descMode == ancien.descMode)
+                {
+                    MessageBox.Show("Vous ne pouvez enregistrer si vous ne changer pas les champs", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -80,7 +117,7 @@ namespace Projet
 
         public List<string[]> charger()
         {
-            var lstbrut = RequeteSql.getAllMode();
+            var lstbrut = rModeSQL.getAllMode();
             var lstLigne = new List<string[]>();
 
             string[] ligne;
@@ -100,7 +137,7 @@ namespace Projet
         {
             List<Mode> lstMo = new List<Mode>();
 
-            foreach (var item in RequeteSql.rechercheMode(cle))
+            foreach (var item in rModeSQL.rechercheMode(cle))
             {
                 Mode Mo = new Mode(item.IdMode, item.NomMode, item.DescMode);
                 lstMo.Add(Mo);
