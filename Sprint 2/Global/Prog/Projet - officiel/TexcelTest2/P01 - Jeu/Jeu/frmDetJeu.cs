@@ -50,14 +50,14 @@ namespace Projet
             string nomGenre = "";
             if (jeu.IdGenre != 0)
             {
-                nomGenre = RequeteSql.rechercheGenre(jeu.IdGenre.ToString()).First().NomGenre;
+                nomGenre = rGenreSQL.rechercheGenre(jeu.IdGenre.ToString()).First().NomGenre;
             }
             cboxGenre.Text = nomGenre;
             this.cboxMode.Enabled = false;
             string nomMode = "";
             if (jeu.IdMode != 0)
             {
-                nomMode = RequeteSql.rechercheMode(jeu.IdMode.ToString()).First().NomMode;
+                nomMode = rModeSQL.rechercheMode(jeu.IdMode.ToString()).First().NomMode;
             }
             cboxMode.Text = nomMode;
             this.rtxtInfoSup.ReadOnly = true;
@@ -102,21 +102,21 @@ namespace Projet
             this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
 
-            foreach (var t in RequeteSql.getAllTheme())
+            foreach (var t in rThemeSQL.getAllTheme())
             {
                 TreeNode tn = tvAllTheme.Nodes.Add(t.NomTheme);
                 tn.Tag = t;
             }
-            foreach (var p in RequeteSql.getPlateforme())
+            foreach (var p in rPlateSQL.getPlateforme())
             {
                 TreeNode tn = tvAllPlateforme.Nodes.Add(p.NomPlateforme);
                 tn.Tag = p;
             }
-            foreach (var g in RequeteSql.getAllGenre())
+            foreach (var g in rGenreSQL.getAllGenre())
             {
                 cboxGenre.Items.Add(g.NomGenre);
             }
-            foreach (var m in RequeteSql.getAllMode())
+            foreach (var m in rModeSQL.getAllMode())
             {
                 cboxMode.Items.Add(m.NomMode);
             }
@@ -266,14 +266,14 @@ namespace Projet
                 nouvJeu.Actif = true;
                 if (cboxGenre.Text != "")
                 {
-                    foreach (var g in RequeteSql.rechercheGenre(cboxGenre.Text))
+                    foreach (var g in rGenreSQL.rechercheGenre(cboxGenre.Text))
                     {
                         nouvJeu.IdGenre = g.IdGenre;
                     }
                 }
                 if (cboxMode.Text != "")
                 {
-                    foreach (var g in RequeteSql.rechercheMode(cboxMode.Text))
+                    foreach (var g in rModeSQL.rechercheMode(cboxMode.Text))
                     {
                         nouvJeu.IdMode = g.IdMode;
                     }
@@ -326,14 +326,14 @@ namespace Projet
                 nouvJeu.Actif = true;
                 if (cboxGenre.Text != "")
                 {
-                    foreach (var g in RequeteSql.rechercheGenre(cboxGenre.Text))
+                    foreach (var g in rGenreSQL.rechercheGenre(cboxGenre.Text))
                     {
                         nouvJeu.IdGenre = g.IdGenre;
                     }
                 }
                 if (cboxMode.Text != "")
                 {
-                    foreach (var g in RequeteSql.rechercheMode(cboxMode.Text))
+                    foreach (var g in rModeSQL.rechercheMode(cboxMode.Text))
                     {
                         nouvJeu.IdMode = g.IdMode;
                     }
@@ -382,14 +382,14 @@ namespace Projet
             copieJeu.Actif = true;
             if (cboxGenre.Text != "")
             {
-                foreach (var g in RequeteSql.rechercheGenre(cboxGenre.Text))
+                foreach (var g in rGenreSQL.rechercheGenre(cboxGenre.Text))
                 {
                     copieJeu.IdGenre = g.IdGenre;
                 }
             }
             if (cboxMode.Text != "")
             {
-                foreach (var g in RequeteSql.rechercheMode(cboxMode.Text))
+                foreach (var g in rModeSQL.rechercheMode(cboxMode.Text))
                 {
                     copieJeu.IdMode = g.IdMode;
                 }

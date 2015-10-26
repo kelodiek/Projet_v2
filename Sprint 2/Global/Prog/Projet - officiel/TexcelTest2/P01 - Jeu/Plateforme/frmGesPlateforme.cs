@@ -30,21 +30,18 @@ namespace Projet
         {
             DataGridViewColumn column;
 
-            gridPlateforme.Columns.Add("ID","ID");
             gridPlateforme.Columns.Add("Code", "Code");
             gridPlateforme.Columns.Add("Nom", "Nom");
             gridPlateforme.Columns.Add("Categ", "Catégorie");
             gridPlateforme.Columns.Add("Desc", "Description");
 
             column = gridPlateforme.Columns[0];
-            column.Width = 50;
+            column.Width = 100;
             column = gridPlateforme.Columns[1];
             column.Width = 100;
             column = gridPlateforme.Columns[2];
             column.Width = 150;
             column = gridPlateforme.Columns[3];
-            column.Width = 150;
-            column = gridPlateforme.Columns[4];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             updateDonnees();
@@ -131,6 +128,16 @@ namespace Projet
         private void gridPlateforme_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             sortColumn = e.ColumnIndex;
+        }
+
+        private void gridPlateforme_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                gridPlateforme.Rows[e.RowIndex].Selected = true;
+
+                afficherDetails();
+            }
         }
     }
 }

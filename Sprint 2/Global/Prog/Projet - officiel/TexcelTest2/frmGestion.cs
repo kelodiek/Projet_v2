@@ -108,25 +108,10 @@ namespace Projet
 
         }
 
-        private void toolStripDetEmp_Click(object sender, EventArgs e)
-        {
-            var formOuvert = new frmDetEmp();
-            this.Hide();
-            formOuvert.Show();
-            formOuvert.Closed += (s, args) => this.Close();
-        }
 
         private void toolStripGesEmp_Click(object sender, EventArgs e)
         {
             var formOuvert = new frmGesEmp();
-            this.Hide();
-            formOuvert.Show();
-            formOuvert.Closed += (s, args) => this.Close();
-        }
-
-        private void toolStripDetEquipe_Click(object sender, EventArgs e)
-        {
-            var formOuvert = new frmDetEquipe();
             this.Hide();
             formOuvert.Show();
             formOuvert.Closed += (s, args) => this.Close();
@@ -142,27 +127,21 @@ namespace Projet
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            var formOuvert = new frmGesProjet();
+            var formOuvert = new frmGesComptes();
             this.Hide();
             formOuvert.Show();
             formOuvert.Closed += (s, args) => this.Close();
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
-            var formOuvert = new frmDetProjet();
+            var formOuvert = new frmGesGroupeUser();
             this.Hide();
             formOuvert.Show();
             formOuvert.Closed += (s, args) => this.Close();
         }
 
-        private void toolStripMenuItem7_Click(object sender, EventArgs e)
-        {
-            var formOuvert = new frmDetCasTest();
-            this.Hide();
-            formOuvert.Show();
-            formOuvert.Closed += (s, args) => this.Close();
-        }
+       
 
     }
 }

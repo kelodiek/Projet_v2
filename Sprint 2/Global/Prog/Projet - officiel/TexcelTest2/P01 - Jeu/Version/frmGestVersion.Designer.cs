@@ -49,15 +49,6 @@
             this.gridVersion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVersion_CellContentClick);
             this.gridVersion.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVersion_CellContentDoubleClick);
             // 
-            // btnX
-            // 
-            this.btnX.Location = new System.Drawing.Point(288, 40);
-            this.btnX.Name = "btnX";
-            this.btnX.Size = new System.Drawing.Size(25, 23);
-            this.btnX.TabIndex = 56;
-            this.btnX.Text = "button1";
-            this.btnX.UseVisualStyleBackColor = true;
-            // 
             // frmGestVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -79,6 +70,5 @@
         #endregion
 
         internal System.Windows.Forms.DataGridView gridVersion;
-        private System.Windows.Forms.Button btnX;
     }
 }
