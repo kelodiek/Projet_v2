@@ -44,21 +44,17 @@
             this.btnThemeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.SeparatorToolStrip = new System.Windows.Forms.ToolStripSeparator();
             this.btnJeuToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnMenuSecuriteToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMenuQuitterToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnQuitterToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDecoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripGesEquipe = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripGesEmp = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.retourInterfaceTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnX = new System.Windows.Forms.Button();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,11 +102,9 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnMenuDonneToolStrip,
-            this.btnMenuSecuriteToolStrip,
+            this.toolStripMenuItem3,
             this.btnMenuQuitterToolStrip,
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem5});
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1710, 31);
@@ -201,13 +195,6 @@
             this.btnJeuToolStrip.Text = "Jeu";
             this.btnJeuToolStrip.Click += new System.EventHandler(this.donneesToolStrip_Click);
             // 
-            // btnMenuSecuriteToolStrip
-            // 
-            this.btnMenuSecuriteToolStrip.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnMenuSecuriteToolStrip.Name = "btnMenuSecuriteToolStrip";
-            this.btnMenuSecuriteToolStrip.Size = new System.Drawing.Size(83, 27);
-            this.btnMenuSecuriteToolStrip.Text = "Sécurité";
-            // 
             // btnMenuQuitterToolStrip
             // 
             this.btnMenuQuitterToolStrip.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -246,40 +233,16 @@
             // toolStripGesEquipe
             // 
             this.toolStripGesEquipe.Name = "toolStripGesEquipe";
-            this.toolStripGesEquipe.Size = new System.Drawing.Size(145, 28);
+            this.toolStripGesEquipe.Size = new System.Drawing.Size(175, 28);
             this.toolStripGesEquipe.Text = "Equipe";
             this.toolStripGesEquipe.Click += new System.EventHandler(this.toolStripGesEquipe_Click);
             // 
             // toolStripGesEmp
             // 
             this.toolStripGesEmp.Name = "toolStripGesEmp";
-            this.toolStripGesEmp.Size = new System.Drawing.Size(145, 28);
+            this.toolStripGesEmp.Size = new System.Drawing.Size(175, 28);
             this.toolStripGesEmp.Text = "Employe";
             this.toolStripGesEmp.Click += new System.EventHandler(this.toolStripGesEmp_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
-            this.toolStripMenuItem3});
-            this.toolStripMenuItem2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(67, 27);
-            this.toolStripMenuItem2.Text = "Projet";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(175, 28);
-            this.toolStripMenuItem4.Text = "GesProjet";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(175, 28);
-            this.toolStripMenuItem3.Text = "DetProjet";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // retourInterfaceTestToolStripMenuItem
             // 
@@ -297,28 +260,29 @@
             this.btnX.UseVisualStyleBackColor = true;
             this.btnX.Click += new System.EventHandler(this.btnX_Click);
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5});
+            this.toolStripMenuItem3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(83, 27);
+            this.toolStripMenuItem3.Text = "Sécurité";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(175, 28);
+            this.toolStripMenuItem4.Text = "Utilisateur";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
             // toolStripMenuItem5
             // 
-            this.toolStripMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem6,
-            this.toolStripMenuItem7});
-            this.toolStripMenuItem5.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(109, 27);
-            this.toolStripMenuItem5.Text = "Cas de Test";
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(175, 28);
-            this.toolStripMenuItem6.Text = "GesProjet";
-            // 
-            // toolStripMenuItem7
-            // 
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(175, 28);
-            this.toolStripMenuItem7.Text = "DetCas";
-            this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(175, 28);
+            this.toolStripMenuItem5.Text = "Groupe";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // frmGestion
             // 
@@ -353,7 +317,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnSysExpToolStrip;
         private System.Windows.Forms.ToolStripMenuItem btnPlateToolStrip;
         private System.Windows.Forms.ToolStripMenuItem btnClassToolStrip;
-        private System.Windows.Forms.ToolStripMenuItem btnMenuSecuriteToolStrip;
         private System.Windows.Forms.ToolStripMenuItem retourInterfaceTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnMenuQuitterToolStrip;
         private System.Windows.Forms.ToolStripMenuItem btnJeuToolStrip;
@@ -369,11 +332,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripGesEmp;
         private System.Windows.Forms.ToolStripMenuItem toolStripGesEquipe;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
     }
 }

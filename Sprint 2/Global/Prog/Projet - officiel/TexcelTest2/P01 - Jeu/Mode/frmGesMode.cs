@@ -26,23 +26,8 @@ namespace Projet
             ButtonsVisible(true);
             CreerGrid();
             dataGridMode.Sort(dataGridMode.Columns[1], ListSortDirection.Ascending);
-        }
-
-        public frmGesMode(int F, string Nm, ListSortDirection S)
-        {
-            InitializeComponent();
-            gestionMode = new ctrlMode();
-            this.btnAjout.Click += new EventHandler(ajoutMode_Click);
-            this.btnDetails.Click += new EventHandler(detailsMode_Click);
-            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            this.btnX.Click += new EventHandler(btnX_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            ButtonsVisible(true);
-            CreerGrid();
-            dataGridMode.Sort(dataGridMode.Columns[F], S);
-            int R = RowsByNm(Nm);
-            dataGridMode.Rows[R].Selected = true;
-            dataGridMode.Rows[R].Cells[1].Selected = true;
+            dataGridMode.Rows[0].Selected = true;
+            this.Tag = dataGridMode.Rows[0].Cells[1].Value.ToString();
         }
 
         private void CreerGrid()
@@ -140,13 +125,17 @@ namespace Projet
         public void update()
         {
             gestionMode = new ctrlMode();
+            int colum = dataGridMode.SortedColumn.Index;
             ListSortDirection DD = ListSortDirection.Descending;
             if(dataGridMode.SortOrder == SortOrder.Ascending)
                 DD = ListSortDirection.Ascending;
-            var formOuvert = new frmGesMode(dataGridMode.SortedColumn.Index, this.Tag.ToString(), DD);
-            formOuvert.Show();
-            this.Hide();
-            formOuvert.Closed += (s, args) => this.Close();
+            
+            dataGridMode.Rows.Clear();
+            chargeDonnees();
+            dataGridMode.Sort(dataGridMode.Columns[colum], DD);
+            int R = RowsByNm(this.Tag.ToString());
+            dataGridMode.Rows[R].Cells[1].Selected = true;
+            dataGridMode.Rows[R].Selected = true;
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -183,6 +172,8 @@ namespace Projet
             chargeDonnees();
             txtRecherche.Text = "";
             dataGridMode.Sort(dataGridMode.Columns[1], ListSortDirection.Ascending);
+            dataGridMode.Rows[0].Cells[1].Selected = true;
+            dataGridMode.Rows[0].Selected = true;
         }
 
         private int RowsByNm(string _nom)

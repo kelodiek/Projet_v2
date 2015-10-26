@@ -261,6 +261,7 @@
             // 
             // chkLstTypeTest
             // 
+            this.chkLstTypeTest.CheckOnClick = true;
             this.chkLstTypeTest.Enabled = false;
             this.chkLstTypeTest.FormattingEnabled = true;
             this.chkLstTypeTest.Location = new System.Drawing.Point(12, 211);

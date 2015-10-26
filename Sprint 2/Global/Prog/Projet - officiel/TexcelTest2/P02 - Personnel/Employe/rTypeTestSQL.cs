@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    class rTypeTestSQL : Requete
+    static class rTypeTestSQL
     {
         //          envoye une liste des types de test pour les relier au employe
         static public IQueryable<tblTypeTest> getTypeTest()
         {
+            var bd = new dbProjetE2ProdEntities();
 
             var t =
-                from e in db.tblTypeTest
+                from e in bd.tblTypeTest
                 select e;
 
             return t;

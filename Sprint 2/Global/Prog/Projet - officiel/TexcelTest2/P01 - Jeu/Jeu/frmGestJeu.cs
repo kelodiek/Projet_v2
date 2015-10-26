@@ -61,12 +61,12 @@ namespace Projet
                 string nomGenre = "";
                 if (j.idGenre != 0)
                 {
-                    nomGenre = RequeteSql.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                    nomGenre = rGenreSQL.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
                 }
                 string nomMode = "";
                 if (j.idMode != 0)
                 {
-                    nomMode = RequeteSql.rechercheMode(j.idMode.ToString()).First().NomMode;
+                    nomMode = rModeSQL.rechercheMode(j.idMode.ToString()).First().NomMode;
                 }   
                     
                 string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.coteESRB, nomGenre, nomMode };
@@ -94,12 +94,12 @@ namespace Projet
                 string nomGenre = "";
                 if (j.idGenre != 0)
                 {
-                    nomGenre = RequeteSql.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                    nomGenre = rGenreSQL.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
                 }
                 string nomMode = "";
                 if (j.idMode != 0)
                 {
-                    nomMode = RequeteSql.rechercheMode(j.idMode.ToString()).First().NomMode;
+                    nomMode = rModeSQL.rechercheMode(j.idMode.ToString()).First().NomMode;
                 }
 
                 string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.coteESRB, nomGenre, nomMode };
@@ -156,12 +156,12 @@ namespace Projet
                     string nomGenre = "";
                     if (j.idGenre != 0)
                     {
-                        nomGenre = RequeteSql.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                        nomGenre = rGenreSQL.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
                     }
                     string nomMode = "";
                     if (j.idMode != 0)
                     {
-                        nomMode = RequeteSql.rechercheMode(j.idMode.ToString()).First().NomMode;
+                        nomMode = rModeSQL.rechercheMode(j.idMode.ToString()).First().NomMode;
                     }
 
                     string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, nomGenre, nomMode };

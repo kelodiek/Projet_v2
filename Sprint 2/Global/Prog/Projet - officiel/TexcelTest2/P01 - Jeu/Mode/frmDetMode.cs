@@ -21,6 +21,7 @@ namespace Projet
         {
             InitializeComponent();
             ctrlMo = new ctrlMode();
+            ctrlMo.charger();
             this.PositionBtn(260);
             this.txtNom.ReadOnly = false;
             this.rtxtDesc.ReadOnly = false;
@@ -36,6 +37,8 @@ namespace Projet
             InitializeComponent();
             modeSelect = M;
             ctrlMo = new ctrlMode();
+            ctrlMo.charger();
+            ctrlMo.Statut = false;
             this.PositionBtn(260);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
@@ -91,9 +94,9 @@ namespace Projet
 
             if (resultVerif)
             {
+                resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
                 if (modeSelect != null && (statut) != "Copie")
                 {
-                    resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
                     if (resultEnr == DialogResult.Yes)
                     {
                         enregistrement.idMode = Int32.Parse(txtID.Text.Trim());
@@ -104,16 +107,12 @@ namespace Projet
                 }
                 else
                 {
-                    if (ctrlMo.verifSemblable(enregistrement, modeSelect) == true)
+                    if (resultEnr == DialogResult.Yes)
                     {
-                        resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
-                        if (resultEnr == DialogResult.Yes)
-                        {
-                            ctrlMo.ajouter(enregistrement);
-                            annuler = false;
-                            this.Tag = enregistrement.nomMode;
-                            this.Close();
-                        } 
+                        ctrlMo.ajouter(enregistrement);
+                        annuler = false;
+                        this.Tag = enregistrement.nomMode;
+                        this.Close();
                     }
                 }
             }
@@ -124,6 +123,9 @@ namespace Projet
             if (code == "a")
             {
                 this.btnActiverModif.Visible = false;
+                this.btnSupprimer.Visible = false;
+                this.btnCopier.Visible = false;
+                ctrlMo.Statut = false;
                 modeSelect = null;
             }
             else
@@ -131,6 +133,7 @@ namespace Projet
                 this.txtID.ReadOnly = true;
                 this.rtxtDesc.ReadOnly = true;
                 this.txtNom.ReadOnly = true;
+                this.btnEnregistrer.Enabled = false;
                 remplirChamp();
             }
         }
@@ -146,6 +149,7 @@ namespace Projet
         {
             this.txtNom.ReadOnly = false;
             this.rtxtDesc.ReadOnly = false;
+            this.btnEnregistrer.Enabled = true;
             ((Button)sender).Enabled = false;
         }
     }
