@@ -12,14 +12,19 @@ namespace Projet
 {
     public partial class frmGesEquipe : frmGestion
     {
+        private ctrlEquipe ctrlGesEquipe;
+        DataGridViewColumn columnChoisi;
+        public int numEquipe { get; set; }
         public frmGesEquipe()
         {
             InitializeComponent();
-
             this.btnDetails.Click += new EventHandler(btnDetails_Click);
             this.btnAjout.Click += new EventHandler(btnAjout_Click);
-
+            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
             ButtonsVisible(true);
+            ctrlGesEquipe = new ctrlEquipe();
+            btnX.Click += new EventHandler(btnX_Click);
+
         }
         private void Gestion_des_Equipes_Load(object sender, EventArgs e)
         {
@@ -42,63 +47,151 @@ namespace Projet
             column = gridEquipe.Columns[4];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
+
+            afficherDonnees(-1);
+            gridEquipe.CurrentCell = gridEquipe.Rows[0].Cells[0];
+            gridEquipe.Rows[0].Selected = true;
+
             //updateDonnees();
         }
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            //   afficherDetails();
+            if(gridEquipe.SelectedRows.Count > 0)
+            {
+                afficherDetails();
+            }
+            else
+            {
+                MessageBox.Show("Veuiller séléctioner une ligne.");
+            }
+            
         }
         private void btnAjout_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetEquipe();
+            var frmDetails = new frmDetEquipe(this);
 
             //   frmDetails.txtID.Enabled = false;
 
             frmDetails.btnActiverModif.Enabled = false;
 
             frmDetails.ShowDialog();
-            // updateDonnees();
+            //updateDonnees();
         }
-        /*
-        private void afficherDonnees()
+
+        private void btnRecherche_Click(object sender, EventArgs e)
         {
-            var lstRows = ctrlPlate.chargerDonnees();
+            gridEquipe.Rows.Clear();
+
+            var lstRows = ctrlGesEquipe.chargerDonnees(rEquipeSQL.Recherche(txtRecherche.Text));
             int index, i = 0;
 
             foreach (var item in lstRows)
             {
-                index = gridPlateforme.Rows.Add(item);
+                index = this.gridEquipe.Rows.Add(item);
 
-                gridPlateforme.Rows[index].Tag = ctrlPlate.lstPlateforme[i];
+                try
+                {
+                    gridEquipe.Rows[index].Tag = ctrlGesEquipe.lstEquipe[i];
+                }
+                catch (Exception)
+                {
+
+                }
 
                 i++;
             }
+            if(gridEquipe.Rows.Count != 0)
+            {
+                gridEquipe.CurrentCell = gridEquipe.Rows[0].Cells[0];
+                gridEquipe.Rows[0].Selected = true;            
+            }
+
+        }
+
+        public void btnX_Click(object sender, EventArgs e)
+        {
+            gridEquipe.Rows.Clear();
+            afficherDonnees(-1);
+            gridEquipe.CurrentCell = gridEquipe.Rows[0].Cells[0];
+            gridEquipe.Rows[0].Selected = true;
+        }
+        
+        public void afficherDonnees(int rowSelect)
+        {
+            gridEquipe.Rows.Clear();
+
+            var lstRows = ctrlGesEquipe.chargerDonnees();
+
+            int index, i = 0;
+
+            foreach (var item in lstRows)
+            {
+                index = this.gridEquipe.Rows.Add(item);
+
+                try
+                {
+                gridEquipe.Rows[index].Tag = ctrlGesEquipe.lstEquipe[i];
+                }
+                catch (Exception )
+                {
+
+                }
+
+
+                i++;
+            }
+
+            if (rowSelect != -1)
+            {
+                int ii;
+
+                foreach (DataGridViewRow item in gridEquipe.Rows)
+                {
+                    Int32.TryParse(item.Cells[0].Value.ToString(), out ii);
+
+                    if(ii == rowSelect)
+                    {
+                        gridEquipe.ClearSelection();
+                        item.Selected = true;
+                        gridEquipe.CurrentCell = item.Cells[0];
+                    }
+                }
+            }
+
+            gridEquipe.Sort(gridEquipe.Columns[1], ListSortDirection.Ascending);
+        }
+
+        private void afficherDetails()
+        {
+            string rowSelect = gridEquipe.SelectedRows[0].Cells[0].Value.ToString();
+            int noEquipe;
+            tblEquipe eq;
+
+            Int32.TryParse(rowSelect, out noEquipe);
+
+            eq = rEquipeSQL.getEquipe(noEquipe);
+
+            var frmDetails = new frmDetEquipe(this, eq);
+
+            //   frmDetails.txtID.Enabled = false;
+
+            //frmDetails.btnActiverModif.Enabled = false;
+
+            frmDetails.ShowDialog();
+            //updateDonnees();
+
         }
         private void retirerDonnees()
         {
-            gridPlateforme.Rows.Clear();
+            gridEquipe.Rows.Clear();
         }
 
         private void updateDonnees()
         {
             retirerDonnees();
-            afficherDonnees();
+            afficherDonnees(-1);
         }
-        private void btnDetail_Click()
-        {
-
-        }*/
-        /*  private void afficherDetails()
-          {
-              //int index = gridEquipe.SelectedRows.;
-              equipe selectE = (plateforme)gridEquipe.SelectedRows[0].Tag;
-              var frmDetails = new frmDetEquipe(selectE);
-
-              frmDetails.modifierChamp("m");
-
-              frmDetails.ShowDialog();
-              //updateDonnees();
-          }*/
+        
         private void gridEquipe_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
@@ -106,5 +199,25 @@ namespace Projet
                 gridEquipe.Rows[e.RowIndex].Selected = true;
             }
         }
+
+        private void gridEquipe_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewRow Row;
+
+            Row = ((DataGridView)sender).SelectedRows[0];
+            gridEquipe.CurrentCell = gridEquipe.Rows[Row.Index].Cells[0];
+            gridEquipe.Rows[Row.Index].Selected = true;
+        }
+
+        private void gridEquipe_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                gridEquipe.Rows[e.RowIndex].Selected = true;
+                afficherDetails();
+            }
+        }
+
+
     }
 }

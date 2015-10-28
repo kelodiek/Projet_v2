@@ -17,7 +17,7 @@ namespace Projet
         public List<string[]> chargeDonnees(int idJeu)
         {
             List<string[]> lstRows = new List<string[]>();
-            var lstBrut = RequeteSql.getAllVersion(idJeu);
+            var lstBrut = rVersSQL.getAllVersion(idJeu);
 
             foreach (var item in lstBrut)
             {
@@ -63,7 +63,7 @@ namespace Projet
             tblVersion VersionAjout;
             if (te == "m")
             {
-                RequeteSql.setVersion(v);
+                rVersSQL.setVersion(v);
             }
             if (te == "a")
             {
@@ -76,12 +76,12 @@ namespace Projet
                 VersionAjout.NomVersion = v.nomVersion;
                 VersionAjout.StadeDeveloppement = v.stadeVersion;
 
-                RequeteSql.addVersion(VersionAjout);
+                rVersSQL.addVersion(VersionAjout);
             }
         }
         public bool verifier(string c)
         {
-            var resultat = RequeteSql.srchCodeVersion(c);
+            var resultat = rVersSQL.srchCodeVersion(c);
             if (resultat.Count() != 0)
             {
                 return true;
@@ -93,12 +93,12 @@ namespace Projet
         }
         public void supprimer(string c)
         {
-            RequeteSql.deleteVersion(c);
+            rVersSQL.deleteVersion(c);
         }
         public List<version> rechercher(string r,int idjeu)
         {
             List<version> lstVersion = new List<version>();
-            foreach (var c in RequeteSql.srchVersion(r,idjeu))
+            foreach (var c in rVersSQL.srchVersion(r,idjeu))
             {
                 var vers = new version(c);
                 lstVersion.Add(vers);

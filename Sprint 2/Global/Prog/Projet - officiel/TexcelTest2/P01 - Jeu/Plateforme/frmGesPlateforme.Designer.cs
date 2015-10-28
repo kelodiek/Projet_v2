@@ -45,7 +45,8 @@
             this.gridPlateforme.RowTemplate.Height = 24;
             this.gridPlateforme.Size = new System.Drawing.Size(1686, 795);
             this.gridPlateforme.TabIndex = 50;
-            this.gridPlateforme.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPlateforme_CellContentClick);
+            this.gridPlateforme.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPlateforme_CellContentClick);
+            this.gridPlateforme.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPlateforme_CellDoubleClick);
             this.gridPlateforme.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridPlateforme_ColumnHeaderMouseClick);
             // 
             // frmGesPlateforme

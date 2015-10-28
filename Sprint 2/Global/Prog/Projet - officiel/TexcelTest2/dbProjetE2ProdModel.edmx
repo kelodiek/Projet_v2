@@ -137,7 +137,7 @@
             <PropertyRef Name="CodeDroit" />
           </Key>
           <Property Name="CodeDroit" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="DescDroit" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="DescDroit" Type="varchar" MaxLength="60" Nullable="false" />
         </EntityType>
         <EntityType Name="tblEmploye">
           <Key>
@@ -231,6 +231,7 @@
           <Property Name="DateModifMotPas" Type="date" />
           <Property Name="IdRole" Type="int" Nullable="false" />
           <Property Name="IdEmp" Type="int" Nullable="false" />
+          <Property Name="Actif" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="tblTypeTest">
           <Key>
@@ -241,6 +242,19 @@
           <Property Name="ObjectifTypeTest" Type="varchar" MaxLength="150" />
           <Property Name="DescTypeTest" Type="varchar" MaxLength="250" />
           <Property Name="CommentaireTest" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'dbProjetE2Prod.dbo.AllChefEquipe' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="AllChefEquipe">
+          <Key>
+            <PropertyRef Name="IdEmp" />
+            <PropertyRef Name="PrenomEmp" />
+            <PropertyRef Name="NomEmp" />
+          </Key>
+          <Property Name="IdEmp" Type="int" Nullable="false" />
+          <Property Name="PrenomEmp" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="NomEmp" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Statut" Type="char" MaxLength="1" />
         </EntityType>
         <Association Name="FK_tblEmployeTypeTest_tblEmploye_IdEmp">
           <End Role="tblEmploye" Type="Self.tblEmploye" Multiplicity="1" />
@@ -580,6 +594,14 @@
           <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblUtilisateur" EntityType="Self.tblUtilisateur" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblTypeTest" EntityType="Self.tblTypeTest" Schema="Test" store:Type="Tables" />
+          <EntitySet Name="AllChefEquipe" EntityType="Self.AllChefEquipe" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AllChefEquipe].[IdEmp] AS [IdEmp], 
+    [AllChefEquipe].[PrenomEmp] AS [PrenomEmp], 
+    [AllChefEquipe].[NomEmp] AS [NomEmp], 
+    [AllChefEquipe].[Statut] AS [Statut]
+    FROM [dbo].[AllChefEquipe] AS [AllChefEquipe]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_tblEmployeTypeTest_tblEmploye_IdEmp" Association="Self.FK_tblEmployeTypeTest_tblEmploye_IdEmp">
             <End Role="tblEmploye" EntitySet="tblEmploye" />
             <End Role="tblEmployeTypeTest" EntitySet="tblEmployeTypeTest" />
@@ -963,13 +985,14 @@
             <End Role="tblEquipe" EntitySet="tblEquipe" />
             <End Role="tblTypeTest" EntitySet="tblTypeTest" />
           </AssociationSet>
+          <EntitySet Name="AllChefEquipe" EntityType="dbProjetE2ProdModel.AllChefEquipe" />
         </EntityContainer>
         <EntityType Name="tblDroit">
           <Key>
             <PropertyRef Name="CodeDroit" />
           </Key>
           <Property Name="CodeDroit" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="DescDroit" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DescDroit" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblGroupe" Relationship="dbProjetE2ProdModel.tblGroupeDroit" FromRole="tblDroit" ToRole="tblGroupe" />
         </EntityType>
         <EntityType Name="tblEmploye">
@@ -1024,6 +1047,7 @@
           <NavigationProperty Name="tblEmploye" Relationship="dbProjetE2ProdModel.FK_tblUtilisateur__tblEmploye_IdEmp" FromRole="tblUtilisateur" ToRole="tblEmploye" />
           <NavigationProperty Name="tblRole" Relationship="dbProjetE2ProdModel.FK_tblUtilisateur_tblRole_IdRole" FromRole="tblUtilisateur" ToRole="tblRole" />
           <NavigationProperty Name="tblGroupe" Relationship="dbProjetE2ProdModel.tblGroupeUtil" FromRole="tblUtilisateur" ToRole="tblGroupe" />
+          <Property Name="Actif" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <Association Name="FK_tblUtilisateur__tblEmploye_IdEmp">
           <End Type="dbProjetE2ProdModel.tblEmploye" Role="tblEmploye" Multiplicity="1" />
@@ -1106,6 +1130,17 @@
           <End Type="dbProjetE2ProdModel.tblEquipe" Role="tblEquipe" Multiplicity="*" />
           <End Type="dbProjetE2ProdModel.tblTypeTest" Role="tblTypeTest" Multiplicity="*" />
         </Association>
+        <EntityType Name="AllChefEquipe">
+          <Key>
+            <PropertyRef Name="IdEmp" />
+            <PropertyRef Name="PrenomEmp" />
+            <PropertyRef Name="NomEmp" />
+          </Key>
+          <Property Name="IdEmp" Type="Int32" Nullable="false" />
+          <Property Name="PrenomEmp" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="NomEmp" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Statut" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1293,6 +1328,7 @@
           <EntitySetMapping Name="tblUtilisateur">
             <EntityTypeMapping TypeName="dbProjetE2ProdModel.tblUtilisateur">
               <MappingFragment StoreEntitySet="tblUtilisateur">
+                <ScalarProperty Name="Actif" ColumnName="Actif" />
                 <ScalarProperty Name="IdEmp" ColumnName="IdEmp" />
                 <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="DateModifMotPas" ColumnName="DateModifMotPas" />
@@ -1365,6 +1401,16 @@
               <ScalarProperty Name="IdEquipe" ColumnName="IdEquipe" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="AllChefEquipe">
+            <EntityTypeMapping TypeName="dbProjetE2ProdModel.AllChefEquipe">
+              <MappingFragment StoreEntitySet="AllChefEquipe">
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="NomEmp" ColumnName="NomEmp" />
+                <ScalarProperty Name="PrenomEmp" ColumnName="PrenomEmp" />
+                <ScalarProperty Name="IdEmp" ColumnName="IdEmp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -26,23 +26,8 @@ namespace Projet
             ButtonsVisible(true);
             CreerGrid();
             GridGenre.Sort(GridGenre.Columns[1], ListSortDirection.Ascending);
-        }
-
-        public frmGesGenre(int F, string Nm, ListSortDirection S)
-        {
-            InitializeComponent();
-            gestionGenre = new ctrlGenre();
-            this.btnAjout.Click += new EventHandler(ajoutGenre_click);
-            this.btnDetails.Click += new EventHandler(detailsGenre_click);
-            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            this.btnX.Click += new EventHandler(btnX_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            ButtonsVisible(true);
-            CreerGrid();
-            GridGenre.Sort(GridGenre.Columns[F], S);
-            int R = RowsByNm(Nm);
-            GridGenre.Rows[R].Selected = true;
-            GridGenre.Rows[R].Cells[1].Selected = true;
+            GridGenre.Rows[0].Selected = true;
+            this.Tag = GridGenre.Rows[0].Cells[1].Value.ToString();
         }
 
         private void CreerGrid()
@@ -169,13 +154,17 @@ namespace Projet
         public void update()
         {
             gestionGenre = new ctrlGenre();
+            int colum = GridGenre.SortedColumn.Index;
             ListSortDirection DD = ListSortDirection.Descending;
             if (GridGenre.SortOrder == SortOrder.Ascending)
                 DD = ListSortDirection.Ascending;
-            var formOuvert = new frmGesGenre(GridGenre.SortedColumn.Index, this.Tag.ToString(), DD);
-            formOuvert.Show();
-            this.Hide();
-            formOuvert.Closed += (s, args) => this.Close();
+            
+            GridGenre.Rows.Clear();
+            chargeDonnees();
+            GridGenre.Sort(GridGenre.Columns[colum], DD);
+            int R = RowsByNm(this.Tag.ToString());
+            GridGenre.Rows[R].Cells[1].Selected = true;
+            GridGenre.Rows[R].Selected = true;
         }
 
         private void btnX_Click(object sender, EventArgs e)
@@ -184,6 +173,7 @@ namespace Projet
             chargeDonnees();
             txtRecherche.Text = "";
             GridGenre.Sort(GridGenre.Columns[1], ListSortDirection.Ascending);
+            GridGenre.Rows[0].Selected = true;
         }
 
         private int RowsByNm(string _nom)
