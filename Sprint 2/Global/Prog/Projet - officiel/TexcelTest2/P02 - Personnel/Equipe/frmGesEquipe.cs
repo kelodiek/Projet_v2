@@ -209,6 +209,15 @@ namespace Projet
             gridEquipe.Rows[Row.Index].Selected = true;
         }
 
+        private void gridEquipe_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                gridEquipe.Rows[e.RowIndex].Selected = true;
+                afficherDetails();
+            }
+        }
+
 
     }
 }

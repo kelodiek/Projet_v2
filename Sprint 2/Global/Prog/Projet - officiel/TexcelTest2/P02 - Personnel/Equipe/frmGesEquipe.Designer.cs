@@ -46,8 +46,7 @@
             this.gridEquipe.Size = new System.Drawing.Size(1686, 795);
             this.gridEquipe.TabIndex = 50;
             this.gridEquipe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentClick);
-            this.gridEquipe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentClick);
-            this.gridEquipe.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentClick);
+            this.gridEquipe.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentDoubleClick);
             this.gridEquipe.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridEquipe_CellContentClick);
             // 
             // frmGesEquipe
