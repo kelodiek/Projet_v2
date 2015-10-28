@@ -50,7 +50,7 @@ namespace Projet
                 {
                     db.SaveChanges();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     
                 }
@@ -63,7 +63,7 @@ namespace Projet
                 {
                     db.SaveChanges();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
 
                 }
@@ -76,7 +76,7 @@ namespace Projet
                 {
                     db.SaveChanges();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
 
                 }
@@ -125,7 +125,7 @@ namespace Projet
             {
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
