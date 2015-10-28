@@ -35,10 +35,10 @@
             // gridComptes
             // 
             this.gridComptes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridComptes.Location = new System.Drawing.Point(12, 71);
+            this.gridComptes.Location = new System.Drawing.Point(26, 85);
             this.gridComptes.Name = "gridComptes";
             this.gridComptes.RowTemplate.Height = 24;
-            this.gridComptes.Size = new System.Drawing.Size(1686, 795);
+            this.gridComptes.Size = new System.Drawing.Size(1044, 358);
             this.gridComptes.TabIndex = 52;
             this.gridComptes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridComptes_CellClick);
             this.gridComptes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridComptes_CellDoubleClick);
@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1710, 919);
+            this.ClientSize = new System.Drawing.Size(1082, 505);
             this.Controls.Add(this.gridComptes);
             this.Name = "frmGesComptes";
             this.Text = "frmGesComptes";
