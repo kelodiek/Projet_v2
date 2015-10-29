@@ -14,6 +14,8 @@ namespace Projet
     {
         private string type;
         ctrlJeu cj;
+        tblJeu jeuBase;
+        public string nomJeu;
 
         public frmDetJeu()
         {
@@ -23,18 +25,19 @@ namespace Projet
             type = "ajout";
         }
 
-        public frmDetJeu(Jeu jeu)
+        public frmDetJeu(tblJeu jeu)
         {
             InitializeComponent();
             type = "modif";
 
-            //Mettre en ReadOnly
+            jeuBase = jeu;
             this.txtID.ReadOnly = true;
-            txtID.Text = jeu.idJeu.ToString();
+            txtID.Text = jeu.IdJeu.ToString();
             this.txtNom.ReadOnly = true;
-            txtNom.Text = jeu.nomJeu;
+            txtNom.Text = jeu.NomJeu;
+            nomJeu = jeu.NomJeu;
             this.txtDesc.ReadOnly = true;
-            txtDesc.Text = jeu.descJeu;
+            txtDesc.Text = jeu.DescJeu;
 
             this.btnAjoutPlateforme.Enabled = false;
             this.btnRetirerPlateforme.Enabled = false;
@@ -42,16 +45,35 @@ namespace Projet
             this.btnRetirerTheme.Enabled = false;
 
             this.cboxCote.Enabled = false;
-            this.cboxCote.Text = jeu.coteESRB;
+            this.cboxCote.Text = jeu.CoteESRB;
             this.cboxGenre.Enabled = false;
-            //A changer pour le nom du genre
-            cboxGenre.Text = jeu.idGenre.ToString();
+            string nomGenre = "";
+            if (jeu.IdGenre != 0)
+            {
+                nomGenre = rGenreSQL.rechercheGenre(jeu.IdGenre.ToString()).First().NomGenre;
+            }
+            cboxGenre.Text = nomGenre;
             this.cboxMode.Enabled = false;
-            //A changer pour le nom du mode
-            cboxMode.Text = jeu.idMode.ToString();
-
+            string nomMode = "";
+            if (jeu.IdMode != 0)
+            {
+                nomMode = rModeSQL.rechercheMode(jeu.IdMode.ToString()).First().NomMode;
+            }
+            cboxMode.Text = nomMode;
             this.rtxtInfoSup.ReadOnly = true;
-            rtxtInfoSup.Text = jeu.infoSupJeu;
+            rtxtInfoSup.Text = jeu.InfoSupJeu;
+
+            foreach (tblTheme theme in jeu.tblTheme)
+            {
+                TreeNode tntemp = tvSelectTheme.Nodes.Add(theme.NomTheme);
+                tntemp.Tag = theme;
+            }
+
+            foreach (tblPlateforme p in jeu.tblPlateforme)
+            {
+                TreeNode tntemp = tvSelectPlateforme.Nodes.Add(p.NomPlateforme);                
+                tntemp.Tag = p;
+            }
 
             this.btnEnregistrer.Enabled = false;
             this.btnAjoutPlateforme.Enabled = false;
@@ -76,29 +98,78 @@ namespace Projet
             this.btnCopier.Location = new Point(975, 10);
             this.btnAnnuler.Click += new EventHandler(btnAnnuler_Click);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
 
-            foreach (var t in RequeteSql.getAllTheme())
+            foreach (var t in rThemeSQL.getAllTheme())
             {
                 TreeNode tn = tvAllTheme.Nodes.Add(t.NomTheme);
-                tn.Tag = t.IdTheme;
+                tn.Tag = t;
             }
-            foreach (var p in RequeteSql.getPlateforme())
+            foreach (var p in rPlateSQL.getPlateforme())
             {
                 TreeNode tn = tvAllPlateforme.Nodes.Add(p.NomPlateforme);
-                tn.Tag = p.IdPlateforme;
+                tn.Tag = p;
             }
-            foreach (var g in RequeteSql.getAllGenre())
+            foreach (var g in rGenreSQL.getAllGenre())
             {
                 cboxGenre.Items.Add(g.NomGenre);
-                
             }
-            foreach (var m in RequeteSql.getAllMode())
+            foreach (var m in rModeSQL.getAllMode())
             {
                 cboxMode.Items.Add(m.NomMode);
             }
             foreach (var c in rClassificationSQL.getAllClassification())
             {
                 cboxCote.Items.Add(c.CoteESRB);
+            }
+
+            if (type == "copie")
+            {
+                ActiverModif();
+                this.btnActiverModif.Visible = false;
+                this.btnSupprimer.Visible = false;
+                this.btnEnregistrer.Enabled = true;
+            }
+        }
+
+        private void ActiverModif()
+        {
+            this.btnAjoutPlateforme.Enabled = true;
+            this.btnAjoutTheme.Enabled = true;
+            this.btnRetirerPlateforme.Enabled = true;
+            this.btnRetirerTheme.Enabled = true;
+            this.rtxtInfoSup.ReadOnly = false;
+            this.rtxtInfoSup.Enabled = true;
+            this.rtxtInfoSup.BackColor = SystemColors.ControlLightLight;
+            this.txtNom.ReadOnly = false;
+            this.txtNom.Enabled = true;
+            this.txtDesc.ReadOnly = false;
+            this.txtDesc.Enabled = true;
+            this.txtDesc.BackColor = SystemColors.ControlLightLight;
+        }
+
+        private void btnActiverModif_Click(object sender, EventArgs e)
+        {
+            ActiverModif();
+        }
+
+        private void btnSupprimer_Click(object sender, EventArgs e)
+        {
+            DialogResult r;
+            r = MessageBox.Show("Voulez-vous vraiment supprimer ce jeu?", "Suppression", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (r == DialogResult.Yes)
+            {
+                try
+                {
+                    cj.supprimer(Convert.ToInt32(txtID.Text));
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Au moins une version est lié à ce jeu, il est donc impossible de le supprimer.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                this.Close();
             }
         }
 
@@ -153,13 +224,13 @@ namespace Projet
             switch (type)
             {
                 case "modif":
-                    //modifierJeu();
+                    modifierJeu();
                     break;
                 case "ajout":
                     ajout();
                     break;
                 case "copie":
-                    //enrgCopie();
+                    enrgCopie();
                     break;
                 default:
                     break;
@@ -169,9 +240,8 @@ namespace Projet
         private void ajout()
         {
             DialogResult r;
-            Jeu j = new Jeu();
-            List<Theme> lstTheme = new List<Theme>();
-            List<plateforme> lstPlateforme = new List<plateforme>();
+            List<tblTheme> lstTheme = new List<tblTheme>();
+            List<tblPlateforme> lstPlateforme = new List<tblPlateforme>();
 
             if (txtNom.Text.Trim().Length == 0 || txtDesc.Text.Trim().Length == 0)
             {
@@ -182,61 +252,189 @@ namespace Projet
             {
                 tblJeu nouvJeu = new tblJeu();
                 nouvJeu.NomJeu = txtNom.Text.Trim();
+                nomJeu = nouvJeu.NomJeu;
                 nouvJeu.DescJeu = txtDesc.Text.Trim();
-                nouvJeu.CoteESRB = cboxCote.Text.Trim();
+                if (cboxCote.Text.Trim() != "")
+                {
+                    nouvJeu.CoteESRB = cboxCote.Text.Trim();
+                }
+                else
+                {
+                    nouvJeu.CoteESRB = null;
+                }
                 nouvJeu.InfoSupJeu = rtxtInfoSup.Text.Trim();
+                nouvJeu.Actif = true;
                 if (cboxGenre.Text != "")
                 {
-                    foreach (var g in RequeteSql.rechercheGenre(cboxGenre.Text))
+                    foreach (var g in rGenreSQL.rechercheGenre(cboxGenre.Text))
                     {
                         nouvJeu.IdGenre = g.IdGenre;
                     }
                 }
                 if (cboxMode.Text != "")
                 {
-                    foreach (var g in RequeteSql.rechercheMode(cboxMode.Text))
+                    foreach (var g in rModeSQL.rechercheMode(cboxMode.Text))
                     {
                         nouvJeu.IdMode = g.IdMode;
                     }
                 }
 
-                foreach (var item in tvSelectTheme.Nodes)
+                foreach (TreeNode item in tvSelectTheme.Nodes)
                 {
-                    Theme temp = new Theme();
-                    temp.idTheme = Convert.ToInt32(((TreeNode)item).Tag);
-                    temp.nomTheme = ((TreeNode)item).Text;
-                    foreach (var t in RequeteSql.srchTheme(temp.nomTheme))
-                    {
-                        temp.comTheme = t.ComTheme;
-                    }
-                    lstTheme.Add(temp);
+                    //Theme temp = new Theme((tblTheme)item.Tag);
+                    lstTheme.Add((tblTheme)item.Tag);
                 }
 
-                foreach (var item in tvSelectPlateforme.Nodes)
+                foreach (TreeNode item in tvSelectPlateforme.Nodes)
                 {
-                    plateforme temp = new plateforme();
-                    //string chaine =  + "%%" + (((TreeNode)item).Text);
-                    foreach (var p in RequeteSql.srchPlateforme(((((TreeNode)item).Tag).ToString())))
-                    {
-                        if (p.NomPlateforme == ((TreeNode)item).Text)
-                        {
-                            temp = new plateforme(p);
-                        }              
-                    }
-                    lstPlateforme.Add(temp);
+                    //plateforme temp = new plateforme((tblPlateforme)item.Tag);
+                    lstPlateforme.Add((tblPlateforme)item.Tag);
                 }
 
-                j = new Jeu(nouvJeu);
-                j.lstTheme = lstTheme;
-                j.lstPlateforme = lstPlateforme;
-
+                nouvJeu.tblTheme = lstTheme;
+                nouvJeu.tblPlateforme = lstPlateforme;
 
                 r = MessageBox.Show("Voulez-vous enregistrer?", "Enregistrement", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (r == DialogResult.Yes)
                 {
-                    cj.ajouter(j);
+                    cj.ajouter(nouvJeu);
                     this.Close();
                 }
+            }
+        }
+
+        private void modifierJeu()
+        {
+            DialogResult r;
+            var nouvJeu = new tblJeu();
+            var lstTheme = new List<tblTheme>();
+            var lstPlateforme = new List<tblPlateforme>();
+
+            if (txtNom.Text.Trim().Length == 0 || txtDesc.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Les champs obligatoires ne sont pas bien remplis.",
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                nouvJeu.IdJeu = Convert.ToInt32(txtID.Text);
+                nouvJeu.NomJeu = txtNom.Text.Trim();
+                nomJeu = nouvJeu.NomJeu;
+                nouvJeu.DescJeu = txtDesc.Text.Trim();
+                nouvJeu.CoteESRB = cboxCote.Text.Trim();
+                nouvJeu.InfoSupJeu = rtxtInfoSup.Text.Trim();
+                nouvJeu.Actif = true;
+                if (cboxGenre.Text != "")
+                {
+                    foreach (var g in rGenreSQL.rechercheGenre(cboxGenre.Text))
+                    {
+                        nouvJeu.IdGenre = g.IdGenre;
+                    }
+                }
+                if (cboxMode.Text != "")
+                {
+                    foreach (var g in rModeSQL.rechercheMode(cboxMode.Text))
+                    {
+                        nouvJeu.IdMode = g.IdMode;
+                    }
+                }
+
+                foreach (TreeNode item in tvSelectTheme.Nodes)
+                {
+                    //Theme temp = new Theme((tblTheme)item.Tag);
+                    lstTheme.Add((tblTheme)item.Tag);
+                }
+
+                foreach (TreeNode item in tvSelectPlateforme.Nodes)
+                {
+                    //plateforme temp = new plateforme((tblPlateforme)item.Tag);
+                    lstPlateforme.Add((tblPlateforme)item.Tag);
+                }
+
+                nouvJeu.tblPlateforme = lstPlateforme;
+                nouvJeu.tblTheme = lstTheme;
+
+                //Jeu j = new Jeu(nouvJeu);
+                //j.lstTheme = lstTheme;
+                //j.lstPlateforme = lstPlateforme;
+
+                r = MessageBox.Show("Voulez-vous enregistrer?",
+                    "Enregistrement", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (r == DialogResult.Yes)
+                {
+                    cj.modifier(nouvJeu);
+                    this.Close();
+                }
+            }
+        }
+
+        private void btnCopier_Click(object sender, EventArgs e)
+        {
+            var copieJeu = new tblJeu();
+            var lstTheme = new List<tblTheme>();
+            var lstPlateforme = new List<tblPlateforme>();
+            frmDetJeu frmDetails;
+
+            copieJeu.NomJeu = txtNom.Text.Trim();
+            copieJeu.DescJeu = txtDesc.Text.Trim();
+            copieJeu.CoteESRB = cboxCote.Text.Trim();
+            copieJeu.InfoSupJeu = rtxtInfoSup.Text.Trim();
+            copieJeu.Actif = true;
+            if (cboxGenre.Text != "")
+            {
+                foreach (var g in rGenreSQL.rechercheGenre(cboxGenre.Text))
+                {
+                    copieJeu.IdGenre = g.IdGenre;
+                }
+            }
+            if (cboxMode.Text != "")
+            {
+                foreach (var g in rModeSQL.rechercheMode(cboxMode.Text))
+                {
+                    copieJeu.IdMode = g.IdMode;
+                }
+            }
+
+            foreach (TreeNode item in tvSelectTheme.Nodes)
+            {
+                lstTheme.Add((tblTheme)item.Tag);
+            }
+
+            foreach (TreeNode item in tvSelectPlateforme.Nodes)
+            {
+                lstPlateforme.Add((tblPlateforme)item.Tag);
+            }
+
+            copieJeu.tblTheme = lstTheme;
+            copieJeu.tblPlateforme = lstPlateforme;
+            //Jeu j = new Jeu(copieJeu);
+            //j.lstTheme = lstTheme;
+            //j.lstPlateforme = lstPlateforme;
+
+            frmDetails = new frmDetJeu(copieJeu);
+            frmDetails.type = "copie";
+            frmDetails.ShowDialog();
+            //Je sais pas si faut retourner sur l'original
+            //this.Close();
+        }
+
+        private void enrgCopie()
+        {
+            var copieJeu = new tblJeu();
+
+            copieJeu.NomJeu = txtNom.Text.Trim();
+            nomJeu = copieJeu.NomJeu;
+            copieJeu.DescJeu = txtDesc.Text.Trim();
+
+
+            if (jeuBase.NomJeu != txtNom.Text.Trim() || jeuBase.DescJeu != txtDesc.Text.Trim())
+            {
+                ajout();
+            }
+            else
+            {
+                MessageBox.Show("La copie est identique à l'ancien jeu.",
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

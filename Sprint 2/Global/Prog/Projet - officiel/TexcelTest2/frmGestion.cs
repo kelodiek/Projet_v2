@@ -47,9 +47,6 @@ namespace Projet
                 case "btnThemeToolStrip":
                     formOuvert = new frmGesTheme();
                     break;
-                case "btnVersionToolStrip":
-                    formOuvert = new frmGesVersion();
-                    break;
                 case "btnModeToolStrip":
                     formOuvert = new frmGesMode();
                     break;
@@ -111,25 +108,10 @@ namespace Projet
 
         }
 
-        private void toolStripDetEmp_Click(object sender, EventArgs e)
-        {
-            var formOuvert = new frmDetEmp();
-            this.Hide();
-            formOuvert.Show();
-            formOuvert.Closed += (s, args) => this.Close();
-        }
 
         private void toolStripGesEmp_Click(object sender, EventArgs e)
         {
             var formOuvert = new frmGesEmp();
-            this.Hide();
-            formOuvert.Show();
-            formOuvert.Closed += (s, args) => this.Close();
-        }
-
-        private void toolStripDetEquipe_Click(object sender, EventArgs e)
-        {
-            var formOuvert = new frmDetEquipe();
             this.Hide();
             formOuvert.Show();
             formOuvert.Closed += (s, args) => this.Close();
@@ -142,6 +124,24 @@ namespace Projet
             formOuvert.Show();
             formOuvert.Closed += (s, args) => this.Close();
         }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmGesComptes();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            var formOuvert = new frmGesGroupeUser();
+            this.Hide();
+            formOuvert.Show();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+       
 
     }
 }

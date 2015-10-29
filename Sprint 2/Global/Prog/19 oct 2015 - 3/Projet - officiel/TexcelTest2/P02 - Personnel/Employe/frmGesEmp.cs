@@ -1,0 +1,290 @@
+﻿//      Gabriel Simard
+//      ajouter cette ligne de code au moment du lancement de ce programme
+//      Ces pour créer le dossier qui va recevoir le fichier text nouveau.txt  qui contient les nouveaux employes
+//string pathfile = (Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"Texcel"));
+//            if (File.Exists(pathfile) == false)
+//                Directory.CreateDirectory(pathfile);
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Projet
+{
+    public partial class frmGesEmp : frmGestion
+    {
+        ctrlEmploye gestionEmp;
+
+        public frmGesEmp()
+        {
+            InitializeComponent();
+            gestionEmp = new ctrlEmploye(true);
+            chargerColonnes();
+            btnDetails.Visible = true;
+            btnRecherche.Visible = true;
+            txtRecherche.Visible = true;
+            btnX.Visible = true;
+            btnDetails.Click += new EventHandler(btnDetails_Click);
+            btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            btnX.Click += new EventHandler(btnX_Click);
+            btnRejet.Click += new EventHandler(btnDesactiver_Click);
+            btnRejet.Text = "Désactiver";
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            this.Text = "Texel : Gestion - Employés";
+        }
+
+        public frmGesEmp(int F, int I, ListSortDirection S)
+        {
+            InitializeComponent();
+            gestionEmp = new ctrlEmploye(true);
+            chargerColonnes();
+            btnDetails.Visible = true;
+            btnRecherche.Visible = true;
+            txtRecherche.Visible = true;
+            btnX.Visible = true;
+            btnDetails.Click += new EventHandler(btnDetails_Click);
+            btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            btnX.Click += new EventHandler(btnX_Click);
+            btnRejet.Click += new EventHandler(btnDesactiver_Click);
+            btnRejet.Text = "Désactiver";
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            this.Text = "Texel : Gestion - Employés";
+            gridEmploye.Sort(gridEmploye.Columns[F], S);
+            int R = gestionEmp.RowsById(I, gridEmploye);
+            gridEmploye.Rows[R].Selected = true;
+            gridEmploye.Rows[R].Cells[1].Selected = true;
+        }
+
+        public frmGesEmp(string nouv)
+        {
+            InitializeComponent();
+            gestionEmp = new ctrlEmploye(false);
+            chargerColonnes();
+            btnDetails.Visible = false;
+            btnAjout.Visible = true;
+            btnAjout.Left = btnDetails.Left;
+            btnRecherche.Visible = true;
+            btnX.Visible = true;
+            txtRecherche.Visible = true;
+            btnAjout.Click += new EventHandler(btnDetails_Click);
+            btnRejet.Click += new EventHandler(btnDesactiver_Click);
+            btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            btnX.Click += new EventHandler(btnX_Click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            btnRejet.Text = "Retirer";
+            this.Text = "Texel : Gestion - Nouveaux Employés";
+        }
+
+        //          créer le tableau gridview et call le charge des données
+        private void chargerColonnes()
+        {
+            DataGridViewColumn column;
+            gridEmploye.Columns.Add("IdEmp", "Code d'employe");
+            gridEmploye.Columns.Add("PrenomEmp", "Prenom");
+            gridEmploye.Columns.Add("NomEmp", "Nom");
+            gridEmploye.Columns.Add("CourrielEmp", "Courriel");
+            gridEmploye.Columns.Add("TelPrin", "Telephone Principal");
+            gridEmploye.Columns.Add("TelSec", "Telephone Secondaire");
+            gridEmploye.Columns.Add("AdresEmp", "Adresse postale");
+            gridEmploye.Columns.Add("DateEmbaucheEmp", "Date Embauche");
+
+            column = gridEmploye.Columns[0];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            column = gridEmploye.Columns[1];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            column = gridEmploye.Columns[2];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            column = gridEmploye.Columns[3];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            column = gridEmploye.Columns[4];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            column = gridEmploye.Columns[5];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            column = gridEmploye.Columns[6];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            column = gridEmploye.Columns[7];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
+            chargeDonnee();
+        }
+
+        private void chargeDonnee()
+        {
+            var data = gestionEmp.charger();      //              charge les données d'un fichier texte
+            int i = 0;
+            foreach (var item in data)
+            {
+                int rowIndex = gridEmploye.Rows.Add(item);
+                if (gestionEmp.etat == true)
+                    gridEmploye.Rows[rowIndex].Tag = gestionEmp.lstEmploye[i];
+                else
+                    gridEmploye.Rows[rowIndex].Tag = gestionEmp.lstEmployeNV[i];
+                i++;
+            }
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            if (gridEmploye.SelectedRows.Count == 1)
+                modifierEmploye();
+        }
+
+        private void gridEmploye_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                gridEmploye.Rows[e.RowIndex].Selected = true;
+                this.Tag = gridEmploye.Rows[e.RowIndex].Tag;
+                modifierEmploye();
+            }
+        }
+
+        private void gridEmploye_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                this.Tag = gridEmploye.Rows[e.RowIndex].Tag;
+                gridEmploye.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        private void modifierEmploye()
+        {
+            frmDetEmp detailEmploye;
+
+            if (gestionEmp.etat == true)
+            {
+                detailEmploye = new frmDetEmp((Employe)this.Tag);
+                detailEmploye.ShowDialog();
+                if(this.Tag != detailEmploye.Tag)
+                    update();
+            }
+            else
+            {
+                string[] nEmp = new string[8];
+                for (int i = 0; i < 8; i++)
+                {
+                    nEmp[i] = (string)gridEmploye.SelectedRows[0].Cells[i].Value.ToString();
+                }
+                detailEmploye = new frmDetEmp(nEmp);
+                detailEmploye.ShowDialog();
+                if (detailEmploye.Tag.ToString() == "1")        //      il est ajouter
+                {
+                    gestionEmp.supprimer(this.Tag);
+                    gridEmploye.Rows.RemoveAt(gridEmploye.SelectedRows[0].Index);
+                    if (gridEmploye.Rows.Count == 0)
+                        this.Close();
+                    else
+                    {
+                        gridEmploye.Rows[0].Selected = true;
+                        gridEmploye.Rows[0].Cells[0].Selected = true;
+                        this.Tag = gridEmploye.Rows[0].Tag;
+                    }
+                }  
+            }
+        }
+
+        public void update()
+        {
+            gestionEmp = new ctrlEmploye(true);
+            ListSortDirection DD = ListSortDirection.Descending;
+            if (gridEmploye.SortOrder == SortOrder.Ascending)
+                DD = ListSortDirection.Ascending;
+            var formOuvert = new frmGesEmp(gridEmploye.SortedColumn.Index, ((Employe)this.Tag).idEmp, DD);
+            formOuvert.Show();
+            this.Hide();
+            formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            rechercher();
+        }
+
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+                rechercher();
+        }
+
+        //          Recherche de données dans le gridview
+        private void rechercher()
+        {
+            if (txtRecherche.Text != "")
+            {
+                gridEmploye.Rows.Clear();
+                if (gestionEmp.etat == true)
+                {
+                    
+                    foreach (Employe e in gestionEmp.recherche(txtRecherche.Text))
+                    {
+                        string[] tabTemp = new string[8] { e.idEmp.ToString(), e.prenomEmp, e.nomEmp, e.courrielEmp, e.noTelPrincipal, e.noTelSecondaire, e.adressePostale, e.dateEmbaucheEmp.ToString() };
+                        int indexR = gridEmploye.Rows.Add(tabTemp);
+                        gridEmploye.Rows[indexR].Tag = e;
+                    }
+                }
+                else   //           affiche ceux que je cherche mais garde quelque part les valeurs qu'il avait avant
+                {
+                    foreach (string[] e in gestionEmp.rechercheNew(txtRecherche.Text))
+                    {
+                        int rowIndex = gridEmploye.Rows.Add(e);
+                        gridEmploye.Rows[rowIndex].Tag = e;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez remplir le champ de recherche", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //      réinitialisation du tableau gridview
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            gridEmploye.Rows.Clear();
+            chargeDonnee();
+            txtRecherche.Text = "";
+            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
+        }
+
+        //      Désactiver ou effacer les employe désiré
+        private void btnDesactiver_Click(object sender, EventArgs e)
+        {
+            if (gridEmploye.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Veiller sélectionner un employe pour désactiver", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult resultEnrg = MessageBox.Show("Voulez-vous vraiment supprimer?", "Suppression", MessageBoxButtons.YesNo);
+            if (resultEnrg == DialogResult.Yes)
+            {
+                if (gestionEmp.etat == true)
+                {
+                    gestionEmp.supprimer(((Employe)this.Tag).idEmp);
+                    update();
+                }
+                else
+                {
+                    gestionEmp.supprimer(this.Tag);
+                    gridEmploye.Rows.RemoveAt(gridEmploye.SelectedRows[0].Index);
+                    if (gestionEmp.lstEmployeNV.Count == 0)
+                        this.Close();
+                    else
+                    {
+                        btnX.PerformClick();
+                        gridEmploye.Rows[0].Selected = true;
+                        gridEmploye.Rows[0].Cells[0].Selected = true;
+                        this.Tag = gridEmploye.Rows[0].Tag;
+                    }
+                }
+            }
+        }
+    }
+}

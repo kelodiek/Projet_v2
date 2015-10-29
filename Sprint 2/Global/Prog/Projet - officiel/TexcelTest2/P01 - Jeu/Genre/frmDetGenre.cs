@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Projet
 {
-    partial class frmDetGenre : frmDetail
+    public partial class frmDetGenre : frmDetail
     {
         public Genre genreSelect { get; set; }
         public string statut;
@@ -21,6 +21,7 @@ namespace Projet
         {
             InitializeComponent();
             ctrlGen = new ctrlGenre();
+            ctrlGen.charger();
             this.PositionBtn(260);
             this.txtNom.ReadOnly = false;
             this.rtxtCom.ReadOnly = false;
@@ -36,9 +37,12 @@ namespace Projet
             InitializeComponent();
             genreSelect = G;
             ctrlGen = new ctrlGenre();
+            ctrlGen.charger();
+            ctrlGen.Statut = false;
             this.PositionBtn(260);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            
             annuler = true;
         }
 
@@ -91,9 +95,9 @@ namespace Projet
 
             if (resultVerif)
             {
+                resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
                 if (genreSelect != null && statut != "Copie")
                 {
-                    resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
                     if (resultEnr == DialogResult.Yes)
                     {
                         enregistrement.idGenre = Int32.Parse(txtId.Text.Trim());
@@ -104,16 +108,12 @@ namespace Projet
                 }
                 else
                 {
-                    if (ctrlGen.verifSemblable(enregistrement, genreSelect) == true)
+                    if (resultEnr == DialogResult.Yes)
                     {
-                        resultEnr = MessageBox.Show("Voulez-vous vraiment enregistrer?", "Enregistrement", MessageBoxButtons.YesNo);
-                        if (resultEnr == DialogResult.Yes)
-                        {
-                            ctrlGen.ajouter(enregistrement);
-                            annuler = false;
-                            this.Tag = enregistrement.nomGenre;
-                            this.Close();
-                        }
+                        ctrlGen.ajouter(enregistrement);
+                        annuler = false;
+                        this.Tag = enregistrement.nomGenre;
+                        this.Close();
                     }
                 }
             }
@@ -124,6 +124,9 @@ namespace Projet
             if (code == "a")
             {
                 this.btnActiverModif.Visible = false;
+                this.btnSupprimer.Visible = false;
+                this.btnCopier.Visible = false;
+                ctrlGen.Statut = false;
                 genreSelect = null;
             }
             else
@@ -131,6 +134,7 @@ namespace Projet
                 this.rtxtCom.ReadOnly = true;
                 this.txtId.ReadOnly = true;
                 this.txtNom.ReadOnly = true;
+                this.btnEnregistrer.Enabled = false;
                 remplirChamp();
             }
         }
@@ -146,6 +150,7 @@ namespace Projet
         {
             this.txtNom.ReadOnly = false;
             this.rtxtCom.ReadOnly = false;
+            this.btnEnregistrer.Enabled = true;
             ((Button)sender).Enabled = false;
         }
     }

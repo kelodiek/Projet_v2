@@ -53,19 +53,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllChefEquipe.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="P01 - Jeu\Categorie\Categorie.cs" />
+    <Compile Include="P01 - Jeu\Categorie\rCategSQL.cs" />
     <Compile Include="P01 - Jeu\Classification\Classification.cs" />
     <Compile Include="ControleAdministration.cs" />
     <Compile Include="P01 - Jeu\Classification\ctrlClassification.cs" />
     <Compile Include="P01 - Jeu\Categorie\ctrlCategorie.cs" />
     <Compile Include="P01 - Jeu\Classification\rClassificationSQL.cs" />
     <Compile Include="P01 - Jeu\Genre\ctrlGenre.cs" />
+    <Compile Include="P01 - Jeu\Genre\rGenreSQL.cs" />
     <Compile Include="P01 - Jeu\Jeu\ctrlJeu.cs" />
     <Compile Include="P01 - Jeu\Jeu\rJeuSQL.cs" />
     <Compile Include="P01 - Jeu\Mode\ctrlMode.cs" />
+    <Compile Include="P01 - Jeu\Mode\rModeSQL.cs" />
     <Compile Include="P01 - Jeu\Plateforme\ctrlPlateforme.cs" />
+    <Compile Include="P01 - Jeu\Plateforme\rPlateSQL.cs" />
     <Compile Include="P01 - Jeu\SysExp\ctrlSysExp.cs" />
+    <Compile Include="P01 - Jeu\SysExp\rSysExpSQL.cs" />
     <Compile Include="P01 - Jeu\Theme\ctrlTheme.cs" />
+    <Compile Include="P01 - Jeu\Theme\rThemeSQL.cs" />
     <Compile Include="P01 - Jeu\Version\ctrlVersion.cs" />
     <Compile Include="dbProjetE2ProdModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -112,6 +121,50 @@
     <Compile Include="P01 - Jeu\Classification\frmDetClassification.Designer.cs">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
     </Compile>
+    <Compile Include="P01 - Jeu\Version\frmGestVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P01 - Jeu\Version\frmGestVersion.Designer.cs">
+      <DependentUpon>frmGestVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P01 - Jeu\Version\rVersSQL.cs" />
+    <Compile Include="P02 - Authentification\ctrlComptes.cs" />
+    <Compile Include="P02 - Authentification\ctrlLogin.cs" />
+    <Compile Include="P02 - Authentification\frmChangerMDPExpire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmChangerMDPExpire.Designer.cs">
+      <DependentUpon>frmChangerMDPExpire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmChangerMDPPremiere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmChangerMDPPremiere.Designer.cs">
+      <DependentUpon>frmChangerMDPPremiere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmDetComptes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmDetComptes.Designer.cs">
+      <DependentUpon>frmDetComptes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmGesComptes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmGesComptes.Designer.cs">
+      <DependentUpon>frmGesComptes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmGesCon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Authentification\frmGesCon.Designer.cs">
+      <DependentUpon>frmGesCon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Authentification\rAuthentificationSQL.cs" />
+    <Compile Include="P02 - Authentification\rComptesSQL.cs" />
+    <Compile Include="P02 - Authentification\Utilisateur.cs" />
+    <Compile Include="P02 - Personnel\Employe\ctrlEmploye.cs" />
+    <Compile Include="P02 - Personnel\Employe\Employe.cs" />
     <Compile Include="P02 - Personnel\Employe\frmDetEmp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,12 +218,6 @@
     </Compile>
     <Compile Include="P01 - Jeu\Categorie\frmGesCategorie.Designer.cs">
       <DependentUpon>frmGesCategorie.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmGesCon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGesCon.Designer.cs">
-      <DependentUpon>frmGesCon.cs</DependentUpon>
     </Compile>
     <Compile Include="P01 - Jeu\Mode\frmGesMode.cs">
       <SubType>Form</SubType>
@@ -249,6 +296,11 @@
     <Compile Include="P02 - Personnel\Employe\frmGesEmp.Designer.cs">
       <DependentUpon>frmGesEmp.cs</DependentUpon>
     </Compile>
+    <Compile Include="P02 - Personnel\Employe\rEmployeSQL.cs" />
+    <Compile Include="P02 - Personnel\Employe\rTypeTestSQL.cs" />
+    <Compile Include="P02 - Personnel\Employe\TypeTest.cs" />
+    <Compile Include="P02 - Personnel\Equipe\ctrlEquipe.cs" />
+    <Compile Include="P02 - Personnel\Equipe\equipe.cs" />
     <Compile Include="P02 - Personnel\Equipe\frmDetEquipe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,9 +313,26 @@
     <Compile Include="P02 - Personnel\Equipe\frmGesEquipe.Designer.cs">
       <DependentUpon>frmGesEquipe.cs</DependentUpon>
     </Compile>
+    <Compile Include="P02 - Personnel\Equipe\rEquipeSQL.cs" />
+    <Compile Include="P02 - Personnel\Groupe\ctrlGroupeUser.cs" />
+    <Compile Include="P02 - Personnel\Groupe\Droit.cs" />
+    <Compile Include="P02 - Personnel\Groupe\frmDetGroupeUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Personnel\Groupe\frmDetGroupeUser.Designer.cs">
+      <DependentUpon>frmDetGroupeUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Personnel\Groupe\frmGesGroupUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Personnel\Groupe\frmGesGroupUser.Designer.cs">
+      <DependentUpon>frmGesGroupUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Personnel\Groupe\GroupeUtil.cs" />
+    <Compile Include="P02 - Personnel\Groupe\rGroupeUtilSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequeteSql.cs" />
+    <Compile Include="Requete.cs" />
     <Compile Include="P01 - Jeu\SysExp\SystemeExploitation.cs" />
     <Compile Include="tblCategorie.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
@@ -275,6 +344,9 @@
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblEmploye.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEquipe.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGenre.cs">
@@ -301,6 +373,9 @@
     <Compile Include="tblTheme.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblTypeTest.cs">
+      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblUtilisateur.cs">
       <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
     </Compile>
@@ -309,11 +384,38 @@
     </Compile>
     <Compile Include="P01 - Jeu\Theme\Theme.cs" />
     <Compile Include="P01 - Jeu\Version\version.cs" />
+    <EmbeddedResource Include="frmAccueilAdmin.resx">
+      <DependentUpon>frmAccueilAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="P01 - Jeu\Categorie\frmDetCateg.resx">
       <DependentUpon>frmDetCateg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="P01 - Jeu\Classification\frmDetClassification.resx">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P01 - Jeu\Jeu\frmGestJeu.resx">
+      <DependentUpon>frmGestJeu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P01 - Jeu\Version\frmGestVersion.resx">
+      <DependentUpon>frmGestVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P01 - Jeu\Version\frmGesVersion.resx">
+      <DependentUpon>frmGesVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Authentification\frmChangerMDPExpire.resx">
+      <DependentUpon>frmChangerMDPExpire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Authentification\frmChangerMDPPremiere.resx">
+      <DependentUpon>frmChangerMDPPremiere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Authentification\frmDetComptes.resx">
+      <DependentUpon>frmDetComptes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Authentification\frmGesComptes.resx">
+      <DependentUpon>frmGesComptes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Authentification\frmGesCon.resx">
+      <DependentUpon>frmGesCon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="P02 - Personnel\Employe\frmDetEmp.resx">
       <DependentUpon>frmDetEmp.cs</DependentUpon>
@@ -342,9 +444,6 @@
     <EmbeddedResource Include="P01 - Jeu\Categorie\frmGesCategorie.resx">
       <DependentUpon>frmGesCategorie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGesCon.resx">
-      <DependentUpon>frmGesCon.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="P01 - Jeu\Mode\frmGesMode.resx">
       <DependentUpon>frmGesMode.cs</DependentUpon>
     </EmbeddedResource>
@@ -366,11 +465,20 @@
     <EmbeddedResource Include="P01 - Jeu\Theme\frmGesTheme.resx">
       <DependentUpon>frmGesTheme.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Personnel\Employe\frmGesEmp.resx">
+      <DependentUpon>frmGesEmp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="P02 - Personnel\Equipe\frmDetEquipe.resx">
       <DependentUpon>frmDetEquipe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="P02 - Personnel\Equipe\frmGesEquipe.resx">
       <DependentUpon>frmGesEquipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Personnel\Groupe\frmDetGroupeUser.resx">
+      <DependentUpon>frmDetGroupeUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Personnel\Groupe\frmGesGroupUser.resx">
+      <DependentUpon>frmGesGroupUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

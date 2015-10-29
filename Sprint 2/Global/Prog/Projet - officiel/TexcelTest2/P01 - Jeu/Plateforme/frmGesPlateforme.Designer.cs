@@ -43,16 +43,17 @@
             this.gridPlateforme.Name = "gridPlateforme";
             this.gridPlateforme.ReadOnly = true;
             this.gridPlateforme.RowTemplate.Height = 24;
-            this.gridPlateforme.Size = new System.Drawing.Size(1061, 381);
+            this.gridPlateforme.Size = new System.Drawing.Size(1686, 795);
             this.gridPlateforme.TabIndex = 50;
-            this.gridPlateforme.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPlateforme_CellContentClick);
+            this.gridPlateforme.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPlateforme_CellContentClick);
+            this.gridPlateforme.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPlateforme_CellDoubleClick);
             this.gridPlateforme.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridPlateforme_ColumnHeaderMouseClick);
             // 
             // frmGesPlateforme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 505);
+            this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.gridPlateforme);
             this.Name = "frmGesPlateforme";
             this.Text = "Gestion - Plateformes";

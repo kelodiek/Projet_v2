@@ -140,8 +140,8 @@ namespace Projet
         private void loadList()
         {
             TreeNode  item = new TreeNode();
-            var sysExpBrut = RequeteSql.getSysExp();
-            var categBrut = RequeteSql.getCategorie();
+            var sysExpBrut = rSysExpSQL.getSysExp();
+            var categBrut = rCategSQL.getCategorie();
 
             foreach (var sysExp in sysExpBrut)
             {
@@ -236,7 +236,7 @@ namespace Projet
 
         public void afficherDetail(plateforme p)
         {
-            var categplat = new Categorie(RequeteSql.srchCategorie(p.codeCateg).First());
+            var categplat = new Categorie(rCategSQL.srchCategorie(p.codeCateg).First());
 
             rTxtDesc.Text = p.descPlate;
             rTxtInfoSup.Text = p.infoSupPlate;
@@ -380,8 +380,8 @@ namespace Projet
             }
             else
             {
-                MessageBox.Show("La copie est identique à l'ancienne",
-                    "Erreur", 
+                MessageBox.Show("La copie est pareil a l'ancien.",
+                    "Erreure", 
                     MessageBoxButtons.OK);
             }
 

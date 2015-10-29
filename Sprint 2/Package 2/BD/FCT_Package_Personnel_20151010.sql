@@ -1,17 +1,17 @@
 use dbProjetE2Prod;
-
+GO
 CREATE VIEW [AllChefEquipe] AS
 SELECT e.IdEmp,e.PrenomEmp, e.NomEmp, e.Statut
         FROM Personnel.tblEmploye AS e
 		INNER JOIN Personnel.tblUtilisateur as u
 		ON e.IdEmp = u.IdEmp
 		INNER JOIN Personnel.tblRole AS r
-              ON r.IdRole = u.tblRole
+              ON r.IdRole = u.IdRole
 WHERE r.NomRole='Chef d’équipe'
 
 GO
 
-CREATE FUNCTION GetEmployeByRole ( @role INT )
+CREATE FUNCTION GetEmployeByRole(@role AS INT)
 RETURNS @EmployeByRole TABLE
    ( 
     IdEmp					INT			NOT NULL,
@@ -38,10 +38,10 @@ BEGIN
 		INNER JOIN Personnel.tblUtilisateur as u
 		ON e.IdEmp = u.IdEmp
 		INNER JOIN Personnel.tblRole AS r
-              ON r.IdRole = u.tblRole
+              ON r.IdRole = u.IdRole
         WHERE r.IdRole > @role
    RETURN
 END
 
-
+GO
 use master;

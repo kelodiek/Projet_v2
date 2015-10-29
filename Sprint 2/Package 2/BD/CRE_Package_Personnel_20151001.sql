@@ -2,7 +2,10 @@ use dbProjetE2Prod;
 GO
 IF EXISTS (SELECT * FROM sys.schemas WHERE name = 'Personnel')
 BEGIN
+	EXEC( 'DROP TABLE Personnel.tblEquipeTypeTest' );
+	EXEC( 'DROP TABLE Personnel.tblEmployeTypeTest' );
 	EXEC( 'DROP TABLE Personnel.tblEquipeTesteur' );
+	
 	EXEC( 'DROP TABLE Personnel.tblEquipe' );
 	EXEC( 'DROP TABLE Personnel.tblGroupeUtil' );	
 	
@@ -60,7 +63,7 @@ GO
 CREATE TABLE Personnel.tblDroit
 (
 CodeDroit		VARCHAR(15)	NOT NULL,
-DescDroit		VARCHAR(40)	NOT NULL
+DescDroit		VARCHAR(60)	NOT NULL
 )
 GO
 PRINT 'Création de Personnel.tblDroit complétée'
@@ -78,7 +81,8 @@ PremiereConex	CHAR			NOT NULL,
 MotPasExpire	CHAR			NOT NULL,
 DateModifMotPas	DATE			NULL,
 IdRole			INT				NOT NULL,
-IdEmp			INT				NOT NULL
+IdEmp			INT				NOT NULL,
+Actif			CHAR			NOT NULL
 )
 GO
 PRINT 'Création de Personnel.tblUtilisateur complétée'
@@ -120,11 +124,29 @@ PRINT 'Création de Personnel.tblEquipe complétée'
 GO
 CREATE TABLE Personnel.tblEquipeTesteur
 (
-IdEmploye			INT			NOT NULL,
+IdEmp				INT			NOT NULL,
 IdEquipe			INT			NOT NULL
 )
 GO
 PRINT 'Création de Personnel.tblEquipeTesteur complétée'
+
+GO
+CREATE TABLE Personnel.tblEmployeTypeTest
+(
+IdEmp				INT			NOT NULL,
+CodeTypeTest		VARCHAR(5)	NOT NULL
+)
+GO
+PRINT 'Création de Personnel.tblEmployeTypeTest complétée'
+
+GO
+CREATE TABLE Personnel.tblEquipeTypeTest
+(
+IdEquipe			INT			NOT NULL,
+CodeTypeTest		VARCHAR(5)	NOT NULL
+)
+GO
+PRINT 'Création de Personnel.tblEquipeTypeTest complétée'
 
 GO
 use master;

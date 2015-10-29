@@ -22,8 +22,7 @@ namespace Projet
             this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
             this.btnX.Click += new EventHandler(btnX_Click);
             this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            //MANQUE DES ASSOCIATIONS D'ÉVÉNEMENTS
-
+            
             ButtonsVisible(true);
             tri = 0;
             presentRow = 0;
@@ -38,8 +37,7 @@ namespace Projet
 
             dataGridJeu.Columns.Add("Nom", "Nom");
             dataGridJeu.Columns.Add("Desc", "Description");
-            dataGridJeu.Columns.Add("Info", "Informations supplémentaires");
-            dataGridJeu.Columns.Add("Cote", "Thème");
+            dataGridJeu.Columns.Add("Cote", "Cote");
             dataGridJeu.Columns.Add("Genre", "Genre");
             dataGridJeu.Columns.Add("Mode", "Mode");
 
@@ -48,12 +46,10 @@ namespace Projet
             Column = dataGridJeu.Columns[1];
             Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             Column = dataGridJeu.Columns[2];
-            Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column = dataGridJeu.Columns[3];
             Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; 
-            Column = dataGridJeu.Columns[4];
+            Column = dataGridJeu.Columns[3];
             Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column = dataGridJeu.Columns[5];
+            Column = dataGridJeu.Columns[4];
             Column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
@@ -62,13 +58,26 @@ namespace Projet
             dataGridJeu.Rows.Clear();
             foreach (Jeu j in cj.chargerDonnees())
             {
-                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, Convert.ToString(j.idGenre), Convert.ToString(j.idMode) };
-                dataGridJeu.Rows.Add(tabTemp);
+                string nomGenre = "";
+                if (j.idGenre != 0)
+                {
+                    nomGenre = rGenreSQL.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                }
+                string nomMode = "";
+                if (j.idMode != 0)
+                {
+                    nomMode = rModeSQL.rechercheMode(j.idMode.ToString()).First().NomMode;
+                }   
+                    
+                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.coteESRB, nomGenre, nomMode };
+                int tempRow = dataGridJeu.Rows.Add(tabTemp);
+                dataGridJeu.Rows[tempRow].Tag = j.idJeu;
             }
             dataGridJeu.Sort(dataGridJeu.Columns[tri], ListSortDirection.Ascending);
             if (dataGridJeu.Rows.Count != presentRow)
             {
                 dataGridJeu.Rows[presentRow].Selected = true;
+                dataGridJeu.CurrentCell = dataGridJeu.Rows[presentRow].Cells[0];
             }
             else
             {
@@ -76,18 +85,60 @@ namespace Projet
             }
         }
 
+        private void chargerDonnees(string NOMJEU)
+        {
+            DataGridViewRow dtvr = null;
+            dataGridJeu.Rows.Clear();
+            foreach (Jeu j in cj.chargerDonnees())
+            {
+                string nomGenre = "";
+                if (j.idGenre != 0)
+                {
+                    nomGenre = rGenreSQL.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                }
+                string nomMode = "";
+                if (j.idMode != 0)
+                {
+                    nomMode = rModeSQL.rechercheMode(j.idMode.ToString()).First().NomMode;
+                }
+
+                string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.coteESRB, nomGenre, nomMode };
+                int tempRow = dataGridJeu.Rows.Add(tabTemp);
+                if (j.nomJeu == NOMJEU)
+                {
+                   dtvr = dataGridJeu.Rows[tempRow];
+                }
+                dataGridJeu.Rows[tempRow].Tag = j.idJeu;
+            }
+            dataGridJeu.Sort(dataGridJeu.Columns[tri], ListSortDirection.Ascending);
+            if (dtvr != null)
+            {
+                presentRow = dataGridJeu.Rows.IndexOf(dtvr);
+            }
+            dataGridJeu.Rows[presentRow].Selected = true;
+            dataGridJeu.CurrentCell = dataGridJeu.Rows[presentRow].Cells[0];
+        }
+
         public void detailsJeu_Click(object sender, EventArgs e)
         {
-            //Caller new form avec parametre de celui cliquer
-            var frmDetails = new frmDetJeu();
+            if (dataGridJeu.SelectedRows.Count == 1)
+            {
+                var frmDetails = new frmDetJeu(rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[presentRow].Tag)).First());
 
-            frmDetails.ShowDialog();
+                frmDetails.ShowDialog();
+                chargerDonnees();
+            }
+            else
+            {
+                MessageBox.Show("Plusieurs lignes ont été sélectionnées", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public void ajoutJeu_Click(object sender, EventArgs e)
         {
             var frmDetails = new frmDetJeu();
-
+            
             frmDetails.ShowDialog();
+            chargerDonnees(frmDetails.nomJeu);
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -97,20 +148,31 @@ namespace Projet
 
         private void rechercher()
         {
-            //if (txtRecherche.Text != "")
-            //{
-            //    GridClassification.Rows.Clear();
-            //    foreach (Classification c in cc.rechercher(txtRecherche.Text))
-            //    {
-            //        string[] tabTemp = new string[3] { c.coteESRB, c.nomESRB, c.descESRB };
-            //        GridClassification.Rows.Add(tabTemp);
-            //    }
-            //}
-            //else
-            //{
-            //    //Message d'erreur de champ vide
-            //    MessageBox.Show("Veuillez remplir le champ de recherche", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            if (txtRecherche.Text != "")
+            {
+                dataGridJeu.Rows.Clear();
+                foreach (Jeu j in cj.rechercher(txtRecherche.Text))
+                {
+                    string nomGenre = "";
+                    if (j.idGenre != 0)
+                    {
+                        nomGenre = rGenreSQL.rechercheGenre(j.idGenre.ToString()).First().NomGenre;
+                    }
+                    string nomMode = "";
+                    if (j.idMode != 0)
+                    {
+                        nomMode = rModeSQL.rechercheMode(j.idMode.ToString()).First().NomMode;
+                    }
+
+                    string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, nomGenre, nomMode };
+                    dataGridJeu.Rows.Add(tabTemp);
+                }
+            }
+            else
+            {
+                //Message d'erreur de champ vide
+                MessageBox.Show("Veuillez remplir le champ de recherche", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnX_Click(object sender, EventArgs e)
@@ -119,27 +181,8 @@ namespace Projet
             txtRecherche.Text = "";
         }
 
-        //TODO
-        private void btnDetailsJeu_Click(object sender, EventArgs e)
-        {
 
-            //if (GridClassification.SelectedRows.Count == 1)
-            //{
-            //    var frmDetails = new frmDetClassification();
-
-            //    frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
-
-            //    frmDetails.ShowDialog();
-            //    chargerDonnees();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Aucune ligne n'a été sélectionné", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
-
-        //TODO
-        private void GridClassification_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridJeu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             {
@@ -147,12 +190,10 @@ namespace Projet
                 dataGridJeu.Rows[e.RowIndex].Selected = true;
                 if (dataGridJeu.SelectedRows.Count == 1)
                 {
-                    //var frmDetails = new frmDetClassification();
+                    var frmDetails = new frmDetJeu(rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[e.RowIndex].Tag)).First());
 
-                    //frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
-
-                    //frmDetails.ShowDialog();
-                    //chargerDonnees();
+                    frmDetails.ShowDialog();
+                    chargerDonnees();
                 }
                 else
                 {
@@ -178,9 +219,15 @@ namespace Projet
             }
         }
 
-        private void GridClassification_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dataGridJeu_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             tri = e.ColumnIndex;
+        }
+
+        private void btnVersion_Click(object sender, EventArgs e)
+        {
+            frmGesVersion frm = new frmGesVersion(Convert.ToInt32(dataGridJeu.Rows[presentRow].Tag));
+            frm.ShowDialog();
         }
     }
 }
