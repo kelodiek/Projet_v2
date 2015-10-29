@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Personnel.tblGroupe(NomGroupe) values('PDG');
 INSERT INTO Personnel.tblGroupe(NomGroupe) values('Directeur Compte');

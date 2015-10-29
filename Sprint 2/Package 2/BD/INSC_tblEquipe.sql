@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Personnel.tblEquipe(NomEquipe,CommentaireEquipe,IdChefEquipe,Statut) values('LesScripteurs','Equipe pour la BD',1,'A');
 INSERT INTO Personnel.tblEquipe(NomEquipe,CommentaireEquipe,IdChefEquipe,Statut) values('LesProDeLinterface','Equipe de testeur d"interface',18,'A');

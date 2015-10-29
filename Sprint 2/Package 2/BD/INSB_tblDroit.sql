@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('RP01','Droit lecture sur tout le contenu de jeu');
 INSERT INTO Personnel.tblDroit(CodeDroit,DescDroit) values('WP01','Droit écriture sur tout le contenu de jeu');

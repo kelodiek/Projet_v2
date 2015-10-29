@@ -1,4 +1,4 @@
-use dbProjetE2Prod;
+use dbProjetE2Test;
 GO
 ALTER TABLE Test.tblTypeTest
 ADD CONSTRAINT PK_tblTypeTest_CodeTypeTest	PRIMARY KEY(CodeTypeTest)

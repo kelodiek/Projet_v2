@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (1,1);
 INSERT INTO Personnel.tblEquipeTesteur(IdEmp,IdEquipe) values (8,1);

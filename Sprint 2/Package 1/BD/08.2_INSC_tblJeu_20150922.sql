@@ -1,4 +1,4 @@
-USE dbProjetE2Prod
+USE dbProjetE2Test
 GO
 INSERT INTO Jeux.tblJeu(NomJeu,InfoSupJeu,Actif,CoteESRB,IdGenre,IdMode,DescJeu)VALUES('Darkest dungeon','Darkest Dungeon est un jeu dont l''intérêt repose sur le stress provoqué par l''inconnu. Le joueur devra y monter une équipe de héros et les mener dans des lieux toujours plus effrayants pour leur faire combattre des monstres, mais aussi leurs peurs',1,'RP',25,1,'Jeu d''exploration de dungeon');
 INSERT INTO Jeux.tblJeu(NomJeu,InfoSupJeu,Actif,CoteESRB,IdGenre,IdMode,DescJeu)VALUES('FTL','Faster than Light. Le joueur a pour objectif de conduire son vaisseau d''un point A à un point B de la galaxie, en faisant face aux situations critiques qui se présentent à lui (attaques de pirates, dangers environnements), sur un mode aléatoire.',1,null,null,null,'Jeu consistant à livré des info sensible');

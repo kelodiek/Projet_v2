@@ -1,4 +1,4 @@
-USE dbProjetE2Prod
+USE dbProjetE2Test
 GO
 INSERT INTO Jeux.tblJeuSemblable(IdJeuBase,IdJeuSemblable) VALUES ('9','10');
 INSERT INTO Jeux.tblJeuSemblable(IdJeuBase,IdJeuSemblable) VALUES ('14','11');

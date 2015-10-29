@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 INSERT INTO Jeux.tblSysExp(CodeSysExp,NomSysExp,EditionSysExp,VersionSysExp) VALUES('WinXPFam','Windows XP','Familiale','32bit');
 INSERT INTO Jeux.tblSysExp(CodeSysExp,NomSysExp,EditionSysExp,VersionSysExp) VALUES('WinXPPro','Windows XP','Professionel','32bit');
 INSERT INTO Jeux.tblSysExp(CodeSysExp,NomSysExp,EditionSysExp,VersionSysExp) VALUES('WinXPPro','Windows XP','Professionel','64bit');
