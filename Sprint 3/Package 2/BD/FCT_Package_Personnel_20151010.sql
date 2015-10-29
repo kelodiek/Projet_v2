@@ -1,6 +1,6 @@
 use dbProjetE2Test;
 GO
-CREATE VIEW Personnel.[AllChefEquipe] AS
+CREATE VIEW [AllChefEquipe] AS
 SELECT e.IdEmp,e.PrenomEmp, e.NomEmp, e.Statut
         FROM Personnel.tblEmploye AS e
 		INNER JOIN Personnel.tblUtilisateur as u
@@ -11,7 +11,7 @@ WHERE r.NomRole='Chef d’équipe'
 
 GO
 
-CREATE FUNCTION Personnel.GetEmployeByRole(@role AS INT)
+CREATE FUNCTION GetEmployeByRole(@role AS INT)
 RETURNS @EmployeByRole TABLE
    ( 
     IdEmp					INT			NOT NULL,

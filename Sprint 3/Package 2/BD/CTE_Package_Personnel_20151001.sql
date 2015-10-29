@@ -1,8 +1,4 @@
 use dbProjetE2Test;
-
-ALTER TABLE Personnel.tblEmploye
-ADD CONSTRAINT PK_tblEmploye_IdEmp PRIMARY KEY(IdEmp)
-PRINT '1- Création de la contrainte PK_tblEmploye_IdEmp reussie'
 GO
 
 ALTER TABLE Personnel.tblRole
@@ -73,6 +69,11 @@ GO
 ALTER TABLE Personnel.tblEquipe
 ADD CONSTRAINT FK_tblEquipe_tblEmploye_IdChefEquipe	FOREIGN KEY(IdChefEquipe) REFERENCES Personnel.tblEmploye(IdEmp)
 PRINT '8- Création de la contrainte FK_tblEquipe_tblEmploye_IdChefEquipe reussie'
+GO
+
+ALTER TABLE Personnel.tblEquipe
+ADD CONSTRAINT FK_tblEquipe_tblProjet_CodeProjet	FOREIGN KEY(CodeProjet) REFERENCES Test.tblProjet(CodeProjet)
+PRINT '8- Création de la contrainte FK_tblEquipe_tblProjet_CodeProjet reussie'
 GO
 
 ALTER TABLE Personnel.tblEquipeTesteur
