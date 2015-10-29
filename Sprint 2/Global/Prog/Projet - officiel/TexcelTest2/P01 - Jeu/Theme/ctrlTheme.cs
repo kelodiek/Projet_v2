@@ -70,7 +70,7 @@ namespace Projet
 
             foreach (tblTheme item in lstBrut)
             {
-                row = new string[] {item.IdTheme.ToString(),
+                row = new string[] {
                     item.NomTheme,
                     item.ComTheme};
                 lstRows.Add(row);

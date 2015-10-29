@@ -27,7 +27,7 @@ namespace Projet
             this.rtxtCom.ReadOnly = false;
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnCopier.Visible = false;
             this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
             annuler = true;
         }
@@ -41,7 +41,7 @@ namespace Projet
             ctrlGen.Statut = false;
             this.PositionBtn(260);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnCopier.Visible = false;
             
             annuler = true;
         }
