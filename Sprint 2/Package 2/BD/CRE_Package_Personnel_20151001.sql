@@ -1,4 +1,4 @@
-use dbProjetE2Prod;
+use dbProjetE2Test;
 GO
 IF EXISTS (SELECT * FROM sys.schemas WHERE name = 'Personnel')
 BEGIN

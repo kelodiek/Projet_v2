@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Personnel.tblEmploye(IdEmp,PrenomEmp,NomEmp,CourrielEmp,NoTelPrincipal,NoTelSecondaire,AdressePostale,DateEmbaucheEmp,CompetenceParticuliere,Statut,CommentaireEmp) values(1,'Bob','Fagget','BobFagget123@lolmail.ca','1231231234','3213213211','2341 rue du tioui','20130212','Faire des scripts de BD','A','Contrat de 5 ans');
 INSERT INTO Personnel.tblEmploye(IdEmp,PrenomEmp,NomEmp,CourrielEmp,NoTelPrincipal,NoTelSecondaire,AdressePostale,DateEmbaucheEmp,CompetenceParticuliere,Statut,CommentaireEmp) values(2,'Roger','Gauthier','LeGauthierR@lolmail.com','1827455439','9345547281','2341 rue du tioui','20150520','Expertise en mobile','A','Contrat de 5 ans');

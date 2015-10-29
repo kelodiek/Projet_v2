@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Personnel.tblGroupeDroit(CodeDroit,IdGroupe) values('RP02',3);
 INSERT INTO Personnel.tblGroupeDroit(CodeDroit,IdGroupe) values('WP02',3);

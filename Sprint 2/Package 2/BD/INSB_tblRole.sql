@@ -1,4 +1,4 @@
-USE dbProjetE2Prod
+USE dbProjetE2Test
 GO
 INSERT INTO Personnel.tblRole(NomRole,DescRole) VALUES('PDG','Directeur général et président de la compagnie qui gère les différentes succursales. Il consulte les documents et sort les rapports.');
 INSERT INTO Personnel.tblRole(NomRole,DescRole) VALUES('Directeur de compte','Directeur en charge de gérer une succursale en particulier ainsi que ses différents chefs. C’est lui que va rencontrer les compagnies pour dénicher des contrats. Il valide les cahiers de charge et ajoute les clients.');

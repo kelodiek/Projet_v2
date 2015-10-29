@@ -1,4 +1,4 @@
-use dbProjetE2Prod;
+use dbProjetE2Test;
 GO
 
 ALTER TABLE Jeux.tblSysExp

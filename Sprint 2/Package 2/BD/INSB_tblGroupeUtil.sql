@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('DBABoFag',9);
 INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('BoFag1',7);

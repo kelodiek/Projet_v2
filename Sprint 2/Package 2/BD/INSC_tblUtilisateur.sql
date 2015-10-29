@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('DBABoFag','sauce','o','n','20151005',9,1,'o');
 INSERT INTO Personnel.tblUtilisateur(NomUtil,MotPasUtil,PremiereConex,MotPasExpire,DateModifMotPas,IdRole,IdEmp,Actif) values('BoFag1','Chaussure','o','n','20151005',7,1,'o');
