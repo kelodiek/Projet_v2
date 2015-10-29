@@ -1,0 +1,153 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Cas de Test";
+}
+<section class="content-header">
+    <h1>
+        Cas de test
+        <small>Détails</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+        <li><a href="#">Cas de test</a></li>
+        <li class="active">Détails</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box box-default color-palette-box">
+        <div class="box-header with-border">
+            <div class="btn-group-sm">
+                <a class="btn btn-sm btn-info btn-flat pull-left">Enregistrer</a>
+                <a class="btn btn-sm btn-info btn-flat pull-left">Modifier</a>
+                <a class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
+            </div>
+            <div class="btn-group-sm">
+                <a class="btn btn-sm btn-info btn-flat pull-right">Retour</a>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div style="width:50%; float:left;">
+                <dl class="dl-horizontal">
+                    <dt>Projet: </dt>
+                    <dd>
+                        <input type="text" size="10" maxlength="10" name="txtProjet" value=" " />
+                    </dd>
+
+                    <dt>Code: </dt>
+                    <dd>
+                        <input type="text" size="10" maxlength="10" name="txtCode" value=" " />
+                    </dd>
+
+                    <dt>Nom: </dt>
+                    <dd>
+                        <input type="text" size="30" maxlength="30" name="txtNom" value=" " />
+                    </dd>
+
+                    <dt>Priorité: </dt>
+                    <dd>
+                        <select>
+                            <option value="volvo">Faible</option>
+                            <option value="saab">Moyenne</option>
+                            <option value="mercedes">Important</option>
+                            <option value="audi">Urgent</option>
+                        </select>
+                    </dd>
+
+                    <dt>Difficulté: </dt>
+                    <dd>
+                        <select>
+                            <option value="volvo">Débutant</option>
+                            <option value="saab">Intermédiaire</option>
+                            <option value="mercedes">Avancé</option>
+                        </select>
+                    </dd>
+
+                    <dt>Date de création: </dt>
+                    <dd>
+                        <input class="datepicker-days" type="date" name="txtDateCreation" value=" " />
+                    </dd>
+
+                    <dt>Date de d'échéance: </dt>
+                    <dd>
+                        <input type="date" name="txtDateEcheance" value=" " />
+                    </dd>
+
+                    <dt>Objectif: </dt>
+                    <dd>
+                        <textarea type="text" style="width:95%;" rows="5" name="txtNom" value=" "></textarea>
+                    </dd>
+                </dl>
+            </div>
+            <div style="width:50%; float: right;">
+
+                <label>Description: </label><br />
+                <textarea type="text" style="width:95%;" rows="6" name="txtNom" value=" "></textarea><br />
+                <label>Autre: </label><br />
+                <textarea type="text" style="width:95%;" rows="6" name="txtNom" value=" "></textarea><br />
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="box box-default color-palette-box table-responsive">
+        <div class="box-header with-border">
+            <div class="btn-group-sm">
+                <a class="btn btn-sm btn-info btn-flat pull-left">Ajouter un document</a>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Nom document</th>
+                    <th>Créateur</th>
+                    <th>Date de création</th>
+                    <th>Date de modification</th>
+                    <th>Icone</th>
+                    <th>Extension</th>
+                    <th>Taille</th>
+
+                    <th></th>
+                </tr>
+
+                @for (int i = 0; i < 2; i++)
+                {
+                    <tr>
+                        <td>
+                            @("Test" + (i + 1))
+                        </td>
+                        <td>
+                            "Élodie Kérouack"
+                        </td>
+                        <td>
+                            23/10/2015
+                        </td>
+                        <td>
+                            24/10/2015
+                        </td>
+                        <td>
+                            <img src="~/icons/word.ico" width="25" height="25" alt="Microsoft office Word" />
+                        </td>
+                        <td>
+                            .docx
+                        </td>
+                        <td>
+                            654ko
+                        </td>
+                        <td>
+                            <div class="btn-group-sm">
+                                <a class="btn btn-sm btn-info btn-flat pull-left">Parcourir</a>
+                                <a class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</section>
