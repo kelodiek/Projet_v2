@@ -1,0 +1,30 @@
+USE dbProjetE2Test;
+GO
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('DBABoFag',9);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('BoFag1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ChefEBoFag1',4);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('RoGau1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('JeDuf1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('MaTre1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('EtMor1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('AlPar1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ChefEAlPar1',4);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('MARou1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('DirMARou1',2);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('DBAWiDub1',9);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('YaGir1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ErPer1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('OlDup1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ChefPOlDup1',3);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('GaMor1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('DBARoGue1',9);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('FePel1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('JoLan1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('JuFle1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ModJuFle1',6);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ViRen1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('BeLeb1',7);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ChefEBeLeb1',4);
+INSERT INTO Personnel.tblGroupeUtil(NomUtil,IdGroupe) values('ChefEJuPed1',4);
+GO
+USE master;

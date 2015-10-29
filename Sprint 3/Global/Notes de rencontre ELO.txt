@@ -1,0 +1,68 @@
+BD
+2 bd 
+tag (mot clé de recherche = concaténation de tous les autres champs)
+Tables pour garder des données qui ont été modifiées. (historique)
+travailler avec des VUES
+backup d'ancienne version?
+
+
+GÉNÉRAL
+toujours vérifier validité avec autres entreprises
+interface qui prend la moitié de l'écran en la glissant sur un des côté
+Administrateur != dba
+
+
+CONSOLE ADMIN
+évolutive
+identification claire
+
+
+POP-UP
+centré
+grandeur similaire
+fenêtre modale déplaçable
+copie --> vérifier si changement pour ne pas enregistrer 2 fois la même chose avec un id différent
+
+
+SYS EXP
+suppression de plusieurs à la fois
+
+
+FRM GESTION
+mouse over = voir toutes les infos
+
+TABLETTE??
+
+
+PLATEFORME 
+ajouter OS à plateforme sans perdre ce qu'il a déjà tappé (IMPORTANT) / sinon mettre OS comme premier champs
+
+
+STANDARD
+bouton avec texte
+ordre des boutons qui suivent l'ordre des standard windows
+
+DN
+curseur
+scan espace multiple
+trim
+minuscule
+
+RENCONTRE AVEC CLIENT
+2 DN papier
+DC papier
+interfaces papier
+doc numérique
+scroll
+togle
+
+
+
+À FAIRE
+faire fenêtre type d'erreur / de confirmation / etc.
+rapport en PDF pour impression
+vérifier ce que les méthodes font (on change, on exit, etc.)
+
+
+LISTES DÉROULANTES QUI SE METTENT À JOUR AUTOMATIQUEMENT SYS EXP ??
+

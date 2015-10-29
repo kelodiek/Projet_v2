@@ -1,0 +1,5 @@
+TABLE						RAISON
+
+INSB_tblEmployeCasTest				tblCasTest Pas encore analyser
+INSB_tblEmployeResultatTest			tblResultatTest Pas encore analyser
+INSB_tblGroupeDroit				Donner les droits selon les utilisateurs. Associer les multiples droits aux utilisateurs
