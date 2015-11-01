@@ -11,7 +11,7 @@ namespace Projet
         //          envoye une liste des types de test pour les relier au employe
         static public IQueryable<tblTypeTest> getTypeTest()
         {
-            var bd = new dbProjetE2ProdEntities();
+            var bd = new dbProjetE2TestEntities();
 
             var t =
                 from e in bd.tblTypeTest

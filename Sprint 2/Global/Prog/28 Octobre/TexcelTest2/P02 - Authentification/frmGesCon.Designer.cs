@@ -71,6 +71,7 @@
             this.txtMDP.PasswordChar = '*';
             this.txtMDP.Size = new System.Drawing.Size(212, 22);
             this.txtMDP.TabIndex = 4;
+            this.txtMDP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnCon_KeyDown);
             // 
             // btnCon
             // 
@@ -81,6 +82,7 @@
             this.btnCon.Text = "Se Connecter";
             this.btnCon.UseVisualStyleBackColor = true;
             this.btnCon.Click += new System.EventHandler(this.button1_Click);
+            this.btnCon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnCon_KeyDown);
             // 
             // pictureBox1
             // 

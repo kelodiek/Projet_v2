@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Projet
 {
     /// <summary>
-    /// toutes les variables db vont etre a changé pour "dbProjetE2ProdEntities"
+    /// toutes les variables db vont etre a changé pour "dbProjetE2TestEntities"
     /// </summary>
     static class rAuthentificationSQL
     {
         static public IQueryable<tblUtilisateur> VerifierLogin(string Username,string Password)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r = from the in db.tblUtilisateur
                     where (the.NomUtil == Username) & (the.MotPasUtil == Password)
@@ -23,7 +23,7 @@ namespace Projet
         }
         static public string PremiereCon(string Username)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r = (from the in db.tblUtilisateur
                     where the.NomUtil == Username
@@ -33,7 +33,7 @@ namespace Projet
         }
         static public void VerifierExpiration(string Username)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
             var time = (from the in db.tblUtilisateur
                         where the.NomUtil == Username
                         select the.DateModifMotPas).First();
@@ -84,7 +84,7 @@ namespace Projet
         }
         static public string MotDePasseExpire(string Username)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
             
 
             var r = (from the in db.tblUtilisateur
@@ -96,7 +96,7 @@ namespace Projet
         static public Utilisateur SetAttributes(Utilisateur u)
         {
             Utilisateur User = u;
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r = from the in db.tblUtilisateur
                     where the.NomUtil == User.NomUtilisateur
@@ -110,7 +110,7 @@ namespace Projet
         }
         static public bool ChangerMDP(Utilisateur u,string NouvMDP)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r = (from the in db.tblUtilisateur
                     where the.NomUtil == u.NomUtilisateur
@@ -134,7 +134,7 @@ namespace Projet
         
         static public string GetRole(int IdRole)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r = (from the in db.tblRole
                     where the.IdRole == IdRole

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd2bb8f60f3e47cca6c86b02a5338e17" Name="Diagram1">
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblCategorie" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblClassification" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblGenre" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblJeu" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblMode" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblPlateforme" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblSysExp" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblTheme" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblVersion" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblDroit" Width="1.5" PointX="5.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblEmploye" Width="1.5" PointX="7.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblEquipe" Width="1.5" PointX="10" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblGroupe" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblRole" Width="1.5" PointX="7.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblUtilisateur" Width="1.5" PointX="10" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblTypeTest" Width="1.5" PointX="12.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.AllChefEquipe" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblPlateforme_tblCategorie_CodeCategorie" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblJeu_tblClassification_CoteESRB" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblJeu_tblGenre_IdGenre" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblJeu_tblMode_IdMode" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblVersion_tblJeu_IdJeu" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblEquipe_tblEmploye_IdChefEquipe" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblUtilisateur__tblEmploye_IdEmp" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblUtilisateur_tblRole_IdRole" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblJeuSemblable" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblPlateformeJeu" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblPlateformeSysExp" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblThemeJeu" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblEmployeTypeTest" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblEquipeTesteur" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblEquipeTypeTest" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblGroupeDroit" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2TestModel.tblGroupeUtil" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -54,7 +54,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllChefEquipe.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbProjetE2Test.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbProjetE2Test.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbProjetE2Test.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbProjetE2Test.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbProjetE2Test.edmx</DependentUpon>
     </Compile>
     <Compile Include="P01 - Jeu\Categorie\Categorie.cs" />
     <Compile Include="P01 - Jeu\Categorie\rCategSQL.cs" />
@@ -335,52 +350,52 @@
     <Compile Include="Requete.cs" />
     <Compile Include="P01 - Jeu\SysExp\SystemeExploitation.cs" />
     <Compile Include="tblCategorie.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblClassification.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblDroit.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblEmploye.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblEquipe.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGenre.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGroupe.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblJeu.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblMode.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPlateforme.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblRole.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSysExp.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTheme.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTypeTest.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUtilisateur.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="tblVersion.cs">
-      <DependentUpon>dbProjetE2ProdModel.tt</DependentUpon>
+      <DependentUpon>dbProjetE2Test.tt</DependentUpon>
     </Compile>
     <Compile Include="P01 - Jeu\Theme\Theme.cs" />
     <Compile Include="P01 - Jeu\Version\version.cs" />
@@ -510,6 +525,23 @@
       <DependentUpon>dbProjetE2ProdModel.edmx</DependentUpon>
       <LastGenOutput>dbProjetE2ProdModel.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="dbProjetE2Test.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbProjetE2Test.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="dbProjetE2Test.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbProjetE2Test.edmx</DependentUpon>
+      <LastGenOutput>dbProjetE2Test.Context.cs</LastGenOutput>
+    </None>
+    <None Include="dbProjetE2Test.edmx.diagram">
+      <DependentUpon>dbProjetE2Test.edmx</DependentUpon>
+    </None>
+    <None Include="dbProjetE2Test.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbProjetE2Test.edmx</DependentUpon>
+      <LastGenOutput>dbProjetE2Test.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -530,7 +562,6 @@
   <ItemGroup>
     <None Include="bin\Debug\Texcel logo v2.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

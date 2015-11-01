@@ -180,5 +180,17 @@ namespace Projet
             empSelect = _e;
             this.Tag = _e;
         }
+
+        private void frmDetEmp_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGesUtil_Click(object sender, EventArgs e)
+        {
+            var form = new frmGesComptes();
+            form.Idemp = Convert.ToInt32(txtId.Text);
+            form.Show();
+        }
     }
 }

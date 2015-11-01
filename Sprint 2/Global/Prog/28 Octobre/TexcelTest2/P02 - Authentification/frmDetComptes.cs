@@ -15,10 +15,11 @@ namespace Projet
         public string[] copie { get; set; }
         public string[] infoCompte { get; set; }
         private ctrlComptes GesComptes;
+        public int Idemp;
  
         private Utilisateur ancienCompte;
         public bool annuler { get; set; }
-        public frmDetComptes()
+        public frmDetComptes(int Id)
         {
             InitializeComponent();
             this.PositionBtn(400);
@@ -28,8 +29,10 @@ namespace Projet
             this.btnCopier.Enabled = false;
             GesComptes = new ctrlComptes();
             annuler = true;
+            Idemp = Id;
+            
         }
-        public frmDetComptes(string[] info)
+        public frmDetComptes(string[] info,int Id)
         {
             InitializeComponent();
             this.PositionBtn(400);
@@ -42,6 +45,7 @@ namespace Projet
             GesComptes = new ctrlComptes();
             annuler = true;
             ancienCompte = new Utilisateur();
+            Idemp = Id;
         }
         public void frmDetComptes_Load(object sender,EventArgs e)
         {
@@ -60,7 +64,8 @@ namespace Projet
 	        {
 		        txtIdRole.Items.Add(item);
 	        }
-           
+            txtIdEmp.Text = Idemp.ToString();
+            txtIdEmp.Enabled = false;
         }
         public void modifierChamp(string code)
         {
@@ -84,16 +89,33 @@ namespace Projet
                 remplirChamp();
             }
         }
+        private string ValeurCombo(string valeur)
+        {
+            if(valeur == "o")
+            {
+                return "Oui";
+            }
+            else if(valeur == "n")
+            {
+                return "Non";
+            }
+            else
+            {
+                return valeur;
+            }
+        }
+        //Get valeur depuis la collection des combobox pour les setter selon ce qui est dans infoCompte
         private void remplirChamp()
         {
+            ctrlComptes ctrlcompte = new ctrlComptes();
             txtNomUtil.Text = infoCompte[0];
             txtMDP.Text = infoCompte[1];
-            txtPremiere.Text = infoCompte[2];
-            txtExpire.Text = infoCompte[3];
+            txtPremiere.Text = ValeurCombo(infoCompte[2]);
+            txtExpire.Text = ValeurCombo(infoCompte[3]);
             dateTimeModif.Value = Convert.ToDateTime(infoCompte[4]);
             txtIdRole.Text = GesComptes.GetNomRole(Convert.ToInt32(infoCompte[5]));
-            txtIdEmp.Text = infoCompte[6];
-            txtActif.Text = infoCompte[7];
+            txtIdEmp.Text = Idemp.ToString();
+            txtActif.Text = ValeurCombo(infoCompte[7]);
 
             ancienCompte.NomUtilisateur = txtNomUtil.Text;
             if (txtNomUtil.Text.Length != 0)
@@ -104,7 +126,7 @@ namespace Projet
             ancienCompte.Premiere = txtPremiere.Text;
             ancienCompte.Expire = txtExpire.Text;
             ancienCompte.DateModifMotPas = dateTimeModif.Value;
-            ancienCompte.Role = Convert.ToInt32(txtIdRole.Text);
+            ancienCompte.Role = Convert.ToInt32(ctrlcompte.GetIdRole(txtIdRole.Text));
             ancienCompte.Emp = Convert.ToInt32(txtIdEmp.Text);
             ancienCompte.UtilActif = txtActif.Text;
         }
@@ -161,7 +183,7 @@ namespace Projet
                     resultat = MessageBox.Show("Voulez-vous vraiment Enregistrer ?", "Enregistrement", MessageBoxButtons.YesNo);
                     if (resultat == DialogResult.Yes)
                     {
-                        GesComptes.enregistrer(nouvCompte);
+                        GesComptes.enregistrer(nouvCompte,Idemp);
                         this.Close();
                     }
                 }
@@ -171,7 +193,7 @@ namespace Projet
         {
             var info = new string[] {txtNomUtil.Text, txtMDP.Text, txtPremiere.Text, txtExpire.Text, dateTimeModif.Value.ToString(), txtIdRole.Text, txtIdEmp.Text,txtActif.Text };
 
-            var formOuvert = new frmDetComptes(info);
+            var formOuvert = new frmDetComptes(info,Idemp);
             formOuvert.remplirChamp();
             formOuvert.btnCopier.Enabled = false;
             formOuvert.btnSupprimer.Enabled = false;

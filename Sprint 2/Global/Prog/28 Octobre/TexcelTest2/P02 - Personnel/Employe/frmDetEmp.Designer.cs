@@ -51,6 +51,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.chkLstTypeTest = new System.Windows.Forms.CheckedListBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnGesUtil = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -278,11 +279,22 @@
             this.label10.TabIndex = 74;
             this.label10.Text = "Types tests:";
             // 
+            // btnGesUtil
+            // 
+            this.btnGesUtil.Location = new System.Drawing.Point(235, 477);
+            this.btnGesUtil.Name = "btnGesUtil";
+            this.btnGesUtil.Size = new System.Drawing.Size(140, 35);
+            this.btnGesUtil.TabIndex = 75;
+            this.btnGesUtil.Text = "Gestion Utilisateur";
+            this.btnGesUtil.UseVisualStyleBackColor = true;
+            this.btnGesUtil.Click += new System.EventHandler(this.btnGesUtil_Click);
+            // 
             // frmDetEmp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 522);
+            this.Controls.Add(this.btnGesUtil);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.chkLstTypeTest);
             this.Controls.Add(this.label9);
@@ -292,6 +304,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmDetEmp";
             this.Text = "Texcel - Détails - Employé";
+            this.Load += new System.EventHandler(this.frmDetEmp_Load);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.txtCompetencePart, 0);
             this.Controls.SetChildIndex(this.txtCommentaire, 0);
@@ -299,6 +312,7 @@
             this.Controls.SetChildIndex(this.label9, 0);
             this.Controls.SetChildIndex(this.chkLstTypeTest, 0);
             this.Controls.SetChildIndex(this.label10, 0);
+            this.Controls.SetChildIndex(this.btnGesUtil, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -331,5 +345,6 @@
         private System.Windows.Forms.DateTimePicker dateEmbauche;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnGesUtil;
     }
 }

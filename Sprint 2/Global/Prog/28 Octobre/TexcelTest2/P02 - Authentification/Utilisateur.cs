@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet
 {
-    class Utilisateur
+    public class Utilisateur
     {
         private string NomUtil, MotPasUtil,PremiereConex, MotPasExpire,Actif;
         private int IdRole, IdEmp;

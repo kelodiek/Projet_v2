@@ -18,10 +18,10 @@ namespace Projet
             get { return lstComptes; }
             set { lstComptes = value; }
         }
-        public List<string[]> chargerDonnees()
+        public List<string[]> chargerDonnees(int id)
         {
             var lstRows = new List<string[]>();
-            var lstBrut = rComptesSQL.getComptes();
+            var lstBrut = rComptesSQL.getComptes(id);
             string[] row;
 
             foreach (var item in lstBrut)
@@ -33,7 +33,8 @@ namespace Projet
                 item.MotPasExpire.ToString(),
                 item.DateModifMotPas.Value.Date.ToString(),
                 item.IdRole.ToString(),
-                item.IdEmp.ToString()};
+                item.IdEmp.ToString(),
+                    item.Actif.ToString()};
                     lstRows.Add(row);
 
                     lstComptes.Add(new Utilisateur(item));
@@ -64,9 +65,9 @@ namespace Projet
         {
             rComptesSQL.ajouter(u);
         }
-        public void enregistrer(Utilisateur u)
+        public void enregistrer(Utilisateur u,int Id)
         {
-            if (rComptesSQL.getComptes().Any())
+            if (rComptesSQL.getComptes(Id).Any())
             {
                 rComptesSQL.ajouter(u);
             }

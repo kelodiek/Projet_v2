@@ -13,6 +13,7 @@ namespace Projet
     public partial class frmGesCon : Form
     {
         ctrlLogin ctrllogin;
+        ctrlComptes ctrlcompte;
         public frmGesCon()
         {
             InitializeComponent();
@@ -20,8 +21,9 @@ namespace Projet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
+           Cursor.Current = Cursors.WaitCursor;
             ctrllogin = new ctrlLogin();
+            ctrlcompte = new ctrlComptes();
             string Username,PWD;
             Username = txtUsername.Text;
             PWD = txtMDP.Text;
@@ -59,7 +61,7 @@ namespace Projet
                     {
                         MessageBox.Show("Votre mot de passe expire bientôt.\nS(moins de 10 jours)");
                     }
-                    if(ctrllogin.GetRole(ctrllogin.user.Role) == "Testeur")
+                    if(ctrlcompte.GetNomRole(ctrllogin.user.Role) == "Testeur")
                     {
                         //Ouvrir frmTest
                         var form = new frmGestion();
@@ -67,7 +69,7 @@ namespace Projet
                         form.Closed += (s, args) => this.Close();
                         form.Show();
                     }
-                    else if ((ctrllogin.GetRole(ctrllogin.user.Role) == "Admin") || (ctrllogin.GetRole(ctrllogin.user.Role) == "Test"))
+                    else if ((ctrlcompte.GetNomRole(ctrllogin.user.Role) == "Admin") || (ctrlcompte.GetNomRole(ctrllogin.user.Role) == "Test"))
                     {
                         var form = new frmGestion();
                         this.Hide();
@@ -88,6 +90,14 @@ namespace Projet
             {
                 MessageBox.Show("Identifiant ou mot de passe invalide, veuillez réessayer.");
                 txtMDP.Text = "";
+            }
+        }
+
+        private void btnCon_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
             }
         }
     }

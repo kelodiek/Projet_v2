@@ -207,7 +207,7 @@
             this.txtIdRole.FormattingEnabled = true;
             this.txtIdRole.Location = new System.Drawing.Point(180, 282);
             this.txtIdRole.Name = "txtIdRole";
-            this.txtIdRole.Size = new System.Drawing.Size(50, 22);
+            this.txtIdRole.Size = new System.Drawing.Size(100, 22);
             this.txtIdRole.TabIndex = 7;
             this.txtActif.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 

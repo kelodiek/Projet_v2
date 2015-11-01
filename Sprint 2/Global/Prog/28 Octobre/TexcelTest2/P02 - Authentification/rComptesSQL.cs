@@ -9,21 +9,22 @@ namespace Projet
     static class rComptesSQL
     {    
         /// <summary>
-        /// toutes les variables db vont etre a changé pour "dbProjetE2ProdEntities"
+        /// toutes les variables db vont etre a changé pour "dbProjetE2TestEntities"
         /// </summary>
-        static public IQueryable<tblUtilisateur> getComptes()
+        static public IQueryable<tblUtilisateur> getComptes(int id)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r =
                 from c in db.tblUtilisateur
+                where c.IdEmp == id
                 select c;
 
             return r;
         }
         static public string[] GetInfoEmploye(int Id)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
             string[] tab = new string[2];
 
             var r =
@@ -41,7 +42,7 @@ namespace Projet
         }
         static public IQueryable<string> getRoles()
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r =
                 from c in db.tblRole
@@ -51,7 +52,7 @@ namespace Projet
         }
         static public int GetIdRole(string NomduRole)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r =
                 (from c in db.tblRole
@@ -62,7 +63,7 @@ namespace Projet
         }
         static public string GetNomRole(int IdduRole)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r =
                 (from c in db.tblRole
@@ -73,7 +74,7 @@ namespace Projet
         }
         static public IQueryable<tblUtilisateur> Recherche(string Recherche)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r = from the in db.tblUtilisateur
                     where (the.NomUtil.Contains(Recherche)) || (the.MotPasUtil.Contains(Recherche))
@@ -83,7 +84,7 @@ namespace Projet
         }
         static public void supprimer(string ID)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
 
             var r =
                 from the in db.tblUtilisateur
@@ -107,7 +108,7 @@ namespace Projet
         }
         static public void ajouter(Utilisateur u)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
             var add = new tblUtilisateur();
 
             add.NomUtil = u.NomUtilisateur;
@@ -132,7 +133,7 @@ namespace Projet
         }
         static public void setCompte(Utilisateur u)
         {
-            var db = new dbProjetE2ProdEntities();
+            var db = new dbProjetE2TestEntities();
             var i = u.NomUtilisateur;
 
 

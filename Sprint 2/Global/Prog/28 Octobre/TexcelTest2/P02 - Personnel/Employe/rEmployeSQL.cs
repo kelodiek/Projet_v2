@@ -11,7 +11,7 @@ namespace Projet
     {
         static public IQueryable<tblEmploye> getEmploye()
         {
-            var bd = new dbProjetE2ProdEntities();
+            var bd = new dbProjetE2TestEntities();
 
             var r =
                 from e in bd.tblEmploye
@@ -23,7 +23,7 @@ namespace Projet
 
         static public void addEmploye(Employe settings)
         {
-            var bd = new dbProjetE2ProdEntities();
+            var bd = new dbProjetE2TestEntities();
             var ajout = new tblEmploye();
             var lstTypeTest = new List<tblTypeTest>();
 
@@ -74,7 +74,7 @@ namespace Projet
 
         static public void setEmploye(Employe settings)
         {
-            var bd = new dbProjetE2ProdEntities();
+            var bd = new dbProjetE2TestEntities();
             var lstTypeTest = new List<tblTypeTest>();
 
             var r =
@@ -126,7 +126,7 @@ namespace Projet
 
         static public IQueryable<tblEmploye> rechercheEmploye(string cle)
         {
-            var bd = new dbProjetE2ProdEntities();
+            var bd = new dbProjetE2TestEntities();
 
             var d =
                 from e in bd.tblEmploye
@@ -138,7 +138,7 @@ namespace Projet
 
         static public void deleteEmploye(int cle)
         {
-            var bd = new dbProjetE2ProdEntities();
+            var bd = new dbProjetE2TestEntities();
             var i = cle;
 
             var r =

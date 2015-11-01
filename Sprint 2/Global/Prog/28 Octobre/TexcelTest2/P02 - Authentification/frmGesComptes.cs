@@ -13,6 +13,7 @@ namespace Projet
     public partial class frmGesComptes : frmGestion
     {
         ctrlComptes GesComptes;
+        public int Idemp;
         public frmGesComptes()
         {
             InitializeComponent();
@@ -22,11 +23,12 @@ namespace Projet
             btnX.Click += new EventHandler(btnX_Click);
             ButtonsVisible(true);
             GesComptes = new ctrlComptes();
+            Idemp = 0;
         }
 
         public void ajoutCompte_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetComptes();
+            var frmDetails = new frmDetComptes(Idemp);
 
             frmDetails.modifierChamp("a");
 
@@ -73,7 +75,7 @@ namespace Projet
         }
         private void afficherDetails(string[] info)
         {
-            var frmDetails = new frmDetComptes(info);
+            var frmDetails = new frmDetComptes(info,Idemp);
 
             frmDetails.modifierChamp("m");
 
@@ -112,19 +114,19 @@ namespace Projet
         private void afficherDonnees()
         {
             gridComptes.Rows.Clear();
-            var donnees = GesComptes.chargerDonnees();
+            var donnees = GesComptes.chargerDonnees(Idemp);
             foreach (var item in donnees)
             {
                 int rowIndex = gridComptes.Rows.Add(item);
                 gridComptes.Rows[rowIndex].Tag = item.Last();
             }
             gridComptes.Sort(gridComptes.Columns[1], ListSortDirection.Ascending);
-            gridComptes.Rows[1].Selected = true;
+            gridComptes.Rows[0].Selected = true;
         }
 
         private void frmGesComptes_Load(object sender, EventArgs e)
         {
-            var donnees = GesComptes.chargerDonnees();
+            var donnees = GesComptes.chargerDonnees(Idemp);
             var column = new DataGridViewColumn();
             
 
@@ -162,7 +164,7 @@ namespace Projet
                 gridComptes.Rows[rowIndex].Tag = item.Last();
             }
             gridComptes.Sort(gridComptes.Columns[1], ListSortDirection.Ascending);
-            gridComptes.Rows[1].Selected = true;
+            gridComptes.Rows[0].Selected = true;
         }
         private void gridComptes_CellClick(object sender, DataGridViewCellEventArgs e)
         {

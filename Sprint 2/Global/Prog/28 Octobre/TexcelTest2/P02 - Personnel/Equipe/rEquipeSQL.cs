@@ -12,7 +12,7 @@ namespace Projet
 
         static public IQueryable<tblEmploye> getListeEmploye()
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
 
             var r =
                 from v in db.tblEmploye
@@ -24,7 +24,7 @@ namespace Projet
 
         static public IQueryable<tblTypeTest> getListeTest()
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
 
             var r =
                 from v in db.tblTypeTest
@@ -35,7 +35,7 @@ namespace Projet
 
         static public IQueryable<tblEquipe> getListeEquipe()
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
 
             var r =
                 from v in db.tblEquipe
@@ -48,7 +48,7 @@ namespace Projet
 
         static public IQueryable<AllChefEquipe> getEmployeChefEquipe()
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
 
             var r =
                 from v in db.AllChefEquipe
@@ -70,7 +70,7 @@ namespace Projet
 
         static public int addEquipe(tblEquipe settings)
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
             int i;
 
             db.tblEquipe.Add(settings);
@@ -92,7 +92,7 @@ namespace Projet
 
         static public int setEquipe(tblEquipe settings)
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
             tblEquipe unEquipe = new tblEquipe();
 
             var r =
@@ -135,7 +135,7 @@ namespace Projet
 
         static public void deleteEquipe(equipe settings)
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
 
             var r =
                 from eq in db.tblEquipe
@@ -160,7 +160,7 @@ namespace Projet
 
         static public tblEmploye getChefEquipe(int id)
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
 
             var r =
                 from cf in db.tblEmploye
@@ -171,7 +171,7 @@ namespace Projet
         }
         static public IQueryable<tblTypeTest> getListTestEquipe(string codeEquipe)
         {
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
 
             var r =
                 from t in db.tblTypeTest
@@ -189,7 +189,7 @@ namespace Projet
             Prenom = allString[0];
             Nom = allString[1];
 
-            //        public static dbProjetE2ProdEntities db = new dbProjetE2ProdEntities();
+            //        public static dbProjetE2TestEntities db = new dbProjetE2TestEntities();
 
             var r =
                 from t in db.AllChefEquipe
