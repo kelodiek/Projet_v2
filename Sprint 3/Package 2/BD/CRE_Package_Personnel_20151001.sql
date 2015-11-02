@@ -1,44 +1,21 @@
 use dbProjetE2Test;
 GO
-IF EXISTS (SELECT * FROM sys.schemas WHERE name = 'Personnel')
-BEGIN
-	EXEC( 'DROP TABLE Personnel.tblEquipeTypeTest' );
-	EXEC( 'DROP TABLE Personnel.tblEmployeTypeTest' );
-	EXEC( 'DROP TABLE Personnel.tblEquipeTesteur' );
+--IF EXISTS (SELECT * FROM sys.schemas WHERE name = 'Personnel')
+--BEGIN
+--	EXEC( 'DROP TABLE Personnel.tblEquipeTypeTest' );
+--	EXEC( 'DROP TABLE Personnel.tblEmployeTypeTest' );
+--	EXEC( 'DROP TABLE Personnel.tblEquipeTesteur' );
 	
-	EXEC( 'DROP TABLE Personnel.tblEquipe' );
-	EXEC( 'DROP TABLE Personnel.tblGroupeUtil' );	
+--	EXEC( 'DROP TABLE Personnel.tblEquipe' );
+--	EXEC( 'DROP TABLE Personnel.tblGroupeUtil' );	
 	
-	EXEC( 'DROP TABLE Personnel.tblGroupeDroit' );	
-	EXEC( 'DROP TABLE Personnel.tblUtilisateur' );
+--	EXEC( 'DROP TABLE Personnel.tblGroupeDroit' );	
+--	EXEC( 'DROP TABLE Personnel.tblUtilisateur' );
 		
-	EXEC( 'DROP TABLE Personnel.tblDroit' );
-	EXEC( 'DROP TABLE Personnel.tblGroupe' );	
-	EXEC( 'DROP TABLE Personnel.tblRole' );	
-	EXEC( 'DROP TABLE Personnel.tblEmploye' );
-		
-	EXEC( 'DROP SCHEMA Personnel' );
-END
-GO
-CREATE SCHEMA Personnel
-
-GO
-CREATE TABLE Personnel.tblEmploye
-(
-IdEmp					INT			NOT NULL,
-PrenomEmp				VARCHAR(25)	NOT NULL,
-NomEmp					VARCHAR(25)	NOT NULL,
-CourrielEmp				VARCHAR(45)	NOT NULL,
-NoTelPrincipal			VARCHAR(20)	NOT NULL,
-NoTelSecondaire			VARCHAR(20)	NULL,
-AdressePostale			VARCHAR(90)	NOT NULL,
-DateEmbaucheEmp			DATE		NOT NULL,
-CompetenceParticuliere  VARCHAR(400)NULL,
-Statut					CHAR		NULL,
-CommentaireEmp			VARCHAR(250)NULL
-)
-GO
-PRINT 'Création de Personnel.tblEmploye complétée'
+--	EXEC( 'DROP TABLE Personnel.tblDroit' );
+--	EXEC( 'DROP TABLE Personnel.tblGroupe' );	
+--	EXEC( 'DROP TABLE Personnel.tblRole' );	
+--END
 
 GO
 CREATE TABLE Personnel.tblRole
@@ -116,7 +93,8 @@ IdEquipe			INT			NOT NULL	IDENTITY(1,1),
 NomEquipe			VARCHAR(20)	NOT NULL,
 CommentaireEquipe	VARCHAR(250)NULL,
 Statut				CHAR		NOT NULL,
-IdChefEquipe		INT			NOT NULL
+IdChefEquipe		INT			NOT NULL,
+CodeProjet			VARCHAR(10)	NOT NULL
 )
 GO
 PRINT 'Création de Personnel.tblEquipe complétée'
