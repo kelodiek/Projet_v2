@@ -34,6 +34,7 @@
             // 
             // GridTheme
             // 
+            this.GridTheme.AllowUserToAddRows = false;
             this.GridTheme.AllowUserToResizeRows = false;
             this.GridTheme.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridTheme.Location = new System.Drawing.Point(12, 71);
@@ -45,6 +46,7 @@
             this.GridTheme.TabIndex = 50;
             this.GridTheme.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridTheme_CellClick);
             this.GridTheme.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridTheme_CellDoubleClick);
+            this.GridTheme.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridTheme_ColumnHeaderMouseClick);
             // 
             // frmGesTheme
             // 
