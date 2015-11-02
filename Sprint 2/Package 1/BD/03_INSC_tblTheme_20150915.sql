@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Jeux.tblTheme(NomTheme) VALUES('Abeilles');
 INSERT INTO Jeux.tblTheme(NomTheme) VALUES('Abstrait');

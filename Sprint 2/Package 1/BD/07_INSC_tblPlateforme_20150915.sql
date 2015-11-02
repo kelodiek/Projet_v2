@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 GO
 INSERT INTO Jeux.tblPlateforme(CodePlateforme,NomPlateforme,CPU,RAM,Stockage,DescPlateforme,InfoSupPlateforme,CodeCategorie) VALUES('Alien','Alienware15','4e génération Intel Core jusqu''à i7','DDR4 de 8 Go 2133MHz (4Gox2)','Disque dur SATA de 1 To à 7 200 tr/min et 6 Gbit/s','Portable Élite','NVIDIA® GeForce® GTX 965M with 2GB GDDR5','PCPort');
 INSERT INTO Jeux.tblPlateforme(CodePlateforme,NomPlateforme,CPU,CarteMere,RAM,Stockage,DescPlateforme,InfoSupPlateforme,CodeCategorie) VALUES('OptiPlex','OptiPlex 3030 tout-en-un','Intel® Celeron® G1840','Intel Core','DDR3L 4 Go3 à 1600 MHz','Disque dur de 500Go, 7200 t/min','Ordinateur d''entreprise  ','Carte graphique Intel® intégrée','PCBur');

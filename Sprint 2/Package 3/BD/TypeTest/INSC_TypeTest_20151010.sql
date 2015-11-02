@@ -1,4 +1,4 @@
-use dbProjetE2Prod;
+use dbProjetE2Test;
 INSERT INTO Test.tblTypeTest(CodeTypeTest,NomTypeTest,ObjectifTypeTest,DescTypeTest,CommentaireTest) values('AnAct','Analyse de l''activité','Saisir la réalité et la complexité des activités humaines dans une situation précise','Analyse de la demande, Entretiens, Observations ouverte, Observation systématique',null);
 INSERT INTO Test.tblTypeTest(CodeTypeTest,NomTypeTest,ObjectifTypeTest,DescTypeTest,CommentaireTest) values('AuCon','Auto confrontation','Comprendre comment le joueur contruit mentalement son activité et quels facteurs influencent cette construction','Filmer le joueur pendant l''activité et le laisser commenter son comportement en visionnant le film',null);
 INSERT INTO Test.tblTypeTest(CodeTypeTest,NomTypeTest,ObjectifTypeTest,DescTypeTest,CommentaireTest) values('RePhy','Recueil des mesures physiologiques','Indiquer l''état de vigilance ou émotionnel d''une personne face à une certaine situation','Recueillir la fréquence cardiaque, l''activité électrodermal et d''autres mesures d''un joueur en réponse à une certaine situation',null);

@@ -1,4 +1,4 @@
-USE dbProjetE2Prod;
+USE dbProjetE2Test;
 INSERT INTO Jeux.tblGenre(NomGenre,ComGenre) VALUES('Course ','Les jeux de Vroum vroum');
 INSERT INTO Jeux.tblGenre(NomGenre) VALUES('Action Combat');
 INSERT INTO Jeux.tblGenre(NomGenre) VALUES('Action Beat them all');
