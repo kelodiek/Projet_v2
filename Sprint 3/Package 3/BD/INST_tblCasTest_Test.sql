@@ -1,10 +1,10 @@
 USE dbProjetE2Test;
 GO
-INSERT INTO Test.tblCasTest(CodeCas, TitreCas, CodeTypeTest, CodeProjet) VALUES ('CasTest1','TestCas1', 'PlSce','Test1');
-INSERT INTO Test.tblCasTest(CodeCas, TitreCas, CodeTypeTest, CodeProjet) VALUES ('CasTest2','TestCas2', 'PlSce','Test1');
-INSERT INTO Test.tblCasTest(CodeCas, TitreCas, CodeTypeTest, CodeProjet) VALUES ('CasTest3','TestCas3', 'OcUlo','Test2');
-INSERT INTO Test.tblCasTest(CodeCas, TitreCas, CodeTypeTest, CodeProjet) VALUES ('CasTest4','TestCas4', 'PlPap','Test3');
-INSERT INTO Test.tblCasTest(CodeCas, TitreCas, CodeTypeTest, CodeProjet) VALUES ('CasTest5','TestCas5', 'AuCon','Test5');
-INSERT INTO Test.tblCasTest(CodeCas, TitreCas, CodeTypeTest, CodeProjet) VALUES ('CasTest6','TestCas6', 'AuCon','Test5');
+INSERT INTO Test.tblCasTest(CodeCas, CodeProjet, TitreCas,ObjectifCas,DateEcheanceCas,DateCreationCas,DescriptionCas,StatusCas,InfoSupCas,DiffculteCas,UrgenceCas, CodeTypeTest,Auteur) VALUES ('1TestHalo5','PHalo5Beta', 'Premier test d''une suite de trois test pour halo5','2015-03-12','2015-06-08','Cas de test de test','en pause','','Faible','Moyen','CoWal');
+INSERT INTO Test.tblCasTest(CodeCas, CodeProjet, TitreCas,ObjectifCas,DateEcheanceCas,DateCreationCas,DescriptionCas,StatusCas,InfoSupCas,DiffculteCas,UrgenceCas, CodeTypeTest,Auteur) VALUES ('2TestHalo5','PHalo5Beta', 'Deuxieme test d''une suite de trois test pour halo5','2015-03-12','2015-06-01','Test des truc quand meme cool','en cours','','Elevee','Elevee','CoWal');
+INSERT INTO Test.tblCasTest(CodeCas, CodeProjet, TitreCas,ObjectifCas,DateEcheanceCas,DateCreationCas,DescriptionCas,StatusCas,InfoSupCas,DiffculteCas,UrgenceCas, CodeTypeTest,Auteur) VALUES ('3TestHalo5','PHalo5Beta', 'Dernier test d''une suite de trois test pour halo5','2015-03-12','2015-05-17','Super test de la mort qui tue','Terminer','','Faible','Faible','CoWal');
+INSERT INTO Test.tblCasTest(CodeCas, CodeProjet, TitreCas,ObjectifCas,DateEcheanceCas,DateCreationCas,DescriptionCas,StatusCas,InfoSupCas,DiffculteCas,UrgenceCas, CodeTypeTest,Auteur) VALUES ('1SoCaTest5','PSC5BetaMu', 'Un super test de la mort sur soul calibur 5','2014-02-06','2014-03-08','Cas de test de cas de test de test','en pause','','Faible','Moyen','CoWal');
+INSERT INTO Test.tblCasTest(CodeCas, CodeProjet, TitreCas,ObjectifCas,DateEcheanceCas,DateCreationCas,DescriptionCas,StatusCas,InfoSupCas,DiffculteCas,UrgenceCas, CodeTypeTest,Auteur) VALUES ('2SoCaTest5','PSC5BetaMu', 'Un autre test sur soul calibur 5','2014-02-06','2014-04-03','Test de truc plus cool que dans l''autre test','en cours','','Elevee','Elevee','CoWal');
+
 GO
 USE master;
