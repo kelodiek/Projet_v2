@@ -36,4 +36,10 @@ ADD CONSTRAINT FK_tblCasTest_tblTypeTest_CodeTypeTest	FOREIGN KEY(CodeTypeTest) 
 PRINT '2- Création de la contrainte FK_tblCasTest_tblTypeTest_CodeTypeTest reussie'
 GO
 
+GO
+ALTER TABLE Test.tblCasTest
+ADD CONSTRAINT FK_tblCasTest_tblEmploye_IdAuteur	FOREIGN KEY(IdAuteur) REFERENCES Personnel.tblEmploye(IdEmp)
+PRINT '2- Création de la contrainte FK_tblCasTest_tblEmploye_IdAuteur reussie'
+GO
+
 use master;
