@@ -12,7 +12,7 @@ GO
 CREATE TABLE Test.tblProjet
 (
 CodeProjet			VARCHAR(10)			NOT NULL,
-TitreProjet			VARCHAR(30)			NULL,
+TitreProjet			VARCHAR(50)			NULL,
 ObjectifProjet		VARCHAR(500)		NULL,
 DateCreation		DATE				NULL,
 DateEcheance		DATE				NULL,
@@ -37,6 +37,7 @@ StatutCas			VARCHAR(50)			NULL,
 InfoSupCas			VARCHAR(200)		NULL,
 DifficulteCas		CHAR(10)			NULL,
 PrioriteCas			CHAR(10)			NULL,
+IdAuteur			INT					NULL,	
 CodeProjet			VARCHAR(10)			NOT NULL,
 CodeTypeTest		VARCHAR(5)			NOT NULL
 )
