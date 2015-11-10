@@ -8,17 +8,45 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//      fait par Gabriel Simard
+
 namespace Projet
 {
     public partial class frmGesGroupeUser : frmGestion
     {
         ctrlGroupeUser gestionGroupe;
+        private int lvlAcces;
 
         public frmGesGroupeUser()
         {
             InitializeComponent();
             gestionGroupe = new ctrlGroupeUser();
             chargerColonne();
+        }
+        //      avec authentification
+        public frmGesGroupeUser(string _us)
+        {
+            InitializeComponent();
+            gestionGroupe = new ctrlGroupeUser();
+            UserNm = _us;
+            chargerColonne();
+            droitUser();
+        }
+
+        private void droitUser()
+        {
+            lvlAcces = gestionGroupe.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                gridGroupUser.Rows.Clear();
+            }
         }
 
         private void gridGroupUser_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -44,7 +72,7 @@ namespace Projet
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
                 recherche();
         }
 
@@ -65,7 +93,7 @@ namespace Projet
 
         private void btnAjout_Click(object sender, EventArgs e)
         {
-            var detail = new frmDetGroupeUser();
+            var detail = new frmDetGroupeUser(lvlAcces);
             detail.Tag = "0";
 
             detail.ShowDialog();
@@ -100,8 +128,6 @@ namespace Projet
             chargeDonnee();
             chargeObjet();
         }
-
-        
 
         private void chargeDonnee()
         {
@@ -138,7 +164,7 @@ namespace Projet
 
         private void modifierGroupe()
         {
-            frmDetGroupeUser detailGroup = new frmDetGroupeUser((GroupeUtil)this.Tag, true);
+            frmDetGroupeUser detailGroup = new frmDetGroupeUser((GroupeUtil)this.Tag, true, lvlAcces);
             detailGroup.ShowDialog();
             if (detailGroup.Tag.ToString() == "0")
                 this.Tag = gridGroupUser.Rows[0].Tag;
@@ -162,7 +188,7 @@ namespace Projet
             chargeDonnee();
             gridGroupUser.Sort(gridGroupUser.Columns[Colum], DD);
             int R = gestionGroupe.RowsById(Idselect, gridGroupUser);
-            gridGroupUser.Rows[R].Cells[1].Selected = true;         //      utile ?
+            gridGroupUser.Rows[R].Cells[1].Selected = true;
             gridGroupUser.Rows[R].Selected = true;
         }
 

@@ -14,6 +14,8 @@ namespace Projet
     {
         ctrlVersion ctrlVers;
         public int idJeu { get; set; }
+        private int lvlAcces;
+
         public frmGestVersion()
         {
             InitializeComponent();
@@ -22,12 +24,33 @@ namespace Projet
             this.btnAjout.Click += new EventHandler(ajoutVersion_Click);
             this.btnRecherche.Click += new EventHandler(btnRechercher_click);
             this.btnX.Click += new EventHandler(btnX_click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
 
             ButtonsVisible(true);
+            disableMenu();
 
             ctrlVers = new ctrlVersion();
             idJeu = 3;
         }
+
+        public frmGestVersion(int Id, int lvlA)
+        {
+            InitializeComponent();
+
+            this.btnDetails.Click += new EventHandler(btnDetails_Click);
+            this.btnAjout.Click += new EventHandler(ajoutVersion_Click);
+            this.btnRecherche.Click += new EventHandler(btnRechercher_click);
+            this.btnX.Click += new EventHandler(btnX_click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+
+            ButtonsVisible(true);
+            disableMenu();
+
+            ctrlVers = new ctrlVersion();
+            idJeu = Id;
+            lvlAcces = lvlA;
+        }
+
         // cree les colonne et affiche les donnees
         private void frmGestVersion_Load(object sender, EventArgs e)
         {
@@ -53,10 +76,26 @@ namespace Projet
             column.Width = 100;
 
             afficherDonnees();
+            droitUser();
         }
+
+        private void droitUser()
+        {
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                gridVersion.Rows.Clear();
+            }
+        }
+
         private void ajoutVersion_Click(object sender, EventArgs e)
         {
-            var detailsVersion = new frmDetVersion(idJeu);
+            var detailsVersion = new frmDetVersion(idJeu, lvlAcces);
 
             detailsVersion.modifierChamp("a");
 
@@ -89,7 +128,7 @@ namespace Projet
         private void afficherDetails()
         {
             version selectV = (version)gridVersion.SelectedRows[0].Tag;
-            var frmDetails = new frmDetVersion(selectV);
+            var frmDetails = new frmDetVersion(selectV, lvlAcces);
 
             frmDetails.modifierChamp("m");
 
@@ -121,6 +160,7 @@ namespace Projet
         {
             rechercher();
         }
+
         private void rechercher()
         {
             if (txtRecherche.Text != "")
@@ -145,6 +185,12 @@ namespace Projet
         {
             updateDonnees();
             txtRecherche.Text = "";
+        }
+
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13 && lvlAcces != 0)
+                rechercher();
         }
     }
 }

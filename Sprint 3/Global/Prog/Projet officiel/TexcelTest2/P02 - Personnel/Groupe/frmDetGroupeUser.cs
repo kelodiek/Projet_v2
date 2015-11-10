@@ -15,6 +15,7 @@ namespace Projet
         private ctrlGroupeUser gestionGroupe;
         private GroupeUtil groupeSelect;
         private bool statut;
+        private int lvlAcces;
         //          Ajout tout vide
         public frmDetGroupeUser()
         {
@@ -29,6 +30,28 @@ namespace Projet
         {
             InitializeComponent();
             statut = st;
+            chargeDet();
+            loadGroupe(_group);
+            gestionGroupe.chargeDr(tvLstDr, tvGroupDr, _group);
+        }
+
+        //                  Avec authentification
+        //          Ajout tout vide
+        public frmDetGroupeUser(int lvla)
+        {
+            InitializeComponent();
+            statut = false;
+            lvlAcces = lvla;
+            chargeDet();
+            gestionGroupe.chargeDr(tvLstDr, tvGroupDr, null);
+        }
+
+        //          Modif d'un existant ou copie ?    true modif    false copie   si copie enregistré change en true
+        public frmDetGroupeUser(GroupeUtil _group, bool st, int lvla)
+        {
+            InitializeComponent();
+            statut = st;
+            lvlAcces = lvla;
             chargeDet();
             loadGroupe(_group);
             gestionGroupe.chargeDr(tvLstDr, tvGroupDr, _group);
@@ -66,6 +89,7 @@ namespace Projet
                 tvLstDr.Enabled = true;
                 tvGroupDr.Enabled = true;
             }
+            checkLvlAcces();
         }
 
         private void btnActiverModif_Click(object sender, EventArgs e)
@@ -85,7 +109,7 @@ namespace Projet
             GroupeUtil cop = groupeSelect;
             cop.idGroupe = 0;
 
-            frmCop = new frmDetGroupeUser(cop, false);
+            frmCop = new frmDetGroupeUser(cop, false, lvlAcces);
             frmCop.ShowDialog();
             if (frmCop.statut == true)
             {
@@ -97,7 +121,7 @@ namespace Projet
 
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            DialogResult resultEnrg = MessageBox.Show("Voulez-vous vraiment supprimer ce groupe ?", "Suppression", MessageBoxButtons.YesNo);
+            DialogResult resultEnrg = MessageBox.Show("Voulez-vous vraiment supprimer ce groupe ?\n Ce groupe ne sera plus jamais disponible \n Id : " + txtId.Text + "\n Nom : " + txtNom.Text, "Suppression", MessageBoxButtons.YesNo);
             if (resultEnrg == DialogResult.Yes)
             {
                 gestionGroupe.supprimer(groupeSelect);
@@ -178,6 +202,17 @@ namespace Projet
             groupeSelect = _gu;
             txtId.Text = _gu.idGroupe.ToString();
             txtNom.Text = _gu.nomGroupe;
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
         }
     }
 }

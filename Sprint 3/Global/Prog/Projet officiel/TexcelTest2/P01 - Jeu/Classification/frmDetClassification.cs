@@ -16,6 +16,7 @@ namespace Projet
         ctrlClassification cc;
         bool modif;
         public string cote;
+        private int lvlAcces;
         public frmDetClassification()
         {
             InitializeComponent();
@@ -32,11 +33,28 @@ namespace Projet
             modif = false;
         }
 
+        public frmDetClassification(int lvla)
+        {
+            InitializeComponent();
+            this.PositionBtn(144);
+            btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
+            this.btnEnregistrer.Click += new EventHandler(enregistrer_click);
+            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnAnnuler.Click += new EventHandler(btnAnnuler_Click);
+            btnCopier.Visible = false;
+            cc = new ctrlClassification();
+            ancien = null;
+            cote = null;
+            modif = false;
+            lvlAcces = lvla;
+            checkLvlAcces();
+        }
+
         public frmDetClassification(Classification anc)
         {
             ancien = anc;
             new frmDetClassification();
-
         }
 
         private void enregistrer()
@@ -148,7 +166,6 @@ namespace Projet
 
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
 
@@ -166,6 +183,15 @@ namespace Projet
             //Pas dans classification
         }
 
-
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
+        }
     }
 }

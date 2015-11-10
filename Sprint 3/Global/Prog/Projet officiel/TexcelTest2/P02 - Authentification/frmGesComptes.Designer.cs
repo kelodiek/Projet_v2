@@ -40,7 +40,7 @@
             this.gridComptes.Name = "gridComptes";
             this.gridComptes.ReadOnly = true;
             this.gridComptes.RowTemplate.Height = 24;
-            this.gridComptes.Size = new System.Drawing.Size(1627, 781);
+            this.gridComptes.Size = new System.Drawing.Size(1654, 781);
             this.gridComptes.TabIndex = 52;
             this.gridComptes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridComptes_CellClick);
             this.gridComptes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridComptes_CellDoubleClick);
@@ -52,7 +52,7 @@
             this.ClientSize = new System.Drawing.Size(1710, 919);
             this.Controls.Add(this.gridComptes);
             this.Name = "frmGesComptes";
-            this.Text = "frmGesComptes";
+            this.Text = "Texcel : Gestion - Compte";
             this.Load += new System.EventHandler(this.frmGesComptes_Load);
             this.Controls.SetChildIndex(this.gridComptes, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridComptes)).EndInit();

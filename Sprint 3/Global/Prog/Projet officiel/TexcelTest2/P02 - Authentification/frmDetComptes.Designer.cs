@@ -224,7 +224,7 @@
             this.Controls.Add(this.txtMDP);
             this.Controls.Add(this.txtNomUtil);
             this.Name = "frmDetComptes";
-            this.Text = "Details - Utilisateur";
+            this.Text = "Texcel : Details - Utilisateur";
             this.Load += new System.EventHandler(this.frmDetComptes_Load);
             this.Controls.SetChildIndex(this.txtNomUtil, 0);
             this.Controls.SetChildIndex(this.txtMDP, 0);

@@ -17,6 +17,7 @@ namespace Projet
         private plateforme selectPlate;
         private ctrlPlateforme ctrlPlate;
         private string type;
+        private int lvlAcces;
 
         public frmDetPlateforme()
         {
@@ -54,6 +55,50 @@ namespace Projet
             ajusterForm();
             afficherDetail(p);
         }
+
+        //      avec authentification
+        public frmDetPlateforme(int lvla)
+        {
+            InitializeComponent();
+
+            type = "ajout";
+            loadList();
+
+            ctrlPlate = new ctrlPlateforme();
+
+            btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            btnCopier.Click += new EventHandler(btnCopier_Click);
+            btnSupprimer.Enabled = false;
+            btnAnnuler.Enabled = true;
+
+            ajusterForm();
+            lvlAcces = lvla;
+            checkLvlAcces();
+        }
+        public frmDetPlateforme(plateforme p, int lvla)
+        {
+            InitializeComponent();
+
+            type = "modif";
+            selectPlate = p;
+
+            loadList();
+
+            ctrlPlate = new ctrlPlateforme();
+
+            btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            btnCopier.Click += new EventHandler(btnCopier_Click);
+            btnAnnuler.Enabled = true;
+
+            loadDetail();
+            ajusterForm();
+            afficherDetail(p);
+            lvlAcces = lvla;
+            checkLvlAcces();
+        }
+
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -89,6 +134,7 @@ namespace Projet
             {
                 this.btnSupprimer.Enabled = false;
                 this.btnActiverModif.Enabled = false;
+                this.btnCopier.Enabled = false;
             }
             else
             {
@@ -98,6 +144,9 @@ namespace Projet
                 }
                 this.btnActiverModif.Enabled = true;
                 this.btnSupprimer.Enabled = true;
+                btnCopier.Enabled = true;
+                checkLvlAcces();
+                btnAnnuler.Enabled = true;
                 this.lstTreeSelect.Enabled = true;
                 this.lstTreeSysExp.Enabled = true;
             }
@@ -345,7 +394,7 @@ namespace Projet
             }
 
             copiePlate.lstSysExpPlate = lstSysExp;
-            frmDetails = new frmDetPlateforme(copiePlate);
+            frmDetails = new frmDetPlateforme(copiePlate, lvlAcces);
 
             frmDetails.modifierChamp("a");
             frmDetails.type = "copie";
@@ -384,9 +433,17 @@ namespace Projet
                     "Erreure", 
                     MessageBoxButtons.OK);
             }
-
-            
         }
 
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
+        }
     }
 }

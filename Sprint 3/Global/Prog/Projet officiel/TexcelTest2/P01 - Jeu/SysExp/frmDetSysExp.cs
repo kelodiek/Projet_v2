@@ -17,6 +17,7 @@ namespace Projet
         private ctrlSysExp gestionSysExp;
         private SystemeExploitation ancienSysExp;
         public bool annuler { get; set; }
+        private int lvlAcces;
 
         public frmDetSysExp()
         {
@@ -44,6 +45,39 @@ namespace Projet
             gestionSysExp = new ctrlSysExp();
             annuler = false;
             ancienSysExp = new SystemeExploitation();
+        }
+
+        //      avec authentification
+        public frmDetSysExp(int lvla)
+        {
+            InitializeComponent();
+            this.PositionBtn(315);
+            this.btnActiverModif.Click += new EventHandler(activerModif);
+            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnCopier.Enabled = false;
+            this.btnAnnuler.Click += new EventHandler(btnAnnuler_click);
+            gestionSysExp = new ctrlSysExp();
+            annuler = false;
+            lvlAcces = lvla;
+            checkLvlAcces();
+        }
+        public frmDetSysExp(string[] info, int lvla)
+        {
+            InitializeComponent();
+            this.PositionBtn(315);
+            this.btnActiverModif.Click += new EventHandler(activerModif);
+            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnAnnuler.Click += new EventHandler(btnAnnuler_click);
+            txtNom.Text = info[2];
+            infoSysExp = info;
+            gestionSysExp = new ctrlSysExp();
+            annuler = false;
+            ancienSysExp = new SystemeExploitation();
+            lvlAcces = lvla;
+            checkLvlAcces();
         }
         /// <summary>
         /// 
@@ -158,7 +192,7 @@ namespace Projet
         {
             var info = new string[]{"",txtCode.Text,txtNom.Text,txtEdition.Text,txtVersion.Text,rtxtInfos.Text};
 
-            var formOuvert = new frmDetSysExp(info);
+            var formOuvert = new frmDetSysExp(info, lvlAcces);
             formOuvert.remplirChamp();
             formOuvert.btnCopier.Enabled = false;
             formOuvert.btnSupprimer.Enabled = false;
@@ -173,6 +207,17 @@ namespace Projet
         {
             annuler = true;
             this.Close();
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
         }
         
     }

@@ -287,6 +287,7 @@
             this.btnGesUtil.TabIndex = 75;
             this.btnGesUtil.Text = "Gestion utilisateur";
             this.btnGesUtil.UseVisualStyleBackColor = true;
+            this.btnGesUtil.Visible = false;
             this.btnGesUtil.Click += new System.EventHandler(this.btnGesUtil_Click);
             // 
             // frmDetEmp

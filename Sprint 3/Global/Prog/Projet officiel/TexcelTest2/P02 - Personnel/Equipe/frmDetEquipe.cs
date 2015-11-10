@@ -21,11 +21,13 @@ namespace Projet
         private tblEquipe equipeAModifier;
         frmGesEquipe frmGes;
         bool ModifEnabled;
+        private int lvlAcces;
 
+        //      avec authentification **
         public frmDetEquipe(frmGesEquipe frm)
         {
             InitializeComponent();
-
+            lvlAcces = frm.lvlAcces;//      **
             frmGes = frm;
             inifrmDetEquipe();
             btnSupprimer.Enabled = false;
@@ -34,7 +36,7 @@ namespace Projet
             remplirEmploye();
             remplirTypeTest();
             remplirProjet();
-
+            checkLvlAcces();//      **
         }
 
         public frmDetEquipe(frmGesEquipe frm, tblEquipe equipeSelect)
@@ -43,6 +45,7 @@ namespace Projet
             frmGes = frm;
             inifrmDetEquipe();
             equipeAModifier = equipeSelect;
+            lvlAcces = frm.lvlAcces;//      **
 
             ModifEnabled = false;
             btnActiverModif.Enabled = true;
@@ -87,7 +90,7 @@ namespace Projet
             cboxProjet.Enabled = false;
             txtNomEquipe.Enabled = false;
             rTxtCommentaire.Enabled = false;
-
+            checkLvlAcces();//      **
         }
 
         private void inifrmDetEquipe()
@@ -452,6 +455,7 @@ namespace Projet
             rTxtCommentaire.Enabled = true;
 
         }
+
         private void Suprimer_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Êtes-vous sur de vouloir effacer l'equipe " + equipeAModifier.NomEquipe + "?", "Effacer", MessageBoxButtons.YesNo);
@@ -468,8 +472,17 @@ namespace Projet
                 frmGes.gridEquipe.Rows[0].Selected = true;
             }
             this.Close();
+        }
 
-
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
         }
     }
 }

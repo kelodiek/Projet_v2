@@ -15,6 +15,7 @@ namespace Projet
         public Genre genreSelect { get; set; }
         public string statut;
         private ctrlGenre ctrlGen;
+        private int lvlAcces;
         public bool annuler { get; set; }
 
         public frmDetGenre()
@@ -46,6 +47,39 @@ namespace Projet
             annuler = true;
         }
 
+        //      avec authentification
+        public frmDetGenre(int lvla)
+        {
+            InitializeComponent();
+            ctrlGen = new ctrlGenre();
+            ctrlGen.charger();
+            this.PositionBtn(260);
+            this.txtNom.ReadOnly = false;
+            this.rtxtCom.ReadOnly = false;
+            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            this.btnCopier.Visible = false;
+            this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
+            annuler = true;
+            lvlAcces = lvla;
+            checkLvlAcces();
+        }
+
+        public frmDetGenre(Genre G, int lvla)
+        {
+            InitializeComponent();
+            genreSelect = G;
+            ctrlGen = new ctrlGenre();
+            ctrlGen.charger();
+            ctrlGen.Statut = false;
+            this.PositionBtn(260);
+            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            this.btnCopier.Visible = false;
+            lvlAcces = lvla;
+            checkLvlAcces();
+            annuler = true;
+        }
+
         private void btnCopier_Click(object sender, EventArgs e)
         {
             Genre cop = new Genre();
@@ -54,7 +88,7 @@ namespace Projet
             cop.nomGenre = txtNom.Text;
             cop.comGenre = rtxtCom.Text;
 
-            frmCop = new frmDetGenre(cop);
+            frmCop = new frmDetGenre(cop, lvlAcces);
             frmCop.remplirChamp();
             frmCop.btnCopier.Enabled = false;
             frmCop.btnSupprimer.Enabled = false;
@@ -152,6 +186,17 @@ namespace Projet
             this.rtxtCom.ReadOnly = false;
             this.btnEnregistrer.Enabled = true;
             ((Button)sender).Enabled = false;
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
         }
     }
 }

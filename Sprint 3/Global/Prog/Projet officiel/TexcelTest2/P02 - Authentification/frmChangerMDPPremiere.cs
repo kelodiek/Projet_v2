@@ -14,26 +14,47 @@ namespace Projet
     {
         ctrlLogin ctrllogin;
         Utilisateur U;
+        private string uss, rol;
         public frmChangerMDPPremiere()
         {
             InitializeComponent();
         }
+
+        //      avec authentification
+        public frmChangerMDPPremiere(string _us, string r)
+        {
+            InitializeComponent();
+            uss = _us;
+            rol = r;
+        }
+
         public void SetUser(Utilisateur u)
         {
             U = u;
         }
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
+            enregistrer();
+        }
+
+        private void txtMDP2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+                enregistrer();
+        }
+
+        private void enregistrer()
+        {
             ctrllogin = new ctrlLogin();
             bool AFonctionner = false;
 
-            if(txtMDP1.Text == txtMDP2.Text)
+            if (txtMDP1.Text == txtMDP2.Text)
             {
                 AFonctionner = ctrllogin.ChangerMotDePasse(U, txtMDP2.Text);
-                if(AFonctionner)        //     Ajout nouveau
+                if (AFonctionner)        //     Ajout nouveau
                 {
                     MessageBox.Show("Succès de l'enregistrement.");
-                    frmGestion formOuvert = new frmGestion();
+                    frmGestion formOuvert = new frmGestion(uss, rol);
                     this.Hide();
                     formOuvert.Show();
                     formOuvert.Closed += (s, args) => this.Close();

@@ -44,6 +44,7 @@
             this.btnThemeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.SeparatorToolStrip = new System.Windows.Forms.ToolStripSeparator();
             this.btnJeuToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.typeDeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMenuQuitterToolStrip = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +123,8 @@
             this.btnModeToolStrip,
             this.btnThemeToolStrip,
             this.SeparatorToolStrip,
-            this.btnJeuToolStrip});
+            this.btnJeuToolStrip,
+            this.typeDeTestToolStripMenuItem});
             this.btnMenuDonneToolStrip.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnMenuDonneToolStrip.Name = "btnMenuDonneToolStrip";
             this.btnMenuDonneToolStrip.Size = new System.Drawing.Size(89, 27);
@@ -194,6 +196,13 @@
             this.btnJeuToolStrip.Text = "Jeu";
             this.btnJeuToolStrip.Click += new System.EventHandler(this.donneesToolStrip_Click);
             // 
+            // typeDeTestToolStripMenuItem
+            // 
+            this.typeDeTestToolStripMenuItem.Name = "typeDeTestToolStripMenuItem";
+            this.typeDeTestToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
+            this.typeDeTestToolStripMenuItem.Text = "Type de test";
+            this.typeDeTestToolStripMenuItem.Click += new System.EventHandler(this.typeDeTestToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -206,7 +215,7 @@
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(175, 28);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(137, 28);
             this.toolStripMenuItem5.Text = "Groupe";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
@@ -325,5 +334,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripGesEquipe;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem typeDeTestToolStripMenuItem;
     }
 }

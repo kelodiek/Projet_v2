@@ -71,6 +71,7 @@
             this.txtMDP2.Name = "txtMDP2";
             this.txtMDP2.Size = new System.Drawing.Size(140, 22);
             this.txtMDP2.TabIndex = 2;
+            this.txtMDP2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMDP2_KeyDown);
             // 
             // btnContact
             // 

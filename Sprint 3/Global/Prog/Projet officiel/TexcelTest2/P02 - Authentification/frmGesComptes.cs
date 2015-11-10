@@ -24,6 +24,7 @@ namespace Projet
             ButtonsVisible(true);
             GesComptes = new ctrlComptes();
             Idemp = 0;
+            disableMenu();
         }
 
         public void ajoutCompte_Click(object sender, EventArgs e)

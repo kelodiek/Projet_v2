@@ -14,6 +14,7 @@ namespace Projet
     {
         ctrlCategorie gestionCateg;
         int Ligne;
+        private int lvlAcces;
         public frmGesCategorie()
         {
             InitializeComponent();
@@ -26,9 +27,42 @@ namespace Projet
             this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
             Ligne = 0;
         }
+
+        //      avec authentification
+        public frmGesCategorie(string _us)
+        {
+            InitializeComponent();
+            gestionCateg = new ctrlCategorie();
+            this.ButtonsVisible(true);
+            this.btnDetails.Click += new EventHandler(btnDetails_Click);
+            this.btnAjout.Click += new EventHandler(ajoutCategorie_Click);
+            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            this.btnX.Click += new EventHandler(btnX_Click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            Ligne = 0;
+            UserNm = _us;
+            droitUser();
+        }
+
+        private void droitUser()
+        {
+            lvlAcces = gestionCateg.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                gridCateg.Rows.Clear();
+            }
+        }
+
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
             {
                 recherche();
             }
@@ -56,12 +90,12 @@ namespace Projet
             gridCateg.Sort(gridCateg.Columns[0], ListSortDirection.Ascending);
             gridCateg.Rows[0].Selected = true;
         }
+
         private void ajoutCategorie_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetCateg();
+            var frmDetails = new frmDetCateg(lvlAcces);
 
             frmDetails.modifierChamp("a");
-
             frmDetails.ShowDialog();
             update();
             if (frmDetails.categSelect != null)
@@ -131,7 +165,7 @@ namespace Projet
         }
         private void modifierCateg()
         {
-            var frmDetails = new frmDetCateg();
+            var frmDetails = new frmDetCateg(lvlAcces);
             Categorie categSelect = new Categorie();
             int index = gridCateg.SelectedRows[0].Index;
 

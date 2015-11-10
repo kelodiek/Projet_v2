@@ -26,7 +26,6 @@ namespace Projet
 
             foreach (var item in lstBrut)
             {
-
                 row = new string[] {item.NomUtil,
                     item.MotPasUtil,
                 item.PremiereConex.ToString(),
@@ -39,7 +38,6 @@ namespace Projet
 
                 lstComptes.Add(new Utilisateur(item));
             }
-
 
             return lstRows;
         }
@@ -120,7 +118,6 @@ namespace Projet
                     return false;
                 }
             }
-
 
             return true;
         }

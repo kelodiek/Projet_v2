@@ -312,5 +312,32 @@ namespace Projet
             sr2.Write(texte);
             sr2.Close();
         }
+
+        public int DroitAcces(string user)
+        {
+            List<tblDroit> lstDrBrut = rGroupeUtilSQL.getDrByGroupUser(user);
+            bool drLect = false;
+            bool drEcr = false;
+            foreach (tblDroit item in lstDrBrut)
+            {
+                if (item.CodeDroit == "RP02")//   changer pour RP10
+                    drLect = true;
+
+                if (item.CodeDroit == "WP01")//   WP10
+                    drEcr = true;
+
+                if (item.CodeDroit == "RConsoleAdmin")//    Admin
+                    return 4;
+            }
+
+            if (drLect == true && drEcr == true)
+                return 3;
+            else if (drLect == false && drEcr == true)
+                return 2;
+            else if (drLect == true && drEcr == false)
+                return 1;
+
+            return 0;
+        }
     }
 }
