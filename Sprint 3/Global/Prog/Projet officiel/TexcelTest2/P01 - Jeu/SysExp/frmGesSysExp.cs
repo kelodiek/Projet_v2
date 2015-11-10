@@ -15,6 +15,7 @@ namespace Projet
         ctrlSysExp gestionSysteme;
         int sortColumn;
         string nouvRowId;
+        private int lvlAcces;
         public frmGesSysExp()
         {
             InitializeComponent();
@@ -27,6 +28,37 @@ namespace Projet
             sortColumn = 1;
             ButtonsVisible(true);
             gestionSysteme = new ctrlSysExp();
+        }
+
+        public frmGesSysExp(string _us)
+        {
+            InitializeComponent();
+            btnAjout.Click += new EventHandler(ajoutSysExp_Click);
+            btnDetails.Click += new EventHandler(btnDetails_Click);
+            btnRecherche.Click += new System.EventHandler(btnRecherche_Click);
+            btnX.Click += new EventHandler(btnX_Click);
+            txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+
+            sortColumn = 1;
+            ButtonsVisible(true);
+            gestionSysteme = new ctrlSysExp();
+            UserNm = _us;
+        }
+
+        private void droitUser()
+        {
+            lvlAcces = gestionSysteme.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                gridSysExp.Rows.Clear();
+            }
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -52,7 +84,7 @@ namespace Projet
         }
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
             {
                 recherche();
             }
@@ -64,7 +96,7 @@ namespace Projet
         }
         private void ajoutSysExp_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetSysExp();
+            var frmDetails = new frmDetSysExp(lvlAcces);
 
             frmDetails.modifierChamp("a");
 
@@ -111,6 +143,7 @@ namespace Projet
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             afficherDonnees();
+            droitUser();
         }
 
         private void gridSysExp_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -126,7 +159,7 @@ namespace Projet
         private void afficherDetails(string[] info)
         {
             string rowSelect = gridSysExp.SelectedRows[0].Cells[0].Value.ToString();
-            var frmDetails = new frmDetSysExp(info);
+            var frmDetails = new frmDetSysExp(info, lvlAcces);
 
             frmDetails.modifierChamp("m");
 

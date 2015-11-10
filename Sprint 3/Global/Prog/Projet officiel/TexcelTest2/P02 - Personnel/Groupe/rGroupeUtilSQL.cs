@@ -161,5 +161,61 @@ namespace Projet
 
             return d;
         }
+
+        static public List<tblDroit> getDrByGroupUser(string _Nm)
+        {
+            List<tblGroupe> lstGrp = new List<tblGroupe>();
+            List<tblDroit> lstDr = new List<tblDroit>();
+
+            var g =
+                from u in db.tblGroupe
+                select u;
+
+            foreach (tblGroupe item in g)
+            {
+                foreach (var gu in item.tblUtilisateur)
+                {
+                    if (gu.NomUtil == _Nm)
+                    {
+                        lstGrp.Add(item);
+                        break;
+                    }
+                }
+            }
+
+            foreach (tblGroupe group in lstGrp)
+            {
+                foreach (tblDroit Dr in group.tblDroit)
+                {
+                    if (lstDr.Contains(Dr) == false)
+                        lstDr.Add(Dr);
+                }
+            }
+
+            return lstDr;
+        }
+
+        static public List<tblGroupe> getGroupByUser(string _Nm)
+        {
+            List<tblGroupe> lstGrp = new List<tblGroupe>();
+
+            var g =
+                from u in db.tblGroupe
+                select u;
+
+            foreach (tblGroupe item in g)
+            {
+                foreach (var gu in item.tblUtilisateur)
+                {
+                    if (gu.NomUtil == _Nm)
+                    {
+                        lstGrp.Add(item);
+                        break;
+                    }
+                }
+            }
+
+            return lstGrp;
+        }
     }
 }

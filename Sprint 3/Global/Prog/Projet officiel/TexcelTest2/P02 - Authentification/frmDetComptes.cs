@@ -152,7 +152,6 @@ namespace Projet
                 item.Enabled = true;
             }
             this.btnActiverModif.Enabled = false;
-            this.btnSupprimer.Enabled = false;
         }
         public void btnEnregistrer_Click(object sender, EventArgs e)
         {

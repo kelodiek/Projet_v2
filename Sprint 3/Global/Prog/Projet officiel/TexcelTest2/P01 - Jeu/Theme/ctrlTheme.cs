@@ -95,5 +95,32 @@ namespace Projet
             }
             return 0;
         }
+
+        public int DroitAcces(string user)
+        {
+            List<tblDroit> lstDrBrut = rGroupeUtilSQL.getDrByGroupUser(user);
+            bool drLect = false;
+            bool drEcr = false;
+            foreach (tblDroit item in lstDrBrut)
+            {
+                if (item.CodeDroit == "RP02")//   changer pour RP08
+                    drLect = true;
+
+                if (item.CodeDroit == "WP01")//   WP08
+                    drEcr = true;
+
+                if (item.CodeDroit == "Admin")
+                    return 3;
+            }
+
+            if (drLect == true && drEcr == true)
+                return 3;
+            else if (drLect == false && drEcr == true)
+                return 2;
+            else if (drLect == true && drEcr == false)
+                return 1;
+
+            return 0;
+        }
     }
 }

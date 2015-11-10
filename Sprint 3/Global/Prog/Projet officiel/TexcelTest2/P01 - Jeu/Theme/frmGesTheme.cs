@@ -14,6 +14,7 @@ namespace Projet
     {
         private int order,ligneSelect;
         ctrlTheme gestionTheme;
+        private int lvlAcces;
 
         public frmGesTheme()
         {
@@ -27,8 +28,20 @@ namespace Projet
             txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
             ButtonsVisible(true);
         }
-
-        
+        //      avec authentification
+        public frmGesTheme(string _us)
+        {
+            order = 0;
+            InitializeComponent();
+            gestionTheme = new ctrlTheme();
+            btnAjout.Click += new EventHandler(ajoutTheme_Click);
+            btnDetails.Click += new EventHandler(detailTheme_Click);
+            btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            btnX.Click += new EventHandler(btnX_Click);
+            txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            ButtonsVisible(true);
+            UserNm = _us;
+        }
 
         private void frmGestTheme_Load(object sender, EventArgs e)
         {
@@ -46,6 +59,23 @@ namespace Projet
             chargerDonnees();
             GridTheme.Rows[0].Selected = true;
             GridTheme.Sort(GridTheme.Columns[1], ListSortDirection.Ascending);
+            droitUser();
+        }
+
+        private void droitUser()
+        {
+            lvlAcces = gestionTheme.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                GridTheme.Rows.Clear();
+            }
         }
 
         private void chargerDonnees()
@@ -61,7 +91,7 @@ namespace Projet
 
         private void ajoutTheme_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetTheme();
+            var frmDetails = new frmDetTheme(lvlAcces);
             frmDetails.modifierChamp("a");
             frmDetails.ShowDialog();
             update();
@@ -94,7 +124,7 @@ namespace Projet
 
         private void modifierTheme()
         {
-            var frmDetails = new frmDetTheme();
+            var frmDetails = new frmDetTheme(lvlAcces);
             Theme themeSelect = new Theme();
             int index = GridTheme.SelectedRows[0].Index;
 
@@ -184,7 +214,7 @@ namespace Projet
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
                 btnRecherche.PerformClick();
         }
 

@@ -15,6 +15,7 @@ namespace Projet
         ctrlPlateforme ctrlPlate;
         string rowId;
         int sortColumn;
+        private int lvlAcces;
         public frmGesPlateforme()
         {
             InitializeComponent();
@@ -24,6 +25,20 @@ namespace Projet
             this.btnAjout.Click += new EventHandler(btnAjout_Click);
             
             ButtonsVisible(true);
+
+        }
+        //      avec authentification
+        public frmGesPlateforme(string _us)
+        {
+            InitializeComponent();
+
+            ctrlPlate = new ctrlPlateforme();
+            this.btnDetails.Click += new EventHandler(btnDetails_Click);
+            this.btnAjout.Click += new EventHandler(btnAjout_Click);
+
+            ButtonsVisible(true);
+            UserNm = _us;
+            
         }
 
         private void Gestion_des_Plateformes_Load(object sender, EventArgs e)
@@ -46,19 +61,37 @@ namespace Projet
 
             updateDonnees();
             gridPlateforme.Rows[1].Selected = true;
+            droitUser();
         }
+
+        private void droitUser()
+        {
+            lvlAcces = ctrlPlate.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                gridPlateforme.Rows.Clear();
+            }
+        }
+
         private void btnDetails_Click(object sender, EventArgs e)
         {
             afficherDetails();
         }
         private void btnAjout_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetPlateforme();
+            var frmDetails = new frmDetPlateforme(lvlAcces);
 
             frmDetails.txtID.Enabled = false;
 
             frmDetails.btnActiverModif.Enabled = false;
-
+            frmDetails.modifierChamp("a");
             frmDetails.ShowDialog();
             updateDonnees();
         }
@@ -89,18 +122,14 @@ namespace Projet
             retirerDonnees();
             afficherDonnees();
         }
-        private void btnDetail_Click()
-        {
 
-        }
         private void afficherDetails()
         {
             string rowSelect = gridPlateforme.SelectedRows[0].Cells[0].Value.ToString();
             plateforme selectP = (plateforme)gridPlateforme.SelectedRows[0].Tag;
-            var frmDetails = new frmDetPlateforme(selectP);
+            var frmDetails = new frmDetPlateforme(selectP, lvlAcces);
 
             frmDetails.modifierChamp("m");
-
             frmDetails.ShowDialog();
             updateDonnees();
             selectLigne(rowSelect);

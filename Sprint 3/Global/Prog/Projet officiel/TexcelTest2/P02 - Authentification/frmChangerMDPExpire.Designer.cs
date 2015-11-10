@@ -75,7 +75,6 @@
             this.label3.Size = new System.Drawing.Size(502, 25);
             this.label3.TabIndex = 4;
             this.label3.Text = "Votre mot de passe est expiré (expire aux 6 mois) ,";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtMDP2
             // 
@@ -83,6 +82,7 @@
             this.txtMDP2.Name = "txtMDP2";
             this.txtMDP2.Size = new System.Drawing.Size(140, 22);
             this.txtMDP2.TabIndex = 2;
+            this.txtMDP2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMDP2_KeyDown);
             // 
             // txtMDP1
             // 

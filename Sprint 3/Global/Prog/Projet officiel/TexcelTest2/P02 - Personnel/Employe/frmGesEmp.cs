@@ -14,15 +14,16 @@ namespace Projet
 {
     public partial class frmGesEmp : frmGestion
     {
-        ctrlEmploye gestionEmp;
-        bool boutOk;
+        private ctrlEmploye gestionEmp;
+        private bool boutOk;
+        private int lvlAcces;
 
         public frmGesEmp()
         {
             InitializeComponent();
             gestionEmp = new ctrlEmploye(true);
             chargerColonnes();
-            gridEmploye.SortCompare += gridEmploye_SortCompare;     //          Ajout nouveau
+            gridEmploye.SortCompare += gridEmploye_SortCompare;
             gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
             gridEmploye.Rows[0].Selected = true;
             this.Tag = gridEmploye.Rows[0].Tag;
@@ -39,7 +40,7 @@ namespace Projet
             this.Text = "Texel : Gestion - Employés";
         }
 
-        public frmGesEmp(string nouv)
+        public frmGesEmp(bool nouv)
         {
             InitializeComponent();
             gestionEmp = new ctrlEmploye(false);
@@ -55,7 +56,73 @@ namespace Projet
             this.Text = "Texel : Gestion - Nouveaux Employés";
         }
 
-        //          créer le tableau gridview et call le charge des données             Ajout nouveau
+        //      avec l'authentification
+        public frmGesEmp(string _us)
+        {
+            InitializeComponent();
+            gestionEmp = new ctrlEmploye(true);
+            chargerColonnes();
+            UserNm = _us;
+            droitUser();
+            if (gridEmploye.RowCount > 0)
+            {
+                gridEmploye.SortCompare += gridEmploye_SortCompare;
+                gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
+                gridEmploye.Rows[0].Selected = true;
+                this.Tag = gridEmploye.Rows[0].Tag; 
+            }
+            btnDetails.Visible = true;
+            btnRecherche.Visible = true;
+            txtRecherche.Visible = true;
+            btnX.Visible = true;
+            btnDetails.Click += new EventHandler(btnDetails_Click);
+            btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            btnX.Click += new EventHandler(btnX_Click);
+            btnRejet.Click += new EventHandler(btnDesactiver_Click);
+            btnRejet.Text = "Désactiver";
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            this.Text = "Texel : Gestion - Employés";
+        }
+
+        public frmGesEmp(bool nouv, string _us)
+        {
+            InitializeComponent();
+            gestionEmp = new ctrlEmploye(false);
+            boutOk = false;
+            chargerColonnes();
+            btnDetails.Visible = false;
+            btnAjout.Visible = true;
+            btnAjout.Left = btnDetails.Left;
+            btnRecherche.Visible = true;
+            btnX.Visible = true;
+            txtRecherche.Visible = true;
+            btnRejet.Text = "Retirer";
+            this.Text = "Texel : Gestion - Nouveaux Employés";
+            UserNm = _us;
+            droitUser();
+        }
+
+        private void droitUser()
+        {
+            lvlAcces = gestionEmp.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+            {
+                btnAjout.Enabled = false;
+                btnRejet.Enabled = false;
+            }
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnRecherche.Enabled = false;
+                btnX.Enabled = false;
+                btnRejet.Enabled = false;
+                gridEmploye.Rows.Clear();
+            }
+        }
+
+        //          créer le tableau gridview et call le charge des données
         private void chargerColonnes()
         {
             DataGridViewColumn column;
@@ -149,7 +216,7 @@ namespace Projet
 
             if (gestionEmp.etat == true)
             {
-                detailEmploye = new frmDetEmp((Employe)this.Tag);
+                detailEmploye = new frmDetEmp((Employe)this.Tag, lvlAcces);
                 detailEmploye.ShowDialog();
                 if (this.Tag != detailEmploye.Tag)
                     update();
@@ -162,7 +229,7 @@ namespace Projet
                 {
                     nEmp[i] = (string)gridEmploye.SelectedRows[0].Cells[i].Value.ToString();
                 }
-                detailEmploye = new frmDetEmp(nEmp);
+                detailEmploye = new frmDetEmp(nEmp, lvlAcces);
                 detailEmploye.ShowDialog();
 
                 if (detailEmploye.Tag.ToString() == "1" && gestionEmp.verifAjout(detailEmploye.empSelect) == true)        //      il est ajouter
@@ -214,7 +281,7 @@ namespace Projet
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
                 rechercher();
         }
 

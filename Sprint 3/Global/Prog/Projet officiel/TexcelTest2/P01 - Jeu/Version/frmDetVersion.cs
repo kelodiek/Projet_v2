@@ -16,20 +16,22 @@ namespace Projet
         private ctrlVersion ctrlVers;
         private string typeDetail;
         private int IDJeu;
+        private int lvlAcces;
+
         public frmDetVersion()
         {
             loadFrmGeneral();
             typeDetail = "nouveau";
             selectVers = new version();
         }
-        public frmDetVersion(int id)
-        {
-            loadFrmGeneral();
-            typeDetail = "nouveau";
-            IDJeu = id;
-            selectVers = new version();
-            txtId.Text = IDJeu.ToString();
-        }
+        //public frmDetVersion(int id)
+        //{
+        //    loadFrmGeneral();
+        //    typeDetail = "nouveau";
+        //    IDJeu = id;
+        //    selectVers = new version();
+        //    txtId.Text = IDJeu.ToString();
+        //}
         public frmDetVersion(version v)
         {
             loadFrmGeneral();
@@ -38,6 +40,28 @@ namespace Projet
             loadInfo();
             this.btnActiverModif.Click += new EventHandler(activerModif);
         }
+
+
+        //      avec authentification
+        public frmDetVersion(int id, int lvla)
+        {
+            loadFrmGeneral();
+            typeDetail = "nouveau";
+            IDJeu = id;
+            selectVers = new version();
+            txtId.Text = IDJeu.ToString();
+            lvlAcces = lvla;
+        }
+        public frmDetVersion(version v, int lvla)
+        {
+            loadFrmGeneral();
+            typeDetail = "modification";
+            selectVers = v;
+            loadInfo();
+            this.btnActiverModif.Click += new EventHandler(activerModif);
+            lvlAcces = lvla;
+        }
+
         // Load les trucs de base presente dans chacune des possibilités de formes
         private void loadFrmGeneral() 
         {
@@ -73,6 +97,8 @@ namespace Projet
                 this.btnEnregistrer.Enabled = false;
             }
             this.btnCopier.Enabled = false;
+
+            checkLvlAcces();
         }
         // Charge les info de la version dans l'interface
         private void loadInfo()
@@ -151,5 +177,16 @@ namespace Projet
             }
         }
 
+        //      bloque les boutons de modification si l'utilisateur n'a pas le niveau d'accès pour écrire
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
+        }
     }
 }

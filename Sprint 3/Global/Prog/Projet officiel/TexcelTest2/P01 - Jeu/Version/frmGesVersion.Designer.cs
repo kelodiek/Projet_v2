@@ -28,29 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.GridVersion = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.GridVersion)).BeginInit();
+            this.gridVersion = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridVersion)).BeginInit();
             this.SuspendLayout();
             // 
-            // GridVersion
+            // gridVersion
             // 
-            this.GridVersion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridVersion.Location = new System.Drawing.Point(13, 68);
-            this.GridVersion.Name = "GridVersion";
-            this.GridVersion.RowTemplate.Height = 24;
-            this.GridVersion.Size = new System.Drawing.Size(1686, 795);
-            this.GridVersion.TabIndex = 55;
+            this.gridVersion.AllowUserToAddRows = false;
+            this.gridVersion.AllowUserToDeleteRows = false;
+            this.gridVersion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridVersion.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gridVersion.Location = new System.Drawing.Point(13, 68);
+            this.gridVersion.MultiSelect = false;
+            this.gridVersion.Name = "gridVersion";
+            this.gridVersion.RowTemplate.Height = 24;
+            this.gridVersion.Size = new System.Drawing.Size(1686, 795);
+            this.gridVersion.TabIndex = 55;
+            this.gridVersion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVersion_CellContentClick);
+            this.gridVersion.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVersion_CellContentDoubleClick);
             // 
             // frmGesVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1710, 919);
-            this.Controls.Add(this.GridVersion);
+            this.Controls.Add(this.gridVersion);
             this.Name = "frmGesVersion";
             this.Text = "Gestion - Version";
-            this.Controls.SetChildIndex(this.GridVersion, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.GridVersion)).EndInit();
+            this.Load += new System.EventHandler(this.frmGesVersion_Load);
+            this.Controls.SetChildIndex(this.gridVersion, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.gridVersion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -58,6 +65,6 @@
 
         #endregion
 
-        internal System.Windows.Forms.DataGridView GridVersion;
+        internal System.Windows.Forms.DataGridView gridVersion;
     }
 }

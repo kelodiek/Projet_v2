@@ -15,6 +15,7 @@ namespace Projet
         public Categorie categSelect { get; set; }
         private ctrlCategorie ctrlCateg;
         public bool annuler { get; set; }
+        private int lvlAcces;
 
         public frmDetCateg()
         {
@@ -38,6 +39,36 @@ namespace Projet
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             annuler = true;
         }
+
+        //      avec authentification
+
+        public frmDetCateg(int lvla)
+        {
+            categSelect = null;
+            InitializeComponent();
+            this.PositionBtn(194);
+            ctrlCateg = new ctrlCategorie();
+            this.btnEnregistrer.Click += new EventHandler(enregistrer);
+            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            //this.btnCopier.Enabled = false;
+            annuler = true;
+            lvlAcces = lvla;
+            checkLvlAcces();
+        }
+
+        public frmDetCateg(Categorie C, int lvla)
+        {
+            categSelect = C;
+            InitializeComponent();
+            this.PositionBtn(194);
+            ctrlCateg = new ctrlCategorie();
+            this.btnEnregistrer.Click += new EventHandler(enregistrer);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            annuler = true;
+            lvlAcces = lvla;
+            checkLvlAcces();
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -47,6 +78,7 @@ namespace Projet
             if (code == "a")
             {
                 this.btnActiverModif.Visible = false;
+                btnCopier.Visible = false;
                 categSelect = null;
             }
             else
@@ -54,7 +86,7 @@ namespace Projet
                 this.txtCode.Enabled = false;
                 this.txtDesc.Enabled = false;
                 this.rtxtCommentaire.Enabled = false;
-                this.btnCopier.Enabled = true;
+                //this.btnCopier.Enabled = true;
                 this.btnEnregistrer.Enabled = false;
 
                 remplirChamp();
@@ -152,7 +184,7 @@ namespace Projet
             info.descCateg = txtDesc.Text;
 
 
-            formOuvert = new frmDetCateg(info);
+            formOuvert = new frmDetCateg(info, lvlAcces);
             formOuvert.Tag = "Copie";
             formOuvert.remplirChamp();
             formOuvert.btnCopier.Enabled = false;
@@ -164,6 +196,17 @@ namespace Projet
                 this.Close();   
             }
             formOuvert.Closed += (s, args) => this.Close();
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
         }
     }
 }

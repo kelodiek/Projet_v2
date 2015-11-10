@@ -16,6 +16,7 @@ namespace Projet
         private ctrlMode ctrlMo;
         public string statut;
         public bool annuler { get; set; }
+        private int lvlAcces;
 
         public frmDetMode()
         {
@@ -30,6 +31,8 @@ namespace Projet
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
             annuler = true;
+            lvlAcces = 3;
+            checkLvlAcces();
         }
 
         public frmDetMode(Mode M)
@@ -43,6 +46,40 @@ namespace Projet
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnCopier.Click += new EventHandler(btnCopier_Click);
             annuler = true;
+            lvlAcces = 3;
+            checkLvlAcces();
+        }
+
+        public frmDetMode(int lvlAc)
+        {
+            InitializeComponent();
+            ctrlMo = new ctrlMode();
+            ctrlMo.charger();
+            this.PositionBtn(260);
+            this.txtNom.ReadOnly = false;
+            this.rtxtDesc.ReadOnly = false;
+            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
+            annuler = true;
+            lvlAcces = lvlAc;
+            checkLvlAcces();
+        }
+
+        public frmDetMode(Mode M, int lvlAc)
+        {
+            InitializeComponent();
+            modeSelect = M;
+            ctrlMo = new ctrlMode();
+            ctrlMo.charger();
+            ctrlMo.Statut = false;
+            this.PositionBtn(260);
+            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
+            annuler = true;
+            lvlAcces = lvlAc;
+            checkLvlAcces();
         }
 
         public void btnCopier_Click(object sender, EventArgs e)
@@ -53,7 +90,7 @@ namespace Projet
             cop.nomMode = txtNom.Text;
             cop.descMode = rtxtDesc.Text;
             
-            frmCop = new frmDetMode(cop);
+            frmCop = new frmDetMode(cop, lvlAcces);
             frmCop.remplirChamp();
             frmCop.btnCopier.Enabled = false;
             frmCop.btnSupprimer.Enabled = false;
@@ -151,6 +188,17 @@ namespace Projet
             this.rtxtDesc.ReadOnly = false;
             this.btnEnregistrer.Enabled = true;
             ((Button)sender).Enabled = false;
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
         }
     }
 }

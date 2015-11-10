@@ -15,6 +15,7 @@ namespace Projet
         ctrlClassification cc;
         int tri;
         int presentRow;
+        private int lvlAcces;
         public frmGesClassification()
         {
             InitializeComponent();
@@ -29,6 +30,41 @@ namespace Projet
             chargerDonnees();
             tri = 1;
             presentRow = 0;
+        }
+
+        //      avec authentification
+        public frmGesClassification(string _us)
+        {
+            InitializeComponent();
+            this.btnAjout.Click += new EventHandler(btnAjoutClass_Click);
+            this.btnDetails.Click += new EventHandler(btnDetailsClass_Click);
+            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            this.btnX.Click += new EventHandler(btnX_Click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            ButtonsVisible(true);
+            cc = new ctrlClassification();
+            chargerColones();
+            chargerDonnees();
+            tri = 1;
+            presentRow = 0;
+            UserNm = _us;
+            droitUser();
+        }
+
+        private void droitUser()
+        {
+            lvlAcces = cc.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                GridClassification.Rows.Clear();
+            }
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -132,7 +168,7 @@ namespace Projet
 
         private void btnAjoutClass_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetClassification();
+            var frmDetails = new frmDetClassification(lvlAcces);
 
             frmDetails.modifierChamp();
             frmDetails.btnCopier.Enabled = false;
@@ -144,7 +180,7 @@ namespace Projet
 
             if (GridClassification.SelectedRows.Count == 1)
             {
-                var frmDetails = new frmDetClassification();
+                var frmDetails = new frmDetClassification(lvlAcces);
 
                 frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
 
@@ -165,7 +201,7 @@ namespace Projet
                 GridClassification.Rows[e.RowIndex].Selected = true;
                 if (GridClassification.SelectedRows.Count == 1)
                 {
-                    var frmDetails = new frmDetClassification();
+                    var frmDetails = new frmDetClassification(lvlAcces);
 
                     frmDetails.modifierChamp(GridClassification.SelectedCells[0].Value.ToString(), GridClassification.SelectedCells[1].Value.ToString(), GridClassification.SelectedCells[2].Value.ToString());
 
@@ -191,7 +227,7 @@ namespace Projet
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
             {
                 rechercher();
             }
@@ -201,6 +237,5 @@ namespace Projet
         {
             tri = e.ColumnIndex;
         }
-
     }
 }

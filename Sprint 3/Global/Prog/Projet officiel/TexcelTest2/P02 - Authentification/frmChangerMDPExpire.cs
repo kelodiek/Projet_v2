@@ -14,20 +14,36 @@ namespace Projet
     {
         ctrlLogin ctrllogin;
         Utilisateur U;
+        private string uss, RR;
         public frmChangerMDPExpire()
         {
             InitializeComponent();
         }
-
-        private void label3_Click(object sender, EventArgs e)
+        //      avec authentification
+        public frmChangerMDPExpire(string _us, string rol)
         {
-
+            InitializeComponent();
+            uss = _us;
+            RR = rol;
         }
+
         public void SetUser(Utilisateur u)
         {
             U = u;
         }
+
         private void btnEnregistrer_Click(object sender, EventArgs e)
+        {
+            enregistrer();
+        }
+
+        private void txtMDP2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+                enregistrer();
+        }
+
+        private void enregistrer()
         {
             ctrllogin = new ctrlLogin();
             bool AFonctionner = false;
@@ -38,7 +54,7 @@ namespace Projet
                 if (AFonctionner)
                 {
                     MessageBox.Show("Succès de l'enregistrement.");
-                    frmGestion formOuvert = new frmGestion();
+                    frmGestion formOuvert = new frmGestion(uss, RR);
                     this.Hide();
                     formOuvert.Show();
                     formOuvert.Closed += (s, args) => this.Close();

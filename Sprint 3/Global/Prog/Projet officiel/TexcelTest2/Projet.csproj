@@ -168,6 +168,19 @@
     </Compile>
     <Compile Include="P02 - Authentification\rAuthentificationSQL.cs" />
     <Compile Include="P02 - Authentification\rComptesSQL.cs" />
+    <Compile Include="P02 - Authentification\TypeTest\ctrlTypeTest.cs" />
+    <Compile Include="P02 - Authentification\TypeTest\frmDetTypeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Authentification\TypeTest\frmDetTypeTest.Designer.cs">
+      <DependentUpon>frmDetTypeTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P02 - Authentification\TypeTest\frmGesTypeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P02 - Authentification\TypeTest\frmGesTypeTest.Designer.cs">
+      <DependentUpon>frmGesTypeTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="P02 - Authentification\Utilisateur.cs" />
     <Compile Include="P02 - Personnel\Employe\ctrlEmploye.cs" />
     <Compile Include="P02 - Personnel\Employe\Employe.cs" />
@@ -303,8 +316,8 @@
       <DependentUpon>frmGesEmp.cs</DependentUpon>
     </Compile>
     <Compile Include="P02 - Personnel\Employe\rEmployeSQL.cs" />
-    <Compile Include="P02 - Personnel\Employe\rTypeTestSQL.cs" />
-    <Compile Include="P02 - Personnel\Employe\TypeTest.cs" />
+    <Compile Include="P02 - Authentification\TypeTest\rTypeTestSQL.cs" />
+    <Compile Include="P02 - Authentification\TypeTest\TypeTest.cs" />
     <Compile Include="P02 - Personnel\Equipe\ctrlEquipe.cs" />
     <Compile Include="P02 - Personnel\Equipe\equipe.cs" />
     <Compile Include="P02 - Personnel\Equipe\frmDetEquipe.cs">
@@ -428,6 +441,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="P02 - Authentification\frmGesCon.resx">
       <DependentUpon>frmGesCon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Authentification\TypeTest\frmDetTypeTest.resx">
+      <DependentUpon>frmDetTypeTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P02 - Authentification\TypeTest\frmGesTypeTest.resx">
+      <DependentUpon>frmGesTypeTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="P02 - Personnel\Employe\frmDetEmp.resx">
       <DependentUpon>frmDetEmp.cs</DependentUpon>

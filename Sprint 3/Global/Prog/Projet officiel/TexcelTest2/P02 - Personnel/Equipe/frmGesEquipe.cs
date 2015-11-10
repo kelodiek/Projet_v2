@@ -13,8 +13,9 @@ namespace Projet
     public partial class frmGesEquipe : frmGestion
     {
         private ctrlEquipe ctrlGesEquipe;
-        DataGridViewColumn columnChoisi;
         public int numEquipe { get; set; }
+        public int lvlAcces;
+
         public frmGesEquipe()
         {
             InitializeComponent();
@@ -26,7 +27,38 @@ namespace Projet
             ButtonsVisible(true);
             ctrlGesEquipe = new ctrlEquipe();
             btnX.Click += new EventHandler(btnX_Click);
+        }
 
+        //      avec authentification
+        public frmGesEquipe(string _us)
+        {
+            InitializeComponent();
+            this.btnDetails.Click += new EventHandler(btnDetails_Click);
+            this.btnAjout.Click += new EventHandler(btnAjout_Click);
+            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+            gridEquipe.SortCompare += gridEquipe_SortCompare;
+            ButtonsVisible(true);
+            ctrlGesEquipe = new ctrlEquipe();
+            btnX.Click += new EventHandler(btnX_Click);
+            UserNm = _us;
+            droitUser();
+        }
+
+        private void droitUser()
+        {
+            lvlAcces = ctrlGesEquipe.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                gridEquipe.Rows.Clear();
+            }
         }
 
         private void Gestion_des_Equipes_Load(object sender, EventArgs e)
@@ -118,8 +150,11 @@ namespace Projet
         {
             gridEquipe.Rows.Clear();
             afficherDonnees(-1);
-            gridEquipe.CurrentCell = gridEquipe.Rows[0].Cells[0];
-            gridEquipe.Rows[0].Selected = true;
+            if (gridEquipe.RowCount > 0)
+            {
+                gridEquipe.CurrentCell = gridEquipe.Rows[0].Cells[0];
+                gridEquipe.Rows[0].Selected = true; 
+            }
         }
 
         public void afficherDonnees(int rowSelect)
@@ -142,8 +177,6 @@ namespace Projet
                 {
 
                 }
-
-
                 i++;
             }
 
@@ -240,7 +273,7 @@ namespace Projet
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
                 btnRecherche.PerformClick();
         }
     }

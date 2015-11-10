@@ -16,6 +16,7 @@ namespace Projet
         ctrlJeu cj;
         tblJeu jeuBase;
         public string nomJeu;
+        private int lvlAcces;
 
         public frmDetJeu()
         {
@@ -24,8 +25,8 @@ namespace Projet
             this.btnSupprimer.Visible = false;
             type = "ajout";
         }
-
-        public frmDetJeu(tblJeu jeu)
+        
+        /*public frmDetJeu(tblJeu jeu)
         {
             InitializeComponent();
             type = "modif";
@@ -80,6 +81,75 @@ namespace Projet
             this.btnAjoutTheme.Enabled = false;
 
             this.btnActiverModif.Enabled = true;
+        }*/
+
+        //     avec authentification
+        public frmDetJeu(int lvla)
+        {
+            InitializeComponent();
+            this.btnActiverModif.Visible = false;
+            this.btnSupprimer.Visible = false;
+            type = "ajout";
+            lvlAcces = lvla;
+        }
+
+        public frmDetJeu(tblJeu jeu, int lvla)
+        {
+            InitializeComponent();
+            type = "modif";
+
+            jeuBase = jeu;
+            this.txtID.ReadOnly = true;
+            txtID.Text = jeu.IdJeu.ToString();
+            this.txtNom.ReadOnly = true;
+            txtNom.Text = jeu.NomJeu;
+            nomJeu = jeu.NomJeu;
+            this.txtDesc.ReadOnly = true;
+            txtDesc.Text = jeu.DescJeu;
+
+            this.btnAjoutPlateforme.Enabled = false;
+            this.btnRetirerPlateforme.Enabled = false;
+            this.btnAjoutTheme.Enabled = false;
+            this.btnRetirerTheme.Enabled = false;
+
+            this.cboxCote.Enabled = false;
+            this.cboxCote.Text = jeu.CoteESRB;
+            this.cboxGenre.Enabled = false;
+            string nomGenre = "";
+            if (jeu.IdGenre != 0)
+            {
+                nomGenre = rGenreSQL.rechercheGenre(jeu.IdGenre.ToString()).First().NomGenre;
+            }
+            cboxGenre.Text = nomGenre;
+            this.cboxMode.Enabled = false;
+            string nomMode = "";
+            if (jeu.IdMode != 0)
+            {
+                nomMode = rModeSQL.rechercheMode(jeu.IdMode.ToString()).First().NomMode;
+            }
+            cboxMode.Text = nomMode;
+            this.rtxtInfoSup.ReadOnly = true;
+            rtxtInfoSup.Text = jeu.InfoSupJeu;
+
+            foreach (tblTheme theme in jeu.tblTheme)
+            {
+                TreeNode tntemp = tvSelectTheme.Nodes.Add(theme.NomTheme);
+                tntemp.Tag = theme;
+            }
+
+            foreach (tblPlateforme p in jeu.tblPlateforme)
+            {
+                TreeNode tntemp = tvSelectPlateforme.Nodes.Add(p.NomPlateforme);
+                tntemp.Tag = p;
+            }
+
+            this.btnEnregistrer.Enabled = false;
+            this.btnAjoutPlateforme.Enabled = false;
+            this.btnAjoutTheme.Enabled = false;
+
+            this.btnActiverModif.Enabled = true;
+            
+            lvlAcces = lvla;
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)
@@ -132,6 +202,8 @@ namespace Projet
                 this.btnSupprimer.Visible = false;
                 this.btnEnregistrer.Enabled = true;
             }
+
+            checkLvlAcces();
         }
 
         private void ActiverModif()
@@ -411,7 +483,7 @@ namespace Projet
             //j.lstTheme = lstTheme;
             //j.lstPlateforme = lstPlateforme;
 
-            frmDetails = new frmDetJeu(copieJeu);
+            frmDetails = new frmDetJeu(copieJeu, lvlAcces);
             frmDetails.type = "copie";
             frmDetails.ShowDialog();
             //Je sais pas si faut retourner sur l'original
@@ -435,6 +507,17 @@ namespace Projet
             {
                 MessageBox.Show("La copie est identique à l'ancien jeu.",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
             }
         }
     }
