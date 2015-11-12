@@ -103,10 +103,10 @@ namespace Projet
             bool drEcr = false;
             foreach (tblDroit item in lstDrBrut)
             {
-                if (item.CodeDroit == "RP02")//   changer pour RP08
+                if (item.CodeDroit == "RP08")
                     drLect = true;
 
-                if (item.CodeDroit == "WP01")//   WP08
+                if (item.CodeDroit == "WP08")
                     drEcr = true;
 
                 if (item.CodeDroit == "Admin")

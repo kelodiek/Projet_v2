@@ -17,29 +17,6 @@ namespace Projet
         public bool annuler { get; set; }
         private int lvlAcces;
 
-        public frmDetCateg()
-        {
-            categSelect = null;
-            InitializeComponent();
-            this.PositionBtn(194);
-            ctrlCateg = new ctrlCategorie();
-            this.btnEnregistrer.Click += new EventHandler(enregistrer);
-            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            this.btnCopier.Enabled = false;
-            annuler = true;
-        }
-        public frmDetCateg(Categorie C)
-        {
-            categSelect = C;
-            InitializeComponent();
-            this.PositionBtn(194);
-            ctrlCateg = new ctrlCategorie();
-            this.btnEnregistrer.Click += new EventHandler(enregistrer);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            annuler = true;
-        }
-
         //      avec authentification
 
         public frmDetCateg(int lvla)

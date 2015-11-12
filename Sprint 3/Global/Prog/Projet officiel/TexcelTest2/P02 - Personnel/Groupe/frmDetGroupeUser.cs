@@ -16,24 +16,6 @@ namespace Projet
         private GroupeUtil groupeSelect;
         private bool statut;
         private int lvlAcces;
-        //          Ajout tout vide
-        public frmDetGroupeUser()
-        {
-            InitializeComponent();
-            statut = false;
-            chargeDet();
-            gestionGroupe.chargeDr(tvLstDr, tvGroupDr, null);
-        }
-        
-        //          Modif d'un existant ou copie ?    true modif    false copie   si copie enregistré change en true
-        public frmDetGroupeUser(GroupeUtil _group, bool st)
-        {
-            InitializeComponent();
-            statut = st;
-            chargeDet();
-            loadGroupe(_group);
-            gestionGroupe.chargeDr(tvLstDr, tvGroupDr, _group);
-        }
 
         //                  Avec authentification
         //          Ajout tout vide

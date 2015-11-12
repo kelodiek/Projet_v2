@@ -127,12 +127,6 @@
     <Compile Include="P01 - Jeu\Classification\frmDetClassification.Designer.cs">
       <DependentUpon>frmDetClassification.cs</DependentUpon>
     </Compile>
-    <Compile Include="P01 - Jeu\Version\frmGestVersion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="P01 - Jeu\Version\frmGestVersion.Designer.cs">
-      <DependentUpon>frmGestVersion.cs</DependentUpon>
-    </Compile>
     <Compile Include="P01 - Jeu\Version\rVersSQL.cs" />
     <Compile Include="P02 - Authentification\ctrlComptes.cs" />
     <Compile Include="P02 - Authentification\ctrlLogin.cs" />
@@ -420,9 +414,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="P01 - Jeu\Jeu\frmGestJeu.resx">
       <DependentUpon>frmGestJeu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="P01 - Jeu\Version\frmGestVersion.resx">
-      <DependentUpon>frmGestVersion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="P01 - Jeu\Version\frmGesVersion.resx">
       <DependentUpon>frmGesVersion.cs</DependentUpon>

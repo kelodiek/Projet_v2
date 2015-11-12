@@ -11,7 +11,6 @@ using System.Windows.Forms;
 //          Vrai forme de Gestion de Version
 //          revue par Gabriel
 
-
 namespace Projet
 {
     public partial class frmGesVersion : frmGestion
@@ -19,23 +18,6 @@ namespace Projet
         ctrlVersion ctrlVers;
         public int idJeu { get; set; }
         private int lvlAcces, presentRow;
-
-        public frmGesVersion()
-        {
-            InitializeComponent();
-
-            this.btnDetails.Click += new EventHandler(btnDetails_Click);
-            this.btnAjout.Click += new EventHandler(ajoutVersion_Click);
-            this.btnRecherche.Click += new EventHandler(btnRechercher_click);
-            this.btnX.Click += new EventHandler(btnX_click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-
-            ButtonsVisible(true);
-            disableMenu();
-
-            ctrlVers = new ctrlVersion();
-            idJeu = 3;
-        }
 
         public frmGesVersion(int Id, int lvlA)
         {

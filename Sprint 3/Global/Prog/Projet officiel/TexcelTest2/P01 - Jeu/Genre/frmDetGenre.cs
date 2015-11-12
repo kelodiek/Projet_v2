@@ -18,35 +18,6 @@ namespace Projet
         private int lvlAcces;
         public bool annuler { get; set; }
 
-        public frmDetGenre()
-        {
-            InitializeComponent();
-            ctrlGen = new ctrlGenre();
-            ctrlGen.charger();
-            this.PositionBtn(260);
-            this.txtNom.ReadOnly = false;
-            this.rtxtCom.ReadOnly = false;
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            this.btnCopier.Visible = false;
-            this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
-            annuler = true;
-        }
-
-        public frmDetGenre(Genre G)
-        {
-            InitializeComponent();
-            genreSelect = G;
-            ctrlGen = new ctrlGenre();
-            ctrlGen.charger();
-            ctrlGen.Statut = false;
-            this.PositionBtn(260);
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            this.btnCopier.Visible = false;
-            
-            annuler = true;
-        }
-
         //      avec authentification
         public frmDetGenre(int lvla)
         {

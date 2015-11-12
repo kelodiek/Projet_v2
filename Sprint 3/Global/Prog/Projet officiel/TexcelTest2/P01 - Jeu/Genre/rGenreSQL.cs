@@ -79,7 +79,7 @@ namespace Projet
         {
             var r =
                 from Gen in db.tblGenre
-                where Gen.NomGenre.Contains(code) || Gen.ComGenre.Contains(code) || Gen.IdGenre.ToString() == code
+                where Gen.NomGenre.Contains(code) || Gen.ComGenre.Contains(code) || Gen.IdGenre.ToString().Contains(code)
                 select Gen;
 
             return r;

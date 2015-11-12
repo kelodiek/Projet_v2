@@ -17,30 +17,6 @@ namespace Projet
         public bool exit;
         private int lvlAcces;
 
-        public frmDetTheme()
-        {
-            InitializeComponent();
-            this.PositionBtn(140);
-            ctrltheme = new ctrlTheme();
-            this.btnEnregistrer.Click += new EventHandler(enregistrer);
-            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            this.btnActiverModif.Click += new EventHandler(btnActiverModification_Click);
-            this.txtId.Enabled = false;
-            exit = true;
-        }
-        public frmDetTheme(Theme C)
-        {
-            themeSelect = C;
-            InitializeComponent();
-            this.PositionBtn(140);
-            ctrltheme = new ctrlTheme();
-            this.btnEnregistrer.Click += new EventHandler(enregistrer);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            this.btnActiverModif.Click += new EventHandler(btnActiverModification_Click);
-            this.txtId.Enabled = false;
-            exit = true;
-        }
         //      avec authentification
         public frmDetTheme(int lvla)
         {
