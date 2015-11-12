@@ -16,19 +16,6 @@ namespace Projet
         public int numEquipe { get; set; }
         public int lvlAcces;
 
-        public frmGesEquipe()
-        {
-            InitializeComponent();
-            this.btnDetails.Click += new EventHandler(btnDetails_Click);
-            this.btnAjout.Click += new EventHandler(btnAjout_Click);
-            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            gridEquipe.SortCompare += gridEquipe_SortCompare;
-            ButtonsVisible(true);
-            ctrlGesEquipe = new ctrlEquipe();
-            btnX.Click += new EventHandler(btnX_Click);
-        }
-
         //      avec authentification
         public frmGesEquipe(string _us)
         {

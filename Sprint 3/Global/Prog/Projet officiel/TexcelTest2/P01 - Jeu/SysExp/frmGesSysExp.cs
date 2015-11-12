@@ -16,19 +16,6 @@ namespace Projet
         int sortColumn;
         string nouvRowId;
         private int lvlAcces;
-        public frmGesSysExp()
-        {
-            InitializeComponent();
-            btnAjout.Click += new EventHandler(ajoutSysExp_Click);
-            btnDetails.Click += new EventHandler(btnDetails_Click);
-            btnRecherche.Click += new System.EventHandler(btnRecherche_Click);
-            btnX.Click += new EventHandler(btnX_Click);
-            txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-
-            sortColumn = 1;
-            ButtonsVisible(true);
-            gestionSysteme = new ctrlSysExp();
-        }
 
         public frmGesSysExp(string _us)
         {

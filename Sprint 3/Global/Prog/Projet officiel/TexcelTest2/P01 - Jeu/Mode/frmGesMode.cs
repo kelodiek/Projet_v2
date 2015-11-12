@@ -16,21 +16,6 @@ namespace Projet
         private int lvlAcces;
         //private string NmUser;
 
-        public frmGesMode()
-        {
-            InitializeComponent();
-            gestionMode = new ctrlMode();
-            this.btnAjout.Click += new EventHandler(ajoutMode_Click);
-            this.btnDetails.Click += new EventHandler(detailsMode_Click);
-            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            this.btnX.Click += new EventHandler(btnX_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            ButtonsVisible(true);
-            lvlAcces = 3;
-            CreerGrid();
-            
-        }
-
         public frmGesMode(string _user)
         {
             InitializeComponent();

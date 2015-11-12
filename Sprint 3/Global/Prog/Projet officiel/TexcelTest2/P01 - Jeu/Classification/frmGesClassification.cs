@@ -16,21 +16,6 @@ namespace Projet
         int tri;
         int presentRow;
         private int lvlAcces;
-        public frmGesClassification()
-        {
-            InitializeComponent();
-            this.btnAjout.Click += new EventHandler(btnAjoutClass_Click);
-            this.btnDetails.Click += new EventHandler(btnDetailsClass_Click);
-            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            this.btnX.Click += new EventHandler(btnX_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            ButtonsVisible(true);
-            cc = new ctrlClassification();
-            chargerColones();
-            chargerDonnees();
-            tri = 1;
-            presentRow = 0;
-        }
 
         //      avec authentification
         public frmGesClassification(string _us)

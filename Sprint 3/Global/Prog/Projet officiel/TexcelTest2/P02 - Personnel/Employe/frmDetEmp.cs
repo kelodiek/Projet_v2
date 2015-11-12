@@ -17,51 +17,6 @@ namespace Projet
         private ctrlEmploye ctrlEm;
         private int lvlAcces;
 
-        //      Employe existant
-        public frmDetEmp(Employe E)
-        {
-            InitializeComponent();
-            ctrlEm = new ctrlEmploye(true);
-            btnCopier.Visible = false;
-            btnSupprimer.Visible = false;
-            btnEnregistrer.Enabled = false;
-            this.btnAnnuler.Location = new Point(784, 477);
-            this.btnEnregistrer.Location = new Point(10, 477);
-            this.btnActiverModif.Location = new Point(125, 477);
-            this.btnSupprimer.Location = new Point(240, 477);
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
-            chargeEmp(E);
-            ChargeTypeTest();
-        }
-
-        //      Nouveau employe
-        public frmDetEmp(string[] _nEmp)
-        {
-            InitializeComponent();
-            ctrlEm = new ctrlEmploye(false);
-            btnCopier.Visible = false;
-            btnActiverModif.Visible = false;
-            btnSupprimer.Visible = false;
-            btnGesUtil.Visible = false;
-            this.btnAnnuler.Location = new Point(784, 477);
-            this.btnEnregistrer.Location = new Point(10, 477);
-            this.btnActiverModif.Location = new Point(125, 477);
-            this.btnSupprimer.Location = new Point(240, 477);
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            ChargeTypeTest();
-            ActiverModif();
-            txtId.Text = _nEmp[0];
-            txtPrenom.Text = _nEmp[1];
-            txtNom.Text = _nEmp[2];
-            txtCourriel.Text = _nEmp[3];
-            txtTelPrinc.Text = _nEmp[4];
-            txtTelSec.Text = _nEmp[5];
-            txtAdresPost.Text = _nEmp[6];
-            dateEmbauche.Value = Convert.ToDateTime(_nEmp[7]);
-            this.Tag = _nEmp;
-        }
-
         //      Employe existant + authentification
         public frmDetEmp(Employe E, int lvlA)
         {

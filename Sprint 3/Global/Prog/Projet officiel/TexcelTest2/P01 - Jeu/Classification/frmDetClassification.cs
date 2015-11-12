@@ -17,21 +17,6 @@ namespace Projet
         bool modif;
         public string cote;
         private int lvlAcces;
-        public frmDetClassification()
-        {
-            InitializeComponent();
-            this.PositionBtn(144);
-            btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
-            this.btnEnregistrer.Click += new EventHandler(enregistrer_click);
-            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            this.btnAnnuler.Click += new EventHandler(btnAnnuler_Click);
-            btnCopier.Visible = false;
-            cc = new ctrlClassification();
-            ancien = null;
-            cote = null;
-            modif = false;
-        }
 
         public frmDetClassification(int lvla)
         {
@@ -49,12 +34,6 @@ namespace Projet
             modif = false;
             lvlAcces = lvla;
             checkLvlAcces();
-        }
-
-        public frmDetClassification(Classification anc)
-        {
-            ancien = anc;
-            new frmDetClassification();
         }
 
         private void enregistrer()

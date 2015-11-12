@@ -17,23 +17,6 @@ namespace Projet
         public TypeTest TypeSelect { get; set; }
         private int lvlAcces;
 
-        //      ajouter nouveau
-        public frmDetTypeTest()
-        {
-            InitializeComponent();
-            statut = false;
-            chargeDetail();
-        }
-
-        //      modifier, copier, supprimer     true = modif    false = copie   si copie enregistré change en true
-        public frmDetTypeTest(TypeTest _t, bool _s)
-        {
-            InitializeComponent();
-            statut = _s;
-            chargeDetail();
-            chargeTypeTest(_t);
-        }
-
         //                      Avec authentification
         //      ajouter nouveau
         public frmDetTypeTest(int lvla)

@@ -18,38 +18,6 @@ namespace Projet
         public bool annuler { get; set; }
         private int lvlAcces;
 
-        public frmDetMode()
-        {
-            InitializeComponent();
-            ctrlMo = new ctrlMode();
-            ctrlMo.charger();
-            this.PositionBtn(260);
-            this.txtNom.ReadOnly = false;
-            this.rtxtDesc.ReadOnly = false;
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
-            annuler = true;
-            lvlAcces = 3;
-            checkLvlAcces();
-        }
-
-        public frmDetMode(Mode M)
-        {
-            InitializeComponent();
-            modeSelect = M;
-            ctrlMo = new ctrlMode();
-            ctrlMo.charger();
-            ctrlMo.Statut = false;
-            this.PositionBtn(260);
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            annuler = true;
-            lvlAcces = 3;
-            checkLvlAcces();
-        }
-
         public frmDetMode(int lvlAc)
         {
             InitializeComponent();

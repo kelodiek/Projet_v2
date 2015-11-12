@@ -16,7 +16,6 @@ namespace Projet
 
         //        NomTest
         Dictionary<string, tblTypeTest> dicTypeTest;
-        Dictionary<string, AllChefEquipe> dicChefEquipe;
         private List<tblEmploye> lstEmployeEquipe;
         private tblEquipe equipeAModifier;
         frmGesEquipe frmGes;

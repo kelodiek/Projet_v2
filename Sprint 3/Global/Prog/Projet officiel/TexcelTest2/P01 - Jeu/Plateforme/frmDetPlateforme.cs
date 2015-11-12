@@ -19,43 +19,6 @@ namespace Projet
         private string type;
         private int lvlAcces;
 
-        public frmDetPlateforme()
-        {
-            InitializeComponent();
-
-            type = "ajout";
-            loadList();
-
-            ctrlPlate = new ctrlPlateforme();
-
-            btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            btnCopier.Click += new EventHandler(btnCopier_Click);
-            btnSupprimer.Enabled = false;
-
-            ajusterForm();
-        }
-        public frmDetPlateforme(plateforme p)
-        {
-            InitializeComponent();
-
-            type = "modif";
-            selectPlate = p;
-
-            loadList();
-
-            ctrlPlate = new ctrlPlateforme();
-
-            btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            btnCopier.Click += new EventHandler(btnCopier_Click);
-            btnAnnuler.Enabled = true;
-
-            loadDetail();
-            ajusterForm();
-            afficherDetail(p);
-        }
-
         //      avec authentification
         public frmDetPlateforme(int lvla)
         {
@@ -147,6 +110,7 @@ namespace Projet
                 btnCopier.Enabled = true;
                 checkLvlAcces();
                 btnAnnuler.Enabled = true;
+                this.txtID.Enabled = false;
                 this.lstTreeSelect.Enabled = true;
                 this.lstTreeSysExp.Enabled = true;
             }

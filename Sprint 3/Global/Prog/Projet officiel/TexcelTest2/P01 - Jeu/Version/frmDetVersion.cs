@@ -18,30 +18,6 @@ namespace Projet
         private int IDJeu;
         private int lvlAcces;
 
-        public frmDetVersion()
-        {
-            loadFrmGeneral();
-            typeDetail = "nouveau";
-            selectVers = new version();
-        }
-        //public frmDetVersion(int id)
-        //{
-        //    loadFrmGeneral();
-        //    typeDetail = "nouveau";
-        //    IDJeu = id;
-        //    selectVers = new version();
-        //    txtId.Text = IDJeu.ToString();
-        //}
-        public frmDetVersion(version v)
-        {
-            loadFrmGeneral();
-            typeDetail = "modification";
-            selectVers = v;
-            loadInfo();
-            this.btnActiverModif.Click += new EventHandler(activerModif);
-        }
-
-
         //      avec authentification
         public frmDetVersion(int id, int lvla)
         {
@@ -58,7 +34,6 @@ namespace Projet
             typeDetail = "modification";
             selectVers = v;
             loadInfo();
-            this.btnActiverModif.Click += new EventHandler(activerModif);
             lvlAcces = lvla;
         }
 
@@ -70,7 +45,10 @@ namespace Projet
             ctrlVers = new ctrlVersion();
             this.btnEnregistrer.Click += new EventHandler(enregistrer);
             this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
+            this.btnActiverModif.Click += new EventHandler(activerModif);
+            this.btnCopier.Click += new EventHandler(btnCopier_Click);
         }
+
         // Type la forme si elle est pour un ajout, une modification ou si c'est le cas, une copie.
         public void setTypeDetail(string type)
         {
@@ -82,7 +60,7 @@ namespace Projet
             if (code == "a")
             {
                 this.btnActiverModif.Enabled = false;
-                this.txtId.ReadOnly = true;
+                this.btnCopier.Enabled = false;
             }
             else
             {
@@ -95,9 +73,9 @@ namespace Projet
                 this.dateVersion.Enabled = false;
 
                 this.btnEnregistrer.Enabled = false;
+                btnCopier.Enabled = true;
             }
-            this.btnCopier.Enabled = false;
-
+            this.txtId.ReadOnly = true;
             checkLvlAcces();
         }
         // Charge les info de la version dans l'interface
@@ -162,6 +140,7 @@ namespace Projet
                     if (MessageBox.Show("Voulez-vous enregistrer?", "Enregistrement", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         ctrlVers.enregistrer("a", nouvVersion);
+                        setTypeDetail("Enregistre");
                         this.Close();
                     }
                 }
@@ -187,6 +166,22 @@ namespace Projet
                 btnEnregistrer.Enabled = false;
                 btnSupprimer.Enabled = false;
             }
+        }
+
+        private void btnCopier_Click(object sender, EventArgs e)
+        {
+            frmDetVersion frmCop;
+            version cop = selectVers;
+
+            frmCop = new frmDetVersion(cop, lvlAcces);
+            frmCop.setTypeDetail("nouveau");
+            frmCop.modifierChamp("a");
+            frmCop.ShowDialog();
+            if (frmCop.typeDetail == "Enregistre")
+            {
+                this.Close();
+            }
+            frmCop.Closed += (s, args) => this.Close();
         }
     }
 }

@@ -17,12 +17,6 @@ namespace Projet
         ctrlGroupeUser gestionGroupe;
         private int lvlAcces;
 
-        public frmGesGroupeUser()
-        {
-            InitializeComponent();
-            gestionGroupe = new ctrlGroupeUser();
-            chargerColonne();
-        }
         //      avec authentification
         public frmGesGroupeUser(string _us)
         {
