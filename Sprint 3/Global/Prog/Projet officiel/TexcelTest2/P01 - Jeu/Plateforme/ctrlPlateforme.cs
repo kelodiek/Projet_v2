@@ -121,10 +121,10 @@ namespace Projet
             bool drEcr = false;
             foreach (tblDroit item in lstDrBrut)
             {
-                if (item.CodeDroit == "RP02")//   changer pour RP06
+                if (item.CodeDroit == "RP06")
                     drLect = true;
 
-                if (item.CodeDroit == "WP01")//   WP06
+                if (item.CodeDroit == "WP06")
                     drEcr = true;
 
                 if (item.CodeDroit == "Admin")
@@ -139,6 +139,18 @@ namespace Projet
                 return 1;
 
             return 0;
+        }
+
+        public List<plateforme> recherche(string cle)
+        {
+            List<plateforme> lstRP = new List<plateforme>();
+
+            foreach (var item in rPlateSQL.srchPlateforme(cle))
+            {
+                plateforme temp = new plateforme(item);
+                lstRP.Add(temp);
+            }
+            return lstRP;
         }
     }
 }

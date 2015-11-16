@@ -15,26 +15,11 @@ namespace Projet
         ctrlJeu cj;
         int tri, presentRow;
         private int lvlAcces;
-        public frmGestJeu()
-        {
-            InitializeComponent();
-            this.btnAjout.Click += new EventHandler(ajoutJeu_Click);
-            this.btnDetails.Click += new EventHandler(detailsJeu_Click);
-            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            this.btnX.Click += new EventHandler(btnX_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            
-            ButtonsVisible(true);
-            tri = 0;
-            presentRow = 0;
-            cj = new ctrlJeu();
-            chargerColonnes();
-            chargerDonnees();
-            lvlAcces = 3;
-        }
+
         //      avec authentification
         public frmGestJeu(string _us)
         {
+            Cursor.Current = Cursors.WaitCursor;
             InitializeComponent();
             this.btnAjout.Click += new EventHandler(ajoutJeu_Click);
             this.btnDetails.Click += new EventHandler(detailsJeu_Click);
@@ -48,6 +33,7 @@ namespace Projet
             cj = new ctrlJeu();
             UserNm = _us;
             droitUser();
+            Cursor.Current = Cursors.Default;
         }
 
         private void droitUser()
@@ -55,14 +41,16 @@ namespace Projet
             lvlAcces = cj.DroitAcces(UserNm);
 
             if (lvlAcces == 0 || lvlAcces == 1)
+            {
                 btnAjout.Enabled = false;
+            }
+                
 
             if (lvlAcces == 0)
             {
                 btnDetails.Enabled = false;
                 btnX.Enabled = false;
                 btnRecherche.Enabled = false;
-                btnVersion.Enabled = false;
                 dataGridJeu.Rows.Clear();
             }
 
@@ -168,7 +156,9 @@ namespace Projet
                 var frmDetails = new frmDetJeu(rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[presentRow].Tag)).First(), lvlAcces);
 
                 frmDetails.ShowDialog();
+                Cursor.Current = Cursors.WaitCursor;
                 chargerDonnees();
+                Cursor.Current = Cursors.Default;
             }
             else
             {
@@ -180,7 +170,9 @@ namespace Projet
             var frmDetails = new frmDetJeu(lvlAcces);
             
             frmDetails.ShowDialog();
+            Cursor.Current = Cursors.WaitCursor;
             chargerDonnees(frmDetails.nomJeu);
+            Cursor.Current = Cursors.Default;
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -192,6 +184,7 @@ namespace Projet
         {
             if (txtRecherche.Text != "")
             {
+                Cursor.Current = Cursors.WaitCursor;
                 dataGridJeu.Rows.Clear();
                 foreach (Jeu j in cj.rechercher(txtRecherche.Text))
                 {
@@ -209,6 +202,7 @@ namespace Projet
                     string[] tabTemp = new string[] { j.nomJeu, j.descJeu, j.infoSupJeu, j.coteESRB, nomGenre, nomMode };
                     dataGridJeu.Rows.Add(tabTemp);
                 }
+                Cursor.Current = Cursors.Default;
             }
             else
             {
@@ -219,8 +213,10 @@ namespace Projet
 
         private void btnX_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             chargerDonnees();
             txtRecherche.Text = "";
+            Cursor.Current = Cursors.Default;
         }
 
 
@@ -235,7 +231,9 @@ namespace Projet
                     var frmDetails = new frmDetJeu(rJeuSQL.srchIdJeu(Convert.ToInt32(dataGridJeu.Rows[e.RowIndex].Tag)).First(), lvlAcces);
 
                     frmDetails.ShowDialog();
+                    Cursor.Current = Cursors.WaitCursor;
                     chargerDonnees();
+                    Cursor.Current = Cursors.Default;
                 }
                 else
                 {

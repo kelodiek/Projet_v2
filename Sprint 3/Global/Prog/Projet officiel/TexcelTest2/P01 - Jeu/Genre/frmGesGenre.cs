@@ -15,25 +15,6 @@ namespace Projet
         ctrlGenre gestionGenre;
         private int lvlAcces;
 
-        public frmGesGenre()
-        {
-            InitializeComponent();
-            gestionGenre = new ctrlGenre();
-            this.btnAjout.Click += new EventHandler(ajoutGenre_click);
-            this.btnDetails.Click += new EventHandler(detailsGenre_click);
-            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            this.btnX.Click += new EventHandler(btnX_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            ButtonsVisible(true);
-            CreerGrid();
-            if (GridGenre.RowCount > 0)
-            {
-                GridGenre.Sort(GridGenre.Columns[1], ListSortDirection.Ascending);
-                GridGenre.Rows[0].Selected = true;
-                this.Tag = GridGenre.Rows[0].Cells[1].Value.ToString(); 
-            }
-        }
-
         public frmGesGenre(string _us)
         {
             InitializeComponent();

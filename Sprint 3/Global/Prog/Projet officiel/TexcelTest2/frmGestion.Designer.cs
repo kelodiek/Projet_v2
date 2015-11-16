@@ -215,7 +215,7 @@
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(137, 28);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(175, 28);
             this.toolStripMenuItem5.Text = "Groupe";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
@@ -257,14 +257,14 @@
             // toolStripGesEquipe
             // 
             this.toolStripGesEquipe.Name = "toolStripGesEquipe";
-            this.toolStripGesEquipe.Size = new System.Drawing.Size(145, 28);
+            this.toolStripGesEquipe.Size = new System.Drawing.Size(175, 28);
             this.toolStripGesEquipe.Text = "Equipe";
             this.toolStripGesEquipe.Click += new System.EventHandler(this.toolStripGesEquipe_Click);
             // 
             // toolStripGesEmp
             // 
             this.toolStripGesEmp.Name = "toolStripGesEmp";
-            this.toolStripGesEmp.Size = new System.Drawing.Size(145, 28);
+            this.toolStripGesEmp.Size = new System.Drawing.Size(175, 28);
             this.toolStripGesEmp.Text = "Employe";
             this.toolStripGesEmp.Click += new System.EventHandler(this.toolStripGesEmp_Click);
             // 

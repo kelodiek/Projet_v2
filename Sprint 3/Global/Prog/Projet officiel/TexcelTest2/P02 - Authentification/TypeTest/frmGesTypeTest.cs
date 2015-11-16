@@ -18,14 +18,6 @@ namespace Projet
         TypeTest SelectTypeTest;
         private int lvlAcces;
 
-        public frmGesTypeTest()
-        {
-            InitializeComponent();
-            gestionTypeTest = new ctrlTypeTest();
-            chargeColonne();
-            chargeObjet();
-        }
-
         //      avec authentification
         public frmGesTypeTest(string _us)
         {

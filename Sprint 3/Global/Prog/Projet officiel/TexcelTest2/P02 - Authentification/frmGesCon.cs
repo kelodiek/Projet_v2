@@ -79,7 +79,7 @@ namespace Projet
                         form.Closed += (s, args) => this.Close();
                         form.Show();
                         form.Hide();
-                        form.VerifierNouveauxEmp();
+                        //form.VerifierNouveauxEmp();
                     }
                     else
                     {

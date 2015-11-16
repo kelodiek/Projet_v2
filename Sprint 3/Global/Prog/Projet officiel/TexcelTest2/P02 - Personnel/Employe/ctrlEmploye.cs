@@ -320,13 +320,13 @@ namespace Projet
             bool drEcr = false;
             foreach (tblDroit item in lstDrBrut)
             {
-                if (item.CodeDroit == "RP02")//   changer pour RP10
+                if (item.CodeDroit == "RP10")
                     drLect = true;
 
-                if (item.CodeDroit == "WP01")//   WP10
+                if (item.CodeDroit == "WP10")
                     drEcr = true;
 
-                if (item.CodeDroit == "RConsoleAdmin")//    Admin
+                if (item.CodeDroit == "Admin")
                     return 4;
             }
 

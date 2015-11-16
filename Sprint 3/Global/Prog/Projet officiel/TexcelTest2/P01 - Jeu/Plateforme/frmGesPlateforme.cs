@@ -16,17 +16,7 @@ namespace Projet
         string rowId;
         int sortColumn;
         private int lvlAcces;
-        public frmGesPlateforme()
-        {
-            InitializeComponent();
 
-            ctrlPlate = new ctrlPlateforme();
-            this.btnDetails.Click += new EventHandler(btnDetails_Click);
-            this.btnAjout.Click += new EventHandler(btnAjout_Click);
-            
-            ButtonsVisible(true);
-
-        }
         //      avec authentification
         public frmGesPlateforme(string _us)
         {
@@ -35,6 +25,9 @@ namespace Projet
             ctrlPlate = new ctrlPlateforme();
             this.btnDetails.Click += new EventHandler(btnDetails_Click);
             this.btnAjout.Click += new EventHandler(btnAjout_Click);
+            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            this.btnX.Click += new EventHandler(btnX_Click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
 
             ButtonsVisible(true);
             UserNm = _us;
@@ -125,14 +118,17 @@ namespace Projet
 
         private void afficherDetails()
         {
-            string rowSelect = gridPlateforme.SelectedRows[0].Cells[0].Value.ToString();
-            plateforme selectP = (plateforme)gridPlateforme.SelectedRows[0].Tag;
-            var frmDetails = new frmDetPlateforme(selectP, lvlAcces);
+            if (gridPlateforme.SelectedRows.Count > 0)
+            {
+                string rowSelect = gridPlateforme.SelectedRows[0].Cells[0].Value.ToString();
+                plateforme selectP = (plateforme)gridPlateforme.SelectedRows[0].Tag;
+                var frmDetails = new frmDetPlateforme(selectP, lvlAcces);
 
-            frmDetails.modifierChamp("m");
-            frmDetails.ShowDialog();
-            updateDonnees();
-            selectLigne(rowSelect);
+                frmDetails.modifierChamp("m");
+                frmDetails.ShowDialog();
+                updateDonnees();
+                selectLigne(rowSelect); 
+            }
         }
 
         private void gridPlateforme_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -167,6 +163,56 @@ namespace Projet
 
                 afficherDetails();
             }
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            recherche();
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            gridPlateforme.Rows.Clear();
+            afficherDonnees();
+            txtRecherche.Text = "";
+            gridPlateforme.Sort(gridPlateforme.Columns[0], ListSortDirection.Ascending);
+            if (gridPlateforme.RowCount > 0)
+            {
+                gridPlateforme.Rows[0].Selected = true;
+                sortColumn = 0;
+            }
+        }
+
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13 && lvlAcces > 0)
+                recherche();
+        }
+
+        private void recherche()
+        {
+            if (txtRecherche.Text != "")
+            {
+                gridPlateforme.Rows.Clear();
+                int index;
+                string[] row;
+
+                foreach (plateforme p in ctrlPlate.recherche(txtRecherche.Text))
+                {
+                    row = new string[] {
+                        p.codePlate,
+                        p.nomPlate,
+                        p.codeCateg,
+                        p.descPlate};
+
+                    index = gridPlateforme.Rows.Add(row);
+
+                    gridPlateforme.Rows[index].Tag = p;
+                }
+                rowId = (string)gridPlateforme.Rows[gridPlateforme.Rows.Count - 1].Cells[0].Value;
+            }
+            else
+                MessageBox.Show("Le champ de recherche est vide", "erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

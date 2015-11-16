@@ -19,34 +19,6 @@ namespace Projet
         public bool annuler { get; set; }
         private int lvlAcces;
 
-        public frmDetSysExp()
-        {
-            InitializeComponent();
-            this.PositionBtn(315);
-            this.btnActiverModif.Click += new EventHandler(activerModif);
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            this.btnCopier.Enabled = false;
-            this.btnAnnuler.Click += new EventHandler(btnAnnuler_click);
-            gestionSysExp = new ctrlSysExp();
-            annuler = false;
-        }
-        public frmDetSysExp(string[] info)
-        {
-            InitializeComponent();
-            this.PositionBtn(315);
-            this.btnActiverModif.Click += new EventHandler(activerModif);
-            this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
-            this.btnSupprimer.Click += new EventHandler(btnSupprimer_Click);
-            this.btnCopier.Click += new EventHandler(btnCopier_Click);
-            this.btnAnnuler.Click += new EventHandler(btnAnnuler_click);
-            txtNom.Text = info[2];
-            infoSysExp = info;
-            gestionSysExp = new ctrlSysExp();
-            annuler = false;
-            ancienSysExp = new SystemeExploitation();
-        }
-
         //      avec authentification
         public frmDetSysExp(int lvla)
         {

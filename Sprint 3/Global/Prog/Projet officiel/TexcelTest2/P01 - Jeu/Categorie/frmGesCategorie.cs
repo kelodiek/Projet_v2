@@ -15,18 +15,6 @@ namespace Projet
         ctrlCategorie gestionCateg;
         int Ligne;
         private int lvlAcces;
-        public frmGesCategorie()
-        {
-            InitializeComponent();
-            gestionCateg = new ctrlCategorie();
-            this.ButtonsVisible(true);
-            this.btnDetails.Click += new EventHandler(btnDetails_Click);
-            this.btnAjout.Click += new EventHandler(ajoutCategorie_Click);
-            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            this.btnX.Click += new EventHandler(btnX_Click);
-            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            Ligne = 0;
-        }
 
         //      avec authentification
         public frmGesCategorie(string _us)

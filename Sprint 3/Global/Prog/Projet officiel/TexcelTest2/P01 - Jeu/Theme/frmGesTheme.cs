@@ -16,18 +16,6 @@ namespace Projet
         ctrlTheme gestionTheme;
         private int lvlAcces;
 
-        public frmGesTheme()
-        {
-            order = 0;
-            InitializeComponent();
-            gestionTheme = new ctrlTheme();
-            btnAjout.Click += new EventHandler(ajoutTheme_Click);
-            btnDetails.Click += new EventHandler(detailTheme_Click);
-            btnRecherche.Click += new EventHandler(btnRecherche_Click);
-            btnX.Click += new EventHandler(btnX_Click);
-            txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
-            ButtonsVisible(true);
-        }
         //      avec authentification
         public frmGesTheme(string _us)
         {

@@ -108,31 +108,6 @@ namespace Projet
 
         }
 
-        //          nouveau toutes
-        public void VerifierNouveauxEmp()
-        {
-            bool New = File.Exists(Path.Combine(Environment.CurrentDirectory, @"nouveau.txt"));
-            if (New)
-            {
-                int i = 0;
-                string line;
-                StreamReader file = new StreamReader(Path.Combine(Environment.CurrentDirectory, @"nouveau.txt"));
-                while ((line = file.ReadLine()) != null)
-                {
-                    i++;
-                }
-                file.Close();
-                DialogResult tmp = MessageBox.Show("il y a " + i + " nouveau employe à ajouter dans le système,\n voulez-vous les ajouter maintenant ?", "Nouveau employe", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (tmp == DialogResult.Yes)
-                {
-                    var formOuvert = new frmGesEmp(true, UserNm);
-                    this.Hide();
-                    formOuvert.Show();
-                    formOuvert.Closed += (s, args) => this.Close();
-                }
-            }
-        }
-
         private void CacheDroit(string _rol)
         {
             switch (_rol)
@@ -141,54 +116,74 @@ namespace Projet
                     var formOuvert = new frmGesEmp(UserNm);
                     this.Hide();
                     formOuvert.Show();
-                    formOuvert.Closed += (s, args) => this.Close();
+                    formOuvert.VerifierNouveauxEmp();
+                    formOuvert.Closed += (s, args) => this.Close(); 
                     break;
                 case "Chef de projet":
-
-                    //var formOuvert1 = new frmGesEmp(UserNm);
-                    //this.Hide();
-                    //formOuvert1.Show();
-                    //formOuvert1.Closed += (s, args) => this.Close();
+                    toolStripMenuItem3.Visible = false;
+                    var formOuvert1 = new frmGesEmp(UserNm);
+                    this.Hide();
+                    formOuvert1.Show();
+                    formOuvert1.Closed += (s, args) => this.Close();
                     break;
                 case "Chef d’équipe":
-
-                    //var formOuvert2 = new frmGesEmp(UserNm);
-                    //this.Hide();
-                    //formOuvert2.Show();
-                    //formOuvert2.Closed += (s, args) => this.Close();
+                    toolStripMenuItem3.Visible = false;
+                    var formOuvert2 = new frmGesEmp(UserNm);
+                    this.Hide();
+                    formOuvert2.Show();
+                    formOuvert2.Closed += (s, args) => this.Close();
                     break;
                 case "Testeur":
-                    btnCategToolStrip.Visible = false;
-                    //var formOuvert6 = new frmGesEmp(UserNm);
-                    //this.Hide();
-                    //formOuvert6.Show();
-                    //formOuvert6.Closed += (s, args) => this.Close();
+                    toolStripMenuItem1.Visible = false;
+                    toolStripMenuItem3.Visible = false;
+
+                    var formOuvert6 = new frmGestJeu(UserNm);
+                    this.Hide();
+                    formOuvert6.Show();
+                    formOuvert6.Closed += (s, args) => this.Close();
                     break;
                 case "Agente de bureau":
+                    btnSysExpToolStrip.Visible = false;
+                    btnPlateToolStrip.Visible = false;
+                    btnCategToolStrip.Visible = false;
+                    btnClassToolStrip.Visible = false;
+                    btnGenreToolStrip.Visible = false;
+                    btnModeToolStrip.Visible = false;
+                    btnThemeToolStrip.Visible = false;
+                    typeDeTestToolStripMenuItem.Visible = false;
+                    toolStripMenuItem3.Visible = false;
+
+                    var formOuvert3 = new frmGesEmp(UserNm);
+                    this.Hide();
+                    formOuvert3.Show();
+                    formOuvert3.Closed += (s, args) => this.Close();
                     break;
                 case "Directeur de compte":
+                    btnSysExpToolStrip.Visible = false;
+                    btnPlateToolStrip.Visible = false;
+                    btnCategToolStrip.Visible = false;
+                    btnClassToolStrip.Visible = false;
+                    btnGenreToolStrip.Visible = false;
+                    btnModeToolStrip.Visible = false;
+                    btnThemeToolStrip.Visible = false;
+                    typeDeTestToolStripMenuItem.Visible = false;
+                    toolStripMenuItem3.Visible = false;
 
-                    //var formOuvert3 = new frmGesEmp(UserNm);
-                    //this.Hide();
-                    //formOuvert3.Show();
-                    //formOuvert3.Closed += (s, args) => this.Close();
+                    var formOuvert5 = new frmGesEmp(UserNm);
+                    this.Hide();
+                    formOuvert5.Show();
+                    formOuvert5.Closed += (s, args) => this.Close();
                     break;
                 case "PDG":
-
-                    //var formOuvert4 = new frmGesEmp(UserNm);
-                    //this.Hide();
-                    //formOuvert4.Show();
-                    //formOuvert4.Closed += (s, args) => this.Close();
-                    break;
-                case "Client":
-                    break;
-                case "Modérateur du focus groupe":
+                    var formOuvert4 = new frmGesEmp(UserNm);
+                    this.Hide();
+                    formOuvert4.Show();
+                    formOuvert4.Closed += (s, args) => this.Close();
                     break;
                 default:
-                    //var formOuvert5 = new frmGesEmp(UserNm);
-                    //this.Hide();
-                    //formOuvert5.Show();
-                    //formOuvert5.Closed += (s, args) => this.Close();
+                    btnMenuDonneToolStrip.Visible = false;
+                    toolStripMenuItem1.Visible = false;
+                    toolStripMenuItem3.Visible = false;
                     break;
             }
         }
