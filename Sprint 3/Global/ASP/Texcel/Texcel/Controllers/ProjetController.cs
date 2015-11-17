@@ -8,20 +8,30 @@ namespace Texcel.Controllers
 {
     public class ProjetController : Controller
     {
+        dbProjetE2TestEntities db = new dbProjetE2TestEntities();
         // GET: Projet
+        public ActionResult Gestion()
+        {
+            return View();
+        }
         public ActionResult Details()
         {
             return View();
         }
-
-        public ActionResult Details2()
+        public PartialViewResult getAllProjet()
         {
-            return View();
+            tblProjet[] projets = db.tblProjet.ToArray<tblProjet>();
+            return PartialView(projets);
         }
-
-        public ActionResult TestDetails()
+        public PartialViewResult selectChefs()
         {
-            return View();
+            tblEmploye[] chefPro = db.tblEmploye.ToArray<tblEmploye>();
+            return PartialView(chefPro);
+        }
+        public PartialViewResult selectVersions()
+        {
+            tblVersion[] versions = db.tblVersion.ToArray<tblVersion>();
+            return PartialView(versions);
         }
     }
 }

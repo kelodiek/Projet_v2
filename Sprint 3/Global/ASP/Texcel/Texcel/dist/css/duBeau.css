@@ -1,0 +1,12 @@
+﻿.searchBar{
+    display:inline;
+    float:right;
+}
+.searchBar label{
+    float:left;
+    margin:3px 3px 3px 3px;
+}
+
+.searchBar input{
+    position:absolute;
+}

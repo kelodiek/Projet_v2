@@ -1,9 +1,16 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutTest2.cshtml";
 }
 @{
     ViewBag.Title = "Projet";
 }
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"
+        type="text/javascript"></script>
+<script src="~/bootstrap/js/JavaS_test.js" type="text/javascript"></script>
+<script >
+    $(document).ready(loadList());
+
+</script>
 <section class="content-header">
     <h1>
         Projet
@@ -16,21 +23,18 @@
     </ol>
 </section>
 
-<section class="content">
+<section id="sectionDetail" class="content">
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <div class="btn-group-sm">
-                <a class="btn btn-sm btn-info btn-flat pull-left">Enregistrer</a>
-                <a class="btn btn-sm btn-info btn-flat pull-left">Modifier</a>
-                <a class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
+                <a id="btnEnr" class="btn btn-sm btn-info btn-flat pull-left">Enregistrer</a>
+                <a id="btnMod" class="btn btn-sm btn-info btn-flat pull-left">Modifier</a>
+                <a id="btnSup" class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
 
-
-                <a class="btn btn-sm btn-info btn-flat pull-left">Copier</a>
-
-                <a class="btn btn-sm btn-info btn-flat pull-left">Afficher équipe</a>
+                <a id="btnEqu" class="btn btn-sm btn-info btn-flat pull-left">Afficher équipe</a>
             </div>
             <div class="btn-group-sm">
-                    <a class="btn btn-sm btn-info btn-flat pull-right">Retour</a>
+                <a class="btn btn-sm btn-info btn-flat pull-right">Retour</a>
             </div>
         </div>
         <div class="box-body">
@@ -43,11 +47,8 @@
 
                     <dt>Chef de Projet: </dt>
                     <dd>
-                        <select>
-                            <option value="Aucun"></option>
-                            <option value="volvo">Paul Girard</option>
-                            <option value="saab">Guy Larouche</option>
-                            <option value="mercedes">Lise Gagnon</option>
+                        <select id="lstChefs">
+                            <option value="-1">selectionner un chef</option>
                         </select>
                     </dd>
 
@@ -58,10 +59,8 @@
 
                     <dt>Version jeu: </dt>
                     <dd>
-                        <select>
-                            <option value="aucun"></option>
-                            <option value="volvo">Call of Duty Blackops 8 solo</option>
-                            <option value="saab">Tales of Zestiria 2 player local 8.7</option>
+                        <select id="lstVersions">
+                            <option value="aucun">Selectionner un jeu</option>
                         </select>
                     </dd>
 
@@ -93,70 +92,75 @@
 
     </div>
     <div class="box box-default color-palette-box table-responsive">
-            <div class="box-header with-border">
-                <div class="btn-group-sm">
-                    <a class="btn btn-sm btn-info btn-flat pull-left">Ajouter un cas de test</a>
-                    <a class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
-                </div>
-            </div>
-            <div class="box-body">
-                <table class="table table-bordered">
-                    <tr>
-                        <th></th>
-                        <th>Code</th>
-                        <th>Titre</th>
-                        <th>Priorité</th>
-                        <th>Difficulté</th>
-                        <th>Date de création</th>
-                        <th>Date d'échéance</th>
-                        <th></th>
-                    </tr>
-
-                    @for (int i = 0; i < 5; i++)
-                    {
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="checkbox" />
-                            </td>
-                            <td>
-                                @("Test" + (i + 1))
-                            </td>
-                            <td>
-                                @("CasDeTest" + (i + 1))
-                            </td>
-                            <td>
-                                Urgent
-                            </td>
-                            <td>
-                                Intermédiaire
-                            </td>
-                            <td>
-                                23/10/2015
-                            </td>
-                            <td>
-                                24/10/2015
-                            </td>
-
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-info btn-sm">Détails</button>
-                                    <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Détails</a></li>
-                                        <li><a href="#">Copier</a></li>
-                                        <li><a href="#">Associer une équipe</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-
-                </table>
+        <div class="box-header with-border">
+            <div class="btn-group-sm">
+                <a class="btn btn-sm btn-info btn-flat pull-left">Ajouter un cas de test</a>
+                <a class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
             </div>
         </div>
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th></th>
+                    <th>Code</th>
+                    <th>Titre</th>
+                    <th>Priorité</th>
+                    <th>Difficulté</th>
+                    <th>Date de création</th>
+                    <th>Date d'échéance</th>
+                    <th></th>
+                </tr>
+
+                @for (int i = 0; i < 5; i++)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="checkbox" />
+                        </td>
+                        <td>
+                            @("Test" + (i + 1))
+                        </td>
+                        <td>
+                            @("CasDeTest" + (i + 1))
+                        </td>
+                        <td>
+                            Urgent
+                        </td>
+                        <td>
+                            Intermédiaire
+                        </td>
+                        <td>
+                            23/10/2015
+                        </td>
+                        <td>
+                            24/10/2015
+                        </td>
+
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info btn-sm">Détails</button>
+                                <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Détails</a></li>
+                                    <li><a href="#">Copier</a></li>
+                                    <li><a href="#">Associer une équipe</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
 </section>
+
+
+
+
+
 
 

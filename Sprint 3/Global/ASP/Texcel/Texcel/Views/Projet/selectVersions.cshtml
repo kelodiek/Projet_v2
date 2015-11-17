@@ -1,0 +1,10 @@
+﻿@using Texcel
+@model IEnumerable<tblVersion>
+
+<select id="lstVersions">
+    <option value="aucun">Selectionner un jeu</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.CodeVersion">@item.NomVersion</option>
+    }
+</select>

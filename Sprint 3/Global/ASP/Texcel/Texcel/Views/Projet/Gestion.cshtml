@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Gestion - Projet"; 
+    Layout = "~/Views/Shared/_LayoutTest2.cshtml";
+}
+<script type="text/javascript">
+    function test() {
+        $.ajax({
+            url: '/Projet/getAllProjet',
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html'
+
+        })
+            .success(function (result) {
+                $('#content').html(result);
+            })
+            .error(function (xhr, status) {
+                alert(status);
+            })
+    }
+</script>
+<body onload="test()">
+    <h2>@ViewBag.Tittle</h2>
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+            </div>
+            <div class="box-header">
+                <div style="display:inline">
+                    <div class="col-sm-6">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info">Nouveau</button>
+                            <button type="button" class="btn btn-info">Details</button>
+                        </div>
+                    </div>
+                    <div class="searchBar">
+                        <label>
+                            test
+                        </label>
+                        <input type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+                <div id="content" class="row">
+                </div>
+            </div>
+            <div class="box-footer">
+                <div >
+                    <span style="float:left;">
+                        Show
+                        <select style="position:absolute;" class="form-control input-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+</body>

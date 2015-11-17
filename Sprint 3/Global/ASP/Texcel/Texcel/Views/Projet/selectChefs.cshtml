@@ -1,0 +1,23 @@
+﻿@using Texcel
+@model IEnumerable<tblEmploye>
+
+@{
+    List<tblEmploye> lstChef = new List<tblEmploye>();
+    foreach (var emp in Model)
+    {
+        foreach (var Compte in emp.tblUtilisateur)
+        {
+            if (Compte.IdRole == 3)
+            {
+                lstChef.Add(emp);
+            }
+        }
+    }
+    <select id="lstChefs">
+        <option value="-1">selectionner un chef</option>
+        @foreach (var item in lstChef)
+        {
+            <option value="@item.IdEmp">@item.NomEmp</option>
+        }
+    </select>
+}

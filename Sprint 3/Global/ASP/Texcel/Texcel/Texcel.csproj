@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -159,10 +161,27 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccueilController.cs" />
     <Compile Include="Controllers\CasTestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjetController.cs" />
+    <Compile Include="Controllers\Verificator.cs" />
+    <Compile Include="dbTexcelModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbTexcelModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbTexcelModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbTexcelModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbTexcelModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,6 +190,70 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCasTest.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCategorie.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClassification.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDroit.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmploye.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEquipe.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGenre.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGroupe.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblJeu.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMode.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPlateforme.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProjet.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRole.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSysExp.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTheme.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTypeTest.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUtilisateur.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblVersion.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap.css" />
@@ -178,11 +261,14 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="bootstrap\js\JavaS_test.js" />
     <Content Include="bootstrap\js\npm.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="dist\css\AdminLTE.css" />
     <Content Include="dist\css\AdminLTE.min.css" />
+    <Content Include="dist\css\Loading.css" />
+    <Content Include="dist\css\duBeau.css" />
     <Content Include="dist\css\skins\skin-black-light.css" />
     <Content Include="dist\css\skins\skin-black-light.min.css" />
     <Content Include="dist\css\skins\skin-black.css" />
@@ -1026,6 +1112,24 @@
     <Content Include="plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
+    <Content Include="WebForm1.aspx" />
+    <EntityDeploy Include="dbTexcelModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbTexcelModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="dbTexcelModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbTexcelModel.edmx</DependentUpon>
+      <LastGenOutput>dbTexcelModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbTexcelModel.edmx.diagram">
+      <DependentUpon>dbTexcelModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="dbTexcelModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbTexcelModel.edmx</DependentUpon>
+      <LastGenOutput>dbTexcelModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1075,9 +1179,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\CasTest\Details.cshtml" />
     <Content Include="Views\Projet\Details.cshtml" />
-    <Content Include="Views\Projet\Details2.cshtml" />
     <Content Include="Views\Shared\_LayoutTest2.cshtml" />
-    <Content Include="Views\Projet\TestDetails.cshtml" />
+    <Content Include="Views\Accueil\Index.cshtml" />
+    <Content Include="Views\CasTest\Gestion.cshtml" />
+    <Content Include="Views\CasTest\getAllCasTest.cshtml" />
+    <Content Include="Views\Projet\getAllProjet.cshtml" />
+    <Content Include="Views\Projet\Gestion.cshtml" />
+    <Content Include="Views\Projet\selectChefs.cshtml" />
+    <Content Include="Views\Projet\selectVersions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1088,6 +1197,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

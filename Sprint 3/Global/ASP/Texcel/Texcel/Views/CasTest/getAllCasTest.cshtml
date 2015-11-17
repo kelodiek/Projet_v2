@@ -1,0 +1,56 @@
+﻿@using Texcel
+@model IEnumerable<tblCasTest>
+@*Creation du tableau de contenant les donnees des cas de test*@
+<table id="example1" class="table table-hover stable-bordered no-padding table-responsive dataTable table-striped" role="grid" aria-describedby="example1_info" >
+    <thead>
+        <tr role="row">
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 150px;">Titre</th>
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 200px;">Objectif</th>
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 100px;">Date Creation</th>
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 100px;">Date Echeance</th>
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 120px;">Difficulté</th>
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 120px;">Priorité</th>
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 100px;">type de test</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{string typeRow = "odd";
+        string typePriority = "label label-primary";
+        DateTime echeance, creation;}
+        @foreach (var cas in Model)
+        {
+            if (typeRow == "odd")
+            {
+                typeRow = "even";
+            }
+            else
+            {
+                typeRow = "odd";
+
+            }
+            switch (@cas.PrioriteCas.TrimEnd())
+            {
+                case "Elevee": typePriority = "label label-danger";
+                    break;
+                case "Faible": typePriority = "label label-success";
+                    break;
+                case "Moyen": typePriority = "label label-warning";
+                    break;
+                default: typePriority = "label label-primary";
+                    break;
+            }
+            
+            
+            <tr role="row" class="" >
+                <td>@cas.TitreCas</td>
+                <td>@cas.ObjectifCas</td>
+                <td>@cas.DateCreation</td>
+                <td>@cas.DateEcheance</td>
+                <td>@cas.DifficulteCas</td>
+                <td><span class="@typePriority">@cas.PrioriteCas</span></td>
+                <td>@cas.CodeTypeTest</td>
+            </tr>
+        }
+    </tbody>
+    
+</table>
