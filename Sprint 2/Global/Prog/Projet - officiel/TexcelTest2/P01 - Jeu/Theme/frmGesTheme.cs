@@ -12,9 +12,11 @@ namespace Projet
 {
     public partial class frmGesTheme : frmGestion
     {
+        private int order,ligneSelect;
         ctrlTheme gestionTheme;
         public frmGesTheme()
         {
+            order = 0;
             InitializeComponent();
             gestionTheme = new ctrlTheme();
             btnAjout.Click += new EventHandler(ajoutTheme_Click);
@@ -26,17 +28,16 @@ namespace Projet
         private void frmGestTheme_Load(object sender, EventArgs e)
         {
             DataGridViewColumn column;
-            GridTheme.Columns.Add("IdTheme", "ID");
             GridTheme.Columns.Add("NomTheme", "Nom");
             GridTheme.Columns.Add("CommentaireTheme", "Commentaire");
 
             column = GridTheme.Columns[0];
-            column.Width = 30;
-            column = GridTheme.Columns[1];
             column.Width = 150;
-            column = GridTheme.Columns[2];
+            column = GridTheme.Columns[1];
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             chargerDonnees();
+            selectLigne(0);
+            sortColumn();
         }
         private void chargerDonnees()
         {
@@ -54,15 +55,12 @@ namespace Projet
 
             frmDetails.modifierChamp("a");
 
-            frmDetails.Show();
+            frmDetails.ShowDialog();
         }
         private void update()
         {
-            gestionTheme = new ctrlTheme();
-            var formOuvert = new frmGesTheme();
-            formOuvert.Show();
-            this.Hide();
-            formOuvert.Closed += (s, args) => this.Close();
+            GridTheme.Rows.Clear();
+            chargerDonnees();
         }
         private void detailTheme_Click(object sender, EventArgs e)
         {
@@ -91,12 +89,14 @@ namespace Projet
             frmDetails.ShowDialog();
             frmDetails.Closed += (s, args) => this.Close();
             update();
+            selectLigne(ligneSelect);
         }
         private void GridTheme_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             {
                 GridTheme.Rows[e.RowIndex].Selected = true;
+                ligneSelect = e.RowIndex;
                 modifierTheme();
             }
         }
@@ -106,6 +106,7 @@ namespace Projet
             if (e.RowIndex != -1)
             {
                 GridTheme.Rows[e.RowIndex].Selected = true;
+                ligneSelect = e.RowIndex;
             }
         }
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -118,8 +119,6 @@ namespace Projet
                     string[] tabTemp = new string[3] { c.idTheme.ToString(), c.nomTheme, c.comTheme };
                     GridTheme.Rows.Add(tabTemp);
                 }
-                
-
             }
             else
             {
@@ -132,6 +131,18 @@ namespace Projet
             chargerDonnees();
             txtRecherche.Text = "";
         }
+        private void selectLigne(int id)
+        {
+            GridTheme.Rows[id].Selected = true;
+        }
+        private void sortColumn()
+        {
+            GridTheme.Sort(GridTheme.Columns[order], ListSortDirection.Ascending);
+        }
 
+        private void GridTheme_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            order = e.ColumnIndex;
+        }
     }
 }

@@ -1,4 +1,4 @@
-use dbProjetE2Prod;
+use dbProjetE2Test;
 
 ALTER TABLE Personnel.tblEmploye
 ADD CONSTRAINT PK_tblEmploye_IdEmp PRIMARY KEY(IdEmp)
