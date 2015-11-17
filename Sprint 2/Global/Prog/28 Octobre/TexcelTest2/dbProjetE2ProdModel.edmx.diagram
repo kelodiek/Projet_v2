@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f9f6adc045ee4bac9cd11f9608e1cc6d" Name="Diagram1">
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblCategorie" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblClassification" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblGenre" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblJeu" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblMode" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblPlateforme" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblSysExp" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblTheme" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblVersion" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblPlateforme_tblCategorie_CodeCategorie" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblJeu_tblClassification_CoteESRB" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblJeu_tblGenre_IdGenre" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblJeu_tblMode_IdMode" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblVersion_tblJeu_IdJeu" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblJeuSemblable" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblPlateformeJeu" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblPlateformeSysExp" ManuallyRouted="false" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblThemeJeu" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblDroit" Width="1.5" PointX="7.375" PointY="8.625" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblEmploye" Width="1.5" PointX="9.625" PointY="14" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblGroupe" Width="1.5" PointX="9.625" PointY="8.5" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblRole" Width="1.5" PointX="9.625" PointY="11.5" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblUtilisateur" Width="1.5" PointX="11.875" PointY="8" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblUtilisateur__tblEmploye_IdEmp" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblUtilisateur_tblRole_IdRole" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblGroupeDroit" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblGroupeUtil" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblEquipe" Width="1.5" PointX="11.875" PointY="14.625" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.tblTypeTest" Width="1.5" PointX="14.125" PointY="14.75" />
+        <AssociationConnector Association="dbProjetE2ProdModel.FK_tblEquipe_tblEmploye_IdChefEquipe" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblEmployeTypeTest" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblEquipeTesteur" />
+        <AssociationConnector Association="dbProjetE2ProdModel.tblEquipeTypeTest" />
+        <EntityTypeShape EntityType="dbProjetE2ProdModel.AllChefEquipe" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
