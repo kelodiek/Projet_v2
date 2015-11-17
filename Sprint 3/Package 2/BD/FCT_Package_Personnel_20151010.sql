@@ -11,6 +11,16 @@ WHERE r.NomRole='Chef d’équipe'
 
 GO
 
+CREATE VIEW [AllEmployeRole] AS
+SELECT e.IdEmp, e.PrenomEmp, e.NomEmp, e.CourrielEmp, e.NoTelPrincipal, e.NoTelSecondaire, e.AdressePostale,
+    e.DateEmbaucheEmp, e.CompetenceParticuliere, e.Statut, e.CommentaireEmp, r.IdRole, r.NomRole, r.DescRole
+        FROM Personnel.tblEmploye AS e
+  INNER JOIN Personnel.tblUtilisateur as u
+  ON e.IdEmp = u.IdEmp
+  INNER JOIN Personnel.tblRole AS r
+              ON r.IdRole = u.IdRole
+GO
+
 CREATE FUNCTION GetEmployeByRole(@role AS INT)
 RETURNS @EmployeByRole TABLE
    ( 

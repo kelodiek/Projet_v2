@@ -15,9 +15,10 @@ namespace Projet
     {
         public Employe empSelect { get; set; }
         private ctrlEmploye ctrlEm;
+        private int lvlAcces;
 
-        //      Employe existant
-        public frmDetEmp(Employe E)
+        //      Employe existant + authentification
+        public frmDetEmp(Employe E, int lvlA)
         {
             InitializeComponent();
             ctrlEm = new ctrlEmploye(true);
@@ -32,10 +33,12 @@ namespace Projet
             this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
             chargeEmp(E);
             ChargeTypeTest();
+            lvlAcces = lvlA;
+            checkLvlAcces();
         }
 
         //      Nouveau employe
-        public frmDetEmp(string[] _nEmp)
+        public frmDetEmp(string[] _nEmp, int lvlA)
         {
             InitializeComponent();
             ctrlEm = new ctrlEmploye(false);
@@ -59,6 +62,8 @@ namespace Projet
             txtAdresPost.Text = _nEmp[6];
             dateEmbauche.Value = Convert.ToDateTime(_nEmp[7]);
             this.Tag = _nEmp;
+            lvlAcces = lvlA;
+            checkLvlAcces();
         }
 
         private void btnActiverModif_Click(object sender, EventArgs e)
@@ -186,6 +191,20 @@ namespace Projet
             var form = new frmGesComptes();
             form.Idemp = Convert.ToInt32(txtId.Text);
             form.ShowDialog();
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
+
+            if (lvlAcces == 4)
+                btnGesUtil.Visible = true;
         }
     }
 }

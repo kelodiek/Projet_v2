@@ -15,15 +15,23 @@ namespace Projet
         ctrlPlateforme ctrlPlate;
         string rowId;
         int sortColumn;
-        public frmGesPlateforme()
+        private int lvlAcces;
+
+        //      avec authentification
+        public frmGesPlateforme(string _us)
         {
             InitializeComponent();
 
             ctrlPlate = new ctrlPlateforme();
             this.btnDetails.Click += new EventHandler(btnDetails_Click);
             this.btnAjout.Click += new EventHandler(btnAjout_Click);
-            
+            this.btnRecherche.Click += new EventHandler(btnRecherche_Click);
+            this.btnX.Click += new EventHandler(btnX_Click);
+            this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
+
             ButtonsVisible(true);
+            UserNm = _us;
+            
         }
 
         private void Gestion_des_Plateformes_Load(object sender, EventArgs e)
@@ -46,19 +54,37 @@ namespace Projet
 
             updateDonnees();
             gridPlateforme.Rows[1].Selected = true;
+            droitUser();
         }
+
+        private void droitUser()
+        {
+            lvlAcces = ctrlPlate.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                gridPlateforme.Rows.Clear();
+            }
+        }
+
         private void btnDetails_Click(object sender, EventArgs e)
         {
             afficherDetails();
         }
         private void btnAjout_Click(object sender, EventArgs e)
         {
-            var frmDetails = new frmDetPlateforme();
+            var frmDetails = new frmDetPlateforme(lvlAcces);
 
             frmDetails.txtID.Enabled = false;
 
             frmDetails.btnActiverModif.Enabled = false;
-
+            frmDetails.modifierChamp("a");
             frmDetails.ShowDialog();
             updateDonnees();
         }
@@ -89,21 +115,20 @@ namespace Projet
             retirerDonnees();
             afficherDonnees();
         }
-        private void btnDetail_Click()
-        {
 
-        }
         private void afficherDetails()
         {
-            string rowSelect = gridPlateforme.SelectedRows[0].Cells[0].Value.ToString();
-            plateforme selectP = (plateforme)gridPlateforme.SelectedRows[0].Tag;
-            var frmDetails = new frmDetPlateforme(selectP);
+            if (gridPlateforme.SelectedRows.Count > 0)
+            {
+                string rowSelect = gridPlateforme.SelectedRows[0].Cells[0].Value.ToString();
+                plateforme selectP = (plateforme)gridPlateforme.SelectedRows[0].Tag;
+                var frmDetails = new frmDetPlateforme(selectP, lvlAcces);
 
-            frmDetails.modifierChamp("m");
-
-            frmDetails.ShowDialog();
-            updateDonnees();
-            selectLigne(rowSelect);
+                frmDetails.modifierChamp("m");
+                frmDetails.ShowDialog();
+                updateDonnees();
+                selectLigne(rowSelect); 
+            }
         }
 
         private void gridPlateforme_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -138,6 +163,56 @@ namespace Projet
 
                 afficherDetails();
             }
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            recherche();
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            gridPlateforme.Rows.Clear();
+            afficherDonnees();
+            txtRecherche.Text = "";
+            gridPlateforme.Sort(gridPlateforme.Columns[0], ListSortDirection.Ascending);
+            if (gridPlateforme.RowCount > 0)
+            {
+                gridPlateforme.Rows[0].Selected = true;
+                sortColumn = 0;
+            }
+        }
+
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13 && lvlAcces > 0)
+                recherche();
+        }
+
+        private void recherche()
+        {
+            if (txtRecherche.Text != "")
+            {
+                gridPlateforme.Rows.Clear();
+                int index;
+                string[] row;
+
+                foreach (plateforme p in ctrlPlate.recherche(txtRecherche.Text))
+                {
+                    row = new string[] {
+                        p.codePlate,
+                        p.nomPlate,
+                        p.codeCateg,
+                        p.descPlate};
+
+                    index = gridPlateforme.Rows.Add(row);
+
+                    gridPlateforme.Rows[index].Tag = p;
+                }
+                rowId = (string)gridPlateforme.Rows[gridPlateforme.Rows.Count - 1].Cells[0].Value;
+            }
+            else
+                MessageBox.Show("Le champ de recherche est vide", "erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

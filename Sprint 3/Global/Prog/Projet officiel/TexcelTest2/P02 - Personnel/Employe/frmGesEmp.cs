@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,18 +15,25 @@ namespace Projet
 {
     public partial class frmGesEmp : frmGestion
     {
-        ctrlEmploye gestionEmp;
-        bool boutOk;
+        private ctrlEmploye gestionEmp;
+        private bool boutOk;
+        private int lvlAcces;
 
-        public frmGesEmp()
+        //      avec l'authentification
+        public frmGesEmp(string _us)
         {
             InitializeComponent();
             gestionEmp = new ctrlEmploye(true);
             chargerColonnes();
-            gridEmploye.SortCompare += gridEmploye_SortCompare;     //          Ajout nouveau
-            gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
-            gridEmploye.Rows[0].Selected = true;
-            this.Tag = gridEmploye.Rows[0].Tag;
+            UserNm = _us;
+            droitUser();
+            if (gridEmploye.RowCount > 0)
+            {
+                gridEmploye.SortCompare += gridEmploye_SortCompare;
+                gridEmploye.Sort(gridEmploye.Columns[0], ListSortDirection.Ascending);
+                gridEmploye.Rows[0].Selected = true;
+                this.Tag = gridEmploye.Rows[0].Tag; 
+            }
             btnDetails.Visible = true;
             btnRecherche.Visible = true;
             txtRecherche.Visible = true;
@@ -39,7 +47,7 @@ namespace Projet
             this.Text = "Texel : Gestion - Employés";
         }
 
-        public frmGesEmp(string nouv)
+        public frmGesEmp(bool nouv, string _us)
         {
             InitializeComponent();
             gestionEmp = new ctrlEmploye(false);
@@ -53,9 +61,31 @@ namespace Projet
             txtRecherche.Visible = true;
             btnRejet.Text = "Retirer";
             this.Text = "Texel : Gestion - Nouveaux Employés";
+            UserNm = _us;
+            droitUser();
         }
 
-        //          créer le tableau gridview et call le charge des données             Ajout nouveau
+        private void droitUser()
+        {
+            lvlAcces = gestionEmp.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+            {
+                btnAjout.Enabled = false;
+                btnRejet.Enabled = false;
+            }
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnRecherche.Enabled = false;
+                btnX.Enabled = false;
+                btnRejet.Enabled = false;
+                gridEmploye.Rows.Clear();
+            }
+        }
+
+        //          créer le tableau gridview et call le charge des données
         private void chargerColonnes()
         {
             DataGridViewColumn column;
@@ -149,7 +179,7 @@ namespace Projet
 
             if (gestionEmp.etat == true)
             {
-                detailEmploye = new frmDetEmp((Employe)this.Tag);
+                detailEmploye = new frmDetEmp((Employe)this.Tag, lvlAcces);
                 detailEmploye.ShowDialog();
                 if (this.Tag != detailEmploye.Tag)
                     update();
@@ -162,7 +192,7 @@ namespace Projet
                 {
                     nEmp[i] = (string)gridEmploye.SelectedRows[0].Cells[i].Value.ToString();
                 }
-                detailEmploye = new frmDetEmp(nEmp);
+                detailEmploye = new frmDetEmp(nEmp, lvlAcces);
                 detailEmploye.ShowDialog();
 
                 if (detailEmploye.Tag.ToString() == "1" && gestionEmp.verifAjout(detailEmploye.empSelect) == true)        //      il est ajouter
@@ -214,7 +244,7 @@ namespace Projet
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
                 rechercher();
         }
 
@@ -307,6 +337,31 @@ namespace Projet
                 e.SortResult = a.CompareTo(b);
 
                 e.Handled = true; 
+            }
+        }
+
+        //          Vérifie s'il y a de nouveau employer pour les admin
+        public void VerifierNouveauxEmp()
+        {
+            bool New = File.Exists(Path.Combine(Environment.CurrentDirectory, @"nouveau.txt"));
+            if (New)
+            {
+                int i = 0;
+                string line;
+                StreamReader file = new StreamReader(Path.Combine(Environment.CurrentDirectory, @"nouveau.txt"));
+                while ((line = file.ReadLine()) != null)
+                {
+                    i++;
+                }
+                file.Close();
+                DialogResult tmp = MessageBox.Show("il y a " + i + " nouveau employe à ajouter dans le système,\n voulez-vous les ajouter maintenant ?", "Nouveau employe", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (tmp == DialogResult.Yes)
+                {
+                    var formOuvert = new frmGesEmp(true, UserNm);
+                    this.Hide();
+                    formOuvert.Show();
+                    formOuvert.Closed += (s, args) => this.Close();
+                }
             }
         }
     }
