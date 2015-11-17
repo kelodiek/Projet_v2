@@ -15,9 +15,11 @@ namespace Projet
         public Genre genreSelect { get; set; }
         public string statut;
         private ctrlGenre ctrlGen;
+        private int lvlAcces;
         public bool annuler { get; set; }
 
-        public frmDetGenre()
+        //      avec authentification
+        public frmDetGenre(int lvla)
         {
             InitializeComponent();
             ctrlGen = new ctrlGenre();
@@ -30,9 +32,11 @@ namespace Projet
             this.btnCopier.Visible = false;
             this.btnActiverModif.Click += new EventHandler(btnActiverModif_Click);
             annuler = true;
+            lvlAcces = lvla;
+            checkLvlAcces();
         }
 
-        public frmDetGenre(Genre G)
+        public frmDetGenre(Genre G, int lvla)
         {
             InitializeComponent();
             genreSelect = G;
@@ -42,7 +46,8 @@ namespace Projet
             this.PositionBtn(260);
             this.btnEnregistrer.Click += new EventHandler(btnEnregistrer_Click);
             this.btnCopier.Visible = false;
-            
+            lvlAcces = lvla;
+            checkLvlAcces();
             annuler = true;
         }
 
@@ -54,7 +59,7 @@ namespace Projet
             cop.nomGenre = txtNom.Text;
             cop.comGenre = rtxtCom.Text;
 
-            frmCop = new frmDetGenre(cop);
+            frmCop = new frmDetGenre(cop, lvlAcces);
             frmCop.remplirChamp();
             frmCop.btnCopier.Enabled = false;
             frmCop.btnSupprimer.Enabled = false;
@@ -152,6 +157,17 @@ namespace Projet
             this.rtxtCom.ReadOnly = false;
             this.btnEnregistrer.Enabled = true;
             ((Button)sender).Enabled = false;
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
         }
     }
 }

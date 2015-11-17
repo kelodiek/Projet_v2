@@ -109,10 +109,48 @@ namespace Projet
             return tblP;
         }
 
-
         void IControle.supprimer(object o)
         {
             throw new NotImplementedException();
+        }
+
+        public int DroitAcces(string user)
+        {
+            List<tblDroit> lstDrBrut = rGroupeUtilSQL.getDrByGroupUser(user);
+            bool drLect = false;
+            bool drEcr = false;
+            foreach (tblDroit item in lstDrBrut)
+            {
+                if (item.CodeDroit == "RP06")
+                    drLect = true;
+
+                if (item.CodeDroit == "WP06")
+                    drEcr = true;
+
+                if (item.CodeDroit == "Admin")
+                    return 3;
+            }
+
+            if (drLect == true && drEcr == true)
+                return 3;
+            else if (drLect == false && drEcr == true)
+                return 2;
+            else if (drLect == true && drEcr == false)
+                return 1;
+
+            return 0;
+        }
+
+        public List<plateforme> recherche(string cle)
+        {
+            List<plateforme> lstRP = new List<plateforme>();
+
+            foreach (var item in rPlateSQL.srchPlateforme(cle))
+            {
+                plateforme temp = new plateforme(item);
+                lstRP.Add(temp);
+            }
+            return lstRP;
         }
     }
 }

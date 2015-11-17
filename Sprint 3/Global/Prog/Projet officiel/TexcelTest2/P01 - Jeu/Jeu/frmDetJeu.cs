@@ -16,16 +16,19 @@ namespace Projet
         ctrlJeu cj;
         tblJeu jeuBase;
         public string nomJeu;
+        private int lvlAcces;
 
-        public frmDetJeu()
+        //     avec authentification
+        public frmDetJeu(int lvla)
         {
             InitializeComponent();
             this.btnActiverModif.Visible = false;
             this.btnSupprimer.Visible = false;
             type = "ajout";
+            lvlAcces = lvla;
         }
 
-        public frmDetJeu(tblJeu jeu)
+        public frmDetJeu(tblJeu jeu, int lvla)
         {
             InitializeComponent();
             type = "modif";
@@ -71,7 +74,7 @@ namespace Projet
 
             foreach (tblPlateforme p in jeu.tblPlateforme)
             {
-                TreeNode tntemp = tvSelectPlateforme.Nodes.Add(p.NomPlateforme);                
+                TreeNode tntemp = tvSelectPlateforme.Nodes.Add(p.NomPlateforme);
                 tntemp.Tag = p;
             }
 
@@ -80,6 +83,8 @@ namespace Projet
             this.btnAjoutTheme.Enabled = false;
 
             this.btnActiverModif.Enabled = true;
+            
+            lvlAcces = lvla;
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)
@@ -132,6 +137,8 @@ namespace Projet
                 this.btnSupprimer.Visible = false;
                 this.btnEnregistrer.Enabled = true;
             }
+
+            checkLvlAcces();
         }
 
         private void ActiverModif()
@@ -411,7 +418,7 @@ namespace Projet
             //j.lstTheme = lstTheme;
             //j.lstPlateforme = lstPlateforme;
 
-            frmDetails = new frmDetJeu(copieJeu);
+            frmDetails = new frmDetJeu(copieJeu, lvlAcces);
             frmDetails.type = "copie";
             frmDetails.ShowDialog();
             //Je sais pas si faut retourner sur l'original
@@ -435,6 +442,17 @@ namespace Projet
             {
                 MessageBox.Show("La copie est identique à l'ancien jeu.",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
             }
         }
     }

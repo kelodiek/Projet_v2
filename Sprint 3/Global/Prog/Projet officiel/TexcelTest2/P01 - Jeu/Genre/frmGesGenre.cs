@@ -13,8 +13,9 @@ namespace Projet
     public partial class frmGesGenre : frmGestion
     {
         ctrlGenre gestionGenre;
+        private int lvlAcces;
 
-        public frmGesGenre()
+        public frmGesGenre(string _us)
         {
             InitializeComponent();
             gestionGenre = new ctrlGenre();
@@ -25,9 +26,30 @@ namespace Projet
             this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
             ButtonsVisible(true);
             CreerGrid();
-            GridGenre.Sort(GridGenre.Columns[1], ListSortDirection.Ascending);
-            GridGenre.Rows[0].Selected = true;
-            this.Tag = GridGenre.Rows[0].Cells[1].Value.ToString();
+            if (GridGenre.RowCount > 0)
+            {
+                GridGenre.Sort(GridGenre.Columns[1], ListSortDirection.Ascending);
+                GridGenre.Rows[0].Selected = true;
+                this.Tag = GridGenre.Rows[0].Cells[1].Value.ToString(); 
+            }
+            UserNm = _us;
+            droitUser();
+        }
+
+        private void droitUser()
+        {
+            lvlAcces = gestionGenre.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                GridGenre.Rows.Clear();
+            }
         }
 
         private void CreerGrid()
@@ -50,7 +72,7 @@ namespace Projet
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces > 0)
                 rechercher();
         }
 
@@ -98,7 +120,7 @@ namespace Projet
 
         private void modifierGenre()
         {
-            var detGenre = new frmDetGenre();
+            var detGenre = new frmDetGenre(lvlAcces);
             Genre genreSel = new Genre();
             int index = GridGenre.SelectedRows[0].Index;
 
@@ -119,7 +141,7 @@ namespace Projet
 
         private void ajoutGenre_click(object sender, EventArgs e)
         {
-            var Details = new frmDetGenre();
+            var Details = new frmDetGenre(lvlAcces);
 
             if (GridGenre.SelectedRows.Count == 0)
                 Details.Tag = "0";

@@ -15,8 +15,10 @@ namespace Projet
         public Theme themeSelect { get; set; }
         private ctrlTheme ctrltheme;
         public bool exit;
+        private int lvlAcces;
 
-        public frmDetTheme()
+        //      avec authentification
+        public frmDetTheme(int lvla)
         {
             InitializeComponent();
             this.PositionBtn(140);
@@ -27,8 +29,10 @@ namespace Projet
             this.btnActiverModif.Click += new EventHandler(btnActiverModification_Click);
             this.txtId.Enabled = false;
             exit = true;
+            lvlAcces = lvla;
+            checkLvlAcces();
         }
-        public frmDetTheme(Theme C)
+        public frmDetTheme(Theme C, int lvla)
         {
             themeSelect = C;
             InitializeComponent();
@@ -39,7 +43,10 @@ namespace Projet
             this.btnActiverModif.Click += new EventHandler(btnActiverModification_Click);
             this.txtId.Enabled = false;
             exit = true;
+            lvlAcces = lvla;
+            checkLvlAcces();
         }
+
         public void btnActiverModification_Click(object sender, EventArgs e)
         {
             foreach (Control item in this.Controls)
@@ -179,7 +186,7 @@ namespace Projet
             info.nomTheme = txtNom.Text;
 
 
-            formOuvert = new frmDetTheme(info);
+            formOuvert = new frmDetTheme(info, lvlAcces);
             formOuvert.Tag = "Copie";
             formOuvert.remplirChamp();
             formOuvert.btnCopier.Enabled = false;
@@ -192,6 +199,15 @@ namespace Projet
             formOuvert.Closed += (s, args) => this.Close();
         }
 
-       
+        private void checkLvlAcces()
+        {
+            if (lvlAcces == 1)
+            {
+                btnActiverModif.Enabled = false;
+                btnCopier.Enabled = false;
+                btnEnregistrer.Enabled = false;
+                btnSupprimer.Enabled = false;
+            }
+        }
     }
 }

@@ -13,8 +13,10 @@ namespace Projet
     public partial class frmGesMode : frmGestion
     {
         ctrlMode gestionMode;
+        private int lvlAcces;
+        //private string NmUser;
 
-        public frmGesMode()
+        public frmGesMode(string _user)
         {
             InitializeComponent();
             gestionMode = new ctrlMode();
@@ -24,10 +26,25 @@ namespace Projet
             this.btnX.Click += new EventHandler(btnX_Click);
             this.txtRecherche.KeyDown += new KeyEventHandler(txtRecherche_KeyDown);
             ButtonsVisible(true);
+            UserNm = _user;
+            droitUser();
             CreerGrid();
-            dataGridMode.Sort(dataGridMode.Columns[1], ListSortDirection.Ascending);
-            dataGridMode.Rows[0].Selected = true;
-            this.Tag = dataGridMode.Rows[0].Cells[1].Value.ToString();
+        }
+        
+        private void droitUser()
+        {
+            lvlAcces = gestionMode.DroitAcces(UserNm);
+
+            if (lvlAcces == 0 || lvlAcces == 1)
+                btnAjout.Enabled = false;
+
+            if (lvlAcces == 0)
+            {
+                btnDetails.Enabled = false;
+                btnX.Enabled = false;
+                btnRecherche.Enabled = false;
+                dataGridMode.Rows.Clear();
+            }
         }
 
         private void CreerGrid()
@@ -45,7 +62,17 @@ namespace Projet
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dataGridMode.Columns[0].Visible = false;
-            chargeDonnees();
+            if (lvlAcces > 0)
+            {
+                chargeDonnees();
+                if (dataGridMode.RowCount > 0)
+                {
+                    dataGridMode.Sort(dataGridMode.Columns[1], ListSortDirection.Ascending);
+                    dataGridMode.Rows[0].Selected = true;
+                    this.Tag = dataGridMode.Rows[0].Cells[1].Value.ToString();
+                }
+            }
+                
         }
 
         private void chargeDonnees()
@@ -61,7 +88,7 @@ namespace Projet
 
         private void ajoutMode_Click(object sender,EventArgs e)
         {
-            var detailsMode = new frmDetMode();
+            var detailsMode = new frmDetMode(lvlAcces);
 
             if (dataGridMode.SelectedRows.Count == 0)
                 detailsMode.Tag = "0";
@@ -84,7 +111,7 @@ namespace Projet
 
         private void modifierMode()
         {
-            var detailsMode = new frmDetMode();
+            var detailsMode = new frmDetMode(lvlAcces);
             Mode modSelectionner = new Mode();
             int index = dataGridMode.SelectedRows[0].Index;
 
@@ -145,7 +172,7 @@ namespace Projet
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+            if (e.KeyValue == 13 && lvlAcces != 0)
                 rechercher();
         }
 

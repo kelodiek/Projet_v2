@@ -41,7 +41,7 @@ namespace Projet
                 Expire = ctrllogin.MotDePasseExpire(Username);
                 if (Premiere)
                 {
-                    var form = new frmChangerMDPPremiere();
+                    var form = new frmChangerMDPPremiere(Username, ctrlcompte.GetNomRole(ctrllogin.user.Role));
                     form.SetUser(ctrllogin.user);
                     this.Hide();
                     form.Closed += (s, args) => this.Close();
@@ -49,7 +49,7 @@ namespace Projet
                 }
                 else if (Expire == "o")
                 {
-                    var form = new frmChangerMDPExpire();
+                    var form = new frmChangerMDPExpire(Username, ctrlcompte.GetNomRole(ctrllogin.user.Role));
                     form.SetUser(ctrllogin.user);
                     this.Hide();
                     form.Closed += (s, args) => this.Close();
@@ -64,22 +64,26 @@ namespace Projet
                     if (ctrlcompte.GetNomRole(ctrllogin.user.Role) == "Testeur")
                     {
                         //Ouvrir frmTest
-                        var form = new frmGestion();
+                        //var form = new frmGestion();
+                        var form = new frmGestion(Username, ctrlcompte.GetNomRole(ctrllogin.user.Role));
                         this.Hide();
                         form.Closed += (s, args) => this.Close();
                         form.Show();
+                        //form.Hide();
                     }
                     else if ((ctrlcompte.GetNomRole(ctrllogin.user.Role) == "Administrateur") || (ctrlcompte.GetNomRole(ctrllogin.user.Role) == "Test"))
                     {
-                        var form = new frmGestion();
+                        //var form = new frmGestion();
+                        var form = new frmGestion(Username, ctrlcompte.GetNomRole(ctrllogin.user.Role));
                         this.Hide();
                         form.Closed += (s, args) => this.Close();
                         form.Show();
-                        form.VerifierNouveauxEmp(); 
+                        form.Hide();
+                        //form.VerifierNouveauxEmp();
                     }
                     else
                     {
-                        var form = new frmGestion();
+                        var form = new frmGestion(Username, ctrlcompte.GetNomRole(ctrllogin.user.Role));
                         this.Hide();
                         form.Closed += (s, args) => this.Close();
                         form.Show();
