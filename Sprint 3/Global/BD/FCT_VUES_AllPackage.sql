@@ -129,8 +129,9 @@ CREATE VIEW [VTypeTest] AS
 SELECT *
 FROM Test.tblTypeTest
 GO
-/* SI TABLE CREER ENLEVER LES MARQUEURS
+/*
 CREATE VIEW [VResultatTest] AS
 SELECT *
 FROM Test.tblResultatTest
-GO */ 
+GO */
+USE master;
