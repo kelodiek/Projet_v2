@@ -1,0 +1,76 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "getlstFichierCasTest";
+}
+
+<script src="~/bootstrap/js/TableauPaginer.js"></script>
+<script>$(document).ready(function(){
+    Paginer("page","tblCasTest",5);
+   
+    });</script>
+
+<table id="tblCasTest" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nom document</th>
+            <th>Date de création</th>
+            <th>Date de modification</th>
+            <th>Extension</th>
+            <th>Taille</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (string p in Model)
+        {
+            FileInfo file = new FileInfo(p);
+            string name;
+            name = file.Name;
+
+            int index = name.IndexOf(".");
+            if (index > 0)
+            {
+                name = name.Substring(0, index);
+            }
+
+
+            <tr>
+                <td>@name</td>
+                <td>@file.CreationTime.Year / @file.CreationTime.Month / @file.CreationTime.Day</td>
+                <td>@file.LastWriteTime.Year / @file.LastWriteTime.Month / @file.LastWriteTime.Day</td>
+                <td>@(Path.GetExtension(p))</td>
+                <td>@(file.Length / 1024)kb</td>
+
+                <td>
+                    <div class="btn-group-sm">
+                        <button onclick="afficherfile(this)" class="btn btn-sm btn-info btn-flat pull-left" value="@file">Afficher</button>
+                        <script>
+                            function afficherfile(filepath) {
+                                var t = filepath.value;
+                                var stringArray = new Array();
+                                stringArray[0] = t;
+                                var postData = { values: stringArray };
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: '/CasTest/openFichierCasTest',
+                                    data: postData,
+                                    dataType: "json",
+                                    traditional: true,
+                                    success: function (data) {
+                                        alert(data.Result);
+                                    }
+
+                                });
+                            }
+
+                        </script>
+
+                        <button class="btn btn-sm btn-info btn-flat pull-left">Supprimer</button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="page"></div>
+

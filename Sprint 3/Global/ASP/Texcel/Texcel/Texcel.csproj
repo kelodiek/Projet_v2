@@ -163,9 +163,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccueilController.cs" />
     <Compile Include="Controllers\CasTestController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjetController.cs" />
+    <Compile Include="Controllers\rqtSQL.cs" />
     <Compile Include="Controllers\Verificator.cs" />
     <Compile Include="dbTexcelModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -209,6 +211,15 @@
       <DependentUpon>dbTexcelModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblEquipe.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFiltre1.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFiltre2.cs">
+      <DependentUpon>dbTexcelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFiltre3.cs">
       <DependentUpon>dbTexcelModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGenre.cs">
@@ -261,7 +272,8 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
-    <Content Include="bootstrap\js\JavaS_test.js" />
+    <Content Include="bootstrap\js\TableauPaginer.js" />
+    <Content Include="bootstrap\js\JavaS_Projet.js" />
     <Content Include="bootstrap\js\npm.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -1187,6 +1199,7 @@
     <Content Include="Views\Projet\Gestion.cshtml" />
     <Content Include="Views\Projet\selectChefs.cshtml" />
     <Content Include="Views\Projet\selectVersions.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

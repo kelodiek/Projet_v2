@@ -1,0 +1,128 @@
+﻿<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<div class="box" style="font-size:1em;">
+    <div class="box-header">Des trucs</div>
+    <div class="box-body">
+        <table id="data">
+            <thead>
+                <tr class="row">
+                    <th>S.No</th>
+                    <th>Category</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Clothing</td>
+                    <td>North Jacket</td>
+                    <td>$189.99</td>
+                    <td>In-stock</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Shoes</td>
+                    <td>Nike</td>
+                    <td>$59.99</td>
+                    <td>In-stock</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Electronics</td>
+                    <td>LED TV</td>
+                    <td>$589.99</td>
+                    <td>Out of stock</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Sporting </td>
+                    <td>Ping Golf </td>
+                    <td>$159.99</td>
+                    <td>In-stock</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Clothing</td>
+                    <td>Sweater</td>
+                    <td>$19.99</td>
+                    <td>In-stock</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Clothing</td>
+                    <td>North Jacket</td>
+                    <td>$189.99</td>
+                    <td>In-stock</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Shoes</td>
+                    <td>Nike</td>
+                    <td>$59.99</td>
+                    <td>In-stock</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Electronics</td>
+                    <td>LED TV</td>
+                    <td>$589.99</td>
+                    <td>Out of stock</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Sporting</td>
+                    <td>Ping Golf</td>
+                    <td>$159.99</td>
+                    <td>In-stock</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Shoes</td>
+                    <td>Nike</td>
+                    <td>$59.99</td>
+                    <td>In-stock</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Electronics</td>
+                    <td>LED TV</td>
+                    <td>$589.99</td>
+                    <td>Out of stock</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Sporting </td>
+                    <td>North Jacket </td>
+                    <td>$159.99</td>
+                    <td>In-stock</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="dataTables_paginate paging_simple_button" id="page"></div>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function(){
+            $('#page').html('<ul id="nav" class="pagination"></ul>');
+            var rowsShown = 2;
+            var rowsTotal = $('#data tbody tr').length;
+            var numPages = rowsTotal/rowsShown;
+            for(i = 0;i < numPages;i++) {
+                var pageNum = i + 1;
+                $('#nav').append('<li class="paginate_button"><a href="#" rel="' + i + '">' + pageNum + '</a></li> ');
+            }
+            $('#data tbody tr').hide();
+            $('#data tbody tr').slice(0, rowsShown).show();
+            $('#nav a').bind('click', function(){
+
+                var currPage = $(this).attr('rel');
+                var startItem = currPage * rowsShown;
+                var endItem = startItem + rowsShown; 
+                $('#data tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+                        css('display','table-row').animate({opacity:1}, 300);
+            });
+        });
+</script>

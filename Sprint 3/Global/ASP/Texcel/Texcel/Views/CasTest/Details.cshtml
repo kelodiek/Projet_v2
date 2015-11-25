@@ -2,9 +2,14 @@
     Layout = "~/Views/Shared/_LayoutTest2.cshtml";
 }
 @{
-    ViewBag.Title = "Cas de Test";
+    ViewBag.Title = "Cas de test";
 }
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"
+        type="text/javascript"></script> 
+
 <section class="content-header">
+
     <h1>
         Cas de test
         <small>Détails</small>
@@ -14,16 +19,198 @@
         <li><a href="#">Cas de test</a></li>
         <li class="active">Détails</li>
     </ol>
+
 </section>
 
 <section class="content">
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <div class="btn-group-sm">
-                <a class="btn btn-sm btn-info btn-flat pull-left">Enregistrer</a>
-                <a class="btn btn-sm btn-info btn-flat pull-left">Modifier</a>
-                <a class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
+                <asp id="btnEnregistrer" onclick="" class="btn btn-sm btn-info btn-flat pull-left">Enregistrer</asp>
+                <a id="btnModifier" class="btn btn-sm btn-info btn-flat pull-left">Modifier</a>
+                <a id="btnDesactiver"class="btn btn-sm btn-info btn-flat pull-left">Désactiver</a>
+                <a id="btnSupprimer" class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
             </div>
+
+            <script>
+                   $(document).ready(function () {
+                       //chercher la list de Ficher cas de test
+                       $.ajax({
+                           url: '/CasTest/getlstFichierCasTest',
+                           contentType: 'application/html; charset=utf-8',
+                           type: 'GET',
+                           dataType: 'html'
+
+                       })
+                       .success(function (result) {
+                           $('#tblCasTest').replaceWith(result);
+                       })
+                       .error(function (xhr, status) {
+                           alert(status);
+                       })
+
+
+                    @*@ViewBag.nomCas = $("#nomCas").val();
+                    @ViewBag.codeCas = $("#codeCas").val();
+                    @ViewBag.codeProjet = $("#codeProjet").val();
+                    @ViewBag.codeTypeTest = $("#codeTypeTest").val();
+                    @ViewBag.dateCreation = $("#dateCreation").val();
+                    @ViewBag.dateEcheance = $("#dateEcheance").val();
+                    @ViewBag.descCas = $("#descCas").val();
+                    @ViewBag.descDifficulte = $("#descDifficulte").val();
+                    @ViewBag.infoSup = $("#infoSup").val();
+                    @ViewBag.objectifCas = $("#objectifCas").val();
+                    @ViewBag.prioriteCas = $("#prioriteCas").val();*@
+
+             });
+            </script>
+
+            @*Permet d'appeler la fonction enregistrer un cas de test*@
+             <script>
+                 //$('#btnEnregistrer').click(function () {
+
+                 //    //Le changer pour un ADD pour réutilisation
+                 //    var stringArray = new Array();
+                 //    stringArray[0] = $("#nomCas").val();
+                 //    stringArray[1] = $("#codeCas").val();
+                 //    stringArray[2] = $("#codeProjet").val();
+                 //    stringArray[3] = $("#codeTypeTest").val();
+                 //    stringArray[4] = $("#dateCreation").val();
+                 //    stringArray[5] = $("#dateEcheance").val();
+                 //    stringArray[6] = $("#descCas").val();
+                 //    stringArray[7] = $("#descDifficulte").val();
+                 //    stringArray[8] = 1;
+                 //    stringArray[9] = $("#infoSup").val();
+                 //    stringArray[10] = $("#objectifCas").val();
+                 //    stringArray[11] = $("#prioriteCas").val();
+                 //    var postData = { values: stringArray };
+
+                 //    $.ajax({
+                 //        type: "POST",
+                 //        url: '/CasTest/EnrCasTest',
+                 //        data: postData,
+                 //        dataType: "json",
+                 //        traditional: true,
+                 //        success: function (data) {
+                 //            alert(data.Result);
+                 //        }            
+                 //    });
+                 //});
+
+                 $('#btnEnregistrer').click(function () {
+
+                     //Le changer pour un ADD pour réutilisation
+                     var stringArray = getInfoFormCasTest();
+                     var postData = { values: stringArray };
+
+                     $.ajax({
+                         type: "POST",
+                         url: '/CasTest/EnrCasTest',
+                         data: postData,
+                         dataType: "json",
+                         traditional: true,
+                         success: function (data) {
+                             alert(data.Result);
+                         }
+                     });
+                 });
+
+            @*Permet d'appeler la fonction desactiver un cas de test*@
+                 $('#btnDesactiver').click(function () {
+
+                     //Le changer pour un ADD pour réutilisation
+                     var stringArray = new Array();
+                     stringArray[0] = $("#codeCas").val();
+                     var postData = { values: stringArray };
+
+                     $.ajax({
+                         type: "POST",
+                         url: '/CasTest/DesacCasTest',
+                         data: postData,
+                         dataType: "json",
+                         traditional: true,
+                         success: function (data) {
+                             alert(data.Result);
+                         }
+                        
+                     });
+                 });
+
+            @*Permet d'appeler la fonction supprimer un cas de test*@
+                 $('#btnSupprimer').click(function () {
+
+                     //Le changer pour un ADD pour réutilisation
+                     var stringArray = new Array();
+                     stringArray[0] = $("#codeCas").val();
+                     var postData = { values: stringArray };
+
+                     $.ajax({
+                         type: "POST",
+                         url: '/CasTest/EffCasTest',
+                         data: postData,
+                         dataType: "json",
+                         traditional: true,
+                         success: function (data) {
+                             alert(data.Result);
+                         }
+
+                     });
+                 });
+
+                 function getInfoFormCasTest() {
+
+                     var stringArray = new Array();
+                     stringArray[0] = $("#nomCas").val();
+                     stringArray[1] = $("#codeCas").val();
+                     stringArray[2] = $("#codeProjet").val();
+                     stringArray[3] = $("#codeTypeTest").val();
+                     stringArray[4] = $("#dateCreation").val();
+                     stringArray[5] = $("#dateEcheance").val();
+                     stringArray[6] = $("#descCas").val();
+                     stringArray[7] = $("#descDifficulte").val();
+                     stringArray[8] = 1;
+                     stringArray[9] = $("#infoSup").val();
+                     stringArray[10] = $("#objectifCas").val();
+                     stringArray[11] = $("#prioriteCas").val();
+
+                     return stringArray;
+                 }
+
+             //    $('#btnEnregistrer').click(function (nomCas, codeCas, codeProjet, codeTypeTest, dateCreation, dateEcheance, descCas, descDifficulte, idAuteur, infoSup, objectifCas, prioriteCas) {
+             //        var nomCas = $("#nomCas").val();
+             //        var codeCas = $("#codeCas").val();
+             //        var codeProjet = $("#codeProjet").val();
+             //        var codeTypeTest = $("#codeTypeTest").val();
+             //        var dateCreation = $("#dateCreation").val();
+             //        var dateEcheance = $("#dateEcheance").val();
+             //        var descCas = $("#descCas").val();
+             //        var descDifficulte = $("#descDifficulte").val();
+             //        var idAuteur = 1;
+             //        var infoSup = $("#infoSup").val();
+             //        var objectifCas = $("#objectifCas").val();
+             //        var prioriteCas = $("#prioriteCas").val();
+
+             //        alert(nomCas);
+
+             //        $.ajax({
+             //        url: '/CasTest/EnrCasTest',
+             //        contentType: 'application/html; charset=utf-8',
+             //        type: 'GET',
+             //        dataType: 'html'
+
+             //    })
+             //    .success(function (result) {
+             //        alert("Enregistrement réussi avec succès")
+             //    })
+             //    .error(function (xhr, status) {
+             //        alert(status);
+             //    })
+             //});
+            </script>
+
+
+
+
             <div class="btn-group-sm">
                 <a class="btn btn-sm btn-info btn-flat pull-right">Retour</a>
             </div>
@@ -34,60 +221,60 @@
                 <dl class="dl-horizontal">
                     <dt>Projet: </dt>
                     <dd>
-                        <input type="text" size="10" maxlength="10" name="txtProjet" value=" " />
+                        <input id="codeProjet" type="text" size="10" maxlength="10" name="txtProjet" value=" " />
                     </dd>
 
                     <dt>Code: </dt>
                     <dd>
-                        <input type="text" size="10" maxlength="10" name="txtCode" value=" " />
+                        <input id="codeCas" type="text" size="12" maxlength="12" name="txtCode" value=" " />
                     </dd>
 
                     <dt>Nom: </dt>
                     <dd>
-                        <input type="text" size="30" maxlength="30" name="txtNom" value=" " />
+                        <input id="nomCas" type="text" size="30" maxlength="30" name="txtNom" value=" " />
                     </dd>
 
                     <dt>Priorité: </dt>
                     <dd>
-                        <select>
-                            <option value="volvo">Faible</option>
-                            <option value="saab">Moyenne</option>
-                            <option value="mercedes">Important</option>
-                            <option value="audi">Urgent</option>
+                        <select id="prioriteCas">
+                            <option value="Faible">Faible</option>
+                            <option value="Moyenne">Moyenne</option>
+                            <option value="Important">Important</option>
+                            <option value="Urgent">Urgent</option>
                         </select>
                     </dd>
 
                     <dt>Difficulté: </dt>
                     <dd>
-                        <select>
-                            <option value="volvo">Débutant</option>
-                            <option value="saab">Intermédiaire</option>
-                            <option value="mercedes">Avancé</option>
+                        <select id="descDifficulte">
+                            <option value="Debutant">Débutant</option>
+                            <option value="Intermediaire">Intermédiaire</option>
+                            <option value="Avance">Avancé</option>
                         </select>
                     </dd>
 
                     <dt>Date de création: </dt>
                     <dd>
-                        <input class="datepicker-days" type="date" name="txtDateCreation" value=" " />
+                        <input id="dateCreation" class="datepicker-days" type="date" name="txtDateCreation" value=" " />
                     </dd>
 
                     <dt>Date de d'échéance: </dt>
                     <dd>
-                        <input type="date" name="txtDateEcheance" value=" " />
+                        <input id="dateEcheance" type="date" name="txtDateEcheance" value=" " />
                     </dd>
 
                     <dt>Objectif: </dt>
                     <dd>
-                        <textarea type="text" style="width:95%;" rows="5" name="txtNom" value=" "></textarea>
+                        <textarea id="objectifCas" type="text" style="width:95%;" rows="5" name="txtNom" value=" "></textarea>
                     </dd>
                 </dl>
             </div>
             <div style="width:50%; float: right;">
 
                 <label>Description: </label><br />
-                <textarea type="text" style="width:95%;" rows="6" name="txtNom" value=" "></textarea><br />
+                <textarea id="descCas" type="text" style="width:95%;" rows="6" name="txtNom" value=" "></textarea><br />
                 <label>Autre: </label><br />
-                <textarea type="text" style="width:95%;" rows="6" name="txtNom" value=" "></textarea><br />
+                <textarea id="infoSup" type="text" style="width:95%;" rows="6" name="txtNom" value=" "></textarea><br />
 
 
             </div>
@@ -97,11 +284,65 @@
     <div class="box box-default color-palette-box table-responsive">
         <div class="box-header with-border">
             <div class="btn-group-sm">
-                <a class="btn btn-sm btn-info btn-flat pull-left">Ajouter un document</a>
-            </div>
+                
+                @* Permet d'envoyer le fichier au serveur *@
+                <form id="FormSave" action="SaveFile" method="post" enctype="multipart/form-data">
+                    <input input type="file" name="file" id="file" />
+                    <button id="ajoutDoc" class="btn btn-sm btn-info btn-flat pull-left">Ajouter un document</button>
+                    @*<button id="btnSubmit">SALUT </button>*@
+                    @*<input type="submit" />*@
+                </form>
+
+                <script>
+                    //$('#FormSave').submit(function () {
+                    //    $.ajax({
+                    //        type: "POST",
+                    //        url: '/CasTest/SaveFile',
+                    //        data: document.getElementById(file).nodeValue,
+                    //        dataType: "file",
+                    //        traditional: true,
+                    //    });
+                    //});
+
+
+                     $('#ajoutDoc').click(function () {
+                     //Le changer pour un ADD pour réutilisation
+                     var stringArray = new Array();
+                     stringArray[0] = $("#codeCas").val();
+                     var postData = { values: stringArray };
+                         
+                     $.ajax({
+                         type: "POST",
+                         url: '/CasTest/SaveFile',
+                         data: document.getElementById(file).nodeValue,
+                         dataType: "file",
+                         traditional: true,
+                         success: function (data) {
+                             alert(data.Result);
+                         }
+                        
+                     });
+                 });
+    </script>
+
+                @*@using (Html.BeginForm("Index",
+                        "Home",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+                {
+                    <label for="file">Upload Image:</label>
+                    <input type="file" name="file" id="file" /><br><br>
+                    <input type="submit" value="Upload Image" />
+                    <br><br>
+                    @ViewBag.Message
+                }*@
+
+
+
+</div>
         </div>
         <div class="box-body">
-            <table class="table table-bordered">
+            <table id="tblCasTest" class="table table-bordered">
                 <tr>
                     <th>Nom document</th>
                     <th>Créateur</th>
@@ -151,3 +392,25 @@
         </div>
     </div>
 </section>
+
+@*<script>
+    $('#btnEnregistrer').click(function () {
+        $.ajax({
+            url: '/CasTest/getCasTest',
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html'
+
+        })
+        .success(function (result) {
+            $('#tblCasTest').append(result);
+        })
+        .error(function (xhr, status) {
+            alert(status);
+        })
+    });
+</script>*@
+
+
+
+

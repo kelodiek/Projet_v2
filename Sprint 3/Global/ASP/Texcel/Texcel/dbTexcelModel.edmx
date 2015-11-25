@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbProjetE2TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbProjetE2TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -262,6 +262,35 @@
           <Property Name="CodeProjet" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="CodeTypeTest" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblFiltre1">
+          <Key>
+            <PropertyRef Name="IdFiltre1" />
+          </Key>
+          <Property Name="IdFiltre1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomFiltre1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescFiltre1" Type="varchar" MaxLength="250" />
+          <Property Name="NomVue" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFiltre2">
+          <Key>
+            <PropertyRef Name="IdFiltre2" />
+          </Key>
+          <Property Name="IdFiltre2" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomFiltre2" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescFiltre2" Type="varchar" MaxLength="250" />
+          <Property Name="NomVue" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdFiltre1" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFiltre3">
+          <Key>
+            <PropertyRef Name="IdFiltre3" />
+          </Key>
+          <Property Name="IdFiltre3" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomFiltre3" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescFiltre3" Type="varchar" MaxLength="250" />
+          <Property Name="NomVue" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdFiltre2" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblProjet">
           <Key>
             <PropertyRef Name="CodeProjet" />
@@ -415,6 +444,30 @@
             </Principal>
             <Dependent Role="tblEquipeTypeTest">
               <PropertyRef Name="CodeTypeTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFiltre1_tblFiltre2_IdFiltre1">
+          <End Role="tblFiltre1" Type="Self.tblFiltre1" Multiplicity="1" />
+          <End Role="tblFiltre2" Type="Self.tblFiltre2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFiltre1">
+              <PropertyRef Name="IdFiltre1" />
+            </Principal>
+            <Dependent Role="tblFiltre2">
+              <PropertyRef Name="IdFiltre1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFiltre2_tblFiltre3_IdFiltre2">
+          <End Role="tblFiltre2" Type="Self.tblFiltre2" Multiplicity="1" />
+          <End Role="tblFiltre3" Type="Self.tblFiltre3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFiltre2">
+              <PropertyRef Name="IdFiltre2" />
+            </Principal>
+            <Dependent Role="tblFiltre3">
+              <PropertyRef Name="IdFiltre2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -697,6 +750,9 @@
           <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblUtilisateur" EntityType="Self.tblUtilisateur" Schema="Personnel" store:Type="Tables" />
           <EntitySet Name="tblCasTest" EntityType="Self.tblCasTest" Schema="Test" store:Type="Tables" />
+          <EntitySet Name="tblFiltre1" EntityType="Self.tblFiltre1" Schema="Test" store:Type="Tables" />
+          <EntitySet Name="tblFiltre2" EntityType="Self.tblFiltre2" Schema="Test" store:Type="Tables" />
+          <EntitySet Name="tblFiltre3" EntityType="Self.tblFiltre3" Schema="Test" store:Type="Tables" />
           <EntitySet Name="tblProjet" EntityType="Self.tblProjet" Schema="Test" store:Type="Tables" />
           <EntitySet Name="tblTypeTest" EntityType="Self.tblTypeTest" Schema="Test" store:Type="Tables" />
           <AssociationSet Name="FK_tblCasTest_tblEmploye_IdAuteur" Association="Self.FK_tblCasTest_tblEmploye_IdAuteur">
@@ -742,6 +798,14 @@
           <AssociationSet Name="FK_tblEquipeTypeTest_tblTypeTest_CodeTypeTest" Association="Self.FK_tblEquipeTypeTest_tblTypeTest_CodeTypeTest">
             <End Role="tblTypeTest" EntitySet="tblTypeTest" />
             <End Role="tblEquipeTypeTest" EntitySet="tblEquipeTypeTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFiltre1_tblFiltre2_IdFiltre1" Association="Self.FK_tblFiltre1_tblFiltre2_IdFiltre1">
+            <End Role="tblFiltre1" EntitySet="tblFiltre1" />
+            <End Role="tblFiltre2" EntitySet="tblFiltre2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFiltre2_tblFiltre3_IdFiltre2" Association="Self.FK_tblFiltre2_tblFiltre3_IdFiltre2">
+            <End Role="tblFiltre2" EntitySet="tblFiltre2" />
+            <End Role="tblFiltre3" EntitySet="tblFiltre3" />
           </AssociationSet>
           <AssociationSet Name="FK_tblGroupeDroit_tblDroit_CodeDroit" Association="Self.FK_tblGroupeDroit_tblDroit_CodeDroit">
             <End Role="tblDroit" EntitySet="tblDroit" />
@@ -828,8 +892,7 @@
             <End Role="tblVersion" EntitySet="tblVersion" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbProjetE2TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1404,7 +1467,75 @@
             <End Role="tblGroupe" EntitySet="tblGroupe" />
             <End Role="tblUtilisateur" EntitySet="tblUtilisateur" />
           </AssociationSet>
+          <EntitySet Name="tblFiltre1" EntityType="dbProjetE2TestModel.tblFiltre1" />
+          <EntitySet Name="tblFiltre2" EntityType="dbProjetE2TestModel.tblFiltre2" />
+          <EntitySet Name="tblFiltre3" EntityType="dbProjetE2TestModel.tblFiltre3" />
+          <AssociationSet Name="FK_tblFiltre1_tblFiltre2_IdFiltre1" Association="dbProjetE2TestModel.FK_tblFiltre1_tblFiltre2_IdFiltre1">
+            <End Role="tblFiltre1" EntitySet="tblFiltre1" />
+            <End Role="tblFiltre2" EntitySet="tblFiltre2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFiltre2_tblFiltre3_IdFiltre2" Association="dbProjetE2TestModel.FK_tblFiltre2_tblFiltre3_IdFiltre2">
+            <End Role="tblFiltre2" EntitySet="tblFiltre2" />
+            <End Role="tblFiltre3" EntitySet="tblFiltre3" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblFiltre1">
+          <Key>
+            <PropertyRef Name="IdFiltre1" />
+          </Key>
+          <Property Name="IdFiltre1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomFiltre1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DescFiltre1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NomVue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblFiltre2" Relationship="dbProjetE2TestModel.FK_tblFiltre1_tblFiltre2_IdFiltre1" FromRole="tblFiltre1" ToRole="tblFiltre2" />
+        </EntityType>
+        <EntityType Name="tblFiltre2">
+          <Key>
+            <PropertyRef Name="IdFiltre2" />
+          </Key>
+          <Property Name="IdFiltre2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomFiltre2" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DescFiltre2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NomVue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdFiltre1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblFiltre1" Relationship="dbProjetE2TestModel.FK_tblFiltre1_tblFiltre2_IdFiltre1" FromRole="tblFiltre2" ToRole="tblFiltre1" />
+          <NavigationProperty Name="tblFiltre3" Relationship="dbProjetE2TestModel.FK_tblFiltre2_tblFiltre3_IdFiltre2" FromRole="tblFiltre2" ToRole="tblFiltre3" />
+        </EntityType>
+        <EntityType Name="tblFiltre3">
+          <Key>
+            <PropertyRef Name="IdFiltre3" />
+          </Key>
+          <Property Name="IdFiltre3" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomFiltre3" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DescFiltre3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NomVue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdFiltre2" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblFiltre2" Relationship="dbProjetE2TestModel.FK_tblFiltre2_tblFiltre3_IdFiltre2" FromRole="tblFiltre3" ToRole="tblFiltre2" />
+        </EntityType>
+        <Association Name="FK_tblFiltre1_tblFiltre2_IdFiltre1">
+          <End Type="dbProjetE2TestModel.tblFiltre1" Role="tblFiltre1" Multiplicity="1" />
+          <End Type="dbProjetE2TestModel.tblFiltre2" Role="tblFiltre2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFiltre1">
+              <PropertyRef Name="IdFiltre1" />
+            </Principal>
+            <Dependent Role="tblFiltre2">
+              <PropertyRef Name="IdFiltre1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFiltre2_tblFiltre3_IdFiltre2">
+          <End Type="dbProjetE2TestModel.tblFiltre2" Role="tblFiltre2" Multiplicity="1" />
+          <End Type="dbProjetE2TestModel.tblFiltre3" Role="tblFiltre3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFiltre2">
+              <PropertyRef Name="IdFiltre2" />
+            </Principal>
+            <Dependent Role="tblFiltre3">
+              <PropertyRef Name="IdFiltre2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1711,6 +1842,38 @@
               <ScalarProperty Name="NomUtil" ColumnName="NomUtil" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="tblFiltre1">
+            <EntityTypeMapping TypeName="dbProjetE2TestModel.tblFiltre1">
+              <MappingFragment StoreEntitySet="tblFiltre1">
+                <ScalarProperty Name="NomVue" ColumnName="NomVue" />
+                <ScalarProperty Name="DescFiltre1" ColumnName="DescFiltre1" />
+                <ScalarProperty Name="NomFiltre1" ColumnName="NomFiltre1" />
+                <ScalarProperty Name="IdFiltre1" ColumnName="IdFiltre1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFiltre2">
+            <EntityTypeMapping TypeName="dbProjetE2TestModel.tblFiltre2">
+              <MappingFragment StoreEntitySet="tblFiltre2">
+                <ScalarProperty Name="IdFiltre1" ColumnName="IdFiltre1" />
+                <ScalarProperty Name="NomVue" ColumnName="NomVue" />
+                <ScalarProperty Name="DescFiltre2" ColumnName="DescFiltre2" />
+                <ScalarProperty Name="NomFiltre2" ColumnName="NomFiltre2" />
+                <ScalarProperty Name="IdFiltre2" ColumnName="IdFiltre2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFiltre3">
+            <EntityTypeMapping TypeName="dbProjetE2TestModel.tblFiltre3">
+              <MappingFragment StoreEntitySet="tblFiltre3">
+                <ScalarProperty Name="IdFiltre2" ColumnName="IdFiltre2" />
+                <ScalarProperty Name="NomVue" ColumnName="NomVue" />
+                <ScalarProperty Name="DescFiltre3" ColumnName="DescFiltre3" />
+                <ScalarProperty Name="NomFiltre3" ColumnName="NomFiltre3" />
+                <ScalarProperty Name="IdFiltre3" ColumnName="IdFiltre3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

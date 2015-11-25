@@ -1,0 +1,37 @@
+﻿@using Texcel.Models
+@model IEnumerable<tblCasTest>
+@{
+    ViewBag.Title = "getCasTest";
+}
+
+<table id="tblCasTest" class="table table-bordered">
+    <tr>
+        <th>Nom document</th>
+        <th>Créateur</th>
+        <th>Date de création</th>
+        <th>Date de modification</th>
+        <th>Icone</th>
+        <th>Extension</th>
+        <th>Taille</th>
+    </tr>
+    @foreach (tblCasTest p in Model)
+    {
+        <tr>
+            <td>@p.TitreCas</td>
+            <td>@p.DescCas</td>
+            <td>@p.DateCreation</td>
+            <td>@p.DateEcheance</td>
+            <td><img src="~/icons/word.ico" width="25" height="25" alt="Microsoft office Word" /></td>
+            <td>@p.CodeCas</td>
+            <td>@p.StatutCas</td>
+
+            <td>
+                <div class="btn-group-sm">
+                    <a class="btn btn-sm btn-info btn-flat pull-left">Afficher</a>
+                    <a class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+

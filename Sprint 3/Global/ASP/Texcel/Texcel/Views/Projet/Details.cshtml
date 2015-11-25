@@ -1,162 +1,202 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutTest2.cshtml";
-}
-@{
     ViewBag.Title = "Projet";
+    
 }
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"
         type="text/javascript"></script>
-<script src="~/bootstrap/js/JavaS_test.js" type="text/javascript"></script>
+<script src="~/bootstrap/js/JavaS_Projet.js" type="text/javascript"></script>
+<script src="~/bootstrap/js/TableauPaginer.js" type="text/javascript"></script>
 <script >
-    $(document).ready(loadList());
-
+    $(document).ready(function () {
+        Paginer('page','tabCasTest',5);
+        loadList();
+    });
 </script>
-<section class="content-header">
-    <h1>
-        Projet
-        <small>Détails</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
-        <li><a href="#">Projet</a></li>
-        <li class="active">Détails</li>
-    </ol>
-</section>
+    <section class="content-header">
+        <h1>
+            Projet
+            <small>Détails</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+            <li><a href="#">Projet</a></li>
+            <li class="active">Détails</li>
+        </ol>
+    </section>
 
-<section id="sectionDetail" class="content">
-    <div class="box box-default color-palette-box">
-        <div class="box-header with-border">
-            <div class="btn-group-sm">
-                <a id="btnEnr" class="btn btn-sm btn-info btn-flat pull-left">Enregistrer</a>
-                <a id="btnMod" class="btn btn-sm btn-info btn-flat pull-left">Modifier</a>
-                <a id="btnSup" class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
+    <section id="sectionDetail" class="content" onload="test()">
+        <div class="box box-default color-palette-box">
+            <div class="box-header with-border">
+                <div class="btn-group-sm">
+                    @*<a href="#" onclick="window.open('newpage.htm', 'newwindow', 'width=300, height=250'); return false;">Click here to open new window</a>*@
+                    <button id="btnEnr" type="button" class="btn btn-info" onclick="buttonClick(0)">Enregistrer</button>
+                    <button id="btnSup" type="button" class="btn btn-info disabled" onclick="buttonClick(2)">Supprimer</button>
+                    <button id="btnEqu" type="button" class="btn btn-info" onclick="">Équipe</button>
 
-                <a id="btnEqu" class="btn btn-sm btn-info btn-flat pull-left">Afficher équipe</a>
+                </div>
+                <div class="btn-group-sm">
+                    <a class="btn btn-sm btn-info btn-flat pull-right">Retour</a>
+                </div>
             </div>
-            <div class="btn-group-sm">
-                <a class="btn btn-sm btn-info btn-flat pull-right">Retour</a>
+            <div class="box-body">
+                <div style="width:50%; float:left;">
+                    <dl class="dl-horizontal">
+
+                        <a href="~/CasTest/Details/?test=value">test</a>
+                        <dt>Code projet : </dt>
+                        <dd>
+                            <input id="txtCodeP" type="text" size="13" maxlength="10" name="txtProjet"/>
+                        </dd>
+
+                        <dt>Chef de Projet : </dt>
+                        <dd>
+                            <select id="lstChefs">
+                                <option value="-1">selectionner un chef</option>
+                            </select>
+                        </dd>
+
+                        <dt>Titre : </dt>
+                        <dd>
+                            <input id="txtTitreP" type="text" size="30" maxlength="30" name="txtNom" />
+                        </dd>
+
+                        <dt>Version jeu : </dt>
+                        <dd>
+                            <select id="lstVersions">
+                                <option value="aucun">Selectionner un jeu</option>
+                            </select>
+                        </dd>
+
+                        <dt>Date de création : </dt>
+                        <dd>
+                            <input id="dateCrea" type="date" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                        </dd>
+
+                        <dt>Date de d'échéance : </dt>
+                        <dd>
+                            <input id="dateEch" type="date" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                        </dd>
+
+                        <dt>Description : </dt>
+                        <dd>
+                            <textarea id="txtDesc" type="text" style="width:95%;" rows="5" name="txtNom" ></textarea>
+                        </dd>
+                    </dl>
+                </div>
+                <div style="width:50%; float: right;">
+
+                    <label>Autre : </label><br />
+                    <textarea id="txtAutre" type="text" style="width:95%;" rows="6" name="txtNom" ></textarea><br />
+                    <label>Objectif : </label><br />
+                    <textarea id="txtObj" type="text" style="width:95%;" rows="6" name="txtNom"></textarea><br />
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header">Des trucs</div>
+                <div class="box-body">
+                    <table id="tabCasTest">
+                        <thead>
+                            <tr class="row">
+                                <th>S.No</th>
+                                <th>Category</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Clothing</td>
+                                <td>North Jacket</td>
+                                <td>$189.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Shoes</td>
+                                <td>Nike</td>
+                                <td>$59.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Electronics</td>
+                                <td>LED TV</td>
+                                <td>$589.99</td>
+                                <td>Out of stock</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Sporting </td>
+                                <td>Ping Golf </td>
+                                <td>$159.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Clothing</td>
+                                <td>Sweater</td>
+                                <td>$19.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Clothing</td>
+                                <td>North Jacket</td>
+                                <td>$189.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Shoes</td>
+                                <td>Nike</td>
+                                <td>$59.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Electronics</td>
+                                <td>LED TV</td>
+                                <td>$589.99</td>
+                                <td>Out of stock</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Sporting</td>
+                                <td>Ping Golf</td>
+                                <td>$159.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Shoes</td>
+                                <td>Nike</td>
+                                <td>$59.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Electronics</td>
+                                <td>LED TV</td>
+                                <td>$589.99</td>
+                                <td>Out of stock</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Sporting </td>
+                                <td>North Jacket </td>
+                                <td>$159.99</td>
+                                <td>In-stock</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="dataTables_paginate paging_simple_button" id="page"></div>
+                </div>
             </div>
         </div>
-        <div class="box-body">
-            <div style="width:50%; float:left;">
-                <dl class="dl-horizontal">
-                    <dt>Code projet: </dt>
-                    <dd>
-                        <input type="text" size="10" maxlength="10" name="txtProjet" value=" " />
-                    </dd>
-
-                    <dt>Chef de Projet: </dt>
-                    <dd>
-                        <select id="lstChefs">
-                            <option value="-1">selectionner un chef</option>
-                        </select>
-                    </dd>
-
-                    <dt>Nom: </dt>
-                    <dd>
-                        <input type="text" size="30" maxlength="30" name="txtNom" value=" " />
-                    </dd>
-
-                    <dt>Version jeu: </dt>
-                    <dd>
-                        <select id="lstVersions">
-                            <option value="aucun">Selectionner un jeu</option>
-                        </select>
-                    </dd>
-
-                    <dt>Date de création: </dt>
-                    <dd>
-                        <input type="date" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
-                    </dd>
-
-                    <dt>Date de d'échéance: </dt>
-                    <dd>
-                        <input type="date" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
-                    </dd>
-
-                    <dt>Description: </dt>
-                    <dd>
-                        <textarea type="text" style="width:95%;" rows="5" name="txtNom" value=" "></textarea>
-                    </dd>
-                </dl>
-            </div>
-            <div style="width:50%; float: right;">
-
-                <label>Autre: </label><br />
-                <textarea type="text" style="width:95%;" rows="6" name="txtNom" value=" "></textarea><br />
-                <label>Objectif: </label><br />
-                <textarea type="text" style="width:95%;" rows="6" name="txtNom" value=" "></textarea><br />
-
-            </div>
-        </div>
-
-    </div>
-    <div class="box box-default color-palette-box table-responsive">
-        <div class="box-header with-border">
-            <div class="btn-group-sm">
-                <a class="btn btn-sm btn-info btn-flat pull-left">Ajouter un cas de test</a>
-                <a class="btn btn-sm btn-info btn-flat pull-left">Supprimer</a>
-            </div>
-        </div>
-        <div class="box-body">
-            <table class="table table-bordered">
-                <tr>
-                    <th></th>
-                    <th>Code</th>
-                    <th>Titre</th>
-                    <th>Priorité</th>
-                    <th>Difficulté</th>
-                    <th>Date de création</th>
-                    <th>Date d'échéance</th>
-                    <th></th>
-                </tr>
-
-                @for (int i = 0; i < 5; i++)
-                {
-                    <tr>
-                        <td>
-                            <input type="checkbox" class="checkbox" />
-                        </td>
-                        <td>
-                            @("Test" + (i + 1))
-                        </td>
-                        <td>
-                            @("CasDeTest" + (i + 1))
-                        </td>
-                        <td>
-                            Urgent
-                        </td>
-                        <td>
-                            Intermédiaire
-                        </td>
-                        <td>
-                            23/10/2015
-                        </td>
-                        <td>
-                            24/10/2015
-                        </td>
-
-                        <td>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-info btn-sm">Détails</button>
-                                <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Détails</a></li>
-                                    <li><a href="#">Copier</a></li>
-                                    <li><a href="#">Associer une équipe</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                }
-
-            </table>
-        </div>
-    </div>
-</section>
+    </section>
 
 
 

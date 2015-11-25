@@ -47,6 +47,11 @@
         <AssociationConnector Association="dbProjetE2TestModel.tblEquipeTypeTest" ManuallyRouted="false" />
         <AssociationConnector Association="dbProjetE2TestModel.tblGroupeDroit" ManuallyRouted="false" />
         <AssociationConnector Association="dbProjetE2TestModel.tblGroupeUtil" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblFiltre1" Width="1.5" PointX="8.375" PointY="1.125" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblFiltre2" Width="1.5" PointX="10.625" PointY="1" />
+        <EntityTypeShape EntityType="dbProjetE2TestModel.tblFiltre3" Width="1.5" PointX="12.875" PointY="1" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblFiltre1_tblFiltre2_IdFiltre1" />
+        <AssociationConnector Association="dbProjetE2TestModel.FK_tblFiltre2_tblFiltre3_IdFiltre2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

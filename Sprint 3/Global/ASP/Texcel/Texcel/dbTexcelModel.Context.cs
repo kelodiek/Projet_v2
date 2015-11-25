@@ -44,5 +44,8 @@ namespace Texcel
         public virtual DbSet<tblCasTest> tblCasTest { get; set; }
         public virtual DbSet<tblProjet> tblProjet { get; set; }
         public virtual DbSet<tblTypeTest> tblTypeTest { get; set; }
+        public virtual DbSet<tblFiltre1> tblFiltre1 { get; set; }
+        public virtual DbSet<tblFiltre2> tblFiltre2 { get; set; }
+        public virtual DbSet<tblFiltre3> tblFiltre3 { get; set; }
     }
 }
