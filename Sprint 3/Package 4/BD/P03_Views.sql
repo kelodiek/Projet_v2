@@ -1,4 +1,4 @@
-use dbProjetE2TestEntities
+use dbProjetE2Test;
 
 go
 
@@ -23,3 +23,4 @@ go
 CREATE VIEW VtblResultatTest AS
 SELECT * 
 FROM tblResultatTest*/
+use master;
