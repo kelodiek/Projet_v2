@@ -1,0 +1,266 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTest2.cshtml";
+}
+
+@{
+    ViewBag.Title = "Accueil";
+}
+<section class="content-header">
+    <h1>
+        Accueil
+        <small>Billet de travail</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box color-palette-box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Mes billets</h3>
+            <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="example1" class="table table-hover stable-bordered no-padding table-responsive dataTable" role="grid" aria-describedby="example1_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 216.4px;"># Billet</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 235.4px;">Type</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 266.4px;">Titre</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 235.4px;">Durée estimée</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 185.4px;">Difficulté</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 137.2px;">Date de création</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 137.2px;">Date de livraison</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 137.2px;">Priorité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr role="row" class="odd">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Firefox 1.0</td>
+                                <td>Win 98+ / OSX.2+</td>
+                                <td class="sorting_2">1.7</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-danger">Urgent</span></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Firefox 1.5</td>
+                                <td>Win 98+ / OSX.2+</td>
+                                <td class="sorting_2">1.8</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-danger">Urgent</span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Firefox 2.0</td>
+                                <td>Win 98+ / OSX.2+</td>
+                                <td class="sorting_2">1.8</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-warning">Important</span></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Firefox 3.0</td>
+                                <td>Win 2k+ / OSX.3+</td>
+                                <td class="sorting_2">1.9</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-warning">Important</span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Camino 1.0</td>
+                                <td>OSX.2+</td>
+                                <td class="sorting_2">1.8</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-success">Faible</span></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Camino 1.5</td>
+                                <td>OSX.3+</td>
+                                <td class="sorting_2">1.8</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-success">Faible</span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Netscape 7.2</td>
+                                <td>Win 95+ / Mac OS 8.6-9.2</td>
+                                <td class="sorting_2">1.7</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-success">Faible</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            <div class="box-footer clearfix">
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>
+            </div>
+
+    </div>
+
+    <div class="box color-palette-box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Billets généraux</h3>
+            <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="example1" class="table table-hover stable-bordered no-padding table-responsive dataTable" role="grid" aria-describedby="example1_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 216.4px;"># Billet</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 235.4px;">Type</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 266.4px;">Titre</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 235.4px;">Durée estimée</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 185.4px;">Difficulté</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 137.2px;">Date de création</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 137.2px;">Date de livraison</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 137.2px;">Priorité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr role="row" class="odd">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Firefox 1.0</td>
+                                <td>Win 98+ / OSX.2+</td>
+                                <td class="sorting_2">1.7</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-warning">Important</span></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Firefox 1.5</td>
+                                <td>Win 98+ / OSX.2+</td>
+                                <td class="sorting_2">1.8</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-warning">Important</span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Firefox 2.0</td>
+                                <td>Win 98+ / OSX.2+</td>
+                                <td class="sorting_2">1.8</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-warning">Important</span></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Firefox 3.0</td>
+                                <td>Win 2k+ / OSX.3+</td>
+                                <td class="sorting_2">1.9</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-warning">Important</span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Camino 1.0</td>
+                                <td>OSX.2+</td>
+                                <td class="sorting_2">1.8</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-success">Faible</span></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Camino 1.5</td>
+                                <td>OSX.3+</td>
+                                <td class="sorting_2">1.8</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-success">Faible</span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Netscape 7.2</td>
+                                <td>Win 95+ / Mac OS 8.6-9.2</td>
+                                <td class="sorting_2">1.7</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-success">Faible</span></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>1764</td>
+                                <td class="sorting_1">Gecko</td>
+                                <td>Netscape Browser 8</td>
+                                <td>Win 98SE+</td>
+                                <td class="sorting_2">1.7</td>
+                                <td>A</td>
+                                <td>A</td>
+                                <td><span class="label label-primary">Non déterminé</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+
+    </div>
+</section>

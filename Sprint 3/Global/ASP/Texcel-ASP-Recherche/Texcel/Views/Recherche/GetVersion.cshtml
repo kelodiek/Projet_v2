@@ -1,0 +1,26 @@
+﻿@using Texcel.Models;
+@model IEnumerable<tblVersion>
+@{
+    int nom = 0;
+}
+<table class="table table-bordered" id="ResultatRecherche">
+    <tr>
+        <th>Code Version</th>
+        <th>Nom de la Version</th>
+        <th>Description Version</th>
+        <th>Date Écheance</th>
+        <th>Date Version</th>
+        <th>Date Sortie Prévue</th>
+    </tr>
+    @foreach (tblVersion ver in Model)
+    {
+        <tr onclick="Selectionner(this)" value="@nom++">
+            <td>@ver.CodeVersion</td>
+            <td>@ver.NomVersion</td>
+            <td>@ver.DescVersion</td>
+            <td>@ver.StadeDeveloppement</td>
+            <td>@ver.DateVersion</td>
+            <td>@ver.DateSortiePrevue</td>
+        </tr>
+    }
+</table>

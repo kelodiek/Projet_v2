@@ -1,0 +1,26 @@
+﻿@using Texcel.Models;
+@model IEnumerable<tblTypeTest>
+@{
+    int nom = 0; 
+}
+<table class="table table-bordered" id="ResultatRecherche">
+    <tr>
+        <th>Code Type Test</th>
+        <th>Nom Type de test</th>
+        <th>Objectif Type test</th>
+        <th>Description type test</th>
+        <th>Commentaire Test</th>
+    </tr>
+    @foreach (tblTypeTest tt in Model)
+    {
+
+        <tr onclick="Selectionner(this)" value="@nom++">
+            <td>@tt.CodeTypeTest</td>
+            <td>@tt.NomTypeTest</td>
+            <td>@tt.ObjectifTypeTest</td>
+            <td>@tt.DescTypeTest</td>
+            <td>@tt.CommentaireTest</td>
+        </tr>
+
+    }
+</table>

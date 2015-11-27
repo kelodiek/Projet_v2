@@ -1,0 +1,12 @@
+﻿
+@using Texcel.Models;
+@model IEnumerable<tblFiltre1>
+<select id="First" onchange="creerTableau(this)">
+    <option value="">Selectionner</option>
+    @foreach (tblFiltre1 j in Model)
+    {
+        <option value="@j.NomFiltre1">@j.NomFiltre1</option>
+    }
+</select>
+    
+    

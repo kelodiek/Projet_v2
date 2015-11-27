@@ -1,0 +1,34 @@
+﻿@using Texcel.Models;
+@model IEnumerable<tblCasTest>
+@{
+    int nom = 0;
+}
+<table class="table table-bordered" id="ResultatRecherche">
+    <tr>
+        <th>Code Cas</th>
+        <th>Titre Cas</th>
+        <th>Objectif Cas</th>
+        <th>Date Écheance</th>
+        <th>Date Création</th>
+        <th>Desc Cas</th>
+        <th>Statut Cas</th>
+        <th>Info Supp Cas</th>
+        <th>Difficulté Cas</th>
+        <th>Priorité Cas</th>
+    </tr>
+    @foreach (tblCasTest ct in Model)
+    {
+        <tr onclick="Selectionner(this)" value="@nom++">
+            <td>@ct.CodeCas</td>
+            <td>@ct.TitreCas</td>
+            <td>@ct.ObjectifCas</td>
+            <td>@ct.DateEcheance</td>
+            <td>@ct.DateCreation</td>
+            <td>@ct.DescCas</td>
+            <td>@ct.StatutCas</td>
+            <td>@ct.InfoSupCas</td>
+            <td>@ct.DifficulteCas</td>
+            <td>@ct.PrioriteCas</td>
+        </tr>
+    }
+</table>

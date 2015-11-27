@@ -1,0 +1,22 @@
+﻿@using Texcel.Models;
+@model IEnumerable<tblPlateforme>
+@{
+    int nom = 0;
+}
+<table class="table table-bordered" id="ResultatRecherche">
+    <tr>
+        <th>Code Plateforme</th>
+        <th>Nom Plateforme</th>
+        <th>Description Plateforme</th>
+        <th>Code Categorie</th>
+    </tr>
+    @foreach (tblPlateforme plat in Model)
+    {
+        <tr onclick="Selectionner(this)" value="@nom++">
+            <td>@plat.CodePlateforme</td>
+            <td>@plat.NomPlateforme</td>
+            <td>@plat.DescPlateforme</td>
+            <td>@plat.CodeCategorie</td>
+        </tr>
+    }
+</table>
