@@ -21,18 +21,32 @@ namespace Texcel.Controllers
         }
         public PartialViewResult getAllProjet()
         {
-            tblProjet[] projets = db.tblProjet.ToArray<tblProjet>();
+            tblProjet[] projets;
+            using (var db = new dbProjetE2TestEntities())
+            {
+                projets = db.tblProjet.ToArray<tblProjet>();
+            }
+            
             return PartialView(projets);
         }
         public PartialViewResult selectChefs()
         {
-            tblEmploye[] chefPro = db.tblEmploye.ToArray<tblEmploye>();
+
+            tblEmploye[] chefPro;
+            using (var db = new dbProjetE2TestEntities())
+            {
+                chefPro = db.tblEmploye.ToArray<tblEmploye>();
+            }
             ViewBag.idPro = "test";
             return PartialView(chefPro);
         }
         public PartialViewResult selectVersions()
         {
-            tblVersion[] versions = db.tblVersion.ToArray<tblVersion>();
+            tblVersion[] versions;
+            using (var db = new dbProjetE2TestEntities())
+            {
+                versions = db.tblVersion.ToArray<tblVersion>();
+            }
             return PartialView(versions);
         }
         /// <summary>
